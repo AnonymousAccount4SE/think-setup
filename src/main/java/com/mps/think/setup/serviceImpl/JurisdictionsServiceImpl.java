@@ -75,5 +75,14 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 		return jurisdictionsRepo.findTodayAndYesterdayRecords(today, yesterday);
 	}
 
+	@Override
+	public Jurisdictions findbyJurisdictionStateTaxContry(JurisdictionsVO jurisdictionsVo) {
+		
+		Jurisdictions jurisdictions = jurisdictionsRepo
+				.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountry(),jurisdictionsVo.getStateCode(),jurisdictionsVo.getZipCode());
+
+		return jurisdictions;
+	}
+
 
 }

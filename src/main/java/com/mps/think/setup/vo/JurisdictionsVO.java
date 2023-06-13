@@ -12,6 +12,8 @@ public class JurisdictionsVO {
 	private String country;
 	private String zipCode;
 	private Boolean avatarapplicable;
+	private CommodityCodesVO commodityCodesVo;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -60,13 +62,17 @@ public class JurisdictionsVO {
 	public void setCountrycode(String countrycode) {
 		this.countrycode = countrycode;
 	}
+	public CommodityCodesVO getCommodityCodesVo() {
+		return commodityCodesVo;
+	}
+	public void setCommodityCodesVo(CommodityCodesVO commodityCodesVo) {
+		this.commodityCodesVo = commodityCodesVo;
+	}
 	@Override
 	public String toString() {
 		return "JurisdictionsVO [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
-				+ avatarapplicable + "]";
+				+ avatarapplicable + ", commodityCodesVo=" + commodityCodesVo + "]";
 	}
 
-
-	
 }

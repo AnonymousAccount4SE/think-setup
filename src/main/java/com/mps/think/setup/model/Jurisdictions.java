@@ -1,5 +1,6 @@
 package com.mps.think.setup.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Table(name = "jurisdictions")
 @Entity
@@ -45,6 +48,10 @@ public class Jurisdictions extends BaseEntity{
 	
 	@Column(name = "avatarapplicable")
 	private Boolean avatarapplicable;
+	
+	@OneToOne
+	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
+	private CommodityCodes commodityCodes;
 
 	public Integer getId() {
 		return id;
@@ -110,18 +117,19 @@ public class Jurisdictions extends BaseEntity{
 		this.countrycode = countrycode;
 	}
 
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
+
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
-				+ avatarapplicable + "]";
+				+ avatarapplicable + ", commodityCodes=" + commodityCodes + "]";
 	}
 
-
-
-
-
-	
-	
-	
 }
