@@ -51,8 +51,8 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public List<InventoryMapper> getAllInventory() {
-		return inventoryRepository.findAll();
+	public Page<InventoryMapper> getAllInventory(Integer publisherId, Pageable page) {
+		return inventoryRepository.findByPublisherId(publisherId, page);
 	}
 
 	@Override
@@ -76,8 +76,8 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public Page<VendorDetails> getVendor(Pageable page) {
-		return vendorRepository.findAll(page);
+	public Page<VendorDetails> getVendor(Integer publisherId, Pageable page) {
+		return vendorRepository.findByPublisherId(publisherId, page);
 	}
 
 	@Override
@@ -91,8 +91,8 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public Page<AdjustmentTypes> getAdjustmentTypes(Pageable page) {
-		return adjustmentTypeRepository.findAll(page);
+	public Page<AdjustmentTypes> getAdjustmentTypes(Integer publisherId, Pageable page) {
+		return adjustmentTypeRepository.findByPublisherId(publisherId, page);
 	}
 
 	@Override
@@ -106,8 +106,8 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public Page<LocationAreaDetails> getLocationArea(Pageable page) {
-		return locationAreaRepository.findAll(page);
+	public Page<LocationAreaDetails> getLocationArea(Integer publisherId, Pageable page) {
+		return locationAreaRepository.findByPublisherId(publisherId, page);
 
 	}
 

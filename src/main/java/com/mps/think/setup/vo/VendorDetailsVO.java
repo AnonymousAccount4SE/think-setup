@@ -4,6 +4,8 @@ public class VendorDetailsVO {
 
 	private Integer id;
 	
+	private PublisherVO publisher;
+	
 	private String vendorCode;
 	
 	private String company;
@@ -90,6 +92,14 @@ public class VendorDetailsVO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public PublisherVO getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(PublisherVO publisher) {
+		this.publisher = publisher;
 	}
 	
 }

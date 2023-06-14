@@ -4,6 +4,8 @@ public class InventoryMapperVO {
 	
 	private Integer inventoryId;
 	
+	private PublisherVO publisher;
+	
 	private InventoryGeneralInformationVO generalInformation;
 	
 	private InventoryUnitInformationVO unitInformation;
@@ -80,6 +82,14 @@ public class InventoryMapperVO {
 
 	public void setVendorInformation(InventoryVendorDetailsVO vendorInformation) {
 		this.vendorInformation = vendorInformation;
+	}
+
+	public PublisherVO getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(PublisherVO publisher) {
+		this.publisher = publisher;
 	}
 
 }

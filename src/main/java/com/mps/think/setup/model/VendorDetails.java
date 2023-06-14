@@ -24,6 +24,10 @@ public class VendorDetails extends BaseEntity {
 	@Column(name = "id")
 	private Integer id;
 	
+	@OneToOne
+	@JoinColumn(name = "publisher_id", referencedColumnName = "id" )
+	private Publisher publisher;
+	
 	@Column(name = "vendor_code")
 	private String vendorCode;
 	
@@ -119,6 +123,14 @@ public class VendorDetails extends BaseEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 	
 }

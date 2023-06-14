@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,6 +29,10 @@ public class LocationAreaDetails extends BaseEntity {
 	@Column(name = "id")
 	private Integer id;
 
+	@OneToOne
+	@JoinColumn(name = "publisher_id", referencedColumnName = "id" )
+	private Publisher publisher;
+	
 	@Column(name = "location")
 	private String location;
 
@@ -78,6 +84,14 @@ public class LocationAreaDetails extends BaseEntity {
 
 	public void setAreaDetails(List<AreaDetails> areaDetails) {
 		this.areaDetails = areaDetails;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 }

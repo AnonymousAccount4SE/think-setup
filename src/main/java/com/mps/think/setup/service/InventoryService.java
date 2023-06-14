@@ -20,19 +20,19 @@ public interface InventoryService {
 	
 	public InventoryMapper saveInventory(InventoryMapperVO inventory);
 	public InventoryMapper updateInventory(InventoryMapperVO inventory);
-	public List<InventoryMapper> getAllInventory();
+	public Page<InventoryMapper> getAllInventory(Integer publisherId, Pageable page);
 	public InventoryMapper getInventoryById(Integer inventoryId);
 	public List<InventoryMapper> getAllInventoryMapper();
 
 	public VendorDetails createVendor(VendorDetailsVO vendor);
 	public VendorDetails updateVendor(VendorDetailsVO vendor);
-	public Page<VendorDetails> getVendor(Pageable page);
+	public Page<VendorDetails> getVendor(Integer publisherId, Pageable page);
 	public AdjustmentTypes createAdjustmentType(AdjustmentTypeVO type);
 	public AdjustmentTypes updateAdjustmentType(AdjustmentTypeVO type);
-	public Page<AdjustmentTypes> getAdjustmentTypes(Pageable page);
+	public Page<AdjustmentTypes> getAdjustmentTypes(Integer publisherId, Pageable page);
 	public LocationAreaDetails createLocationArea(LocationAreaDetailsVO location);
 	public LocationAreaDetails updateLocationArea(LocationAreaDetailsVO location);
-	public Page<LocationAreaDetails> getLocationArea(Pageable page);
+	public Page<LocationAreaDetails> getLocationArea(Integer publisherId, Pageable page);
 
 
 }

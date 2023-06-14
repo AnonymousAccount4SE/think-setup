@@ -28,8 +28,9 @@ public class InventoryController {
 	private InventoryService inventoryService;
 
 	@GetMapping("/getInventory")
-	public ResponseEntity<?> getAllInventory() {
-		return ResponseEntity.ok(inventoryService.getAllInventory());
+	public ResponseEntity<?> getAllInventory(@RequestParam(required = true) Integer publisherId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(inventoryService.getAllInventory(publisherId, PageRequest.of(page, size)));
 	}
 
 	@GetMapping("/getInventoryById/{inventoryId}")
@@ -58,11 +59,11 @@ public class InventoryController {
 	}
 
 	@GetMapping("/getVendor")
-	public ResponseEntity<?> getVendor(@RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(inventoryService.getVendor(PageRequest.of(page, size)));
+	public ResponseEntity<?> getVendor(@RequestParam(required = true) Integer publisherId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(inventoryService.getVendor(publisherId, PageRequest.of(page, size)));
 	}
-	
+
 	@PostMapping("/createAdjustmentType")
 	public ResponseEntity<?> createAdjustmentType(@Valid @RequestBody AdjustmentTypeVO type) {
 		return ResponseEntity.ok(inventoryService.createAdjustmentType(type));
@@ -74,11 +75,11 @@ public class InventoryController {
 	}
 
 	@GetMapping("/getAdjustmentTypes")
-	public ResponseEntity<?> getAdjustmentTypes(@RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(inventoryService.getAdjustmentTypes(PageRequest.of(page, size)));
+	public ResponseEntity<?> getAdjustmentTypes(@RequestParam(required = true) Integer publisherId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(inventoryService.getAdjustmentTypes(publisherId, PageRequest.of(page, size)));
 	}
-	
+
 	@PostMapping("/createLocationArea")
 	public ResponseEntity<?> createLocationArea(@Valid @RequestBody LocationAreaDetailsVO location) {
 		return ResponseEntity.ok(inventoryService.createLocationArea(location));
@@ -90,9 +91,9 @@ public class InventoryController {
 	}
 
 	@GetMapping("/getLocationArea")
-	public ResponseEntity<?> getLocationArea(@RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(inventoryService.getLocationArea(PageRequest.of(page, size)));
+	public ResponseEntity<?> getLocationArea(@RequestParam(required = true) Integer publisherId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(inventoryService.getLocationArea(publisherId, PageRequest.of(page, size)));
 	}
 
 }
