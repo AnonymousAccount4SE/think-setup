@@ -82,7 +82,11 @@ public class TaxRateCSV {
 
 	@NotNull@NotBlank
 	@Pattern(regexp = "{A-Za-z0-9}*")	
-	private String avataxApplies;
+	private String taxComputeApi;
+
+	@NotNull@NotBlank
+	@Pattern(regexp = "{A-Za-z0-9}*")
+	private String AddressValidationApi;
 
 	@NotNull@NotBlank
 	@Pattern(regexp = "{A-Za-z0-9}*")
@@ -268,12 +272,20 @@ public class TaxRateCSV {
 		this.commodityDescription = commodityDescription;
 	}
 
-	public String getAvataxApplies() {
-		return avataxApplies;
+	public String getTaxComputeApi() {
+		return taxComputeApi;
 	}
 
-	public void setAvataxApplies(String avataxApplies) {
-		this.avataxApplies = avataxApplies;
+	public void setTaxComputeApi(String taxComputeApi) {
+		this.taxComputeApi = taxComputeApi;
+	}
+
+	public String getAddressValidationApi() {
+		return AddressValidationApi;
+	}
+
+	public void setAddressValidationApi(String addressValidationApi) {
+		AddressValidationApi = addressValidationApi;
 	}
 
 	public String getBasicRate() {
@@ -356,13 +368,13 @@ public class TaxRateCSV {
 				+ ", country=" + country + ", countryCode=" + countryCode + ", postalCode=" + postalCode + ", state="
 				+ state + ", stateCode=" + stateCode + ", city=" + city + ", county=" + county + ", streetName="
 				+ streetName + ", jurisdiction=" + jurisdiction + ", commodityCode=" + commodityCode
-				+ ", commodityDescription=" + commodityDescription + ", avataxApplies=" + avataxApplies + ", basicRate="
-				+ basicRate + ", commodityRate=" + commodityRate + ", jurisdictionRate=" + jurisdictionRate
-				+ ", effectiveDateForBasicRate=" + effectiveDateForBasicRate + ", effectiveDateForCommodityRate="
-				+ effectiveDateForCommodityRate + ", effectiveDateForJurisdictionRate="
-				+ effectiveDateForJurisdictionRate + ", noTaxMessageBasicRate=" + noTaxMessageBasicRate
-				+ ", noTaxMessageCommodityRate=" + noTaxMessageCommodityRate + ", noTaxMessageJurisdictionRate="
-				+ noTaxMessageJurisdictionRate + "]";
+				+ ", commodityDescription=" + commodityDescription + ", taxComputeApi=" + taxComputeApi
+				+ ", AddressValidationApi=" + AddressValidationApi + ", basicRate=" + basicRate + ", commodityRate="
+				+ commodityRate + ", jurisdictionRate=" + jurisdictionRate + ", effectiveDateForBasicRate="
+				+ effectiveDateForBasicRate + ", effectiveDateForCommodityRate=" + effectiveDateForCommodityRate
+				+ ", effectiveDateForJurisdictionRate=" + effectiveDateForJurisdictionRate + ", noTaxMessageBasicRate="
+				+ noTaxMessageBasicRate + ", noTaxMessageCommodityRate=" + noTaxMessageCommodityRate
+				+ ", noTaxMessageJurisdictionRate=" + noTaxMessageJurisdictionRate + "]";
 	}
 
 }

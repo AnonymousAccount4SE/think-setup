@@ -2,6 +2,10 @@ package com.mps.think.setup.vo;
 
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.OrderClass;
 import com.mps.think.setup.vo.EnumModelVO.OrderStatus;
@@ -33,6 +37,8 @@ public class OrderVO {
 	private CustomerDetailsVO otherAddressCustomer;
 	
 	private MultiLineItemOrderVO parentOrder;
+	
+	private CommodityCodesVO commodityCodesVO;
 
 	public Integer getOrderId() {
 		return orderId;
@@ -136,6 +142,14 @@ public class OrderVO {
 
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+
+	public CommodityCodesVO getCommodityCodesVO() {
+		return commodityCodesVO;
+	}
+
+	public void setCommodityCodesVO(CommodityCodesVO commodityCodesVO) {
+		this.commodityCodesVO = commodityCodesVO;
 	}
 
 	

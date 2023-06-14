@@ -189,17 +189,6 @@ public class Order extends BaseEntity {
 		this.parentOrder = parentOrder;
 
 	}
-
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", orderClass=" + orderClass
-				+ ", orderType=" + orderType + ", orderStatus=" + orderStatus + ", keyOrderInformation="
-				+ keyOrderInformation + ", orderItemsAndTerms=" + orderItemsAndTerms + ", paymentBreakdown="
-				+ paymentBreakdown + ", deliveryAndBillingOptions=" + deliveryAndBillingOptions + ", orderAddresses="
-				+ orderAddresses + ", auxiliaryInformation=" + auxiliaryInformation + ", otherAddressCustomer="
-				+ otherAddressCustomer + ", parentOrder=" + parentOrder + "]";
-	}
-
 	public String getOrderStatus() {
 		return orderStatus;
 	}
@@ -215,6 +204,15 @@ public class Order extends BaseEntity {
 	public void setCommodityCodes(CommodityCodes commodityCodes) {
 		this.commodityCodes = commodityCodes;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", orderClass=" + orderClass
+				+ ", orderType=" + orderType + ", orderStatus=" + orderStatus + ", keyOrderInformation="
+				+ keyOrderInformation + ", orderItemsAndTerms=" + orderItemsAndTerms + ", paymentBreakdown="
+				+ paymentBreakdown + ", deliveryAndBillingOptions=" + deliveryAndBillingOptions + ", orderAddresses="
+				+ orderAddresses + ", auxiliaryInformation=" + auxiliaryInformation + ", otherAddressCustomer="
+				+ otherAddressCustomer + ", parentOrder=" + parentOrder + ", commodityCodes=" + commodityCodes + "]";
+	}
+
 }

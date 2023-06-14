@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "tax_type")
@@ -34,6 +32,10 @@ public class TaxType extends BaseEntity {
 
 	@Column(name = "description")
 	private String description;
+	
+	@OneToOne
+	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
+	private CommodityCodes commodityCodes;
 
 	public Integer getTaxId() {
 		return taxId;
@@ -67,10 +69,18 @@ public class TaxType extends BaseEntity {
 		this.description = description;
 	}
 
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
+
 	@Override
 	public String toString() {
 		return "TaxType [taxId=" + taxId + ", pubId=" + pubId + ", taxType=" + taxType + ", description=" + description
-				+ "]";
+				+ ", commodityCodes=" + commodityCodes + "]";
 	}
 
 }
