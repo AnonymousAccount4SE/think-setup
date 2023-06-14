@@ -1,13 +1,13 @@
 package com.mps.think.setup.vo;
 
-import com.mps.think.setup.model.CountryInfo;
+
 import com.mps.think.setup.model.Publisher;
 
 public class StateandprovinceVO {
 	
 	private Integer id;
 	private Publisher pubId;
-	private CountryInfo countryid;
+//	private CountryInfo countryid;
 	private String country;
 	private String state;
 	private String statecode;
@@ -24,12 +24,6 @@ public class StateandprovinceVO {
 	}
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
-	}
-	public CountryInfo getCountryid() {
-		return countryid;
-	}
-	public void setCountryid(CountryInfo countryid) {
-		this.countryid = countryid;
 	}
 	public String getCountry() {
 		return country;
@@ -63,10 +57,11 @@ public class StateandprovinceVO {
 	}
 	@Override
 	public String toString() {
-		return "StateandprovinceVO [id=" + id + ", pubId=" + pubId + ", countryid=" + countryid + ", country=" + country
-				+ ", state=" + state + ", statecode=" + statecode + ", taxcomputation=" + taxcomputation
-				+ ", addressvalidation=" + addressvalidation + "]";
+		return "StateandprovinceVO [id=" + id + ", pubId=" + pubId + ", country=" + country + ", state=" + state
+				+ ", statecode=" + statecode + ", taxcomputation=" + taxcomputation + ", addressvalidation="
+				+ addressvalidation + "]";
 	}
+	
 	
 
 }

@@ -11,6 +11,7 @@ import com.mps.think.setup.vo.CancelSubscirptionReportView;
 import com.mps.think.setup.vo.CreditCardDeclinedView;
 import com.mps.think.setup.vo.CustomerDetailsVO;
 import com.mps.think.setup.vo.DailyCashReportView;
+import com.mps.think.setup.vo.DailyCreditCardAndPaymentReportView;
 import com.mps.think.setup.vo.RefundProcessReportView;
 import com.mps.think.setup.vo.SalesListByOrderView;
 
@@ -37,6 +38,8 @@ public interface ReportsService {
 	Page<SalesListByOrderView> getAllSalesListByOrderViewReport(Integer pubId, Date orderStartDate, Date orderEndDate, String orderType, Pageable page);
     
 	Page<CreditCardDeclinedView>getAllCreditCardDeclinedViewReport(Integer pubId, Date paymentStartDate, Date paymentEndDate, Pageable page);
+	
+	Page<DailyCreditCardAndPaymentReportView>getAllDailyCreditCardAndPaymentReport(Integer pubId, Date paymentStartDate, Date paymentEndDate, Pageable page);
 	
 
 	

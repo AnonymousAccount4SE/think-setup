@@ -14,7 +14,7 @@ public class CreditCardDeclinedView {
 	
 	private double baseAmount;
 	
-//	private double localAmount;
+	private String localAmount;
 	
 	private String nameOfCustomer;
 	
@@ -62,6 +62,14 @@ public class CreditCardDeclinedView {
 		this.baseAmount = baseAmount;
 	}
 
+	public String getLocalAmount() {
+		return localAmount;
+	}
+
+	public void setLocalAmount(String localAmount) {
+		this.localAmount = localAmount;
+	}
+
 	public String getNameOfCustomer() {
 		return nameOfCustomer;
 	}
@@ -86,4 +94,5 @@ public class CreditCardDeclinedView {
 		this.currency = currency;
 	}
 
+	
 }

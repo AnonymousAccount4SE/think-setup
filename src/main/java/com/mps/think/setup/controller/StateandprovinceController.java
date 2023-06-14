@@ -71,9 +71,9 @@ public class StateandprovinceController {
 		return ResponseEntity.ok(list);
 	}
 	
-	@PostMapping("/findAllStateandprovinceForCountry")
-	public ResponseEntity<?> findAllStateandprovinceForCountry(@RequestBody Integer id) {
-		return ResponseEntity.ok(stateandprovinceService.findAllStateandprovinceForCountry(id));
-	}
+//	@PostMapping("/findAllStateandprovinceForCountry")
+//	public ResponseEntity<?> findAllStateandprovinceForCountry(@RequestBody Integer id) {
+//		return ResponseEntity.ok(stateandprovinceService.findAllStateandprovinceForCountry(id));
+//	}
 
 }

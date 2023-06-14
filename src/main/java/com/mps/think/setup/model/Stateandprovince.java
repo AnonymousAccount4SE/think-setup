@@ -27,9 +27,9 @@ public class Stateandprovince extends BaseEntity {
 	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
 	private Publisher pubId;
 	
-	@OneToOne
-	@JoinColumn(name = "countryinfo_id", referencedColumnName = "id")
-	private CountryInfo countryid;
+//	@OneToOne
+//	@JoinColumn(name = "countryinfo_id", referencedColumnName = "id")
+//	private CountryInfo countryid;
 	
 	@Column(name="country")
 	private String country;
@@ -60,14 +60,6 @@ public class Stateandprovince extends BaseEntity {
 
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
-	}
-
-	public CountryInfo getCountryid() {
-		return countryid;
-	}
-
-	public void setCountryid(CountryInfo countryid) {
-		this.countryid = countryid;
 	}
 
 	public String getCountry() {
@@ -110,8 +102,12 @@ public class Stateandprovince extends BaseEntity {
 		this.addressvalidation = addressvalidation;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Stateandprovince [id=" + id + ", pubId=" + pubId + ", country=" + country + ", state=" + state
+				+ ", statecode=" + statecode + ", taxcomputation=" + taxcomputation + ", addressvalidation="
+				+ addressvalidation + "]";
+	}
 
 	
 	

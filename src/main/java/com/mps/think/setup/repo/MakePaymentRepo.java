@@ -24,6 +24,15 @@ public interface MakePaymentRepo extends JpaRepository<MakePayment, Integer>{
 			@Param("pubId") Integer pubId,
 			@Param("paymentStartDate") Date paymentStartDate,
 			@Param("paymentEndDate") Date paymentEndDate, Pageable page);
+	
+	
+	@Query("SELECT mp FROM MakePayment mp JOIN mp.order o JOIN o.paymentBreakdown p JOIN o.customerId ci WHERE (mp.publisher.id = :pubId OR :pubId IS NULL) AND "
+			+ "(:paymentStartDate IS NULL OR DATE(mp.createdAt) >= :paymentStartDate) AND "
+			+ "(:paymentEndDate IS NULL OR DATE(mp.createdAt) <= :paymentEndDate)")
+	Page<MakePayment> findAllDailyCreditCardAndPaymentReport(
+			@Param("pubId") Integer pubId, 
+			@Param("paymentStartDate") Date paymentStartDate,
+			@Param("paymentEndDate") Date paymentEndDate, Pageable page);
 		
 	
 

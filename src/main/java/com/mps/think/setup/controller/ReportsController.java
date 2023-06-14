@@ -111,4 +111,13 @@ public class ReportsController {
 			Date paymentEndDate1 = (paymentEndDate == null || paymentEndDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentEndDate);
 		 return ResponseEntity.ok(reportsService.getAllCreditCardDeclinedViewReport(pubId, paymentStartDate1, paymentEndDate1, PageRequest.of(page, size)));
 	 }
+	 
+	 @GetMapping("/getAllDailyCreditCardAndPaymentReport") 
+	 public ResponseEntity<?> getAllDailyCreditCardAndPaymentReport(@RequestParam(required = false) Integer pubId, @RequestParam(required = false) String paymentStartDate,
+				@RequestParam(required = false) String paymentEndDate, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) throws ParseException{
+		 
+		 Date paymentStartDate1 = (paymentStartDate == null || paymentStartDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentStartDate);
+			Date paymentEndDate1 = (paymentEndDate == null || paymentEndDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentEndDate);
+		 return ResponseEntity.ok(reportsService.getAllDailyCreditCardAndPaymentReport(pubId, paymentStartDate1, paymentEndDate1, PageRequest.of(page, size)));
+	 }
 }

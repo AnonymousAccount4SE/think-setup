@@ -27,6 +27,7 @@ import com.mps.think.setup.vo.CancelSubscirptionReportView;
 import com.mps.think.setup.vo.CreditCardDeclinedView;
 import com.mps.think.setup.vo.CustomerDetailsVO;
 import com.mps.think.setup.vo.DailyCashReportView;
+import com.mps.think.setup.vo.DailyCreditCardAndPaymentReportView;
 import com.mps.think.setup.vo.EnumModelVO;
 import com.mps.think.setup.vo.OrderAddressMappingVO;
 import com.mps.think.setup.vo.RefundProcessReportView;
@@ -245,7 +246,8 @@ public class ReportsServiceImpl implements ReportsService {
 			obj.setBaseAmount(c.getBaseAmount());
 			obj.setNameOfCustomer(c.getNameOfCustomer());
 			obj.setCustomerNumber(c.getOrder().getCustomerId().getCustomerId());
-			obj.setCurrency(c.getOrder().getPaymentBreakdown().getCurrencyType());
+			obj.setCurrency(c.getOrder().getPaymentBreakdown().getCurrency());
+			obj.setLocalAmount(c.getOrder().getPaymentBreakdown().getCurrencyType());
 			
 			ccdv.add(obj);
 			
@@ -255,6 +257,33 @@ public class ReportsServiceImpl implements ReportsService {
 		
 	}
 
+	@Override
+	public Page<DailyCreditCardAndPaymentReportView> getAllDailyCreditCardAndPaymentReport(Integer pubId,
+			Date paymentStartDate, Date paymentEndDate, Pageable page) {
+		if (paymentStartDate == null) paymentStartDate = new Date(0);
+		if (paymentEndDate == null) paymentEndDate = new Date();
+
+		
+		Page<MakePayment> allDailyCreditCardAndPaymentReport = makePaymentRepo.findAllDailyCreditCardAndPaymentReport(pubId, paymentStartDate, paymentEndDate,  page);
+		List<DailyCreditCardAndPaymentReportView> dccdv = new ArrayList<>();
+		
+		allDailyCreditCardAndPaymentReport.toList().forEach(c -> {
+			DailyCreditCardAndPaymentReportView obj = new DailyCreditCardAndPaymentReportView();
+			obj.setOrderNumber(c.getOrder().getOrderId());
+			obj.setPaymentDate(c.getCreatedAt());
+			obj.setCustomerNumber(c.getOrder().getCustomerId().getCustomerId());
+			obj.setNameOfCustomer(c.getNameOfCustomer());
+			obj.setOrderDate(c.getOrder().getCreatedAt());
+			obj.setPaymentAmount(c.getAmountToBePaid());
+			obj.setCurrency(c.getOrder().getPaymentBreakdown().getCurrency());
+			obj.setPaymentBaseAmount(c.getBaseAmount());
+			obj.setBundleQuantity(c.getOrder().getOrderItemsAndTerms().getCopiesPerIssue());
+		
+			dccdv.add(obj);
+	});
+		return new PageImpl<>(dccdv, allDailyCreditCardAndPaymentReport.getPageable(), allDailyCreditCardAndPaymentReport.getTotalElements());
+		
+}
 }
 	
 

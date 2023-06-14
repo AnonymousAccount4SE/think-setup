@@ -53,6 +53,8 @@ public class DateBasedOrderServiceImpl implements DateBasedOrderService {
 	@Override
 	public DateBasedOrderVO updateDateBasedOrder(DateBasedOrderVO order) throws Exception {
 		Order generalOrder = mapper.convertValue(order, Order.class);
+		generalOrder.setOrderType(OrderType.DateBasedSubscriptionOrder.getDisplayName());
+		generalOrder.setOrderStatus(orderRepo.findById(order.getOrderId()).get().getOrderStatus());
 		Order updatedOrder = orderService.updateOrder(generalOrder);
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		return mapper.convertValue(updatedOrder, DateBasedOrderVO.class);
