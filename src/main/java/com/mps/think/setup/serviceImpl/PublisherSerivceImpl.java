@@ -38,7 +38,7 @@ public class PublisherSerivceImpl implements PublisherSerivce {
 		data.setIsdCode(publiser.getIsdCode());
 		data.setZipCode(publiser.getZipCode());
 		data.setPrimaryPhone(publiser.getPrimaryPhone());
-		data.setSecondary_Phone(publiser.getSecondaryPhone());
+		data.setSecondary_Phone(publiser.getSecondary_Phone());
 		data.setLogoUrl(publiser.getLogoUrl());
 		data.setWebsite(publiser.getWebsite());
 		publisherRepo.saveAndFlush(data);
@@ -60,7 +60,7 @@ public class PublisherSerivceImpl implements PublisherSerivce {
 		data.setIsdCode(publiser.getIsdCode());
 		data.setZipCode(publiser.getZipCode());
 		data.setPrimaryPhone(publiser.getPrimaryPhone());
-		data.setSecondary_Phone(publiser.getSecondaryPhone());
+		data.setSecondary_Phone(publiser.getSecondary_Phone());
 		data.setLogoUrl(publiser.getLogoUrl());
 		data.setWebsite(publiser.getWebsite());
 		publisherRepo.saveAndFlush(data);

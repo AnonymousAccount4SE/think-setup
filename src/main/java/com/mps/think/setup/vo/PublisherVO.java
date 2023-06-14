@@ -40,7 +40,7 @@ public class PublisherVO {
 	private Currency currency;
 	private String dateformat;
 
-	private BigInteger secondaryPhone;
+	private BigInteger secondary_Phone;
 
 	public Integer getId() {
 		return id;
@@ -186,13 +186,12 @@ public class PublisherVO {
 		this.dateformat = dateformat;
 	}
 
-
-	public BigInteger getSecondaryPhone() {
-		return secondaryPhone;
+	public BigInteger getSecondary_Phone() {
+		return secondary_Phone;
 	}
 
-	public void setSecondaryPhone(BigInteger secondaryPhone) {
-		this.secondaryPhone = secondaryPhone;
+	public void setSecondary_Phone(BigInteger secondary_Phone) {
+		this.secondary_Phone = secondary_Phone;
 	}
 
 	@Override
@@ -202,7 +201,7 @@ public class PublisherVO {
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", isdCode=" + isdCode
 				+ ", primaryPhone=" + primaryPhone + ", email=" + email + ", logoUrl=" + logoUrl + ", timeZone="
 				+ timeZone + ", currency=" + currency + ", dateformat=" + dateformat + ", secondaryPhone="
-				+ secondaryPhone + "]";
+				+ secondary_Phone + "]";
 	}
 
 }

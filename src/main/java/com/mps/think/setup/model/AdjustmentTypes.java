@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "adjustment_types")
@@ -20,6 +22,10 @@ public class AdjustmentTypes extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name = "publisher_id", referencedColumnName = "id" )
+	private Publisher publisher;
 	
 	@Column(name = "adjustment_type")
 	private String adjustmentType;
@@ -49,6 +55,14 @@ public class AdjustmentTypes extends BaseEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 }

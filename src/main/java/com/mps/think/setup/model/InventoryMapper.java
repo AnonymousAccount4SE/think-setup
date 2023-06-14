@@ -24,6 +24,10 @@ public class InventoryMapper extends BaseEntity {
 	@Column(name = "inventory_id")
 	private Integer inventoryId;
 	
+	@OneToOne
+	@JoinColumn(name = "publisher_id", referencedColumnName = "id" )
+	private Publisher publisher;
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "general_information_id", referencedColumnName = "id" )
 	private InventoryGeneralInformation generalInformation;
@@ -114,6 +118,14 @@ public class InventoryMapper extends BaseEntity {
 
 	public void setVendorInformation(InventoryVendorDetails vendorInformation) {
 		this.vendorInformation = vendorInformation;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 	@Override

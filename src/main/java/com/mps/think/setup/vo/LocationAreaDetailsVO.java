@@ -6,6 +6,8 @@ public class LocationAreaDetailsVO {
 
 	private Integer id;
 	
+	private PublisherVO publisher;
+	
 	private String location;
 	
 	private String locationDescription;
@@ -52,6 +54,14 @@ public class LocationAreaDetailsVO {
 
 	public void setAreaDetails(List<AreaDetailsVO> areaDetails) {
 		this.areaDetails = areaDetails;
+	}
+
+	public PublisherVO getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(PublisherVO publisher) {
+		this.publisher = publisher;
 	}
 	
 }

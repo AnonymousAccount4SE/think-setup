@@ -5,6 +5,8 @@ public class AdjustmentTypeVO {
 
 	private Integer id;
 	
+	private PublisherVO publisher;
+	
 	private String adjustmentType;
 	
 	private String description;
@@ -31,6 +33,14 @@ public class AdjustmentTypeVO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public PublisherVO getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(PublisherVO publisher) {
+		this.publisher = publisher;
 	}
 	
 }
