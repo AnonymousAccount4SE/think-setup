@@ -95,11 +95,13 @@ public class SubmitJob extends BaseEntity {
 	@Column(name = "closeissue")
 	private Boolean closeissue;
 	
-	@Column(name = "labelgroup")
-	private String labelgroup;
+	@OneToOne
+	@JoinColumn(name = "label_group_id", referencedColumnName = "lable_group_id" )
+	private LableGroup lablegroupId;
 	
-	@Column(name = "keyline")
-	private String keyline;
+	@OneToOne
+	@JoinColumn(name = "keyline_id", referencedColumnName = "lable_keyline_id" )
+	private LableKeyLine keylineId;
 	
 	@Column(name = "gracenewexpires")
 	private Boolean gracenewexpires;
@@ -109,6 +111,57 @@ public class SubmitJob extends BaseEntity {
 	
 	@Column(name = "proformaorders")
 	private Boolean proformaorders;
+	
+	@Column(name = "nth_def")
+	private Integer nth_def;
+	
+	@Column(name = "listcompany")
+	private String listcompany;
+	
+	@Column(name = "ncandidaterecords")
+	private Integer ncandidaterecords;
+	
+	@Column(name = "nselectedrecords")
+	private Integer nSelectedRecords;
+	
+	@Column(name = "nupdatedrecords")
+	private Integer nUpdatedRecords;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "queue")
+	private String queue;
+	
+	@Column(name = "outputstep")
+	private String outputstep;
+	
+	@Column(name = "haserror")
+	private Boolean haserror;
+	
+	@Column(name = "endjobdatetime")
+	private Date endJobDatetime;
+	
+	@Column(name = "status")
+	private String status;
+	
+	@Column(name = "holdbits")
+	private Integer holdbits;
+	
+	@Column(name = "inv_serve_label")
+	private Integer inv_serve_label;
+	
+	@Column(name = "manual_review_fulfillment")
+	private Boolean manual_review_fulfillment;
+	
+	@Column(name = "step_number")
+	private Boolean step_number;
+	
+	@Column(name = "upd_recon_tables")
+	private Boolean upd_recon_tables;
+	
+	@Column(name = "write_recon_dtl")
+	private Boolean write_recon_dtl;
 
 	public Integer getId() {
 		return id;
@@ -294,20 +347,20 @@ public class SubmitJob extends BaseEntity {
 		this.closeissue = closeissue;
 	}
 
-	public String getLabelgroup() {
-		return labelgroup;
+	public LableGroup getLablegroupId() {
+		return lablegroupId;
 	}
 
-	public void setLabelgroup(String labelgroup) {
-		this.labelgroup = labelgroup;
+	public void setLablegroupId(LableGroup lablegroupId) {
+		this.lablegroupId = lablegroupId;
 	}
 
-	public String getKeyline() {
-		return keyline;
+	public LableKeyLine getKeylineId() {
+		return keylineId;
 	}
 
-	public void setKeyline(String keyline) {
-		this.keyline = keyline;
+	public void setKeylineId(LableKeyLine keylineId) {
+		this.keylineId = keylineId;
 	}
 
 	public Boolean getGracenewexpires() {
@@ -334,6 +387,142 @@ public class SubmitJob extends BaseEntity {
 		this.proformaorders = proformaorders;
 	}
 
+	public Integer getNth_def() {
+		return nth_def;
+	}
+
+	public void setNth_def(Integer nth_def) {
+		this.nth_def = nth_def;
+	}
+
+	public String getListcompany() {
+		return listcompany;
+	}
+
+	public void setListcompany(String listcompany) {
+		this.listcompany = listcompany;
+	}
+
+	public Integer getNcandidaterecords() {
+		return ncandidaterecords;
+	}
+
+	public void setNcandidaterecords(Integer ncandidaterecords) {
+		this.ncandidaterecords = ncandidaterecords;
+	}
+
+	public Integer getnSelectedRecords() {
+		return nSelectedRecords;
+	}
+
+	public void setnSelectedRecords(Integer nSelectedRecords) {
+		this.nSelectedRecords = nSelectedRecords;
+	}
+
+	public Integer getnUpdatedRecords() {
+		return nUpdatedRecords;
+	}
+
+	public void setnUpdatedRecords(Integer nUpdatedRecords) {
+		this.nUpdatedRecords = nUpdatedRecords;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getQueue() {
+		return queue;
+	}
+
+	public void setQueue(String queue) {
+		this.queue = queue;
+	}
+
+	public String getOutputstep() {
+		return outputstep;
+	}
+
+	public void setOutputstep(String outputstep) {
+		this.outputstep = outputstep;
+	}
+
+	public Boolean getHaserror() {
+		return haserror;
+	}
+
+	public void setHaserror(Boolean haserror) {
+		this.haserror = haserror;
+	}
+
+	public Date getEndJobDatetime() {
+		return endJobDatetime;
+	}
+
+	public void setEndJobDatetime(Date endJobDatetime) {
+		this.endJobDatetime = endJobDatetime;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getHoldbits() {
+		return holdbits;
+	}
+
+	public void setHoldbits(Integer holdbits) {
+		this.holdbits = holdbits;
+	}
+
+	public Integer getInv_serve_label() {
+		return inv_serve_label;
+	}
+
+	public void setInv_serve_label(Integer inv_serve_label) {
+		this.inv_serve_label = inv_serve_label;
+	}
+
+	public Boolean getManual_review_fulfillment() {
+		return manual_review_fulfillment;
+	}
+
+	public void setManual_review_fulfillment(Boolean manual_review_fulfillment) {
+		this.manual_review_fulfillment = manual_review_fulfillment;
+	}
+
+	public Boolean getStep_number() {
+		return step_number;
+	}
+
+	public void setStep_number(Boolean step_number) {
+		this.step_number = step_number;
+	}
+
+	public Boolean getUpd_recon_tables() {
+		return upd_recon_tables;
+	}
+
+	public void setUpd_recon_tables(Boolean upd_recon_tables) {
+		this.upd_recon_tables = upd_recon_tables;
+	}
+
+	public Boolean getWrite_recon_dtl() {
+		return write_recon_dtl;
+	}
+
+	public void setWrite_recon_dtl(Boolean write_recon_dtl) {
+		this.write_recon_dtl = write_recon_dtl;
+	}
+
 	@Override
 	public String toString() {
 		return "SubmitJob [id=" + id + ", addProcessId=" + addProcessId + ", processOutputId=" + processOutputId
@@ -343,12 +532,32 @@ public class SubmitJob extends BaseEntity {
 				+ holdjob + ", holdoutput=" + holdoutput + ", holdupdate=" + holdupdate + ", holdformanualselect="
 				+ holdformanualselect + ", volumegroup=" + volumegroup + ", billingdate=" + billingdate + ", none="
 				+ none + ", normal=" + normal + ", detailed=" + detailed + ", orderClass=" + orderClass
-				+ ", closeissue=" + closeissue + ", labelgroup=" + labelgroup + ", keyline=" + keyline
+				+ ", closeissue=" + closeissue + ", lablegroupId=" + lablegroupId + ", keylineId=" + keylineId
 				+ ", gracenewexpires=" + gracenewexpires + ", servecurrentgraces=" + servecurrentgraces
-				+ ", proformaorders=" + proformaorders + "]";
+				+ ", proformaorders=" + proformaorders + ", nth_def=" + nth_def + ", listcompany=" + listcompany
+				+ ", ncandidaterecords=" + ncandidaterecords + ", nSelectedRecords=" + nSelectedRecords
+				+ ", nUpdatedRecords=" + nUpdatedRecords + ", description=" + description + ", queue=" + queue
+				+ ", outputstep=" + outputstep + ", haserror=" + haserror + ", endJobDatetime=" + endJobDatetime
+				+ ", status=" + status + ", holdbits=" + holdbits + ", inv_serve_label=" + inv_serve_label
+				+ ", manual_review_fulfillment=" + manual_review_fulfillment + ", step_number=" + step_number
+				+ ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl=" + write_recon_dtl + "]";
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 

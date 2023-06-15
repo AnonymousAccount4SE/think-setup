@@ -17,6 +17,9 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	
 	@Autowired
 	private SubmitJobRepo submitJobRepo;
+	
+	@Autowired
+	private ObjectMapper mapper;
 
 	@Override
 	public List<SubmitJob> getAllSubmitJob() {
@@ -24,21 +27,13 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	}
 
 	@Override
-	public SubmitJobVO saveSubmitJob(SubmitJobVO submitJob) {
-		ObjectMapper mapper = new ObjectMapper();
-		SubmitJob newSubmitJob = mapper.convertValue(submitJob, SubmitJob.class);
-		SubmitJob data=submitJobRepo.saveAndFlush(newSubmitJob);
-		submitJob.setId(data.getId());
-		return submitJob;
+	public SubmitJob saveSubmitJob(SubmitJobVO submitJob) {
+		return submitJobRepo.saveAndFlush(mapper.convertValue(submitJob, SubmitJob.class));
 	}
 
 	@Override
-	public SubmitJobVO updateSubmitJob(SubmitJobVO submitJob) {
-		ObjectMapper mapper = new ObjectMapper();
-		SubmitJob newSubmitJob = mapper.convertValue(submitJob, SubmitJob.class);
-		SubmitJob data=submitJobRepo.saveAndFlush(newSubmitJob);
-		submitJob.setId(data.getId());
-		return submitJob;
+	public SubmitJob updateSubmitJob(SubmitJobVO submitJob) {
+		return submitJobRepo.saveAndFlush(mapper.convertValue(submitJob, SubmitJob.class));
 	}
 
 	@Override
