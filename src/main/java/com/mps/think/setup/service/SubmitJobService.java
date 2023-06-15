@@ -11,9 +11,9 @@ public interface SubmitJobService {
 	
 	public List<SubmitJob> getAllSubmitJob();
 
-	public SubmitJobVO saveSubmitJob(SubmitJobVO submitJob);
+	public SubmitJob saveSubmitJob(SubmitJobVO submitJob);
 
-	public SubmitJobVO updateSubmitJob(SubmitJobVO submitJob);
+	public SubmitJob updateSubmitJob(SubmitJobVO submitJob);
 
 	public SubmitJob findbySubmitJobId(Integer submitJobId);
 	
