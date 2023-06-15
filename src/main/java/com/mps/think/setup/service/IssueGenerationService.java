@@ -1,5 +1,6 @@
 package com.mps.think.setup.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.mps.think.setup.model.IssueGeneration;
@@ -27,4 +28,8 @@ public interface IssueGenerationService {
 	public List<IssueGeneration> getAllIssueGenerationForPublisher(Integer pubId);
 
 	public List<IssueGeneration> getAllIssueGeneration();
+	
+	public IssueGeneration getCurrentIssue(Integer pubId,Integer ocId,Integer orderId, Date closeDate);
+	
+	public List<IssueGeneration> getCurrentIssue(Integer pubId,List<Integer> ocId);
 }
