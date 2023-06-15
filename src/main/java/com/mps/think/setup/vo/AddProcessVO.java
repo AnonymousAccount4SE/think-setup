@@ -26,7 +26,7 @@ public class AddProcessVO {
 	private Boolean productfullfillment;
 	private Boolean refund;
 	private Boolean renewal;
-	private ExtractFilter extractfilterid;
+	private Integer extractfilter;
 	private String defaultjobpriority;
 	private OutputSort outputsortid;
 	private Queue defaultjobqueueid;
@@ -136,11 +136,11 @@ public class AddProcessVO {
 	public void setRenewal(Boolean renewal) {
 		this.renewal = renewal;
 	}
-	public ExtractFilter getExtractfilterid() {
-		return extractfilterid;
+	public Integer getExtractfilter() {
+		return extractfilter;
 	}
-	public void setExtractfilterid(ExtractFilter extractfilterid) {
-		this.extractfilterid = extractfilterid;
+	public void setExtractfilter(Integer extractfilter) {
+		this.extractfilter = extractfilter;
 	}
 	public String getDefaultjobpriority() {
 		return defaultjobpriority;
