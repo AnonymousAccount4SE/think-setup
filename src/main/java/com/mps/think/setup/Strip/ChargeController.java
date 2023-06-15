@@ -82,13 +82,20 @@ public class ChargeController {
 	}
 
 	@PostMapping("/refundAPI")
-	public ResponseEntity<?> refundAPI(String chargeId) throws StripeException {
+	public ResponseEntity<?> refundAPI(String chargeId,Integer orderId) throws StripeException {
 //		Stripe.apiKey = "sk_test_FQFXEQMTnWlgu1ckpre5Ka4000VeYdxCdU";
 //		Map<String, Object> params = new HashMap<>();
 //		params.put("charge", chargeId);cus_NYjc8h13frsnR1
 //		Refund refund = Refund.create(params);
 		Refund refund = paymentsService.refund(chargeId);
 		System.out.println(refund.toString());
+		Order orderDetails = addOrderRepo.findById(orderId).get();
+		PaymentBreakdown paymentBreakdown = orderDetails.getPaymentBreakdown();
+		if(refund.getStatus().equals("succeeded")) {
+		paymentBreakdown.setPaymentStatus("No-Payment-Refunded");
+		orderDetails.setPaymentBreakdown(paymentBreakdown);
+		addOrderRepo.saveAndFlush(orderDetails);
+		}
 		return ResponseEntity.ok(refund);
 	}
 

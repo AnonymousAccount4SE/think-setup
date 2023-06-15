@@ -249,7 +249,7 @@ List<OrderItems> orderItems = addOrderRepo.findAll().stream().map(m -> m.getOrde
 		        
 		        if (order != null) {
 //		            OrderStatus odStatus = order.getOrderStatus();
-		            order.setOrderStatus(Enum.valueOf(OrderStatus.class, odrStatus).getDisplayName());
+		            order.setOrderStatus(odrStatus);
 		            
 		            Order updatedOrder = addOrderRepo.save(order);
 		            updatedOrders.add(updatedOrder);

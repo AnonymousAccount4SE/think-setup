@@ -6,16 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.ExtractFilter;
+import com.mps.think.setup.model.ExtractFilterGroup;
+import com.mps.think.setup.model.ExtractFilterGroupBreak;
+ import com.mps.think.setup.model.Order;
+import com.mps.think.setup.repo.ExtractFilterGroupBreakRepo;
+import com.mps.think.setup.repo.ExtractFilterGroupRepo;
 import com.mps.think.setup.repo.ExtractFilterRepo;
-import com.mps.think.setup.service.ExtractFilterService;
+ import com.mps.think.setup.service.ExtractFilterService;
+import com.mps.think.setup.vo.ExtractFilterGroupVO;
 import com.mps.think.setup.vo.ExtractFilterVO;
-
+ 
 @Service
 public class ExtractFilterServiceImpl implements ExtractFilterService {
 	
 	@Autowired
 	private ExtractFilterRepo extractFilterRepo;
-	
+	@Autowired
+	private ExtractFilterGroupRepo extractFilterGroupRepo;
+	@Autowired
+	private ExtractFilterGroupBreakRepo extractFilterGroupBreakRepo;
+	 
 	@Autowired
 	private ObjectMapper mapper;
 
@@ -25,8 +35,10 @@ public class ExtractFilterServiceImpl implements ExtractFilterService {
 	}
 
 	@Override
-	public ExtractFilter saveExtractFilter(ExtractFilterVO extractFilter) {
+	public ExtractFilter  saveExtractFilter(ExtractFilterVO extractFilter) {
+		  
 		return extractFilterRepo.saveAndFlush(mapper.convertValue(extractFilter, ExtractFilter.class));
+		 
 	}
 
 	@Override
@@ -45,5 +57,10 @@ public class ExtractFilterServiceImpl implements ExtractFilterService {
 		extractFilterRepo.delete(delete);
 		return delete;
 	}
+
+	  @Override
+	public List<String> getAllColumnsOfTables(String tableName) {
+ 		return extractFilterRepo.getAllColumnsOfTables(tableName);
+	}  
 
 }
