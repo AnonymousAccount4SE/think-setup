@@ -18,5 +18,7 @@ public interface SubmitJobService {
 	public SubmitJob findbySubmitJobId(Integer submitJobId);
 	
 	public SubmitJob deleteBySubmitJobId(Integer submitJobId);
+	
+	public List<SubmitJob> findAllSubmitJobByPubId(Integer publisherId);
 
 }

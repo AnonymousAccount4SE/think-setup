@@ -49,4 +49,9 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 		return delete;
 	}
 
+	@Override
+	public List<SubmitJob> findAllSubmitJobByPubId(Integer publisherId) {
+		return submitJobRepo.findByPubIdId(publisherId);
+	}
+
 }
