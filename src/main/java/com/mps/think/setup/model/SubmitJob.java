@@ -30,9 +30,9 @@ public class SubmitJob extends BaseEntity {
 	@JoinColumn(name = "addProcess_id", referencedColumnName = "id" )
 	private AddProcess addProcessId;
 	
-	@OneToOne
-	@JoinColumn(name = "processoutput_id", referencedColumnName = "output_id" )
-	private ProcessOutput processOutputId;
+//	@OneToOne
+//	@JoinColumn(name = "processoutput_id", referencedColumnName = "output_id" )
+//	private ProcessOutput processOutputId;
 
 	@Column(name = "jobdescription")
 	private String jobdescription;
@@ -122,10 +122,10 @@ public class SubmitJob extends BaseEntity {
 	private Integer ncandidaterecords;
 	
 	@Column(name = "nselectedrecords")
-	private Integer nSelectedRecords;
+	private Integer nselectedrecords;
 	
 	@Column(name = "nupdatedrecords")
-	private Integer nUpdatedRecords;
+	private Integer nupdatedrecords;
 	
 	@Column(name = "description")
 	private String description;
@@ -140,7 +140,7 @@ public class SubmitJob extends BaseEntity {
 	private Boolean haserror;
 	
 	@Column(name = "endjobdatetime")
-	private Date endJobDatetime;
+	private Date endjobdatetime;
 	
 	@Column(name = "status")
 	private String status;
@@ -177,14 +177,6 @@ public class SubmitJob extends BaseEntity {
 
 	public void setAddProcessId(AddProcess addProcessId) {
 		this.addProcessId = addProcessId;
-	}
-
-	public ProcessOutput getProcessOutputId() {
-		return processOutputId;
-	}
-
-	public void setProcessOutputId(ProcessOutput processOutputId) {
-		this.processOutputId = processOutputId;
 	}
 
 	public String getJobdescription() {
@@ -411,20 +403,20 @@ public class SubmitJob extends BaseEntity {
 		this.ncandidaterecords = ncandidaterecords;
 	}
 
-	public Integer getnSelectedRecords() {
-		return nSelectedRecords;
+	public Integer getNselectedrecords() {
+		return nselectedrecords;
 	}
 
-	public void setnSelectedRecords(Integer nSelectedRecords) {
-		this.nSelectedRecords = nSelectedRecords;
+	public void setNselectedrecords(Integer nselectedrecords) {
+		this.nselectedrecords = nselectedrecords;
 	}
 
-	public Integer getnUpdatedRecords() {
-		return nUpdatedRecords;
+	public Integer getNupdatedrecords() {
+		return nupdatedrecords;
 	}
 
-	public void setnUpdatedRecords(Integer nUpdatedRecords) {
-		this.nUpdatedRecords = nUpdatedRecords;
+	public void setNupdatedrecords(Integer nupdatedrecords) {
+		this.nupdatedrecords = nupdatedrecords;
 	}
 
 	public String getDescription() {
@@ -459,12 +451,12 @@ public class SubmitJob extends BaseEntity {
 		this.haserror = haserror;
 	}
 
-	public Date getEndJobDatetime() {
-		return endJobDatetime;
+	public Date getEndjobdatetime() {
+		return endjobdatetime;
 	}
 
-	public void setEndJobDatetime(Date endJobDatetime) {
-		this.endJobDatetime = endJobDatetime;
+	public void setEndjobdatetime(Date endjobdatetime) {
+		this.endjobdatetime = endjobdatetime;
 	}
 
 	public String getStatus() {
@@ -523,32 +515,13 @@ public class SubmitJob extends BaseEntity {
 		this.write_recon_dtl = write_recon_dtl;
 	}
 
-	@Override
-	public String toString() {
-		return "SubmitJob [id=" + id + ", addProcessId=" + addProcessId + ", processOutputId=" + processOutputId
-				+ ", jobdescription=" + jobdescription + ", runjoblocally=" + runjoblocally + ", jobnotes=" + jobnotes
-				+ ", defaultjobqueue=" + defaultjobqueue + ", priority=" + priority + ", sendeffort=" + sendeffort
-				+ ", startdate=" + startdate + ", dropdate=" + dropdate + ", cutoffdate=" + cutoffdate + ", holdjob="
-				+ holdjob + ", holdoutput=" + holdoutput + ", holdupdate=" + holdupdate + ", holdformanualselect="
-				+ holdformanualselect + ", volumegroup=" + volumegroup + ", billingdate=" + billingdate + ", none="
-				+ none + ", normal=" + normal + ", detailed=" + detailed + ", orderClass=" + orderClass
-				+ ", closeissue=" + closeissue + ", lablegroupId=" + lablegroupId + ", keylineId=" + keylineId
-				+ ", gracenewexpires=" + gracenewexpires + ", servecurrentgraces=" + servecurrentgraces
-				+ ", proformaorders=" + proformaorders + ", nth_def=" + nth_def + ", listcompany=" + listcompany
-				+ ", ncandidaterecords=" + ncandidaterecords + ", nSelectedRecords=" + nSelectedRecords
-				+ ", nUpdatedRecords=" + nUpdatedRecords + ", description=" + description + ", queue=" + queue
-				+ ", outputstep=" + outputstep + ", haserror=" + haserror + ", endJobDatetime=" + endJobDatetime
-				+ ", status=" + status + ", holdbits=" + holdbits + ", inv_serve_label=" + inv_serve_label
-				+ ", manual_review_fulfillment=" + manual_review_fulfillment + ", step_number=" + step_number
-				+ ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl=" + write_recon_dtl + "]";
-	}
 	
 	
+
 	
+
 	
-	
-	
-	
+
 	
 	
 	
