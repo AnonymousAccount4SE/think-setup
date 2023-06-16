@@ -5,10 +5,12 @@ import com.mps.think.setup.model.LableGroup;
 import com.mps.think.setup.model.LableKeyLine;
 import com.mps.think.setup.model.OrderClass;
 import com.mps.think.setup.model.ProcessOutput;
+import com.mps.think.setup.model.Publisher;
 
 public class SubmitJobVO {
 	
     private Integer id;
+    private Publisher pubId;
 	private AddProcess addProcessId;
 	private ProcessOutput processOutputId;
 	private String jobdescription;
@@ -323,17 +325,23 @@ public class SubmitJobVO {
 	public void setWrite_recon_dtl(Boolean write_recon_dtl) {
 		this.write_recon_dtl = write_recon_dtl;
 	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
 	@Override
 	public String toString() {
-		return "SubmitJobVO [id=" + id + ", addProcessId=" + addProcessId + ", processOutputId=" + processOutputId
-				+ ", jobdescription=" + jobdescription + ", runjoblocally=" + runjoblocally + ", jobnotes=" + jobnotes
-				+ ", defaultjobqueue=" + defaultjobqueue + ", priority=" + priority + ", sendeffort=" + sendeffort
-				+ ", startdate=" + startdate + ", dropdate=" + dropdate + ", cutoffdate=" + cutoffdate + ", holdjob="
-				+ holdjob + ", holdoutput=" + holdoutput + ", holdupdate=" + holdupdate + ", holdformanualselect="
-				+ holdformanualselect + ", volumegroup=" + volumegroup + ", billingdate=" + billingdate + ", none="
-				+ none + ", normal=" + normal + ", detailed=" + detailed + ", orderClass=" + orderClass
-				+ ", closeissue=" + closeissue + ", lablegroupId=" + lablegroupId + ", keylineId=" + keylineId
-				+ ", gracenewexpires=" + gracenewexpires + ", servecurrentgraces=" + servecurrentgraces
+		return "SubmitJobVO [id=" + id + ", pubId=" + pubId + ", addProcessId=" + addProcessId + ", processOutputId="
+				+ processOutputId + ", jobdescription=" + jobdescription + ", runjoblocally=" + runjoblocally
+				+ ", jobnotes=" + jobnotes + ", defaultjobqueue=" + defaultjobqueue + ", priority=" + priority
+				+ ", sendeffort=" + sendeffort + ", startdate=" + startdate + ", dropdate=" + dropdate + ", cutoffdate="
+				+ cutoffdate + ", holdjob=" + holdjob + ", holdoutput=" + holdoutput + ", holdupdate=" + holdupdate
+				+ ", holdformanualselect=" + holdformanualselect + ", volumegroup=" + volumegroup + ", billingdate="
+				+ billingdate + ", none=" + none + ", normal=" + normal + ", detailed=" + detailed + ", orderClass="
+				+ orderClass + ", closeissue=" + closeissue + ", lablegroupId=" + lablegroupId + ", keylineId="
+				+ keylineId + ", gracenewexpires=" + gracenewexpires + ", servecurrentgraces=" + servecurrentgraces
 				+ ", proformaorders=" + proformaorders + ", nth_def=" + nth_def + ", listcompany=" + listcompany
 				+ ", ncandidaterecords=" + ncandidaterecords + ", nSelectedRecords=" + nSelectedRecords
 				+ ", nUpdatedRecords=" + nUpdatedRecords + ", description=" + description + ", queue=" + queue
@@ -342,6 +350,7 @@ public class SubmitJobVO {
 				+ ", manual_review_fulfillment=" + manual_review_fulfillment + ", step_number=" + step_number
 				+ ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl=" + write_recon_dtl + "]";
 	}
+
 	
 	
 	
