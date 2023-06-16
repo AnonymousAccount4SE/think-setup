@@ -1,5 +1,7 @@
 package com.mps.think.setup.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mps.think.setup.service.InventoryService;
 import com.mps.think.setup.vo.AdjustmentTypeVO;
+import com.mps.think.setup.vo.InventoryIssueMappingVO;
 import com.mps.think.setup.vo.InventoryMapperVO;
+import com.mps.think.setup.vo.InventoryProductMappingVO;
 import com.mps.think.setup.vo.LocationAreaDetailsVO;
 import com.mps.think.setup.vo.VendorDetailsVO;
 
@@ -96,4 +100,26 @@ public class InventoryController {
 		return ResponseEntity.ok(inventoryService.getLocationArea(publisherId, PageRequest.of(page, size)));
 	}
 
+	@PostMapping("/createProductLinks")
+	public ResponseEntity<?> createProductLinks(@Valid @RequestBody List<InventoryProductMappingVO> product) {
+		return ResponseEntity.ok(inventoryService.createProductLinks(product));
+	}
+	
+	@GetMapping("/getInventoryProductLinks")
+	public ResponseEntity<?> getInventoryProductLinks(@RequestParam(required = true) Integer inventoryId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(inventoryService.getInventoryProductLinks(inventoryId, PageRequest.of(page, size)));
+	}
+	
+	@PostMapping("/createIssueLinks")
+	public ResponseEntity<?> createIssueLinks(@Valid @RequestBody List<InventoryIssueMappingVO> issue) {
+		return ResponseEntity.ok(inventoryService.createIssueLinks(issue));
+	}
+	
+	@GetMapping("/getInventoryIssueLinks")
+	public ResponseEntity<?> getInventoryIssueLinks(@RequestParam(required = true) Integer inventoryId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(inventoryService.getInventoryIssueLinks(inventoryId, PageRequest.of(page, size)));
+	}
+	
 }
