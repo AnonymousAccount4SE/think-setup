@@ -1,5 +1,7 @@
 package com.mps.think.setup.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -64,5 +66,10 @@ public class IssueGenerationController {
 	@PostMapping("/getAllIssueGenerationForPublisher")
 	public ResponseEntity<?> getAllIssueGenerationForPublisher(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(issueGenerationServiceImpl.getAllIssueGenerationForPublisher(pubId));
+	}
+	
+	@PostMapping("/getCurrentIssue")
+	public ResponseEntity<?> getCurrentIssue(@RequestParam Integer pubId,@RequestParam List<Integer> ocId) {
+		return ResponseEntity.ok(issueGenerationServiceImpl.getCurrentIssue(pubId, ocId));
 	}
 }
