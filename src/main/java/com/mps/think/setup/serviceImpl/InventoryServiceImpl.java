@@ -127,8 +127,8 @@ public class InventoryServiceImpl implements InventoryService {
 
 	@Override
 	public List<InventoryProductMapping> createProductLinks(List<InventoryProductMappingVO> product) {
-		return inventoryProductMappingRepo.saveAllAndFlush(
-				product.stream().map(data -> mapper.convertValue(data, InventoryProductMapping.class)).toList());
+		return inventoryProductMappingRepo.saveAllAndFlush(product.stream()
+				.map(data -> mapper.convertValue(data, InventoryProductMapping.class)).collect(Collectors.toList()));
 	}
 
 	@Override
@@ -138,8 +138,8 @@ public class InventoryServiceImpl implements InventoryService {
 
 	@Override
 	public List<InventoryIssueMapping> createIssueLinks(List<InventoryIssueMappingVO> issue) {
-		return inventoryIssueMappingRepo.saveAllAndFlush(
-				issue.stream().map(data -> mapper.convertValue(data, InventoryIssueMapping.class)).toList());
+		return inventoryIssueMappingRepo.saveAllAndFlush(issue.stream()
+				.map(data -> mapper.convertValue(data, InventoryIssueMapping.class)).collect(Collectors.toList()));
 	}
 
 	@Override
