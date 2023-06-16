@@ -22,7 +22,7 @@ public class AddressesVO {
 	private String name;
 	private String addressLine1;
 	private String addressLine2;
-	private Integer zipCode;
+	private String zipCode;
 	private String city;
 	private String state;
 	private String country;
@@ -93,12 +93,6 @@ public class AddressesVO {
 	}
 	public void setAddressLine2(String addressLine2) {
 		this.addressLine2 = addressLine2;
-	}
-	public Integer getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
 	}
 	public String getCity() {
 		return city;
@@ -175,6 +169,12 @@ public class AddressesVO {
 				+ ", country=" + country + ", countryCode=" + countryCode + ", phone=" + phone + ", validFrom="
 				+ validFrom + ", validTo=" + validTo + ", frequency=" + frequency + ", selectionFrom=" + selectionFrom
 				+ ", selectionTo=" + selectionTo + ", addressAuxJSON=" + addressAuxJSON + "]";
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 	
 	
