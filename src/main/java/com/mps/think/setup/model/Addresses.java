@@ -74,7 +74,7 @@ public class Addresses  extends BaseEntity{
 	private String addressLine2;
 	
 	@Column(name = "zipCode" )
-	private Integer zipCode;
+	private String zipCode;
 	
 	@Column(name = "city")
 	private String city;
@@ -191,14 +191,6 @@ public class Addresses  extends BaseEntity{
 		this.addressLine2 = addressLine2;
 	}
 
-	public Integer getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
-	}
-
 	public String getCity() {
 		return city;
 	}
@@ -296,6 +288,14 @@ public class Addresses  extends BaseEntity{
 				+ ", country=" + country + ", countryCode=" + countryCode + ", phone=" + phone + ", validFrom="
 				+ validFrom + ", validTo=" + validTo + ", frequency=" + frequency + ", selectionFrom=" + selectionFrom
 				+ ", selectionTo=" + selectionTo + ", addressAuxJSON=" + addressAuxJSON + "]";
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	
