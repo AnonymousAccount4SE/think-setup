@@ -591,24 +591,25 @@ public class SubmitJobVO {
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
 	}
+
+
 	@Override
 	public String toString() {
-		return "SubmitJobVO [id=" + id + ", pubId=" + pubId + ", addProcessId=" + addProcessId + ", processOutputId="
-				+ processOutputId + ", jobdescription=" + jobdescription + ", runjoblocally=" + runjoblocally
-				+ ", jobnotes=" + jobnotes + ", defaultjobqueue=" + defaultjobqueue + ", priority=" + priority
-				+ ", sendeffort=" + sendeffort + ", startdate=" + startdate + ", dropdate=" + dropdate + ", cutoffdate="
-				+ cutoffdate + ", holdjob=" + holdjob + ", holdoutput=" + holdoutput + ", holdupdate=" + holdupdate
-				+ ", holdformanualselect=" + holdformanualselect + ", volumegroup=" + volumegroup + ", billingdate="
-				+ billingdate + ", none=" + none + ", normal=" + normal + ", detailed=" + detailed + ", orderClass="
-				+ orderClass + ", closeissue=" + closeissue + ", lablegroupId=" + lablegroupId + ", keylineId="
-				+ keylineId + ", gracenewexpires=" + gracenewexpires + ", servecurrentgraces=" + servecurrentgraces
-				+ ", proformaorders=" + proformaorders + ", nth_def=" + nth_def + ", listcompany=" + listcompany
-				+ ", ncandidaterecords=" + ncandidaterecords + ", nSelectedRecords=" + nSelectedRecords
-				+ ", nUpdatedRecords=" + nUpdatedRecords + ", description=" + description + ", queue=" + queue
-				+ ", outputstep=" + outputstep + ", haserror=" + haserror + ", endJobDatetime=" + endJobDatetime
-				+ ", status=" + status + ", holdbits=" + holdbits + ", inv_serve_label=" + inv_serve_label
-				+ ", manual_review_fulfillment=" + manual_review_fulfillment + ", step_number=" + step_number
-				+ ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl=" + write_recon_dtl + "]";
+		return "SubmitJobVO [id=" + id + ", pubId=" + pubId + ", addProcessId=" + addProcessId + ", jobdescription="
+				+ jobdescription + ", runjoblocally=" + runjoblocally + ", jobnotes=" + jobnotes + ", defaultjobqueue="
+				+ defaultjobqueue + ", priority=" + priority + ", sendeffort=" + sendeffort + ", startdate=" + startdate
+				+ ", dropdate=" + dropdate + ", cutoffdate=" + cutoffdate + ", holdjob=" + holdjob + ", holdoutput="
+				+ holdoutput + ", holdupdate=" + holdupdate + ", holdformanualselect=" + holdformanualselect
+				+ ", volumegroup=" + volumegroup + ", billingdate=" + billingdate + ", none=" + none + ", normal="
+				+ normal + ", detailed=" + detailed + ", orderClass=" + orderClass + ", closeissue=" + closeissue
+				+ ", lablegroupId=" + lablegroupId + ", keylineId=" + keylineId + ", gracenewexpires=" + gracenewexpires
+				+ ", servecurrentgraces=" + servecurrentgraces + ", proformaorders=" + proformaorders + ", nth_def="
+				+ nth_def + ", listcompany=" + listcompany + ", ncandidaterecords=" + ncandidaterecords
+				+ ", nselectedrecords=" + nselectedrecords + ", nupdatedrecords=" + nupdatedrecords + ", description="
+				+ description + ", queue=" + queue + ", outputstep=" + outputstep + ", haserror=" + haserror
+				+ ", endjobdatetime=" + endjobdatetime + ", status=" + status + ", holdbits=" + holdbits
+				+ ", inv_serve_label=" + inv_serve_label + ", manual_review_fulfillment=" + manual_review_fulfillment
+				+ ", step_number=" + step_number + ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl="
+				+ write_recon_dtl + "]";
 	}
-
 }

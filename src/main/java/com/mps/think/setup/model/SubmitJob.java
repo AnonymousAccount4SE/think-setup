@@ -528,22 +528,44 @@ public class SubmitJob extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "SubmitJob [id=" + id + ", pubId=" + pubId + ", addProcessId=" + addProcessId + ", processOutputId="
-				+ processOutputId + ", jobdescription=" + jobdescription + ", runjoblocally=" + runjoblocally
-				+ ", jobnotes=" + jobnotes + ", defaultjobqueue=" + defaultjobqueue + ", priority=" + priority
-				+ ", sendeffort=" + sendeffort + ", startdate=" + startdate + ", dropdate=" + dropdate + ", cutoffdate="
-				+ cutoffdate + ", holdjob=" + holdjob + ", holdoutput=" + holdoutput + ", holdupdate=" + holdupdate
-				+ ", holdformanualselect=" + holdformanualselect + ", volumegroup=" + volumegroup + ", billingdate="
-				+ billingdate + ", none=" + none + ", normal=" + normal + ", detailed=" + detailed + ", orderClass="
-				+ orderClass + ", closeissue=" + closeissue + ", lablegroupId=" + lablegroupId + ", keylineId="
-				+ keylineId + ", gracenewexpires=" + gracenewexpires + ", servecurrentgraces=" + servecurrentgraces
-				+ ", proformaorders=" + proformaorders + ", nth_def=" + nth_def + ", listcompany=" + listcompany
-				+ ", ncandidaterecords=" + ncandidaterecords + ", nSelectedRecords=" + nSelectedRecords
-				+ ", nUpdatedRecords=" + nUpdatedRecords + ", description=" + description + ", queue=" + queue
-				+ ", outputstep=" + outputstep + ", haserror=" + haserror + ", endJobDatetime=" + endJobDatetime
-				+ ", status=" + status + ", holdbits=" + holdbits + ", inv_serve_label=" + inv_serve_label
-				+ ", manual_review_fulfillment=" + manual_review_fulfillment + ", step_number=" + step_number
-				+ ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl=" + write_recon_dtl + "]";
+		return "SubmitJob [id=" + id + ", pubId=" + pubId + ", addProcessId=" + addProcessId + ", jobdescription="
+				+ jobdescription + ", runjoblocally=" + runjoblocally + ", jobnotes=" + jobnotes + ", defaultjobqueue="
+				+ defaultjobqueue + ", priority=" + priority + ", sendeffort=" + sendeffort + ", startdate=" + startdate
+				+ ", dropdate=" + dropdate + ", cutoffdate=" + cutoffdate + ", holdjob=" + holdjob + ", holdoutput="
+				+ holdoutput + ", holdupdate=" + holdupdate + ", holdformanualselect=" + holdformanualselect
+				+ ", volumegroup=" + volumegroup + ", billingdate=" + billingdate + ", none=" + none + ", normal="
+				+ normal + ", detailed=" + detailed + ", orderClass=" + orderClass + ", closeissue=" + closeissue
+				+ ", lablegroupId=" + lablegroupId + ", keylineId=" + keylineId + ", gracenewexpires=" + gracenewexpires
+				+ ", servecurrentgraces=" + servecurrentgraces + ", proformaorders=" + proformaorders + ", nth_def="
+				+ nth_def + ", listcompany=" + listcompany + ", ncandidaterecords=" + ncandidaterecords
+				+ ", nselectedrecords=" + nselectedrecords + ", nupdatedrecords=" + nupdatedrecords + ", description="
+				+ description + ", queue=" + queue + ", outputstep=" + outputstep + ", haserror=" + haserror
+				+ ", endjobdatetime=" + endjobdatetime + ", status=" + status + ", holdbits=" + holdbits
+				+ ", inv_serve_label=" + inv_serve_label + ", manual_review_fulfillment=" + manual_review_fulfillment
+				+ ", step_number=" + step_number + ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl="
+				+ write_recon_dtl + ", getId()=" + getId() + ", getAddProcessId()=" + getAddProcessId()
+				+ ", getJobdescription()=" + getJobdescription() + ", getRunjoblocally()=" + getRunjoblocally()
+				+ ", getJobnotes()=" + getJobnotes() + ", getDefaultjobqueue()=" + getDefaultjobqueue()
+				+ ", getPriority()=" + getPriority() + ", getSendeffort()=" + getSendeffort() + ", getStartdate()="
+				+ getStartdate() + ", getDropdate()=" + getDropdate() + ", getCutoffdate()=" + getCutoffdate()
+				+ ", getHoldjob()=" + getHoldjob() + ", getHoldoutput()=" + getHoldoutput() + ", getHoldupdate()="
+				+ getHoldupdate() + ", getHoldformanualselect()=" + getHoldformanualselect() + ", getVolumegroup()="
+				+ getVolumegroup() + ", getBillingdate()=" + getBillingdate() + ", getNone()=" + getNone()
+				+ ", getNormal()=" + getNormal() + ", getDetailed()=" + getDetailed() + ", getOrderClass()="
+				+ getOrderClass() + ", getCloseissue()=" + getCloseissue() + ", getLablegroupId()=" + getLablegroupId()
+				+ ", getKeylineId()=" + getKeylineId() + ", getGracenewexpires()=" + getGracenewexpires()
+				+ ", getServecurrentgraces()=" + getServecurrentgraces() + ", getProformaorders()="
+				+ getProformaorders() + ", getNth_def()=" + getNth_def() + ", getListcompany()=" + getListcompany()
+				+ ", getNcandidaterecords()=" + getNcandidaterecords() + ", getNselectedrecords()="
+				+ getNselectedrecords() + ", getNupdatedrecords()=" + getNupdatedrecords() + ", getDescription()="
+				+ getDescription() + ", getQueue()=" + getQueue() + ", getOutputstep()=" + getOutputstep()
+				+ ", getHaserror()=" + getHaserror() + ", getEndjobdatetime()=" + getEndjobdatetime() + ", getStatus()="
+				+ getStatus() + ", getHoldbits()=" + getHoldbits() + ", getInv_serve_label()=" + getInv_serve_label()
+				+ ", getManual_review_fulfillment()=" + getManual_review_fulfillment() + ", getStep_number()="
+				+ getStep_number() + ", getUpd_recon_tables()=" + getUpd_recon_tables() + ", getWrite_recon_dtl()="
+				+ getWrite_recon_dtl() + ", getPubId()=" + getPubId() + ", getCreatedBy()=" + getCreatedBy()
+				+ ", getCreatedAt()=" + getCreatedAt() + ", getModifiedBy()=" + getModifiedBy() + ", getModifiedAt()="
+				+ getModifiedAt() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + "]";
 	}
-
 }
