@@ -20,5 +20,7 @@ public interface SubmitJobService {
 	public SubmitJob deleteBySubmitJobId(Integer submitJobId);
 	
 	public List<SubmitJob> findAllSubmitJobByPubId(Integer publisherId);
+	
+	public List<List<String>> updateProcessJobInDb(String jobStatus ,Integer jobId);
 
 }

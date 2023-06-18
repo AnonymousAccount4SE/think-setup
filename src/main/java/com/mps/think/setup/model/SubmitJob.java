@@ -1,7 +1,9 @@
 package com.mps.think.setup.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -166,6 +169,10 @@ public class SubmitJob extends BaseEntity {
 	
 	@Column(name = "write_recon_dtl")
 	private Boolean write_recon_dtl;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "job_pub_oc_id", referencedColumnName = "id" )
+	private List<JobPubOc> jobPubOc;
 
 	public Integer getId() {
 		return id;
@@ -526,6 +533,14 @@ public class SubmitJob extends BaseEntity {
 		this.pubId = pubId;
 	}
 
+	public List<JobPubOc> getJobPubOc() {
+		return jobPubOc;
+	}
+
+	public void setJobPubOc(List<JobPubOc> jobPubOc) {
+		this.jobPubOc = jobPubOc;
+	}
+
 	@Override
 	public String toString() {
 		return "SubmitJob [id=" + id + ", pubId=" + pubId + ", addProcessId=" + addProcessId + ", jobdescription="
@@ -543,29 +558,6 @@ public class SubmitJob extends BaseEntity {
 				+ ", endjobdatetime=" + endjobdatetime + ", status=" + status + ", holdbits=" + holdbits
 				+ ", inv_serve_label=" + inv_serve_label + ", manual_review_fulfillment=" + manual_review_fulfillment
 				+ ", step_number=" + step_number + ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl="
-				+ write_recon_dtl + ", getId()=" + getId() + ", getAddProcessId()=" + getAddProcessId()
-				+ ", getJobdescription()=" + getJobdescription() + ", getRunjoblocally()=" + getRunjoblocally()
-				+ ", getJobnotes()=" + getJobnotes() + ", getDefaultjobqueue()=" + getDefaultjobqueue()
-				+ ", getPriority()=" + getPriority() + ", getSendeffort()=" + getSendeffort() + ", getStartdate()="
-				+ getStartdate() + ", getDropdate()=" + getDropdate() + ", getCutoffdate()=" + getCutoffdate()
-				+ ", getHoldjob()=" + getHoldjob() + ", getHoldoutput()=" + getHoldoutput() + ", getHoldupdate()="
-				+ getHoldupdate() + ", getHoldformanualselect()=" + getHoldformanualselect() + ", getVolumegroup()="
-				+ getVolumegroup() + ", getBillingdate()=" + getBillingdate() + ", getNone()=" + getNone()
-				+ ", getNormal()=" + getNormal() + ", getDetailed()=" + getDetailed() + ", getOrderClass()="
-				+ getOrderClass() + ", getCloseissue()=" + getCloseissue() + ", getLablegroupId()=" + getLablegroupId()
-				+ ", getKeylineId()=" + getKeylineId() + ", getGracenewexpires()=" + getGracenewexpires()
-				+ ", getServecurrentgraces()=" + getServecurrentgraces() + ", getProformaorders()="
-				+ getProformaorders() + ", getNth_def()=" + getNth_def() + ", getListcompany()=" + getListcompany()
-				+ ", getNcandidaterecords()=" + getNcandidaterecords() + ", getNselectedrecords()="
-				+ getNselectedrecords() + ", getNupdatedrecords()=" + getNupdatedrecords() + ", getDescription()="
-				+ getDescription() + ", getQueue()=" + getQueue() + ", getOutputstep()=" + getOutputstep()
-				+ ", getHaserror()=" + getHaserror() + ", getEndjobdatetime()=" + getEndjobdatetime() + ", getStatus()="
-				+ getStatus() + ", getHoldbits()=" + getHoldbits() + ", getInv_serve_label()=" + getInv_serve_label()
-				+ ", getManual_review_fulfillment()=" + getManual_review_fulfillment() + ", getStep_number()="
-				+ getStep_number() + ", getUpd_recon_tables()=" + getUpd_recon_tables() + ", getWrite_recon_dtl()="
-				+ getWrite_recon_dtl() + ", getPubId()=" + getPubId() + ", getCreatedBy()=" + getCreatedBy()
-				+ ", getCreatedAt()=" + getCreatedAt() + ", getModifiedBy()=" + getModifiedBy() + ", getModifiedAt()="
-				+ getModifiedAt() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + "]";
+				+ write_recon_dtl + ", jobPubOc=" + jobPubOc + "]";
 	}
 }

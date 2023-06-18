@@ -174,6 +174,27 @@ public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 			@Param("orderType") String orderType, Pageable page);
 	
 	
+//	@Query(value="SELECT op.*, oi.*, c.*\n"
+//			+ "FROM order_parent op \n"
+//			+ "JOIN order_items oi ON op.order_items_id = oi.id \n"
+//			+ "JOIN customer c ON op.customer_id = c.id \n"
+//			+ "WHERE DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to \n"
+//			+ "  AND order_status IN ('order placed') \n"
+//			+ "  AND c.pub_id = :pubId;\n"
+//			+ "",nativeQuery = true)
+//	public List<Order> getOrderList(@Param("pubId") Integer pubId,@Param("userDate") Date userDate);
+//	
+	@Query(value="SELECT op.*, oi.*, c.*\n"
+			+ "FROM order_parent op \n"
+			+ "JOIN order_items oi ON op.order_items_id = oi.id \n"
+			+ "JOIN customer c ON op.customer_id = c.id \n"
+			+ "WHERE DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to \n"
+			+ "  AND order_status IN ('order placed') \n"
+			+ "  AND c.pub_id = :pubId\n"
+			+ "", nativeQuery = true)
+public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate") Date userDate);
+
+	
 }
 
 
