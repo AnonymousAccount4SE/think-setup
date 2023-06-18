@@ -1,11 +1,13 @@
 package com.mps.think.setup.vo;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.mps.think.setup.model.AddProcess;
+import com.mps.think.setup.model.JobPubOc;
 import com.mps.think.setup.model.LableGroup;
 import com.mps.think.setup.model.LableKeyLine;
 import com.mps.think.setup.model.OrderClass;
@@ -145,6 +147,8 @@ public class SubmitJobVO {
 	
 
 	private Boolean write_recon_dtl;
+	
+	private List<JobPubOc> jobPubOc;
 
 
 	public Integer getId() {
@@ -592,6 +596,15 @@ public class SubmitJobVO {
 		this.pubId = pubId;
 	}
 
+	public List<JobPubOc> getJobPubOc() {
+		return jobPubOc;
+	}
+
+
+	public void setJobPubOc(List<JobPubOc> jobPubOc) {
+		this.jobPubOc = jobPubOc;
+	}
+
 
 	@Override
 	public String toString() {
@@ -610,6 +623,6 @@ public class SubmitJobVO {
 				+ ", endjobdatetime=" + endjobdatetime + ", status=" + status + ", holdbits=" + holdbits
 				+ ", inv_serve_label=" + inv_serve_label + ", manual_review_fulfillment=" + manual_review_fulfillment
 				+ ", step_number=" + step_number + ", upd_recon_tables=" + upd_recon_tables + ", write_recon_dtl="
-				+ write_recon_dtl + "]";
+				+ write_recon_dtl + ", jobPubOc=" + jobPubOc + "]";
 	}
 }
