@@ -16,7 +16,7 @@ public interface AddPaymentService {
 	
 	public AddPayment findbyPaymentId(Integer id);
 	
-	public AddPayment findByCustomerDetailsCustomerId(Integer customerId);
+	public List<AddPayment> findByCustomerDetailsCustomerId(Integer customerId);
 
 	public List<AddPayment> getAllAddPayment();
 

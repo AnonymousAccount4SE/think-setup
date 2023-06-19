@@ -7,11 +7,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mps.think.setup.model.AdjustmentTypes;
+import com.mps.think.setup.model.InventoryIssueMapping;
 import com.mps.think.setup.model.InventoryMapper;
+import com.mps.think.setup.model.InventoryProductMapping;
 import com.mps.think.setup.model.LocationAreaDetails;
 import com.mps.think.setup.model.VendorDetails;
 import com.mps.think.setup.vo.AdjustmentTypeVO;
+import com.mps.think.setup.vo.InventoryIssueMappingVO;
 import com.mps.think.setup.vo.InventoryMapperVO;
+import com.mps.think.setup.vo.InventoryProductMappingVO;
 import com.mps.think.setup.vo.LocationAreaDetailsVO;
 import com.mps.think.setup.vo.VendorDetailsVO;
 
@@ -34,5 +38,10 @@ public interface InventoryService {
 	public LocationAreaDetails updateLocationArea(LocationAreaDetailsVO location);
 	public Page<LocationAreaDetails> getLocationArea(Integer publisherId, Pageable page);
 
-
+	public List<InventoryProductMapping> createProductLinks(List<InventoryProductMappingVO> product);
+	public Page<InventoryProductMapping> getInventoryProductLinks(Integer inventoryId, Pageable page);
+	
+	public List<InventoryIssueMapping> createIssueLinks(List<InventoryIssueMappingVO> issue);
+	public Page<InventoryIssueMapping> getInventoryIssueLinks(Integer inventoryId, Pageable page);
+	
 }

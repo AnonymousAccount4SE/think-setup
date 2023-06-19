@@ -3,6 +3,7 @@ package com.mps.think.setup.vo;
 import java.util.Arrays;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mps.think.setup.model.OrderClass;
 
 public class IssueGenerationVo {
