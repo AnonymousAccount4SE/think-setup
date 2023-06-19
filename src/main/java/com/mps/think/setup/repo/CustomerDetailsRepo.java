@@ -1,5 +1,6 @@
 package com.mps.think.setup.repo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -141,4 +142,23 @@ List<String> getAllCustomerAgentForSearch(@Param("pubId") Integer pubId, @Param(
 			@Param("department") String department, @Param("countrycode") String countrycode, @Param("company") String company,
 			@Param("mobile") String mobile, @Param("agencycode") String agencycode, @Param("agencyname") String agencyname, @Param("status") String status, Pageable page);
 
+	
+	@Query(value = "SELECT COUNT(*)\n"
+			+ "FROM customer\n"
+			+ "WHERE customer_status IN ('Active', 'Hold') AND pub_id=:pubId",nativeQuery = true)
+	public Integer nOfCustomer(@Param ("pubId") Integer pubId);
+	
+//	@Query(value = "SELECT c.id AS ShipCust,oi.copies_per_issue AS Qty,t.order_class AS Jrnl,ig.issue_volume AS enumeration,c.fname AS fname,c.lname AS lname,c.company AS company,a.address_line1 AS Address,\n"
+//			+ "a.address_line2 AS Address_2,a.phone AS phone,a.city AS city,a.state AS state,a.zip_code AS zip,cc.cust_category AS Customer_Category\n"
+//			+ "FROM customer c\n"
+//			+ "JOIN customer_addresses_mapping ca ON c.id = ca.customer_id\n"
+//			+ "JOIN addresses a ON ca.address_id = a.address_id\n"
+//			+ "JOIN order_parent op ON c.id=op.customer_id\n"
+//			+ "JOIN order_items oi ON op.order_items_id=oi.id\n"
+//			+ "JOIN oc t ON op.order_class_id=t.oc_id\n"
+//			+ "JOIN issue_generation ig ON t.oc_id=ig.order_class_id\n"
+//			+ "JOIN customer_category cc ON c.customer_category=cc.customer_category_id\n"
+//			+ "WHERE address_category LIKE '%Shipping%'\n"
+//			+ "AND c.pub_id = :pubId AND DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to AND order_status='order placed' AND op.order_type='Subscription' GROUP BY c.id",nativeQuery = true)
+//	public List<CustomerDetails> customerShipingAddress(@Param("pubId") Integer pubId,@Param("userDate") Date userDate);
 }

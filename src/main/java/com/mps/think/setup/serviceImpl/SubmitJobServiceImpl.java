@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.IssueGeneration;
 import com.mps.think.setup.model.JobPubOc;
 import com.mps.think.setup.model.Order;
@@ -16,6 +17,7 @@ import com.mps.think.setup.model.OrderItems;
 import com.mps.think.setup.model.PaymentBreakdown;
 import com.mps.think.setup.model.SubmitJob;
 import com.mps.think.setup.repo.AddOrderRepo;
+import com.mps.think.setup.repo.CustomerDetailsRepo;
 import com.mps.think.setup.repo.IssueGenerationRepo;
 import com.mps.think.setup.repo.SubmitJobRepo;
 import com.mps.think.setup.service.SubmitJobService;
@@ -35,6 +37,9 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	
 	@Autowired
 	private AddOrderRepo addOrderRepo;
+	
+	@Autowired
+	private CustomerDetailsRepo customerDetailsRepo;
 
 	@Override
 	public List<SubmitJob> getAllSubmitJob() {
@@ -51,6 +56,9 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 			list.add(jpo);
 		}
 		temp.setJobPubOc(listOfIssue);
+		List<Order> tempOrderList=addOrderRepo.getOrderList(temp.getPubId().getId(),temp.getCreatedAt());
+		temp.setNselectedrecords(tempOrderList.size());
+		temp.setNcandidaterecords(customerDetailsRepo.nOfCustomer(temp.getPubId().getId()));
 		submitJobRepo.saveAndFlush(temp);
 		return temp;
 	}
@@ -97,7 +105,7 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	}
 
 	public List<List<String>> labelProcess(Integer jobId) {
-		Integer issueLeft,liabilityIssue,nIssue;
+		Integer issueLeft,liabilityIssue,nIssue,count=0;
 		SubmitJob sjob = submitJobRepo.findById(jobId).get();
 		for(Integer issue:submitJobRepo.getListOfIssue(sjob.getId())) {
 		IssueGeneration tempIssue = issueGenerationRepo.findById(issue).get();
@@ -119,8 +127,17 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 			oItem.setLiabilityIssue(liabilityIssue-1);
 			tempOrder.setOrderItemsAndTerms(oItem);
 			addOrderRepo.saveAndFlush(tempOrder);
+			count++;
 		}
+		sjob.setNupdatedrecords(count);
+		submitJobRepo.saveAndFlush(sjob);
 		return null;
 		
 	}
+	
+//	@Override
+//	public List<CustomerDetails> listOfCustomer(Integer jobId){
+//		SubmitJob sjob = submitJobRepo.findById(jobId).get();
+//		return customerDetailsRepo.customerShipingAddress(sjob.getPubId().getId(), sjob.getCreatedAt());
+//	}
 }
