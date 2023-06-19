@@ -32,6 +32,11 @@ public class AddOrderController {
 	@Autowired
 	private AddOrderService addOrderService;
 	
+	@GetMapping("/getAllCustomercolumnsOrders")
+	public ResponseEntity<?> findAllColumnForOrders() {
+		return ResponseEntity.ok(addOrderService.findAllColumnForOrders());
+	}
+	
 	@PostMapping("/saveOrder")
 	public ResponseEntity<?> saveOrder(@RequestBody OrderVO order) throws Exception {
 		return ResponseEntity.ok(addOrderService.saveOrder(order));

@@ -60,4 +60,9 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 		return paymentInformationRepo.findAll();
 	}
 
+	@Override
+	public List<String> findAllColumnForPaymentInfo() {
+		return paymentInformationRepo.findAllColumnForPaymentInfo();
+	}
+
 }

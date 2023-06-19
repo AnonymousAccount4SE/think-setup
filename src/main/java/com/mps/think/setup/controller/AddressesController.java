@@ -98,6 +98,11 @@ public class AddressesController {
 		return ResponseEntity.ok(json.toString());
 	}
 	
+	@GetMapping("/getAllCustomercolumnsforaddress")
+	public ResponseEntity<?> findAllColumnforAddresses() {
+		return ResponseEntity.ok(addressService.findAllColumnforAddresses());
+	}
+	
 //	@PostMapping("/updatePrimaryAddressbyCustId")
 //	public ResponseEntity<?> updatePrimaryAddressbyCustId(Integer customerId, Integer addressId) {
 //		return ResponseEntity.ok(addressService.updatePrimaryAddressbyCustId(customerId, addressId));

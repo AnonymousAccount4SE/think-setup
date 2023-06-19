@@ -19,5 +19,7 @@ public interface PaymentInformationService {
 	public List<PaymentInformation> getPaymentInformationByOrderId(Integer orderId);
 
 	public List<PaymentInformation> getAllPaymentInformation();
+	
+	public  List<String> findAllColumnForPaymentInfo();
 
 }
