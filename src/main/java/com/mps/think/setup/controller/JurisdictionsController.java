@@ -54,4 +54,12 @@ public class JurisdictionsController {
 		return ResponseEntity.ok(jurisdictionsService.findbyJurisdictionStateTaxContry(JurisdictionVo));
 	}
 
+	@GetMapping("/getAllcountrybyJurisdiction")
+	public ResponseEntity<?> findbyId() {
+		return ResponseEntity.ok(jurisdictionsService.getAllcountrybyJurisdiction());
+	}
+	@PostMapping("/getAllStateByJurisdiction")
+	public ResponseEntity<?> getAllStateByJurisdiction(@RequestBody String country ) {
+		return ResponseEntity.ok(jurisdictionsService.getAllStateByJurisdiction(country));
+	}
 }

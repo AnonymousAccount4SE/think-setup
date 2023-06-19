@@ -25,4 +25,7 @@ public interface JurisdictionsService {
 	
 	public List<Jurisdictions> getTodayAndYesterdayRecords();
 
+	public List<String> getAllcountrybyJurisdiction();
+
+	public List<Jurisdictions> getAllStateByJurisdiction(String country);
 }

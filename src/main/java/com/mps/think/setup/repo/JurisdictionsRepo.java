@@ -23,4 +23,10 @@ public interface JurisdictionsRepo extends JpaRepository<Jurisdictions, Integer>
 	@Query(value = "SELECT e FROM Jurisdictions  WHERE e.countrycode=:country  AND  e.stateCode=:stateCode AND  e.zipCode=:zipCode", nativeQuery = true)
 	public Jurisdictions findbyJurisdictionStateTaxContry(String country, String stateCode, String zipCode);
 
+	@Query(value = "SELECT DISTINCT country FROM Jurisdictions", nativeQuery = true)
+	public List<String> getAllcountrybyJurisdiction();
+
+	@Query(value = "SELECT Juri FROM Jurisdictions where e.countrycode=:country  ", nativeQuery = true)
+	public List<Jurisdictions> getAllStateByJurisdiction(String country);
+
 }
