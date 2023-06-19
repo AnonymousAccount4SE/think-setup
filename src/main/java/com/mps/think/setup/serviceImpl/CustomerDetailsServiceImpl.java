@@ -30,6 +30,7 @@ import com.mps.think.setup.model.OrderCodesSuper;
 import com.mps.think.setup.repo.AddOrderRepo;
 import com.mps.think.setup.repo.AddressesRepo;
 import com.mps.think.setup.repo.CustomerDetailsRepo;
+import com.mps.think.setup.repo.PaymentInformationRepo;
 import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.service.CustomerDetailsService;
 import com.mps.think.setup.utils.AppConstants;
@@ -55,6 +56,9 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 	@Autowired
 	private AddressesRepo addressRepo;
+	
+	@Autowired
+	private PaymentInformationRepo piRepo;
 
 	@Autowired
 	private ObjectMapper mapper;
@@ -252,9 +256,13 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	}
 
 	@Override
-	public List<String> findAllColumn() {
-		// TODO Auto-generated method stub
-		return customerRepo.findAllColumn();
+	public List<List<String>> findAllColumn() {
+		List<List<String>> arraylist = new ArrayList<>();
+		arraylist.add(customerRepo.findAllColumn());
+		arraylist.add(orderRepo.findAllColumnForOrders());
+		arraylist.add(addressRepo.findAllColumnforAddresses());
+		arraylist.add(piRepo.findAllColumnForPaymentInfo());
+		return arraylist;
 	}
 
 	@Override

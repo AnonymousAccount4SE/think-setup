@@ -52,7 +52,7 @@ public interface CustomerDetailsService {
 	public List<CustomerAddresses> getAllCustomerAddresses();
 	
 	Page<CustomerWithTwoOrderCodes> getAllCustomerWithRecentTwoOrderCodes(Integer pubId, Pageable page) throws Exception;
-	public List<String> findAllColumn();
+	public  List<List<String>> findAllColumn();
 	
 	Page<CustomerWithTwoOrderCodes> getSearchedCustomersWithTwoRecentOrderCodes(Integer pubId, String keyword, Pageable page) throws Exception;
 

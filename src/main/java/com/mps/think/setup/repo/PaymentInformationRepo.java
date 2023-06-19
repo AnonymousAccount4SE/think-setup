@@ -25,4 +25,7 @@ public interface PaymentInformationRepo extends JpaRepository<PaymentInformation
 			@Param("pubId") Integer pubId,
 			@Param("paymentStart") Date paymentStart, 
 			@Param("paymentEnd") Date paymentEnd, Pageable page);
+	
+	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME = 'payment_info';",nativeQuery = true)
+	public List<String> findAllColumnForPaymentInfo();
 }
