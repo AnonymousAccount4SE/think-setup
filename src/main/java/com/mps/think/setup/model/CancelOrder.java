@@ -75,7 +75,7 @@ public class CancelOrder extends BaseEntity {
 	@Column(name = "paymenttype")
 	private String paymenttype;
 	
-	@Pattern(regexp="(^[0-9]*$)")
+
 	@Column(name = "card")
 	private String card;
 	
