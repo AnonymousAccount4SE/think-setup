@@ -132,6 +132,11 @@ public class AddressesServiceImpl implements AddressService  {
         return addressRepo.findTodayAndYesterdayRecords(today, yesterday);
         
 	}
+
+	@Override
+	public List<String> findAllColumnforAddresses() {
+		return addressRepo.findAllColumnforAddresses();
+	}
 	
 
 	
