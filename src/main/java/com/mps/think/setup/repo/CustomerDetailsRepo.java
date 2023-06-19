@@ -69,7 +69,7 @@ public interface CustomerDetailsRepo extends JpaRepository<CustomerDetails, Inte
 //	@Query(value="SELECT * FROM customer where pub_id=:pubId",nativeQuery = true)
 //	public Page<CustomerDetails> findAllCustomerByPubId(@Param("pubId") Integer pubId, Sort sort);
 	
-	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME = 'customer';",nativeQuery = true)
+	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME IN ('customer', 'addresses' , 'order_parent', 'payment_breakdown','payment_info' , 'Payment_threshold');",nativeQuery = true)
 	public List<String> findAllColumn();
 
 	Page<CustomerDetails> findByPublisherId(Integer pubId, Pageable page);
