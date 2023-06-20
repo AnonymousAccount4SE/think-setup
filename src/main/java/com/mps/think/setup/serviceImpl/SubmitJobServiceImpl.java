@@ -1,6 +1,7 @@
 package com.mps.think.setup.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,7 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	@Override
 	public SubmitJob saveSubmitJob(SubmitJobVO submitJob) {
 		List<JobPubOc> list =new ArrayList<>();
+		Integer nOfOrder=0;
 		SubmitJob temp = submitJobRepo.saveAndFlush(mapper.convertValue(submitJob, SubmitJob.class));
 		List<JobPubOc> listOfIssue = temp.getJobPubOc();
 		for(JobPubOc jpo:listOfIssue) {
@@ -56,8 +58,11 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 			list.add(jpo);
 		}
 		temp.setJobPubOc(listOfIssue);
-		List<Order> tempOrderList=addOrderRepo.getOrderList(temp.getPubId().getId(),temp.getCreatedAt());
-		temp.setNselectedrecords(tempOrderList.size());
+		for(JobPubOc jobPub:temp.getJobPubOc()) {
+		List<Order> tempOrderList=addOrderRepo.getOrderList(temp.getPubId().getId(),jobPub.getIssueDate());
+		nOfOrder=nOfOrder+tempOrderList.size();
+		}
+		temp.setNselectedrecords(nOfOrder);
 		temp.setNcandidaterecords(customerDetailsRepo.nOfCustomer(temp.getPubId().getId()));
 		submitJobRepo.saveAndFlush(temp);
 		return temp;
@@ -105,7 +110,7 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	}
 
 	public List<List<String>> labelProcess(Integer jobId) {
-		Integer issueLeft,liabilityIssue,nIssue,count=0;
+		Integer issueLeft,liabilityIssue,nIssue,count=0,totalCount=0;
 		SubmitJob sjob = submitJobRepo.findById(jobId).get();
 		for(Integer issue:submitJobRepo.getListOfIssue(sjob.getId())) {
 		IssueGeneration tempIssue = issueGenerationRepo.findById(issue).get();
@@ -113,15 +118,15 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 		issueGenerationRepo.saveAndFlush(tempIssue);
 		}
 		Integer pubId=sjob.getPubId().getId();
-		List<Order> tempOrderList=addOrderRepo.getOrderList(pubId,sjob.getCreatedAt());
+		for(JobPubOc jobPub:sjob.getJobPubOc()) {
+		List<Order> tempOrderList=addOrderRepo.getOrderList(pubId,jobPub.getIssueDate());
 		for(Order tempOrder:tempOrderList) {
 			if(tempOrder.getOrderStatus().equals("order placed")) {
 				tempOrder.setOrderStatus("active/shipping");
 			}
 			issueLeft= tempOrder.getOrderItemsAndTerms().getnIssuesLeft();
 			liabilityIssue=tempOrder.getOrderItemsAndTerms().getLiabilityIssue();
-			nIssue=tempOrder.getOrderItemsAndTerms().getNumOfIssues()+tempOrder.getOrderItemsAndTerms().getExtendedIssue();
-			
+//			nIssue=tempOrder.getOrderItemsAndTerms().getNumOfIssues()+tempOrder.getOrderItemsAndTerms().getExtendedIssue();
 			OrderItems oItem=tempOrder.getOrderItemsAndTerms();
 			oItem.setnIssuesLeft(issueLeft+1);
 			oItem.setLiabilityIssue(liabilityIssue-1);
@@ -129,15 +134,29 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 			addOrderRepo.saveAndFlush(tempOrder);
 			count++;
 		}
-		sjob.setNupdatedrecords(count);
+		totalCount=totalCount+count;
+		}
+		sjob.setNupdatedrecords(totalCount);
 		submitJobRepo.saveAndFlush(sjob);
 		return null;
 		
 	}
+
+	@Override
+	public SubmitJob updateSubmitJobStatus(Integer jodId, String status) {
+		SubmitJob sj=submitJobRepo.findById(jodId).get();
+		sj.setStatus(status);
+		return submitJobRepo.saveAndFlush(sj);
+	}
 	
-//	@Override
-//	public List<CustomerDetails> listOfCustomer(Integer jobId){
-//		SubmitJob sjob = submitJobRepo.findById(jobId).get();
-//		return customerDetailsRepo.customerShipingAddress(sjob.getPubId().getId(), sjob.getCreatedAt());
-//	}
+	@Override
+	public List<List<CustomerDetails>> listOfCustomer(Integer jobId){
+		List<List<CustomerDetails>> listofCustomer=new ArrayList<>();
+		SubmitJob sjob = submitJobRepo.findById(jobId).get();
+		for(JobPubOc jobPub:sjob.getJobPubOc()) {
+			List<CustomerDetails> temp = customerDetailsRepo.customerShipingAddress(sjob.getPubId().getId(), jobPub.getIssueDate());
+			listofCustomer.add(temp);
+		}
+		return listofCustomer;
+	}
 }
