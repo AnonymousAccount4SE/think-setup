@@ -16,7 +16,7 @@ public class SolrConfig {
     @Bean
     public SolrClient solrClient() {
         return new HttpSolrClient.Builder("http://104.232.26.45:8983/solr").build();
- //       return new HttpSolrClient.Builder("http://10.220.53.127:8983/solr").build();
+//        return new HttpSolrClient.Builder("http://127.0.0.1:8984/solr").build();
     }
 
     @Bean

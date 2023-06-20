@@ -4,7 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 import org.springframework.http.ResponseEntity;
 @SolrDocument(solrCoreName = "SpringBootDocumentExample")
+//@SolrDocument(solrCoreName = "Payments")
 public class Document {
+	
   @Id
   @Field
   private String id;
