@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.AddRenewals;
+import com.mps.think.setup.model.RenewalOfferDetails;
 import com.mps.think.setup.repo.AddRenewalsRepo;
+import com.mps.think.setup.repo.RenewalOfferDetailsRepo;
 import com.mps.think.setup.service.AddRenewalsService;
 import com.mps.think.setup.vo.AddRenewalsVO;
 
@@ -16,6 +18,9 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	
 	@Autowired
 	private AddRenewalsRepo addRenewalsRepo;
+	
+	@Autowired
+	private RenewalOfferDetailsRepo renewalOfferDetailsRepo;
 	
 	@Autowired
 	private ObjectMapper mapper;
@@ -36,14 +41,16 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	}
 
 	@Override
-	public AddRenewals deleteRenewalCard(Integer id) {
-		AddRenewals delete = findbyRenewalCardId(id);
+	public AddRenewals deleteAddRenewals(Integer id) {
+		AddRenewals delete = findbyAddRenewalsId(id);
+		List<RenewalOfferDetails> rod = renewalOfferDetailsRepo.findByAddRenewalId(id);
+		rod.forEach(r -> renewalOfferDetailsRepo.delete(r));
 		addRenewalsRepo.delete(delete);
 		return delete;
 	}
 
 	@Override
-	public AddRenewals findbyRenewalCardId(Integer id) {
+	public AddRenewals findbyAddRenewalsId(Integer id) {
 		return addRenewalsRepo.findById(id).get();
 	}
 

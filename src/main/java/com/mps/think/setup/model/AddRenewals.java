@@ -11,26 +11,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "add_renewals")
-public class AddRenewals  extends BaseEntity{
+public class AddRenewals extends BaseEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="pub_id",referencedColumnName="id")
+	@JoinColumn(name = "pub_id", referencedColumnName = "id")
 	private Publisher pubId;
-	
+
 	@Column(name = "description")
 	private String description;
-	
-	@Column(name="renewal_card")
+
+	@Column(name = "renewal_card")
 	private String renewal_card;
 
 	public Integer getId() {
@@ -70,7 +70,5 @@ public class AddRenewals  extends BaseEntity{
 		return "AddRenewals [id=" + id + ", pubId=" + pubId + ", description=" + description + ", renewal_card="
 				+ renewal_card + "]";
 	}
-	
-	
 
 }
