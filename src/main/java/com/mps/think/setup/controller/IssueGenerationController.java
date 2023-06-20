@@ -69,7 +69,7 @@ public class IssueGenerationController {
 	}
 	
 	@PostMapping("/getCurrentIssue")
-	public ResponseEntity<?> getCurrentIssue(@RequestParam Integer pubId,@RequestParam List<Integer> ocId) {
+	public ResponseEntity<?> getCurrentIssue(@RequestParam Integer pubId,@RequestBody List<Integer> ocId) {
 		return ResponseEntity.ok(issueGenerationServiceImpl.getCurrentIssue(pubId, ocId));
 	}
 }

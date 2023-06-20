@@ -16,6 +16,9 @@ import com.mps.think.setup.model.PaymentInformation;
 @Repository
 public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 	
+	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME IN ( 'order_parent' ,'order_key_information' , 'order_items', 'payment_breakdown' , 'order_delivery_options', 'order_auxiliary_information', 'multi_line_item_order','oc' );",nativeQuery = true)
+	public List<String> findAllColumnForOrders();
+	
 	
 	
 	public Page<Order> findAllByCustomerIdPublisherId(Pageable page,Integer pubId) throws Exception;
@@ -189,7 +192,7 @@ public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 			+ "JOIN order_items oi ON op.order_items_id = oi.id \n"
 			+ "JOIN customer c ON op.customer_id = c.id \n"
 			+ "WHERE DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to \n"
-			+ "  AND order_status IN ('order placed') \n"
+			+ "  AND order_status IN ('order placed','active/shipping') \n"
 			+ "  AND c.pub_id = :pubId\n"
 			+ "", nativeQuery = true)
 public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate") Date userDate);

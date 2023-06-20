@@ -258,6 +258,11 @@ List<OrderItems> orderItems = addOrderRepo.findAll().stream().map(m -> m.getOrde
 		    
 		    return updatedOrders;
 	}
+
+	@Override
+	public List<String> findAllColumnForOrders() {
+		return addOrderRepo.findAllColumnForOrders();
+	}
   
 //	public List<Order> updateOrderPaymentStatus(LinkedHashMap<String, String> OrderPaymentStatus) {
 //	    List<Order> updatedOrders = new ArrayList<>();

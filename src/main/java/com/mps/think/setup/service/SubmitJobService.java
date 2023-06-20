@@ -3,6 +3,8 @@ package com.mps.think.setup.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.SubmitJob;
 import com.mps.think.setup.vo.SubmitJobVO;
 
@@ -22,5 +24,7 @@ public interface SubmitJobService {
 	public List<SubmitJob> findAllSubmitJobByPubId(Integer publisherId);
 	
 	public List<List<String>> updateProcessJobInDb(String jobStatus ,Integer jobId);
+	
+//	public List<CustomerDetails> listOfCustomer(Integer jobId);
 
 }

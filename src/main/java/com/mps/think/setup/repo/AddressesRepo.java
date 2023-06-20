@@ -16,5 +16,8 @@ public interface AddressesRepo extends JpaRepository< Addresses ,Integer> {
 	
     @Query( value ="SELECT e FROM Addresses  WHERE e.created_at BETWEEN  :today  AND  =  :yesterday" ,nativeQuery = true)
     List<Addresses> findTodayAndYesterdayRecords(@Param("today") LocalDate today, @Param("yesterday") LocalDate yesterday);
+    
+	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME = 'addresses';",nativeQuery = true)
+	public List<String> findAllColumnforAddresses();
 
 }
