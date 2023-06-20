@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.mps.think.setup.vo.EnumModelVO.OrderStatus;
@@ -74,9 +79,10 @@ public class Order extends BaseEntity {
 	
 	@OneToMany(
 	        mappedBy = "order",
-	        cascade = CascadeType.ALL
-	    )
+	        cascade = CascadeType.ALL,
+	        fetch = FetchType.EAGER)
 	@JsonManagedReference
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<OrderAddressMapping> orderAddresses;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
