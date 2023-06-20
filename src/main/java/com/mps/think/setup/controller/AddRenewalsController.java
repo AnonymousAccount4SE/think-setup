@@ -42,12 +42,12 @@ public class AddRenewalsController {
 	
 	@PostMapping("/findbyAddRenewalsId")
 	public ResponseEntity<?> findbyRenewalCardId(@RequestBody Integer id) {
-		return ResponseEntity.ok(addRenewalsService.findbyRenewalCardId(id));
+		return ResponseEntity.ok(addRenewalsService.findbyAddRenewalsId(id));
 	}
 	
 	@DeleteMapping("/deleteAddRenewals")
 	public ResponseEntity<?> deleteRenewalCard(@RequestBody Integer renewalCardId) {
-		return ResponseEntity.ok(addRenewalsService.deleteRenewalCard(renewalCardId));
+		return ResponseEntity.ok(addRenewalsService.deleteAddRenewals(renewalCardId));
 	}
 
 }

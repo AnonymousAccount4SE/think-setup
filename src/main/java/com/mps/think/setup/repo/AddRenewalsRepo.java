@@ -10,5 +10,5 @@ import com.mps.think.setup.model.AddRenewals;
 public interface AddRenewalsRepo extends JpaRepository<AddRenewals, Integer>{
 	
 	List<AddRenewals> findByPubIdId(Integer pubId);
-
+	
 }

@@ -16,9 +16,9 @@ public interface AddRenewalsService {
 
 	public AddRenewals updateAddRenewals(AddRenewalsVO addRenewalsVO);
 	
-	public AddRenewals deleteRenewalCard(Integer id);
+	public AddRenewals deleteAddRenewals(Integer id);
 
-	public AddRenewals findbyRenewalCardId(Integer id);
+	public AddRenewals findbyAddRenewalsId(Integer id);
 	
 	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId);
 
