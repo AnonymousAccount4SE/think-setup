@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Table(name = "jurisdictions")
 @Entity
 public class Jurisdictions extends BaseEntity{
@@ -45,6 +46,16 @@ public class Jurisdictions extends BaseEntity{
 	
 	@Column(name = "avatarapplicable")
 	private Boolean avatarapplicable;
+	
+	@Column(name = "tax_coumputation")
+	private Boolean taxCoumputation;
+	
+	@Column(name = "address_validation")
+	private Boolean addressValidation;
+	
+	@OneToOne
+	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
+	private CommodityCodes commodityCodes;
 
 	public Integer getId() {
 		return id;
@@ -110,18 +121,36 @@ public class Jurisdictions extends BaseEntity{
 		this.countrycode = countrycode;
 	}
 
+	public Boolean getTaxCoumputation() {
+		return taxCoumputation;
+	}
+
+	public void setTaxCoumputation(Boolean taxCoumputation) {
+		this.taxCoumputation = taxCoumputation;
+	}
+
+	public Boolean getAddressValidation() {
+		return addressValidation;
+	}
+
+	public void setAddressValidation(Boolean addressValidation) {
+		this.addressValidation = addressValidation;
+	}
+
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
+
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
-				+ avatarapplicable + "]";
+				+ avatarapplicable + ", taxCoumputation=" + taxCoumputation + ", addressValidation=" + addressValidation
+				+ ", commodityCodes=" + commodityCodes + "]";
 	}
 
-
-
-
-
-	
-	
-	
 }

@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,5 +48,18 @@ public class JurisdictionsController {
 	public ResponseEntity<?> findAllJurisdictionsForPublisher(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(jurisdictionsService.findAllJurisdictionsForPublisher(pubId));
 	}
+	
+	@PostMapping("/findbyJurisdictionStateTaxContry")
+	public ResponseEntity<?> findbyId(@RequestBody JurisdictionsVO JurisdictionVo ) {
+		return ResponseEntity.ok(jurisdictionsService.findbyJurisdictionStateTaxContry(JurisdictionVo));
+	}
 
+	@GetMapping("/getAllcountrybyJurisdiction")
+	public ResponseEntity<?> findbyId() {
+		return ResponseEntity.ok(jurisdictionsService.getAllcountrybyJurisdiction());
+	}
+	@PostMapping("/getAllStateByJurisdiction")
+	public ResponseEntity<?> getAllStateByJurisdiction(@RequestBody String country ) {
+		return ResponseEntity.ok(jurisdictionsService.getAllStateByJurisdiction(country));
+	}
 }

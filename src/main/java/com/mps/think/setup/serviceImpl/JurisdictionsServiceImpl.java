@@ -16,10 +16,10 @@ import com.mps.think.setup.vo.JurisdictionsVO;
 
 @Service
 public class JurisdictionsServiceImpl implements JurisdictionsService {
-	
+
 	@Autowired
 	JurisdictionsRepo jurisdictionsRepo;
-	
+
 	@Autowired
 	private ObjectMapper mapper;
 
@@ -39,14 +39,14 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 
 	@Override
 	public Jurisdictions updateJurisdictions(JurisdictionsVO jurisdictions) {
-		return jurisdictionsRepo.saveAndFlush(mapper.convertValue(jurisdictions, Jurisdictions.class)); 
+		return jurisdictionsRepo.saveAndFlush(mapper.convertValue(jurisdictions, Jurisdictions.class));
 	}
 
 	@Override
 	public Jurisdictions findbyId(Integer id) {
 		Optional<Jurisdictions> jl = jurisdictionsRepo.findById(id);
-		if(!jl.isPresent()) {
-			throw new NotFoundException("Jurisdictions Id : "+ id +" does not exist!");
+		if (!jl.isPresent()) {
+			throw new NotFoundException("Jurisdictions Id : " + id + " does not exist!");
 		}
 		return jl.get();
 	}
@@ -70,10 +70,28 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 
 	@Override
 	public List<Jurisdictions> getTodayAndYesterdayRecords() {
-		 LocalDate today = LocalDate.now();
-	     LocalDate yesterday = today.minusDays(1);
+		LocalDate today = LocalDate.now();
+		LocalDate yesterday = today.minusDays(1);
 		return jurisdictionsRepo.findTodayAndYesterdayRecords(today, yesterday);
 	}
 
+	@Override
+	public Jurisdictions findbyJurisdictionStateTaxContry(JurisdictionsVO jurisdictionsVo) {
+
+		Jurisdictions jurisdictions = jurisdictionsRepo.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountry(),
+				jurisdictionsVo.getStateCode(), jurisdictionsVo.getZipCode());
+
+		return jurisdictions;
+	}
+
+	@Override
+	public List<String> getAllcountrybyJurisdiction() {
+		return jurisdictionsRepo.getAllcountrybyJurisdiction();
+	}
+
+	@Override
+	public List<Jurisdictions> getAllStateByJurisdiction(String country) {
+		return jurisdictionsRepo.getAllStateByJurisdiction(country);
+	}
 
 }
