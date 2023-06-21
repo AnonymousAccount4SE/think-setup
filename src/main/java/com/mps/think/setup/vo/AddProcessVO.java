@@ -6,11 +6,13 @@ import com.mps.think.setup.model.ExtractFilter;
 
 import com.mps.think.setup.model.OutputSort;
 import com.mps.think.setup.model.ProcessType;
+import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.model.Queue;
 
 public class AddProcessVO {
 	
 	private Integer id;
+	private Publisher pubId;
 	private ProcessType processtypeid;
 	private String mainpurpose;
 	private String description;
@@ -45,6 +47,12 @@ public class AddProcessVO {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 	public ProcessType getProcesstypeid() {
 		return processtypeid;
@@ -220,6 +228,21 @@ public class AddProcessVO {
 	public void setPicklist(Boolean picklist) {
 		this.picklist = picklist;
 	}
+	@Override
+	public String toString() {
+		return "AddProcessVO [id=" + id + ", pubId=" + pubId + ", processtypeid=" + processtypeid + ", mainpurpose="
+				+ mainpurpose + ", description=" + description + ", status=" + status + ", active=" + active
+				+ ", repeating=" + repeating + ", inserts=" + inserts + ", split=" + split + ", autorenewal="
+				+ autorenewal + ", holdormanualselect=" + holdormanualselect + ", backlabel=" + backlabel + ", billing="
+				+ billing + ", productfullfillment=" + productfullfillment + ", refund=" + refund + ", renewal="
+				+ renewal + ", extractfilter=" + extractfilter + ", defaultjobpriority=" + defaultjobpriority
+				+ ", outputsortid=" + outputsortid + ", defaultjobqueueid=" + defaultjobqueueid + ", sqlscript="
+				+ sqlscript + ", addprocessmapping=" + addprocessmapping + ", length=" + length + ", gps=" + gps
+				+ ", keyline=" + keyline + ", gracenewexpires=" + gracenewexpires + ", savecurrentgraces="
+				+ savecurrentgraces + ", bundlethreshold=" + bundlethreshold + ", prioritysort=" + prioritysort
+				+ ", picklist=" + picklist + "]";
+	}
+	
 	
 	
 	
