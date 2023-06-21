@@ -19,4 +19,7 @@ public interface RefundDepositDetailsRepo extends JpaRepository<RefundDepositDet
 	
 	Page<RefundDepositDetails> findByCustomerCustomerId(Integer customerId, Pageable page);
 	
+	@Query(value = "SELECT * FROM refund_deposite_details r WHERE r.customer_id = :customerId ORDER BY r.sequence DESC LIMIT 1", nativeQuery = true)
+	RefundDepositDetails getRecentRefundDepositDetails(@Param("customerId") Integer customerId);
+	
 }
