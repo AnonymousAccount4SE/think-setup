@@ -32,7 +32,7 @@ public class TaxCalculation extends BaseEntity {
 //	private Taxpayer taxpayer_id;
 
 	@OneToOne
-	@JoinColumn(name = "tax_rate_id", referencedColumnName = "tax_rate_id")
+	@JoinColumn(name = "tax_rate_id", referencedColumnName = "taxrate_id")
 	private TaxRate taxRate;
 
 	@Column(name = "taxable_value")
