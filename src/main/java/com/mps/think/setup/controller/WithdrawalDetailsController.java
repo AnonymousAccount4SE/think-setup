@@ -38,7 +38,7 @@ public class WithdrawalDetailsController {
 	
 	@GetMapping("/findAllWithdrawalDetailsForCustomer/{customerId}")
 	public ResponseEntity<?> findAllWithdrawalDetailsForCustomer(@PathVariable("customerId") Integer customerId, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(service.findAllWithdrawalDetailsForPublisher(customerId, PageRequest.of(page, size)));
+		return ResponseEntity.ok(service.findWithdrawalDetailsForCustomer(customerId, PageRequest.of(page, size)));
 	}
 	
 	@GetMapping("/findAllWithdrawalDetailsForPublisher/{pubId}")
