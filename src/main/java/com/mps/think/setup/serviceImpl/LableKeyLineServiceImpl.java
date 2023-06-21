@@ -1,12 +1,19 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.LableKeyLine;
-import com.mps.think.setup.model.Publisher;
+import com.mps.think.setup.model.RowsInKeylineLables;
 import com.mps.think.setup.repo.LableKeyLineRepo;
 import com.mps.think.setup.service.LableKeyLineService;
 import com.mps.think.setup.vo.LableKeyLineVO;
@@ -16,6 +23,9 @@ public class LableKeyLineServiceImpl implements LableKeyLineService {
 
 	@Autowired
 	LableKeyLineRepo lableKeyLineRepo;
+	
+	@Autowired
+	private ObjectMapper mapper;
 
 	@Override
 	public List<LableKeyLine> findAllLableKeyLine() {
@@ -23,42 +33,35 @@ public class LableKeyLineServiceImpl implements LableKeyLineService {
 	}
 
 	@Override
-	public LableKeyLineVO saveLableKeyLine(LableKeyLineVO lableKeyLineVo) {
-		LableKeyLine lableKeyLine = new LableKeyLine();
-		lableKeyLine.setDescription(lableKeyLineVo.getDescription());
-		lableKeyLine.setLabelKeyline(lableKeyLineVo.getLabelKeyline());
-		lableKeyLine.setSuppressflag(lableKeyLineVo.isSuppressflag());
-		lableKeyLine.setCurrentIssue(lableKeyLineVo.getCurrentIssue());
-		lableKeyLine.setCurrentVolume(lableKeyLineVo.getCurrentVolume());
-		lableKeyLine.setText(lableKeyLineVo.getText());
-		Publisher publisher = new Publisher();
-		publisher.setId(lableKeyLineVo.getPubId().getId());
-		lableKeyLine.setPubId(publisher);
-		lableKeyLine = lableKeyLineRepo.save(lableKeyLine);
-		lableKeyLineVo.setLableKeylineId(lableKeyLine.getLableKeylineId());
-		return lableKeyLineVo;
+	public LableKeyLine saveLableKeyLine(LableKeyLineVO lableKeyLineVo) {
+		return lableKeyLineRepo.saveAndFlush(mapper.convertValue(lableKeyLineVo, LableKeyLine.class));
 	}
 
 	@Override
-	public LableKeyLineVO updateLableKeyLine(LableKeyLineVO lableKeyLineVo) {
-		LableKeyLine lableKeyLine = new LableKeyLine();
-		lableKeyLine.setLableKeylineId(lableKeyLineVo.getLableKeylineId());
-		lableKeyLine.setDescription(lableKeyLineVo.getDescription());
-		lableKeyLine.setLabelKeyline(lableKeyLineVo.getLabelKeyline());
-		lableKeyLine.setSuppressflag(lableKeyLineVo.isSuppressflag());
-		lableKeyLine.setCurrentIssue(lableKeyLineVo.getCurrentIssue());
-		lableKeyLine.setCurrentVolume(lableKeyLineVo.getCurrentVolume());
-		lableKeyLine.setText(lableKeyLineVo.getText());
-		Publisher publisher = new Publisher();
-		publisher.setId(lableKeyLineVo.getPubId().getId());
-		lableKeyLine.setPubId(publisher);
-		lableKeyLine = lableKeyLineRepo.save(lableKeyLine);
-		return lableKeyLineVo;
+	public LableKeyLine updateLableKeyLine(LableKeyLineVO lableKeyLineVo) {
+		return lableKeyLineRepo.saveAndFlush(mapper.convertValue(lableKeyLineVo, LableKeyLine.class));
 	}
 
 	@Override
 	public LableKeyLine findbyLableKeyLine(Integer lableKeyLineId) {
-		return lableKeyLineRepo.findById(lableKeyLineId).get();
+		Optional<LableKeyLine> ll = lableKeyLineRepo.findById(lableKeyLineId);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		if (ll.isPresent()) {
+			LableKeyLine output = mapper.convertValue(ll.get(), LableKeyLine.class);
+			List<RowsInKeylineLables> rows = output.getKeylableRows().stream().filter(distinctByKey(RowsInKeylineLables::getId)).collect(Collectors.toList());
+			output.setKeylableRows(rows);
+			return output;
+		}
+		return null;
+	}
+
+
+
+	private Predicate<? super RowsInKeylineLables> distinctByKey(java.util.function.Function<? super RowsInKeylineLables, ?> keyExtractor) {
+		 List<Object> seenKeys = new ArrayList<>();
+	        return customer -> seenKeys.stream()
+	                .noneMatch(key -> Objects.equals(keyExtractor.apply(customer), key))
+	                && seenKeys.add(keyExtractor.apply(customer));
 	}
 
 	@Override
@@ -70,7 +73,6 @@ public class LableKeyLineServiceImpl implements LableKeyLineService {
 
 	@Override
 	public List<LableKeyLine> findAllLableKeyLineByPubId(Integer lableKeyLineId) {
-		// TODO Auto-generated method stub
 		return lableKeyLineRepo.findByPubIdId(lableKeyLineId);
 	}
 

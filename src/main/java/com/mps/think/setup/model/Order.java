@@ -12,7 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -71,9 +75,10 @@ public class Order extends BaseEntity {
 	
 	@OneToMany(
 	        mappedBy = "order",
-	        cascade = CascadeType.ALL
-	    )
+	        cascade = CascadeType.ALL,
+	        fetch = FetchType.EAGER)
 	@JsonManagedReference
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<OrderAddressMapping> orderAddresses;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})

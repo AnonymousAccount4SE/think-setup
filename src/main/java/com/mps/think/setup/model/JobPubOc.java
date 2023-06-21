@@ -1,5 +1,7 @@
 package com.mps.think.setup.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +25,9 @@ public class JobPubOc extends BaseEntity {
 //	issue_id
 	@Column(name = "issue_id")
 	private  Integer issueId;
+	
+	@Column(name = "issue_date")
+	private Date issueDate;
 //	job_id
 	@Column(name = "job_id")
 	private Integer jobId;
@@ -46,6 +51,12 @@ public class JobPubOc extends BaseEntity {
 	}
 	public void setIssueId(Integer issueId) {
 		this.issueId = issueId;
+	}
+	public Date getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
 	}
 	public Integer getJobId() {
 		return jobId;
@@ -73,7 +84,7 @@ public class JobPubOc extends BaseEntity {
 	}
 	@Override
 	public String toString() {
-		return "JobPubOc [id=" + id + ", issueId=" + issueId + ", jobId=" + jobId + ", ocId=" + ocId + ", closeIssue="
-				+ closeIssue + ", freezIssue=" + freezIssue + "]";
+		return "JobPubOc [id=" + id + ", issueId=" + issueId + ", issueDate=" + issueDate + ", jobId=" + jobId
+				+ ", ocId=" + ocId + ", closeIssue=" + closeIssue + ", freezIssue=" + freezIssue + "]";
 	}
 }

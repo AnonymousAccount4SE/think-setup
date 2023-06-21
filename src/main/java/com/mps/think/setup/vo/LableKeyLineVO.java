@@ -1,5 +1,9 @@
 package com.mps.think.setup.vo;
 
+import java.util.List;
+
+import com.mps.think.setup.model.RowsInKeylineLables;
+
 public class LableKeyLineVO {
 
 	/**
@@ -21,11 +25,7 @@ public class LableKeyLineVO {
 
 	private String description;
 	
-	private String currentIssue;
-
-	private String currentVolume;
-	
-	private String text;
+	private List<RowsInKeylineLables> keylableRows;
 
 	public Integer getLableKeylineId() {
 		return lableKeylineId;
@@ -67,38 +67,27 @@ public class LableKeyLineVO {
 		this.description = description;
 	}
 
-	
-
-	public String getCurrentIssue() {
-		return currentIssue;
+	public List<RowsInKeylineLables> getKeylableRows() {
+		return keylableRows;
 	}
 
-	public void setCurrentIssue(String currentIssue) {
-		this.currentIssue = currentIssue;
-	}
-
-
-	public String getCurrentVolume() {
-		return currentVolume;
-	}
-
-	public void setCurrentVolume(String currentVolume) {
-		this.currentVolume = currentVolume;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
+	public void setKeylableRows(List<RowsInKeylineLables> keylableRows) {
+		this.keylableRows = keylableRows;
 	}
 
 	@Override
 	public String toString() {
 		return "LableKeyLineVO [lableKeylineId=" + lableKeylineId + ", pubId=" + pubId + ", labelKeyline="
-				+ labelKeyline + ", suppressflag=" + suppressflag + ", description=" + description + ", currentIssue="
-				+ currentIssue + ", currentVolume=" + currentVolume + ", text=" + text + "]";
+				+ labelKeyline + ", suppressflag=" + suppressflag + ", description=" + description + ", keylableRows="
+				+ keylableRows + "]";
 	}
+	
+//	private String currentIssue;
+//
+//	private String currentVolume;
+//	
+//	private String text;
+
+	
 
 }
