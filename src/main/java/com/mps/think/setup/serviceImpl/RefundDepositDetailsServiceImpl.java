@@ -1,5 +1,6 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -28,6 +29,18 @@ public class RefundDepositDetailsServiceImpl implements RefundDepositDetailsServ
 	public RefundDepositDetails saveRefundDepositDetails(RefundDepositDetailsVO refundDepositDetailsService) {
 		RefundDepositDetails detailsToSave = mapper.convertValue(refundDepositDetailsService, RefundDepositDetails.class);
 		detailsToSave.setSequence(refundDepositDetailsRepo.getAllRefundDepositDetailsCount(refundDepositDetailsService.getCustomer().getCustomerId()) + 1);
+		RefundDepositDetails recentsInfo = refundDepositDetailsRepo.getRecentRefundDepositDetails(refundDepositDetailsService.getCustomer().getCustomerId());
+		if (recentsInfo == null) {
+			detailsToSave.setInitialDeposit(new BigDecimal(0));
+			detailsToSave.setDepositBal(refundDepositDetailsService.getPayment());
+			detailsToSave.setBaseInitial(new BigDecimal(0));
+			detailsToSave.setBaseDepositBal(refundDepositDetailsService.getBasePayment());
+		} else {
+			detailsToSave.setInitialDeposit(recentsInfo.getDepositBal());
+			detailsToSave.setDepositBal(refundDepositDetailsService.getPayment().add(recentsInfo.getDepositBal()));
+			detailsToSave.setBaseInitial(recentsInfo.getBaseDepositBal());
+			detailsToSave.setBaseDepositBal(refundDepositDetailsService.getBasePayment().add(recentsInfo.getBaseDepositBal()));
+		}
 		return refundDepositDetailsRepo.saveAndFlush(detailsToSave);
 	}
 

@@ -29,7 +29,7 @@ public class PublisherVO {
 
 	private String isdCode;
 
-	private BigInteger primaryPhone;
+	private String primaryPhone;
 
 	private String email;
 
@@ -40,7 +40,7 @@ public class PublisherVO {
 	private Currency currency;
 	private String dateformat;
 
-	private BigInteger secondary_Phone;
+	private String secondary_Phone;
 
 	public Integer getId() {
 		return id;
@@ -138,14 +138,6 @@ public class PublisherVO {
 		this.isdCode = isdCode;
 	}
 
-	public BigInteger getPrimaryPhone() {
-		return primaryPhone;
-	}
-
-	public void setPrimaryPhone(BigInteger primaryPhone) {
-		this.primaryPhone = primaryPhone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -186,22 +178,32 @@ public class PublisherVO {
 		this.dateformat = dateformat;
 	}
 
-	public BigInteger getSecondary_Phone() {
+	public String getPrimaryPhone() {
+		return primaryPhone;
+	}
+
+	public void setPrimaryPhone(String primaryPhone) {
+		this.primaryPhone = primaryPhone;
+	}
+
+	public String getSecondary_Phone() {
 		return secondary_Phone;
 	}
 
-	public void setSecondary_Phone(BigInteger secondary_Phone) {
+	public void setSecondary_Phone(String secondary_Phone) {
 		this.secondary_Phone = secondary_Phone;
 	}
 
 	@Override
 	public String toString() {
-		return "Publisher [id=" + id + ", name=" + name + ", status=" + status + ", abbreviation=" + abbreviation
+		return "PublisherVO [id=" + id + ", name=" + name + ", status=" + status + ", abbreviation=" + abbreviation
 				+ ", website=" + website + ", address1=" + address1 + ", address2=" + address2 + ", zipCode=" + zipCode
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", isdCode=" + isdCode
 				+ ", primaryPhone=" + primaryPhone + ", email=" + email + ", logoUrl=" + logoUrl + ", timeZone="
-				+ timeZone + ", currency=" + currency + ", dateformat=" + dateformat + ", secondaryPhone="
+				+ timeZone + ", currency=" + currency + ", dateformat=" + dateformat + ", secondary_Phone="
 				+ secondary_Phone + "]";
 	}
+
+
 
 }
