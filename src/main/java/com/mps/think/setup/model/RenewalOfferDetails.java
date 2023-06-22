@@ -37,6 +37,10 @@ public class RenewalOfferDetails extends BaseEntity{
 	private String description;
 	
 	@ManyToOne
+	@JoinColumn(name = "oclass_id" , referencedColumnName = "oc_id")
+	private OrderClass oclass;
+	
+	@ManyToOne
 	@JoinColumn(name = "term_id" , referencedColumnName = "termsId")
 	private Terms term;
 	
@@ -104,6 +108,14 @@ public class RenewalOfferDetails extends BaseEntity{
 		this.description = description;
 	}
 
+	public OrderClass getOclass() {
+		return oclass;
+	}
+
+	public void setOclass(OrderClass oclass) {
+		this.oclass = oclass;
+	}
+
 	public Terms getTerm() {
 		return term;
 	}
@@ -163,11 +175,12 @@ public class RenewalOfferDetails extends BaseEntity{
 	@Override
 	public String toString() {
 		return "RenewalOfferDetails [renewalOfferDetailsId=" + renewalOfferDetailsId + ", addRenewal=" + addRenewal
-				+ ", effortFrom=" + effortFrom + ", effortTo=" + effortTo + ", description=" + description + ", term="
-				+ term + ", order_code=" + order_code + ", source_code=" + source_code + ", subscription_def="
-				+ subscription_def + ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class + ", discount_class="
-				+ discount_class + "]";
+				+ ", effortFrom=" + effortFrom + ", effortTo=" + effortTo + ", description=" + description + ", oclass="
+				+ oclass + ", term=" + term + ", order_code=" + order_code + ", source_code=" + source_code
+				+ ", subscription_def=" + subscription_def + ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class
+				+ ", discount_class=" + discount_class + "]";
 	}
 
+	
 
 }
