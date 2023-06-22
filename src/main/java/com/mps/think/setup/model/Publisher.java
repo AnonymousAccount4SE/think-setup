@@ -22,7 +22,7 @@ public class Publisher extends BaseEntity {
 	private static final long serialVersionUID = -7608605119832745196L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
