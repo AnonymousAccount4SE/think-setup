@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.mps.think.setup.model.AddProcess;
 import com.mps.think.setup.model.Addprocessmapping;
+import com.mps.think.setup.model.LabelLayout;
 import com.mps.think.setup.vo.AddProcessVO;
 
 
@@ -25,5 +26,7 @@ public interface AddProcessService {
 	public List<Addprocessmapping> getAllAddprocessmapping();
 	
 //	public List<AddProcess> findAllAddProcessByPId(Integer pId);
+	
+	List<AddProcess> findAllAddProcessForPublisher(Integer pubId);
 
 }
