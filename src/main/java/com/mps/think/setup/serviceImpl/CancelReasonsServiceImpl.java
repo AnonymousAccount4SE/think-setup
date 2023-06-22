@@ -33,7 +33,7 @@ public class CancelReasonsServiceImpl implements CancelReasonsService{
 		CancelReasons data  = new CancelReasons();
 		data.setCancelReason(cancelReasons.getCancelReason());
 		data.setDescription(cancelReasons.getDescription());
-		data.setCanceltype(cancelReasons.getCancelReason());
+		data.setCanceltype(cancelReasons.getCanceltype());
 		cancelReasons.setCancelReasonsId(data.getCancelReasonsId());
 		data.setOrdClasses(cancelReasons.getOrdClasses());
 		Publisher publisher=new Publisher();
@@ -54,7 +54,7 @@ public class CancelReasonsServiceImpl implements CancelReasonsService{
 		data.setPubId(publisher);
 		data.setCancelReason(cancelReasons.getCancelReason());
 		data.setDescription(cancelReasons.getDescription());
-		data.setCanceltype(cancelReasons.getCancelReason());
+		data.setCanceltype(cancelReasons.getCanceltype());
 		data.setOrdClasses(cancelReasons.getOrdClasses());
 		CancelReasonsRepo.saveAndFlush(data);
 		return cancelReasons;
