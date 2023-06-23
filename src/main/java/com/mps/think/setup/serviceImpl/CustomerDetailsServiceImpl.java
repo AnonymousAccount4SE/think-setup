@@ -35,6 +35,7 @@ import com.mps.think.setup.repo.PaymentInformationRepo;
 import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.service.CustomerDetailsService;
 import com.mps.think.setup.utils.AppConstants;
+import com.mps.think.setup.vo.CustomerAddressesVO;
 import com.mps.think.setup.vo.CustomerDetailsVO;
 import com.mps.think.setup.vo.CustomerWithTwoOrderCodes;
 import com.mps.think.setup.vo.EnumModelVO;
@@ -57,7 +58,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 	@Autowired
 	private AddressesRepo addressRepo;
-	
+
 	@Autowired
 	private PaymentInformationRepo piRepo;
 
@@ -77,6 +78,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 	@Override
 	public CustomerDetails saveCustomerDetails(CustomerDetailsVO customerDetails) {
+		customerDetails.setCustomerAddresses(getAllUniqueCustomerAddresses(customerDetails));
 		CustomerDetails newCustomer = mapper.convertValue(customerDetails, CustomerDetails.class);
 
 		if (customerDetails.getPaymentThreshold() == null
@@ -86,40 +88,56 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 		newCustomer.setCustomerStatus(CustomerStatus.Active);
 		newCustomer.setDateUntilDeactivation(null);
-		
+
 		setAddressesNamesSameAsCustomer(newCustomer);
-		
+
 		CustomerDetails cdata = customerRepo.saveAndFlush(newCustomer);
 		return cdata;
 	}
 
 	@Override
 	public CustomerDetails updateCustomerDetails(CustomerDetailsVO customerDetails) {
+		customerDetails.setCustomerAddresses(getAllUniqueCustomerAddresses(customerDetails));
 		CustomerDetails updatedCustomer = mapper.convertValue(customerDetails, CustomerDetails.class);
 
 		if (customerDetails.getPaymentThreshold() == null
 				|| customerDetails.getPaymentThreshold().getPaymentThresholdId() == 0) {
 			updatedCustomer.setPaymentThreshold(null);
 		}
-		
+
 		setAddressesNamesSameAsCustomer(updatedCustomer);
 
 		CustomerDetails cdata = customerRepo.saveAndFlush(updatedCustomer);
 		return cdata;
 	}
-	
+
 	private void setAddressesNamesSameAsCustomer(CustomerDetails customer) {
-		customer.getCustomerAddresses().forEach(ca -> {
-			if(Boolean.TRUE.equals(ca.getAddress().getSameAsCustomer())) {
-				Addresses address = ca.getAddress();
-				address.setSalutation(customer.getSalutation());
-				address.setFirstName(customer.getFname());
-				address.setMiddleName(customer.getInitialName());
-				address.setLastName(customer.getLname());
-				address.setSuffix(customer.getSuffix());
-				addressRepo.saveAndFlush(address);
+
+		List<Addresses> allCustomerAddresses = addressRepo.findAllById(customer.getCustomerAddresses().stream()
+				.map(ca -> ca.getAddress().getAddressId()).collect(Collectors.toList()));
+		
+		allCustomerAddresses.forEach(a -> {
+			if (a.getSameAsCustomer() != null && a.getSameAsCustomer()) {
+				a.setSalutation(customer.getSalutation());
+				a.setFirstName(customer.getFname());
+				a.setLastName(customer.getLname());
+				a.setMiddleName(customer.getInitialName());
+				a.setSuffix(customer.getSuffix());
 			}
 		});
+		
+		addressRepo.saveAllAndFlush(allCustomerAddresses);
+
+	}
+	
+	List<CustomerAddressesVO> getAllUniqueCustomerAddresses(CustomerDetailsVO customer) {
+		Map<Integer, CustomerAddressesVO> output = new HashMap<>();
+		customer.getCustomerAddresses().forEach(ca -> {
+			if (!output.containsKey(ca.getAddress().getAddressId())) {
+				output.put(ca.getAddress().getAddressId(), ca);
+			}
+		});
+		return new ArrayList<>(output.values());
 	}
 
 	@Override
@@ -136,7 +154,8 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 	@Override
 	public Page<CustomerDetails> getAllCustomerDetailsForSearch(Integer pubId, String search, Pageable page) {
-		if (search != null && search.contains("=")) return searchCustomerUsingKeyValue(pubId.equals(0) ? null : pubId, search, page);
+		if (search != null && search.contains("="))
+			return searchCustomerUsingKeyValue(pubId.equals(0) ? null : pubId, search, page);
 		return customerRepo.getAllCustomerDetailsForSearchSingle(pubId.equals(0) ? null : pubId, search, page);
 	}
 
@@ -291,14 +310,13 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 		return null;
 	}
 
-	
 //	CustomerStatus getCustomerStatus(String status) {
 //		for (CustomerStatus cs : CustomerStatus.values()) {
 //			if (cs.getCustomerStatus().equalsIgnoreCase(status)) return cs;
 //		}
 //		return null;
 //	}
-	
+
 	// name, fax, email, department, countrycode, company, mobile, agnecycode,
 	// agencyname, status, ordercode
 	public Page<CustomerDetails> searchCustomerUsingKeyValue(Integer pubId, String searchStream, Pageable page) {
@@ -323,13 +341,15 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	}
 
 	@Override
-	public Page<CustomerWithTwoOrderCodes> getAllCustomerWithRecentTwoOrderCodes(Integer pubId, Pageable page) throws Exception {
+	public Page<CustomerWithTwoOrderCodes> getAllCustomerWithRecentTwoOrderCodes(Integer pubId, Pageable page)
+			throws Exception {
 		Page<CustomerDetails> customers = findAllCustomerByPubId(pubId, page);
 		List<CustomerWithTwoOrderCodes> output = new ArrayList<>();
 		for (CustomerDetails c : customers) {
 			CustomerWithTwoOrderCodes customerNOrderCodes = new CustomerWithTwoOrderCodes();
 			customerNOrderCodes.setCustomer(c);
-			customerNOrderCodes.setOrderCodes(fetchRecentTwoOrderCode(c.getCustomerId()).stream().map(o -> o.getOrderCodes()).collect(Collectors.toList()));
+			customerNOrderCodes.setOrderCodes(fetchRecentTwoOrderCode(c.getCustomerId()).stream()
+					.map(o -> o.getOrderCodes()).collect(Collectors.toList()));
 			output.add(customerNOrderCodes);
 		}
 		return new PageImpl<>(output, customers.getPageable(), customers.getTotalElements());
@@ -341,16 +361,19 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 //	}
 
 	@Override
-	public Page<CustomerWithTwoOrderCodes> getSearchedCustomersWithTwoRecentOrderCodes(Integer pubId, String keyword, Pageable page) throws Exception {
+	public Page<CustomerWithTwoOrderCodes> getSearchedCustomersWithTwoRecentOrderCodes(Integer pubId, String keyword,
+			Pageable page) throws Exception {
 		Page<CustomerDetails> allCustomerDetailsForSearch = getAllCustomerDetailsForSearch(pubId, keyword, page);
 		List<CustomerWithTwoOrderCodes> output = new ArrayList<>();
 		for (CustomerDetails cd : allCustomerDetailsForSearch) {
 			CustomerWithTwoOrderCodes cusAndOrderCodes = new CustomerWithTwoOrderCodes();
 			cusAndOrderCodes.setCustomer(cd);
-			cusAndOrderCodes.setOrderCodes(fetchRecentTwoOrderCode(cd.getCustomerId()).stream().map(oc -> oc.getOrderCodes()).collect(Collectors.toList()));
+			cusAndOrderCodes.setOrderCodes(fetchRecentTwoOrderCode(cd.getCustomerId()).stream()
+					.map(oc -> oc.getOrderCodes()).collect(Collectors.toList()));
 			output.add(cusAndOrderCodes);
 		}
-		return new PageImpl<>(output, allCustomerDetailsForSearch.getPageable(), allCustomerDetailsForSearch.getTotalElements());
+		return new PageImpl<>(output, allCustomerDetailsForSearch.getPageable(),
+				allCustomerDetailsForSearch.getTotalElements());
 	}
 
 }

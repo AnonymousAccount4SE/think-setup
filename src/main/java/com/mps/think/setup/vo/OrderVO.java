@@ -33,6 +33,8 @@ public class OrderVO {
 	private CustomerDetailsVO otherAddressCustomer;
 	
 	private MultiLineItemOrderVO parentOrder;
+	
+	private Integer oldOrderId;
 
 	public Integer getOrderId() {
 		return orderId;
@@ -136,6 +138,14 @@ public class OrderVO {
 
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+
+	public Integer getOldOrderId() {
+		return oldOrderId;
+	}
+
+	public void setOldOrderId(Integer oldOrderId) {
+		this.oldOrderId = oldOrderId;
 	}
 
 	
