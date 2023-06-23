@@ -11,6 +11,7 @@ public class AddPaymentVO {
 	private boolean selectCreditCard;
 	private boolean selectCreditCardWithToken;
 	private String creditCard;
+	private int cvc;
 	private String token;
 	private String creditCardLastDigit;
 	private String cardType;
@@ -97,13 +98,22 @@ public class AddPaymentVO {
 	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
 	}
+	
+	
+	public int getCvc() {
+		return cvc;
+	}
+	public void setCvc(int cvc) {
+		this.cvc = cvc;
+	}
 	@Override
 	public String toString() {
 		return "AddPaymentVO [id=" + id + ", typeOfPaymentAccount=" + typeOfPaymentAccount + ", selectCreditCard="
 				+ selectCreditCard + ", selectCreditCardWithToken=" + selectCreditCardWithToken + ", creditCard="
-				+ creditCard + ", token=" + token + ", creditCardLastDigit=" + creditCardLastDigit + ", cardType="
-				+ cardType + ", nameOfCardHolder=" + nameOfCardHolder + ", validFrom=" + validFrom + ", validTo="
-				+ validTo + ", customerDetails=" + customerDetails + ", publisher=" + publisher + "]";
+				+ creditCard + ", cvc=" + cvc + ", token=" + token + ", creditCardLastDigit=" + creditCardLastDigit
+				+ ", cardType=" + cardType + ", nameOfCardHolder=" + nameOfCardHolder + ", validFrom=" + validFrom
+				+ ", validTo=" + validTo + ", customerDetails=" + customerDetails + ", publisher=" + publisher + "]";
 	}
+	 
 	
 }
