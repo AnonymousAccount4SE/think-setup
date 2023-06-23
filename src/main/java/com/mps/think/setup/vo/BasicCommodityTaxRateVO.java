@@ -1,45 +1,22 @@
-package com.mps.think.setup.model;
+package com.mps.think.setup.vo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.mps.think.setup.model.BasicTaxRate;
 
-@Table(name = "basic_commodity_tax_rate")
-@Entity
-public class BasicCommodityTaxRate extends BaseEntity {
+public class BasicCommodityTaxRateVO  {
 
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "basic_commodity_tax_rate_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer basicCommodityTaxId;
-
-	@OneToOne
-	@JoinColumn(name = "basic_commodity_tax_rate_id", referencedColumnName = "basic_tax_rate_id")
 	private BasicTaxRate basicCommodityTaxRateId;
 
-	@OneToOne
-	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
-	private CommodityCodes commodityCodes;
+	private CommodityCodesVO commodityCodes;
 
-	@Column(name = "effective_date")
 	private Date effectiveDate;
 
-	@Column(name = "expiration_date")
 	private Date expirationDate;
 	
-	@Column(name = "rate_name")
 	private String rateName;
 
-	@Column(name = "rate_value")
 	private String rateValue;
 
 	public Integer getBasicCommodityTaxId() {
@@ -58,11 +35,11 @@ public class BasicCommodityTaxRate extends BaseEntity {
 		this.basicCommodityTaxRateId = basicCommodityTaxRateId;
 	}
 
-	public CommodityCodes getCommodityCodes() {
+	public CommodityCodesVO getCommodityCodes() {
 		return commodityCodes;
 	}
 
-	public void setCommodityCodes(CommodityCodes commodityCodes) {
+	public void setCommodityCodes(CommodityCodesVO commodityCodes) {
 		this.commodityCodes = commodityCodes;
 	}
 
@@ -100,7 +77,7 @@ public class BasicCommodityTaxRate extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "BasicCommodityTaxRate [basicCommodityTaxId=" + basicCommodityTaxId + ", basicCommodityTaxRateId="
+		return "BasicCommodityTaxRateVO [basicCommodityTaxId=" + basicCommodityTaxId + ", basicCommodityTaxRateId="
 				+ basicCommodityTaxRateId + ", commodityCodes=" + commodityCodes + ", effectiveDate=" + effectiveDate
 				+ ", expirationDate=" + expirationDate + ", rateName=" + rateName + ", rateValue=" + rateValue + "]";
 	}

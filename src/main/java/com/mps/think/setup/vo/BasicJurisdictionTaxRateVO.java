@@ -1,45 +1,24 @@
-package com.mps.think.setup.model;
+package com.mps.think.setup.vo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.mps.think.setup.model.BasicTaxRate;
 
-@Table(name = "basic_jurisdiction_tax_rate")
-@Entity
-public class BasicJurisdictionTaxRate extends BaseEntity {
+public class BasicJurisdictionTaxRateVO {
 
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "basic_jurisdiction_tax_rate_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer basicJurisdictionTaxRatedId;
 
-	@OneToOne
-	@JoinColumn(name = "basic_commodity_tax_rate_id", referencedColumnName = "basic_tax_rate_id")
 	private BasicTaxRate basicCommodityTaxRateId;
 
-	@OneToOne
-	@JoinColumn(name = "jurisdictions_id", referencedColumnName = "id")
-	private Jurisdictions jurisdictionsId;
+	private JurisdictionsVO jurisdictionsId;
 
-	@Column(name = "effective_date")
 	private Date effectiveDate;
 
-	@Column(name = "expiration_date")
 	private Date expirationDate;
 	
-	@Column(name = "rate_name")
 	private String rateName;
 
-	@Column(name = "rate_value")
 	private String rateValue;
 
 	public Integer getBasicJurisdictionTaxRatedId() {
@@ -58,11 +37,11 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 		this.basicCommodityTaxRateId = basicCommodityTaxRateId;
 	}
 
-	public Jurisdictions getJurisdictionsId() {
+	public JurisdictionsVO getJurisdictionsId() {
 		return jurisdictionsId;
 	}
 
-	public void setJurisdictionsId(Jurisdictions jurisdictionsId) {
+	public void setJurisdictionsId(JurisdictionsVO jurisdictionsId) {
 		this.jurisdictionsId = jurisdictionsId;
 	}
 
@@ -100,7 +79,7 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "BasicJurisdictionTaxRate [basicJurisdictionTaxRatedId=" + basicJurisdictionTaxRatedId
+		return "BasicJurisdictionTaxRateVO [basicJurisdictionTaxRatedId=" + basicJurisdictionTaxRatedId
 				+ ", basicCommodityTaxRateId=" + basicCommodityTaxRateId + ", jurisdictionsId=" + jurisdictionsId
 				+ ", effectiveDate=" + effectiveDate + ", expirationDate=" + expirationDate + ", rateName=" + rateName
 				+ ", rateValue=" + rateValue + "]";
