@@ -30,6 +30,7 @@ import com.mps.think.setup.model.OrderCodesSuper;
 import com.mps.think.setup.repo.AddOrderRepo;
 import com.mps.think.setup.repo.AddressesRepo;
 import com.mps.think.setup.repo.CustomerDetailsRepo;
+import com.mps.think.setup.repo.IssueGenerationRepo;
 import com.mps.think.setup.repo.PaymentInformationRepo;
 import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.service.CustomerDetailsService;
@@ -59,6 +60,9 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	
 	@Autowired
 	private PaymentInformationRepo piRepo;
+	
+	@Autowired
+	private IssueGenerationRepo iRepo;
 
 	@Autowired
 	private ObjectMapper mapper;
@@ -262,6 +266,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 		arraylist.add(orderRepo.findAllColumnForOrders());
 		arraylist.add(addressRepo.findAllColumnforAddresses());
 		arraylist.add(piRepo.findAllColumnForPaymentInfo());
+		arraylist.add(iRepo.findAllIssueColumn());
 		return arraylist;
 	}
 
