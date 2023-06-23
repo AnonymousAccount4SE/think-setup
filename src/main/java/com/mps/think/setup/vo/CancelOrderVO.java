@@ -26,6 +26,7 @@ public class CancelOrderVO {
 	private String card;
 	private Date date;
 	private String nameoncard;
+	private String ordersid;
 	public Integer getCancelorderId() {
 		return cancelorderId;
 	}
@@ -128,6 +129,23 @@ public class CancelOrderVO {
 	public void setNameoncard(String nameoncard) {
 		this.nameoncard = nameoncard;
 	}
+	public String getOrdersid() {
+		return ordersid;
+	}
+	public void setOrdersid(String ordersid) {
+		this.ordersid = ordersid;
+	}
+	@Override
+	public String toString() {
+		return "CancelOrderVO [cancelorderId=" + cancelorderId + ", orderid=" + orderid + ", refundamount="
+				+ refundamount + ", CancelReasonsId=" + CancelReasonsId + ", donotrenew=" + donotrenew
+				+ ", cancelactiveorder=" + cancelactiveorder + ", cancelentiresubscription=" + cancelentiresubscription
+				+ ", refundto=" + refundto + ", cardNumber=" + cardNumber + ", cardholdername=" + cardholdername
+				+ ", renewanorder=" + renewanorder + ", payanotherorder=" + payanotherorder + ", paymentaccount="
+				+ paymentaccount + ", paymenttype=" + paymenttype + ", card=" + card + ", date=" + date
+				+ ", nameoncard=" + nameoncard + ", ordersid=" + ordersid + "]";
+	}
+	
 	
 	
 	
