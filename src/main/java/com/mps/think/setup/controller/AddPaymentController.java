@@ -45,16 +45,16 @@ public class AddPaymentController {
 	@PostMapping("/savePayment")
 	public ResponseEntity<?> savePayment(@RequestBody AddPaymentVO paymentVO) throws StripeException {
 		
-		if(paymentVO.isSelectCreditCardWithToken()){
-		Tokens tokens=new Tokens(); 
-		tokens.setCardType(paymentVO.getCardType());
-		tokens.setNumber(paymentVO.getCreditCard());
-		tokens.setExpMonth(paymentVO.getValidTo().getMonth());
-		tokens.setExpYear(paymentVO.getValidTo().getYear());
-		tokens.setCvc(paymentVO.getCvc());
-			Token token = paymentsService.token(tokens);
-			paymentVO.setToken(token.getObject());
-	}
+//		if(paymentVO.isSelectCreditCardWithToken()){
+//		Tokens tokens=new Tokens(); 
+//		tokens.setCardType(paymentVO.getCardType());
+//		tokens.setNumber(paymentVO.getCreditCard());
+//		tokens.setExpMonth(paymentVO.getValidTo().getMonth());
+//		tokens.setExpYear(paymentVO.getValidTo().getYear());
+//		tokens.setCvc(paymentVO.getCvc());
+//			Token token = paymentsService.token(tokens);
+//			paymentVO.setToken(token.getObject());
+//	}
  		return ResponseEntity.ok(addPaymentService.savePayment(paymentVO));
 	}
 	

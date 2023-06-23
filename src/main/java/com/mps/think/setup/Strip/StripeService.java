@@ -1,5 +1,6 @@
 package com.mps.think.setup.Strip;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,13 +48,14 @@ public class StripeService {
 		return refund;
 	}
 	
-	public Token token(Tokens token)throws AuthenticationException, InvalidRequestException,
+	public Token token(String cardNumber,String expMonthYear,Integer cvc)throws AuthenticationException, InvalidRequestException,
 	APIConnectionException, CardException, APIException { 
+		String[] str=expMonthYear.split("@");
 	Map<String, Object> card = new HashMap<>();
-	card.put("number", token.getNumber());
-	card.put("exp_month", token.getExpMonth());
-	card.put("exp_year", token.getExpYear());
-	card.put("cvc", token.getCvc());
+	card.put("number", cardNumber);
+	card.put("exp_month", Integer.parseInt(str[0]));
+	card.put("exp_year",Integer.parseInt(str[1]));
+	card.put("cvc", cvc);
 	Map<String, Object> params = new HashMap<>();
 	params.put("card", card);
 
