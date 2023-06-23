@@ -39,7 +39,7 @@ public class OrderVO {
 	private MultiLineItemOrderVO parentOrder;
 	
 	private Integer oldOrderId;
-	private CommodityCodesVO commodityCodesVO;
+	private CommodityCodesVO commodityCodes;
 
 	public Integer getOrderId() {
 		return orderId;
@@ -152,12 +152,16 @@ public class OrderVO {
 	public void setOldOrderId(Integer oldOrderId) {
 		this.oldOrderId = oldOrderId;
 	}
-    
-	public CommodityCodesVO getCommodityCodesVO() {
-		return commodityCodesVO;
+
+	public CommodityCodesVO getCommodityCodes() {
+		return commodityCodes;
 	}
 
-	public void setCommodityCodesVO(CommodityCodesVO commodityCodesVO) {
-		this.commodityCodesVO = commodityCodesVO;
+	public void setCommodityCodes(CommodityCodesVO commodityCodes) {
+		this.commodityCodes = commodityCodes;
 	}
+    
+
+	
+	
 }
