@@ -72,4 +72,9 @@ public class IssueGenerationController {
 	public ResponseEntity<?> getCurrentIssue(@RequestParam Integer pubId,@RequestBody List<Integer> ocId) {
 		return ResponseEntity.ok(issueGenerationServiceImpl.getCurrentIssue(pubId, ocId));
 	}
+	
+	@GetMapping("/getAllIssuecolumns")
+	public ResponseEntity<?> getAllIssueGenerationColumn() {
+		return ResponseEntity.ok(issueGenerationServiceImpl.getAllIssueGenerationColumn());
+	}
 }
