@@ -2,19 +2,8 @@ package com.mps.think.setup.vo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import com.mps.think.setup.model.BasicTaxRate;
 
-@Table(name = "basic_commodity_tax_rate")
-@Entity
 public class BasicCommodityTaxRateVO  {
 
 	private Integer basicCommodityTaxId;
@@ -22,16 +11,12 @@ public class BasicCommodityTaxRateVO  {
 
 	private CommodityCodesVO commodityCodes;
 
-	@Column(name = "effective_date")
 	private Date effectiveDate;
 
-	@Column(name = "expiration_date")
 	private Date expirationDate;
 	
-	@Column(name = "rate_name")
 	private String rateName;
 
-	@Column(name = "rate_value")
 	private String rateValue;
 
 	public Integer getBasicCommodityTaxId() {
