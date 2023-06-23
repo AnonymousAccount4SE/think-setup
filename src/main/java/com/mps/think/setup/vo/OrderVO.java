@@ -38,6 +38,7 @@ public class OrderVO {
 	
 	private MultiLineItemOrderVO parentOrder;
 	
+	private Integer oldOrderId;
 	private CommodityCodesVO commodityCodesVO;
 
 	public Integer getOrderId() {
@@ -144,6 +145,13 @@ public class OrderVO {
 		this.orderStatus = orderStatus;
 	}
 
+	public Integer getOldOrderId() {
+		return oldOrderId;
+	}
+
+	public void setOldOrderId(Integer oldOrderId) {
+		this.oldOrderId = oldOrderId;
+    
 	public CommodityCodesVO getCommodityCodesVO() {
 		return commodityCodesVO;
 	}
@@ -151,7 +159,4 @@ public class OrderVO {
 	public void setCommodityCodesVO(CommodityCodesVO commodityCodesVO) {
 		this.commodityCodesVO = commodityCodesVO;
 	}
-
-	
-
 }

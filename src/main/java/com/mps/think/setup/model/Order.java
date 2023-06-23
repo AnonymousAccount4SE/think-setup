@@ -92,6 +92,9 @@ public class Order extends BaseEntity {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private MultiLineItemOrder parentOrder;
+	
+	@Column(name = "old_order_id")
+	private Integer oldOrderId;
 
 	@OneToOne
 	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
@@ -220,4 +223,19 @@ public class Order extends BaseEntity {
 				+ otherAddressCustomer + ", parentOrder=" + parentOrder + ", commodityCodes=" + commodityCodes + "]";
 	}
 
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public Integer getOldOrderId() {
+		return oldOrderId;
+	}
+
+	public void setOldOrderId(Integer oldOrderId) {
+		this.oldOrderId = oldOrderId;
+	}
 }
