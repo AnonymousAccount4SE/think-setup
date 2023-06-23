@@ -1,7 +1,13 @@
 package com.mps.think.setup.vo;
 
-import javax.persistence.Column;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.mps.think.setup.model.BasicTaxRate;
+import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.model.Publisher;
 
 public class JurisdictionsVO {
@@ -17,6 +23,7 @@ public class JurisdictionsVO {
     private Boolean addressValidation;
 	private Boolean taxCoumputation;
 	private CommodityCodesVO commodityCodesVo;
+	private Integer basicCommodityTaxId;
 	
 	public Integer getId() {
 		return id;
@@ -85,13 +92,19 @@ public class JurisdictionsVO {
 	public void setTaxCoumputation(Boolean taxCoumputation) {
 		this.taxCoumputation = taxCoumputation;
 	}
+	public Integer getBasicCommodityTaxId() {
+		return basicCommodityTaxId;
+	}
+	
 	@Override
 	public String toString() {
 		return "JurisdictionsVO [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
 				+ avatarapplicable + ", addressValidation=" + addressValidation + ", taxCoumputation=" + taxCoumputation
-				+ ", commodityCodesVo=" + commodityCodesVo + "]";
+				+ ", commodityCodesVo=" + commodityCodesVo + ", basicCommodityTaxId=" + basicCommodityTaxId
+			    + "]";
 	}
+	
 	
 
 }

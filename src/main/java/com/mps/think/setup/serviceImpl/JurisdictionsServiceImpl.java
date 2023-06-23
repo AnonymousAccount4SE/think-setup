@@ -80,7 +80,6 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 
 		Jurisdictions jurisdictions = jurisdictionsRepo.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountry(),
 				jurisdictionsVo.getStateCode(), jurisdictionsVo.getZipCode());
-
 		return jurisdictions;
 	}
 

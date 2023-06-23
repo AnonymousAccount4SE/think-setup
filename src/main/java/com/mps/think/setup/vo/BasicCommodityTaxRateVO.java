@@ -1,4 +1,4 @@
-package com.mps.think.setup.model;
+package com.mps.think.setup.vo;
 
 import java.util.Date;
 
@@ -11,24 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "basic_jurisdiction_tax_rate")
+import com.mps.think.setup.model.BasicTaxRate;
+
+@Table(name = "basic_commodity_tax_rate")
 @Entity
-public class BasicJurisdictionTaxRate extends BaseEntity {
+public class BasicCommodityTaxRateVO  {
 
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "basic_jurisdiction_tax_rate_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer basicJurisdictionTaxRatedId;
-
-	@OneToOne
-	@JoinColumn(name = "basic_commodity_tax_rate_id", referencedColumnName = "basic_tax_rate_id")
+	private Integer basicCommodityTaxId;
 	private BasicTaxRate basicCommodityTaxRateId;
 
-	@OneToOne
-	@JoinColumn(name = "jurisdictions_id", referencedColumnName = "id")
-	private Jurisdictions jurisdictionsId;
+	private CommodityCodesVO commodityCodes;
 
 	@Column(name = "effective_date")
 	private Date effectiveDate;
@@ -42,12 +34,12 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 	@Column(name = "rate_value")
 	private String rateValue;
 
-	public Integer getBasicJurisdictionTaxRatedId() {
-		return basicJurisdictionTaxRatedId;
+	public Integer getBasicCommodityTaxId() {
+		return basicCommodityTaxId;
 	}
 
-	public void setBasicJurisdictionTaxRatedId(Integer basicJurisdictionTaxRatedId) {
-		this.basicJurisdictionTaxRatedId = basicJurisdictionTaxRatedId;
+	public void setBasicCommodityTaxId(Integer basicCommodityTaxId) {
+		this.basicCommodityTaxId = basicCommodityTaxId;
 	}
 
 	public BasicTaxRate getBasicCommodityTaxRateId() {
@@ -58,12 +50,12 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 		this.basicCommodityTaxRateId = basicCommodityTaxRateId;
 	}
 
-	public Jurisdictions getJurisdictionsId() {
-		return jurisdictionsId;
+	public CommodityCodesVO getCommodityCodes() {
+		return commodityCodes;
 	}
 
-	public void setJurisdictionsId(Jurisdictions jurisdictionsId) {
-		this.jurisdictionsId = jurisdictionsId;
+	public void setCommodityCodes(CommodityCodesVO commodityCodes) {
+		this.commodityCodes = commodityCodes;
 	}
 
 	public Date getEffectiveDate() {
@@ -100,10 +92,9 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "BasicJurisdictionTaxRate [basicJurisdictionTaxRatedId=" + basicJurisdictionTaxRatedId
-				+ ", basicCommodityTaxRateId=" + basicCommodityTaxRateId + ", jurisdictionsId=" + jurisdictionsId
-				+ ", effectiveDate=" + effectiveDate + ", expirationDate=" + expirationDate + ", rateName=" + rateName
-				+ ", rateValue=" + rateValue + "]";
+		return "BasicCommodityTaxRateVO [basicCommodityTaxId=" + basicCommodityTaxId + ", basicCommodityTaxRateId="
+				+ basicCommodityTaxRateId + ", commodityCodes=" + commodityCodes + ", effectiveDate=" + effectiveDate
+				+ ", expirationDate=" + expirationDate + ", rateName=" + rateName + ", rateValue=" + rateValue + "]";
 	}
 
 }

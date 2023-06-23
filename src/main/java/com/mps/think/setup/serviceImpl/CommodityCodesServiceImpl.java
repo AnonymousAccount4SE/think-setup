@@ -88,4 +88,10 @@ public class CommodityCodesServiceImpl implements CommodityCodesService {
 		return commodityCodesRepo.findAll();
 	}
 
+	@Override
+	public CommodityCodes getCommodityCodesdetails(String commodityCode) {
+		// TODO Auto-generated method stub
+		return commodityCodesRepo.getCommodityCodesdetailsBycommodityCode(commodityCode);
+	}
+
 }
