@@ -5,13 +5,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.mps.think.setup.model.Jurisdictions;
+import com.mps.think.setup.model.BasicCommodityTaxRate;
+import com.mps.think.setup.model.BasicJurisdictionTaxRate;
+import com.mps.think.setup.model.BasicTaxRate;
+import com.mps.think.setup.model.CommodityCodes;
+import com.mps.think.setup.service.BasicCommodityTaxRateService;
+import com.mps.think.setup.service.BasicJurisdictionTaxRateService;
+import com.mps.think.setup.service.CommodityCodesService;
 import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.vo.JurisdictionsVO;
+import com.mps.think.setup.vo.TaxCalculationDataVO;
 
 @RestController
 @CrossOrigin
@@ -19,6 +26,15 @@ public class JurisdictionsController {
 	
 	@Autowired
 	JurisdictionsService jurisdictionsService;
+	
+	@Autowired
+	BasicJurisdictionTaxRateService basicJurisdictionTaxRateService;
+	
+	@Autowired
+	CommodityCodesService commodityCodesService;
+	
+	@Autowired
+	BasicCommodityTaxRateService basicCommodityTaxRateService;
 	
 	@GetMapping("/getAlljurisdictions")
 	public ResponseEntity<?> getAlljurisdictions() {
@@ -49,5 +65,39 @@ public class JurisdictionsController {
 	public ResponseEntity<?> findAllJurisdictionsForPublisher(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(jurisdictionsService.findAllJurisdictionsForPublisher(pubId));
 	}
+	
+	@PostMapping("/findbyJurisdictionStateTaxContry")
+	public ResponseEntity<?> findbyId(@RequestBody JurisdictionsVO JurisdictionVo ) {
+		return ResponseEntity.ok(jurisdictionsService.findbyJurisdictionStateTaxContry(JurisdictionVo));
+	}
 
+	@GetMapping("/getAllcountrybyJurisdiction")
+	public ResponseEntity<?> findbyId() {
+		return ResponseEntity.ok(jurisdictionsService.getAllcountrybyJurisdiction());
+	}
+	@PostMapping("/getAllStateByJurisdiction")
+	public ResponseEntity<?> getAllStateByJurisdiction(@RequestBody String country ) {
+		return ResponseEntity.ok(jurisdictionsService.getAllStateByJurisdiction(country));
+	}
+	
+	@PostMapping("/taxCalculation")
+	public ResponseEntity<?> taxCalculation(@RequestBody JurisdictionsVO JurisdictionVo) {
+		Jurisdictions jurisdictions = jurisdictionsService.findbyJurisdictionStateTaxContry(JurisdictionVo);
+		BasicCommodityTaxRate basicCommodityTaxRate = null;
+		BasicJurisdictionTaxRate basicJurisdictionTaxRate = null;
+		if(jurisdictions.getAvatarapplicable()) {
+//			avaalara api call
+			return ResponseEntity.ok(null);
+		}else if(jurisdictions.getTaxCoumputation()){
+			basicJurisdictionTaxRate = basicJurisdictionTaxRateService.findbasicJurisdictionTaxRatebyId(jurisdictions.getId());
+		}else {
+			CommodityCodes commodityCodes = commodityCodesService.getCommodityCodesdetails(JurisdictionVo.getCommodityCodesVo().getCommodityCode());
+			basicCommodityTaxRate = basicCommodityTaxRateService.getbasicCommodityTaxRateById(commodityCodes.getId());
+		}
+		TaxCalculationDataVO taxCalculationData = null;
+		taxCalculationData.setBasictaxRate(basicCommodityTaxRate.getBasicCommodityTaxRateId().getRateValue());
+		taxCalculationData.setCommodityTaxRateRate(basicCommodityTaxRate.getRateValue());
+		taxCalculationData.setJurisdictionTaxRate(basicJurisdictionTaxRate.getRateValue());
+		return ResponseEntity.ok(taxCalculationData);
+	}
 }

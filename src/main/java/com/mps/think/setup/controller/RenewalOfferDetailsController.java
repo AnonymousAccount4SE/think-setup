@@ -13,36 +13,41 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mps.think.setup.service.RenewalOfferDetailsService;
 import com.mps.think.setup.vo.RenewalOfferDetailsVO;
 
-
 @RestController
 @CrossOrigin
 public class RenewalOfferDetailsController {
 
 	@Autowired
 	RenewalOfferDetailsService renewalOfferDetailsService;
-	
+
 	@GetMapping("/getRenewalOfferDetails")
-	public ResponseEntity<?> findAllRenewalOfferDetails(){
+	public ResponseEntity<?> findAllRenewalOfferDetails() {
 		return ResponseEntity.ok(renewalOfferDetailsService.findAllRenewalOfferDetails());
 	}
-	
+
 	@PostMapping("/saveRenewalOfferDetails")
-	public ResponseEntity<?> saveRenewalOfferDetails(@RequestBody RenewalOfferDetailsVO renewalOfferDetailsVO){
+	public ResponseEntity<?> saveRenewalOfferDetails(@RequestBody RenewalOfferDetailsVO renewalOfferDetailsVO) {
 		return ResponseEntity.ok(renewalOfferDetailsService.saveRenewalOfferDetails(renewalOfferDetailsVO));
 	}
-	
+
 	@PutMapping("/updateRenewalOfferDetails")
-	public ResponseEntity<?> updateRenewalOfferDetails(@RequestBody RenewalOfferDetailsVO renewalOfferDetailsVO){
+	public ResponseEntity<?> updateRenewalOfferDetails(@RequestBody RenewalOfferDetailsVO renewalOfferDetailsVO) {
 		return ResponseEntity.ok(renewalOfferDetailsService.updateRenewalOfferDetails(renewalOfferDetailsVO));
 	}
-	
+
 	@DeleteMapping("/deleteRenewalOfferDetails")
-	public ResponseEntity<?> deleteRenewalOfferDetails(@RequestBody Integer renewalOfferDetailsId){
+	public ResponseEntity<?> deleteRenewalOfferDetails(@RequestBody Integer renewalOfferDetailsId) {
 		return ResponseEntity.ok(renewalOfferDetailsService.deleteRenewalOfferDetails(renewalOfferDetailsId));
 	}
-	
+
 	@PostMapping("/findByRenewalOfferDetailsId")
-	ResponseEntity<?> findByRenewalOfferDetailsId(@RequestBody Integer renewalOfferDetailsId){
+	ResponseEntity<?> findByRenewalOfferDetailsId(@RequestBody Integer renewalOfferDetailsId) {
 		return ResponseEntity.ok(renewalOfferDetailsService.findbyRenewalOfferDetailsId(renewalOfferDetailsId));
+	}
+
+	@PostMapping("/getAllRenewalOfferDetailsByAddRenewalsId")
+	ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@RequestBody Integer renewalOfferDetailsId) {
+		return ResponseEntity
+				.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByAddRenewalsId(renewalOfferDetailsId));
 	}
 }

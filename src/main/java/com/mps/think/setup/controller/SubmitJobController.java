@@ -69,6 +69,16 @@ public class SubmitJobController {
 		return ResponseEntity.ok(submitJobService.updateProcessJobInDb(jobStatus, jobId));
 	}
 	
+	@PostMapping("/updateSubmitJobStatus")
+	public ResponseEntity<?> updateSubmitJobStatus(@RequestParam String jobStatus,@RequestParam Integer jobId) {
+		return ResponseEntity.ok(submitJobService.updateSubmitJobStatus(jobId, jobStatus));
+	}
+	
+	@PostMapping("/listOfCustomer")
+	public ResponseEntity<?> listOfCustomer(@RequestParam Integer jobId) {
+		return ResponseEntity.ok(submitJobService.listOfCustomer(jobId));
+	}
+	
 //	 @GetMapping("/download")
 //	    public ResponseEntity<InputStreamResource> downloadExcel(@RequestParam Integer jobId) throws IOException {
 //	        // Fetch data from the database

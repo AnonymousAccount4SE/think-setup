@@ -25,6 +25,8 @@ public interface SubmitJobService {
 	
 	public List<List<String>> updateProcessJobInDb(String jobStatus ,Integer jobId);
 	
-//	public List<CustomerDetails> listOfCustomer(Integer jobId);
+	public SubmitJob updateSubmitJobStatus(Integer jodId,String status);
+	
+	public List<List<CustomerDetails>> listOfCustomer(Integer jobId);
 
 }

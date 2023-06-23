@@ -1,123 +1,116 @@
 package com.mps.think.setup.vo;
 
+import com.mps.think.setup.model.AddRenewals;
+import com.mps.think.setup.model.DiscountCardKeyInfo;
+import com.mps.think.setup.model.OrderClass;
+import com.mps.think.setup.model.OrderCodes;
+import com.mps.think.setup.model.RateCards;
+import com.mps.think.setup.model.SourceCode;
+import com.mps.think.setup.model.SubscriptionDefKeyInfo;
+import com.mps.think.setup.model.Terms;
 
 public class RenewalOfferDetailsVO {
-	
+
 	private Integer renewalOfferDetailsId;
-
-//	need to change integer to renewalOffer class name 
-	private Integer renewalOfferId;
-
+	private AddRenewals addRenewal;
+	private Integer effortFrom;
+	private Integer effortTo;
 	private String description;
-
-//	need to change integer to discount class name 
-	private Integer discount_class_id;
-
-//	need to change integer to renewalOffer class name 
-	private Integer order_code_id;
-
-//	need to change integer to renewalOffer class name 
+	private OrderClass oclass;
+	private Terms term;
+	private OrderCodes order_code;
+	private SourceCode source_code;
+	private SubscriptionDefKeyInfo subscription_def;
 	private Integer pkg_def_id;
-
-//	need to change integer to renewalOffer class name 
-	private Integer rate_class_id;
-
-//	need to change integer to renewalOffer class name 
-	private Integer source_code_id;
-
-//	need to change integer to renewalOffer class name 
-	private Integer subscription_def_id;
-
-//	need to change integer to renewalOffer class name 
-	private Integer term_id;
-
+	private RateCards rate_class;
+	private DiscountCardKeyInfo discount_class;
 	public Integer getRenewalOfferDetailsId() {
 		return renewalOfferDetailsId;
 	}
-
 	public void setRenewalOfferDetailsId(Integer renewalOfferDetailsId) {
 		this.renewalOfferDetailsId = renewalOfferDetailsId;
 	}
-
-	public Integer getRenewalOfferId() {
-		return renewalOfferId;
+	public AddRenewals getAddRenewal() {
+		return addRenewal;
 	}
-
-	public void setRenewalOfferId(Integer renewalOfferId) {
-		this.renewalOfferId = renewalOfferId;
+	public void setAddRenewal(AddRenewals addRenewal) {
+		this.addRenewal = addRenewal;
 	}
-
+	public Integer getEffortFrom() {
+		return effortFrom;
+	}
+	public void setEffortFrom(Integer effortFrom) {
+		this.effortFrom = effortFrom;
+	}
+	public Integer getEffortTo() {
+		return effortTo;
+	}
+	public void setEffortTo(Integer effortTo) {
+		this.effortTo = effortTo;
+	}
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Integer getDiscount_class_id() {
-		return discount_class_id;
+	public OrderClass getOclass() {
+		return oclass;
 	}
-
-	public void setDiscount_class_id(Integer discount_class_id) {
-		this.discount_class_id = discount_class_id;
+	public void setOclass(OrderClass oclass) {
+		this.oclass = oclass;
 	}
-
-	public Integer getOrder_code_id() {
-		return order_code_id;
+	public Terms getTerm() {
+		return term;
 	}
-
-	public void setOrder_code_id(Integer order_code_id) {
-		this.order_code_id = order_code_id;
+	public void setTerm(Terms term) {
+		this.term = term;
 	}
-
+	public OrderCodes getOrder_code() {
+		return order_code;
+	}
+	public void setOrder_code(OrderCodes order_code) {
+		this.order_code = order_code;
+	}
+	public SourceCode getSource_code() {
+		return source_code;
+	}
+	public void setSource_code(SourceCode source_code) {
+		this.source_code = source_code;
+	}
+	public SubscriptionDefKeyInfo getSubscription_def() {
+		return subscription_def;
+	}
+	public void setSubscription_def(SubscriptionDefKeyInfo subscription_def) {
+		this.subscription_def = subscription_def;
+	}
 	public Integer getPkg_def_id() {
 		return pkg_def_id;
 	}
-
 	public void setPkg_def_id(Integer pkg_def_id) {
 		this.pkg_def_id = pkg_def_id;
 	}
-
-	public Integer getRate_class_id() {
-		return rate_class_id;
+	public RateCards getRate_class() {
+		return rate_class;
 	}
-
-	public void setRate_class_id(Integer rate_class_id) {
-		this.rate_class_id = rate_class_id;
+	public void setRate_class(RateCards rate_class) {
+		this.rate_class = rate_class;
 	}
-
-	public Integer getSource_code_id() {
-		return source_code_id;
+	public DiscountCardKeyInfo getDiscount_class() {
+		return discount_class;
 	}
-
-	public void setSource_code_id(Integer source_code_id) {
-		this.source_code_id = source_code_id;
+	public void setDiscount_class(DiscountCardKeyInfo discount_class) {
+		this.discount_class = discount_class;
 	}
-
-	public Integer getSubscription_def_id() {
-		return subscription_def_id;
-	}
-
-	public void setSubscription_def_id(Integer subscription_def_id) {
-		this.subscription_def_id = subscription_def_id;
-	}
-
-	public Integer getTerm_id() {
-		return term_id;
-	}
-
-	public void setTerm_id(Integer term_id) {
-		this.term_id = term_id;
-	}
-
 	@Override
 	public String toString() {
-		return "RenewalOfferDetailsVO [renewalOfferDetailsId=" + renewalOfferDetailsId + ", renewalOfferId="
-				+ renewalOfferId + ", description=" + description + ", discount_class_id=" + discount_class_id
-				+ ", order_code_id=" + order_code_id + ", pkg_def_id=" + pkg_def_id + ", rate_class_id=" + rate_class_id
-				+ ", source_code_id=" + source_code_id + ", subscription_def_id=" + subscription_def_id + ", term_id="
-				+ term_id + "]";
+		return "RenewalOfferDetailsVO [renewalOfferDetailsId=" + renewalOfferDetailsId + ", addRenewal=" + addRenewal
+				+ ", effortFrom=" + effortFrom + ", effortTo=" + effortTo + ", description=" + description + ", oclass="
+				+ oclass + ", term=" + term + ", order_code=" + order_code + ", source_code=" + source_code
+				+ ", subscription_def=" + subscription_def + ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class
+				+ ", discount_class=" + discount_class + "]";
 	}
+
 	
+
 }

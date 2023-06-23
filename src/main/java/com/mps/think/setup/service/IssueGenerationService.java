@@ -3,11 +3,14 @@ package com.mps.think.setup.service;
 import java.util.Date;
 import java.util.List;
 
+import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.IssueGeneration;
 import com.mps.think.setup.model.SourceCode;
 import com.mps.think.setup.vo.IssueGenerationVo;
 
 public interface IssueGenerationService {
+	
+	public List<String> getAllIssueGenerationColumn();
 
 	public List<IssueGeneration> findAllIssueGenerationVo();
 

@@ -5,8 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,8 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.mps.think.setup.vo.EnumModelVO.OrderStatus;
 
 
 @Table(name = "order_parent")
@@ -74,9 +75,10 @@ public class Order extends BaseEntity {
 	
 	@OneToMany(
 	        mappedBy = "order",
-	        cascade = CascadeType.ALL
-	    )
+	        cascade = CascadeType.ALL,
+	        fetch = FetchType.EAGER)
 	@JsonManagedReference
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<OrderAddressMapping> orderAddresses;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
@@ -94,6 +96,11 @@ public class Order extends BaseEntity {
 	@Column(name = "old_order_id")
 	private Integer oldOrderId;
 
+	@OneToOne
+	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
+	private CommodityCodes commodityCodes;
+	
+	
 	public Integer getOrderId() {
 		return orderId;
 	}
@@ -190,6 +197,21 @@ public class Order extends BaseEntity {
 		this.parentOrder = parentOrder;
 
 	}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
 
 	@Override
 	public String toString() {
@@ -198,7 +220,7 @@ public class Order extends BaseEntity {
 				+ keyOrderInformation + ", orderItemsAndTerms=" + orderItemsAndTerms + ", paymentBreakdown="
 				+ paymentBreakdown + ", deliveryAndBillingOptions=" + deliveryAndBillingOptions + ", orderAddresses="
 				+ orderAddresses + ", auxiliaryInformation=" + auxiliaryInformation + ", otherAddressCustomer="
-				+ otherAddressCustomer + ", parentOrder=" + parentOrder + "]";
+				+ otherAddressCustomer + ", parentOrder=" + parentOrder + ", commodityCodes=" + commodityCodes + "]";
 	}
 
 	public String getOrderStatus() {
@@ -216,5 +238,4 @@ public class Order extends BaseEntity {
 	public void setOldOrderId(Integer oldOrderId) {
 		this.oldOrderId = oldOrderId;
 	}
-	
 }

@@ -345,4 +345,9 @@ public class IssueGenerationServiceImpl implements IssueGenerationService {
 		return response;
 	}
 
+	@Override
+	public List<String> getAllIssueGenerationColumn() {
+		return issueGenerationRepo.findAllIssueColumn();
+	}
+
 }
