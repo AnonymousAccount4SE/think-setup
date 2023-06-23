@@ -151,6 +151,7 @@ public class OrderVO {
 
 	public void setOldOrderId(Integer oldOrderId) {
 		this.oldOrderId = oldOrderId;
+	}
     
 	public CommodityCodesVO getCommodityCodesVO() {
 		return commodityCodesVO;
