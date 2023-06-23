@@ -85,6 +85,9 @@ public class CancelOrder extends BaseEntity {
 	
 	@Column(name = "nameoncard")
 	private String nameoncard;
+	
+	@Column(name = "orders_id")
+	private String ordersid;
 
 	public Integer getCancelorderId() {
 		return cancelorderId;
@@ -221,6 +224,26 @@ public class CancelOrder extends BaseEntity {
 	public void setNameoncard(String nameoncard) {
 		this.nameoncard = nameoncard;
 	}
+
+	public String getOrdersid() {
+		return ordersid;
+	}
+
+	public void setOrdersid(String ordersid) {
+		this.ordersid = ordersid;
+	}
+
+	@Override
+	public String toString() {
+		return "CancelOrder [cancelorderId=" + cancelorderId + ", orderid=" + orderid + ", refundamount=" + refundamount
+				+ ", CancelReasonsId=" + CancelReasonsId + ", donotrenew=" + donotrenew + ", cancelactiveorder="
+				+ cancelactiveorder + ", cancelentiresubscription=" + cancelentiresubscription + ", refundto="
+				+ refundto + ", cardNumber=" + cardNumber + ", cardholdername=" + cardholdername + ", renewanorder="
+				+ renewanorder + ", payanotherorder=" + payanotherorder + ", paymentaccount=" + paymentaccount
+				+ ", paymenttype=" + paymenttype + ", card=" + card + ", date=" + date + ", nameoncard=" + nameoncard
+				+ ", ordersid=" + ordersid + "]";
+	}
+	
 
 	
 	
