@@ -44,6 +44,11 @@ public class AddProcessController {
 		return ResponseEntity.ok(addProcessService.deleteByProcessId(id));
 	}
 	
+	@PostMapping("/getAllAddProcessForPublisher")
+	public ResponseEntity<?> findAllAddProcessForPublisher(@RequestBody Integer pubId) {
+		return ResponseEntity.ok(addProcessService.findAllAddProcessForPublisher(pubId));
+	}
+	
 //	@PostMapping("getAllAddProcessForpid")
 //	public ResponseEntity<?> findAllAddProcessByPubId(@RequestBody Integer pId) {
 //		return ResponseEntity.ok(addProcessService.findAllAddProcessByPId(pId));

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.Addresses;
 import com.mps.think.setup.model.CustomerAddresses;
 import com.mps.think.setup.model.CustomerDetails;
+import com.mps.think.setup.model.MultiLineItemOrder;
 import com.mps.think.setup.model.Order;
 import com.mps.think.setup.model.OrderAddressMapping;
 import com.mps.think.setup.model.OrderCodesSuper;
@@ -85,6 +86,9 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 		newCustomer.setCustomerStatus(CustomerStatus.Active);
 		newCustomer.setDateUntilDeactivation(null);
+		
+		setAddressesNamesSameAsCustomer(newCustomer);
+		
 		CustomerDetails cdata = customerRepo.saveAndFlush(newCustomer);
 		return cdata;
 	}
@@ -97,9 +101,25 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 				|| customerDetails.getPaymentThreshold().getPaymentThresholdId() == 0) {
 			updatedCustomer.setPaymentThreshold(null);
 		}
+		
+		setAddressesNamesSameAsCustomer(updatedCustomer);
 
 		CustomerDetails cdata = customerRepo.saveAndFlush(updatedCustomer);
 		return cdata;
+	}
+	
+	private void setAddressesNamesSameAsCustomer(CustomerDetails customer) {
+		customer.getCustomerAddresses().forEach(ca -> {
+			if(Boolean.TRUE.equals(ca.getAddress().getSameAsCustomer())) {
+				Addresses address = ca.getAddress();
+				address.setSalutation(customer.getSalutation());
+				address.setFirstName(customer.getFname());
+				address.setMiddleName(customer.getInitialName());
+				address.setLastName(customer.getLname());
+				address.setSuffix(customer.getSuffix());
+				addressRepo.saveAndFlush(address);
+			}
+		});
 	}
 
 	@Override

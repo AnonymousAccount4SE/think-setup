@@ -15,6 +15,14 @@ public class AddressesVO {
 //	private Address adId;
 	private String addressstatus;
 	private String addressName;
+	
+	private String salutation;
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	private String suffix;
+	private Boolean sameAsCustomer;
+	
 	private AddressType addressType;
 	private String addressCategory;
 	private Status status;
@@ -175,6 +183,42 @@ public class AddressesVO {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getSalutation() {
+		return salutation;
+	}
+	public void setSalutation(String salutation) {
+		this.salutation = salutation;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getMiddleName() {
+		return middleName;
+	}
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getSuffix() {
+		return suffix;
+	}
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+	public Boolean getSameAsCustomer() {
+		return sameAsCustomer;
+	}
+	public void setSameAsCustomer(Boolean sameAsCustomer) {
+		this.sameAsCustomer = sameAsCustomer;
 	}
 	
 	
