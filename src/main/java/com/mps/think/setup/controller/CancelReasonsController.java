@@ -1,5 +1,8 @@
 package com.mps.think.setup.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mps.think.setup.service.CancelReasonsService;
 import com.mps.think.setup.vo.CancelReasonsVO;
+import com.mps.think.setup.vo.EnumModelVO.CancelType;
+import com.mps.think.setup.vo.EnumModelVO.RefundTo;
 
 
 
@@ -49,6 +54,15 @@ public class CancelReasonsController {
 	@DeleteMapping("/deleteByCrId")
 	public ResponseEntity<?> deleteByCancelReasonsId(@RequestBody Integer cancelReasonsId) {
 		return ResponseEntity.ok(cancelReasonsService.deleteByCancelReasonsId(cancelReasonsId));
+	}
+	
+	@GetMapping("/findAllCancelType")
+	public ResponseEntity<?> getAllCancelType() {
+		List<String> list= new ArrayList<>();
+		for(CancelType data:CancelType.values()) {
+			list.add(data.getCancelType());
+		}
+		return ResponseEntity.ok(list);
 	}
 
 }

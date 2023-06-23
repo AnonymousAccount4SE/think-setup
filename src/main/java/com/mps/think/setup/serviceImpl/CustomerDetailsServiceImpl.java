@@ -24,12 +24,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.Addresses;
 import com.mps.think.setup.model.CustomerAddresses;
 import com.mps.think.setup.model.CustomerDetails;
+import com.mps.think.setup.model.MultiLineItemOrder;
 import com.mps.think.setup.model.Order;
 import com.mps.think.setup.model.OrderAddressMapping;
 import com.mps.think.setup.model.OrderCodesSuper;
 import com.mps.think.setup.repo.AddOrderRepo;
 import com.mps.think.setup.repo.AddressesRepo;
 import com.mps.think.setup.repo.CustomerDetailsRepo;
+import com.mps.think.setup.repo.IssueGenerationRepo;
 import com.mps.think.setup.repo.PaymentInformationRepo;
 import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.service.CustomerDetailsService;
@@ -59,6 +61,9 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 	
 	@Autowired
 	private PaymentInformationRepo piRepo;
+	
+	@Autowired
+	private IssueGenerationRepo iRepo;
 
 	@Autowired
 	private ObjectMapper mapper;
@@ -85,6 +90,9 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 
 		newCustomer.setCustomerStatus(CustomerStatus.Active);
 		newCustomer.setDateUntilDeactivation(null);
+		
+		setAddressesNamesSameAsCustomer(newCustomer);
+		
 		CustomerDetails cdata = customerRepo.saveAndFlush(newCustomer);
 		return cdata;
 	}
@@ -97,9 +105,25 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 				|| customerDetails.getPaymentThreshold().getPaymentThresholdId() == 0) {
 			updatedCustomer.setPaymentThreshold(null);
 		}
+		
+		setAddressesNamesSameAsCustomer(updatedCustomer);
 
 		CustomerDetails cdata = customerRepo.saveAndFlush(updatedCustomer);
 		return cdata;
+	}
+	
+	private void setAddressesNamesSameAsCustomer(CustomerDetails customer) {
+		customer.getCustomerAddresses().forEach(ca -> {
+			if(Boolean.TRUE.equals(ca.getAddress().getSameAsCustomer())) {
+				Addresses address = ca.getAddress();
+				address.setSalutation(customer.getSalutation());
+				address.setFirstName(customer.getFname());
+				address.setMiddleName(customer.getInitialName());
+				address.setLastName(customer.getLname());
+				address.setSuffix(customer.getSuffix());
+				addressRepo.saveAndFlush(address);
+			}
+		});
 	}
 
 	@Override
@@ -262,6 +286,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 		arraylist.add(orderRepo.findAllColumnForOrders());
 		arraylist.add(addressRepo.findAllColumnforAddresses());
 		arraylist.add(piRepo.findAllColumnForPaymentInfo());
+		arraylist.add(iRepo.findAllIssueColumn());
 		return arraylist;
 	}
 
