@@ -61,4 +61,9 @@ public interface AddOrderService {
 	List<Order> updateOrderPaymentStatus(LinkedHashMap<String, String> OrderPaymentStatus);
 	
 	List<Order> updateOrderStatus(LinkedHashMap<String, String> OrderStatus);
+
+	public void makeAddressOrderNonDeliverable(Integer addressId);
+	
+	Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Pageable page);
+	
 }
