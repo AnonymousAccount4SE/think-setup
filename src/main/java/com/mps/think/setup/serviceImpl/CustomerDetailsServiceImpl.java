@@ -323,7 +323,7 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 //	}
 
 	// name, fax, email, department, countrycode, company, mobile, agnecycode,
-	// agencyname, status, ordercode
+	// agencyname, status, ordercode, category
 	public Page<CustomerDetails> searchCustomerUsingKeyValue(Integer pubId, String searchStream, Pageable page) {
 		String[] inputSplit = searchStream.trim().split(" " + AppConstants.customerSearchSeperator + " ");
 		Map<String, Object> keys = new HashMap<>();
@@ -342,7 +342,8 @@ public class CustomerDetailsServiceImpl implements CustomerDetailsService {
 				keys.getOrDefault("mobile", null) != null ? ((String) keys.get("mobile")).trim() : null,
 				keys.getOrDefault("agnecycode", null) != null ? ((String) keys.get("agnecycode")).trim() : null,
 				keys.getOrDefault("agencyname", null) != null ? ((String) keys.get("agencyname")).trim() : null,
-				keys.getOrDefault("status", null) != null ? ((String) keys.get("status")).trim() : null, page);
+				keys.getOrDefault("status", null) != null ? ((String) keys.get("status")).trim() : null, 
+				keys.getOrDefault("category", null) != null ? ((String) keys.get("category")).trim() : null, page);
 	}
 
 	@Override
