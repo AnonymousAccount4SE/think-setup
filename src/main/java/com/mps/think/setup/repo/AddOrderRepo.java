@@ -195,6 +195,11 @@ public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate") Date userDate);
 
 	
+	@Query("SELECT o FROM Order o JOIN o.customerId cus WHERE (:pubId IS NULL OR cus.publisher.id = :pubId) AND "
+			+ "(:customerId IS NULL OR o.customerId.customerId = :customerId) AND o.oldOrderId = 0")
+	Page<Order> findAllNonRenewedOrder(@Param("pubId") Integer pubId, @Param("customerId") Integer customerId, Pageable page);
+
+	
 }
 
 

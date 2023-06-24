@@ -126,5 +126,10 @@ public class AddOrderController {
 		return ResponseEntity.ok(addOrderService.getSubOrderById(orderId));
 	}
 	
+	@GetMapping("/getAllOrdersToRenewed")
+	public ResponseEntity<?> getAllOrdersToRenewed(@RequestParam(required = true) Integer pubId, @RequestParam(required = false) Integer customerId, 
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(addOrderService.getAllNonRenewedOrders(pubId, customerId, PageRequest.of(page, size)));
+	}
 
 }
