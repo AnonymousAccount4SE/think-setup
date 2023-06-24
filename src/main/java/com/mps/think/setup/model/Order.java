@@ -194,6 +194,14 @@ public class Order extends BaseEntity {
 
 	}
 
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", orderClass=" + orderClass
@@ -203,13 +211,7 @@ public class Order extends BaseEntity {
 				+ orderAddresses + ", auxiliaryInformation=" + auxiliaryInformation + ", otherAddressCustomer="
 				+ otherAddressCustomer + ", parentOrder=" + parentOrder + "]";
 	}
-
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
+	
+	
 	
 }

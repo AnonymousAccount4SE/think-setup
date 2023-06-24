@@ -401,7 +401,7 @@ public class SolrDocumentController {
 	@GetMapping("/delete")
 	public String deleteAllDocuments() {
 		try { // delete all documents from solr core
-			documentRepository.deleteAll();
+			documentRepository3.deleteAll();
 			return "documents deleted succesfully!";
 		} catch (Exception e) {
 			return "Failed to delete documents";
@@ -822,7 +822,6 @@ public class SolrDocumentController {
 			documentRepository2.save(new Document2("Order" + order.getOrderId(), "Order" + order.getOrderId(),
 					order.toString(), objectMapper.writeValueAsString(order)));
 		}
-
 		return "Order saved!!!";
 	}
 
@@ -830,7 +829,7 @@ public class SolrDocumentController {
 	public String OrderAddressMappingDocuments() throws JsonProcessingException {
 		List<OrderAddressMapping> oam = AddOrderService.getAllOrderAddressMapping();
 		for (OrderAddressMapping orderAddressMapping : oam) {
-			documentRepository.save(new Document("OrderAddressMapping" + orderAddressMapping.getId(),
+			documentRepository2.save(new Document2("OrderAddressMapping" + orderAddressMapping.getId(),
 					"OrderAddressMapping" + orderAddressMapping.getId(), orderAddressMapping.toString(),
 					objectMapper.writeValueAsString(orderAddressMapping)));
 		}
