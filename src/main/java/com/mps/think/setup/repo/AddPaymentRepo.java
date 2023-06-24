@@ -10,6 +10,6 @@ import com.mps.think.setup.model.AddPayment;
 public interface AddPaymentRepo extends JpaRepository<AddPayment, Integer>{
 	
 	List<AddPayment> findByPublisherId(Integer pubId);
-	AddPayment findByCustomerDetailsCustomerId(Integer customerId);
+	List<AddPayment> findByCustomerDetailsCustomerId(Integer customerId);
 
 }

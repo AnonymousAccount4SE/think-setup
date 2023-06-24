@@ -11,6 +11,6 @@ public interface StateandprovinceRepo extends JpaRepository<Stateandprovince, In
 	
 	List<Stateandprovince> findByPubIdId(Integer pubId);
 	
-	List<Stateandprovince> findByCountryidId(Integer id);
+//	List<Stateandprovince> findByCountryidId(Integer id);
 
 }

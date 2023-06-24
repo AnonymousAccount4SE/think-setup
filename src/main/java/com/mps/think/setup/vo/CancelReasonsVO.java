@@ -9,6 +9,7 @@ public class CancelReasonsVO {
 	private Publisher pubId;
 	private String cancelReason;
 	private String description;
+	private String canceltype;
 	private String ordClasses;
 	
 	public Integer getCancelReasonsId() {
@@ -41,11 +42,19 @@ public class CancelReasonsVO {
 	public void setOrdClasses(String ordClasses) {
 		this.ordClasses = ordClasses;
 	}
+	public String getCanceltype() {
+		return canceltype;
+	}
+	public void setCanceltype(String canceltype) {
+		this.canceltype = canceltype;
+	}
 	@Override
 	public String toString() {
 		return "CancelReasonsVO [cancelReasonsId=" + cancelReasonsId + ", pubId=" + pubId + ", cancelReason="
-				+ cancelReason + ", description=" + description + ", ordClasses=" + ordClasses + "]";
+				+ cancelReason + ", description=" + description + ", canceltype=" + canceltype + ", ordClasses="
+				+ ordClasses + "]";
 	}
+
 	
 	
 }

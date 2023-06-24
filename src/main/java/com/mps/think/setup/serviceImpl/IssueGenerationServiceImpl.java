@@ -325,4 +325,29 @@ public class IssueGenerationServiceImpl implements IssueGenerationService {
 		return issueGenerationRepo.findAll();
 	}
 
+	@Override
+	public IssueGeneration getCurrentIssue(Integer pubId, Integer ocId, Integer orderId , Date closeDate) {
+
+		IssueGeneration currentIssue = issueGenerationRepo.getcurrentissue(pubId, ocId);
+		IssueGeneration issueObj= new IssueGeneration();
+		issueObj.setClosed(closeDate);
+		issueGenerationRepo.saveAndFlush(issueObj);
+		return null;
+	}
+
+	@Override
+	public List<IssueGeneration> getCurrentIssue(Integer pubId, List<Integer> ocId) {
+		List<IssueGeneration> response=new ArrayList<>();
+		for(Integer orderClassId:ocId) {
+			IssueGeneration temp = issueGenerationRepo.getcurrentissue(pubId, orderClassId);
+			response.add(temp);
+		}
+		return response;
+	}
+
+	@Override
+	public List<String> getAllIssueGenerationColumn() {
+		return issueGenerationRepo.findAllIssueColumn();
+	}
+
 }

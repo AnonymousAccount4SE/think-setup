@@ -28,5 +28,7 @@ public interface AddressService {
 	public List<Addresses> getAllAddresses();
 	
     public List<Addresses> getTodayAndYesterdayRecords();
+    
+    public List<String> findAllColumnforAddresses();
 
 }

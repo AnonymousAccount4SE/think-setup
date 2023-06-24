@@ -31,6 +31,10 @@ public class AddProcess extends BaseEntity  {
 	private Integer id;
 	
 	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
+	private Publisher pubId;
+	
+	@OneToOne
 	@JoinColumn(name = "process_type_id", referencedColumnName = "id" )
 	private ProcessType processtypeid;
 	
@@ -76,9 +80,8 @@ public class AddProcess extends BaseEntity  {
 	@Column(name = "renewal")
 	private Boolean renewal;
 	
-	@OneToOne
-	@JoinColumn(name = "extractfilter", referencedColumnName = "id" )
-	private ExtractFilter extractfilterid;
+	@Column(name = "extract_filter")
+	private Integer extractfilter;
 	
 	@Column(name = "defaultjobpriority")
 	private String defaultjobpriority;
@@ -139,6 +142,14 @@ public class AddProcess extends BaseEntity  {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 
 	public ProcessType getProcesstypeid() {
@@ -261,12 +272,12 @@ public class AddProcess extends BaseEntity  {
 		this.renewal = renewal;
 	}
 
-	public ExtractFilter getExtractfilterid() {
-		return extractfilterid;
+	public Integer getExtractfilter() {
+		return extractfilter;
 	}
 
-	public void setExtractfilterid(ExtractFilter extractfilterid) {
-		this.extractfilterid = extractfilterid;
+	public void setExtractfilter(Integer extractfilter) {
+		this.extractfilter = extractfilter;
 	}
 
 	public String getDefaultjobpriority() {
@@ -375,18 +386,21 @@ public class AddProcess extends BaseEntity  {
 
 	@Override
 	public String toString() {
-		return "AddProcess [id=" + id + ", processtypeid=" + processtypeid + ", mainpurpose=" + mainpurpose
-				+ ", description=" + description + ", status=" + status + ", active=" + active + ", repeating="
-				+ repeating + ", inserts=" + inserts + ", split=" + split + ", autorenewal=" + autorenewal
-				+ ", holdormanualselect=" + holdormanualselect + ", backlabel=" + backlabel + ", billing=" + billing
-				+ ", productfullfillment=" + productfullfillment + ", refund=" + refund + ", renewal=" + renewal
-				+ ", extractfilterid=" + extractfilterid + ", defaultjobpriority=" + defaultjobpriority
+		return "AddProcess [id=" + id + ", pubId=" + pubId + ", processtypeid=" + processtypeid + ", mainpurpose="
+				+ mainpurpose + ", description=" + description + ", status=" + status + ", active=" + active
+				+ ", repeating=" + repeating + ", inserts=" + inserts + ", split=" + split + ", autorenewal="
+				+ autorenewal + ", holdormanualselect=" + holdormanualselect + ", backlabel=" + backlabel + ", billing="
+				+ billing + ", productfullfillment=" + productfullfillment + ", refund=" + refund + ", renewal="
+				+ renewal + ", extractfilter=" + extractfilter + ", defaultjobpriority=" + defaultjobpriority
 				+ ", outputsortid=" + outputsortid + ", defaultjobqueueid=" + defaultjobqueueid + ", sqlscript="
 				+ sqlscript + ", addprocessmapping=" + addprocessmapping + ", length=" + length + ", gps=" + gps
 				+ ", keyline=" + keyline + ", gracenewexpires=" + gracenewexpires + ", savecurrentgraces="
 				+ savecurrentgraces + ", bundlethreshold=" + bundlethreshold + ", prioritysort=" + prioritysort
 				+ ", picklist=" + picklist + "]";
 	}
+
+	
+	
 
 	
 	

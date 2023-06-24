@@ -62,16 +62,17 @@ public class ReadCSVDataAvalara {
 						taxRateCSV.setJurisdiction(nextRecord[16]);
 						taxRateCSV.setCommodityCode(nextRecord[17]);
 						taxRateCSV.setCommodityDescription(nextRecord[18]);
-						taxRateCSV.setAvataxApplies(nextRecord[19]);
-						taxRateCSV.setBasicRate(nextRecord[20]);
-						taxRateCSV.setCommodityRate(nextRecord[21]);
-						taxRateCSV.setJurisdictionRate(nextRecord[22]);
-						taxRateCSV.setEffectiveDateForBasicRate(nextRecord[23]);
-						taxRateCSV.setEffectiveDateForCommodityRate(nextRecord[24]);
-						taxRateCSV.setEffectiveDateForJurisdictionRate(nextRecord[25]);
-						taxRateCSV.setNoTaxMessageBasicRate(nextRecord[26]);
-						taxRateCSV.setNoTaxMessageCommodityRate(nextRecord[27]);
-						taxRateCSV.setNoTaxMessageJurisdictionRate(nextRecord[28]);
+						taxRateCSV.setTaxComputeApi(nextRecord[19]);
+						taxRateCSV.setAddressValidationApi(nextRecord[20]);
+						taxRateCSV.setBasicRate(nextRecord[21]);
+						taxRateCSV.setCommodityRate(nextRecord[22]);
+						taxRateCSV.setJurisdictionRate(nextRecord[23]);
+						taxRateCSV.setEffectiveDateForBasicRate(nextRecord[24]);
+						taxRateCSV.setEffectiveDateForCommodityRate(nextRecord[25]);
+						taxRateCSV.setEffectiveDateForJurisdictionRate(nextRecord[26]);
+						taxRateCSV.setNoTaxMessageBasicRate(nextRecord[27]);
+						taxRateCSV.setNoTaxMessageCommodityRate(nextRecord[28]);
+						taxRateCSV.setNoTaxMessageJurisdictionRate(nextRecord[29]);
 						taxRate.add(taxRateCSV);
 						for (String cell : nextRecord) {
 							

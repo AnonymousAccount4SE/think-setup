@@ -6,11 +6,13 @@ import com.mps.think.setup.model.ExtractFilter;
 
 import com.mps.think.setup.model.OutputSort;
 import com.mps.think.setup.model.ProcessType;
+import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.model.Queue;
 
 public class AddProcessVO {
 	
 	private Integer id;
+	private Publisher pubId;
 	private ProcessType processtypeid;
 	private String mainpurpose;
 	private String description;
@@ -26,7 +28,7 @@ public class AddProcessVO {
 	private Boolean productfullfillment;
 	private Boolean refund;
 	private Boolean renewal;
-	private ExtractFilter extractfilterid;
+	private Integer extractfilter;
 	private String defaultjobpriority;
 	private OutputSort outputsortid;
 	private Queue defaultjobqueueid;
@@ -45,6 +47,12 @@ public class AddProcessVO {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 	public ProcessType getProcesstypeid() {
 		return processtypeid;
@@ -136,11 +144,11 @@ public class AddProcessVO {
 	public void setRenewal(Boolean renewal) {
 		this.renewal = renewal;
 	}
-	public ExtractFilter getExtractfilterid() {
-		return extractfilterid;
+	public Integer getExtractfilter() {
+		return extractfilter;
 	}
-	public void setExtractfilterid(ExtractFilter extractfilterid) {
-		this.extractfilterid = extractfilterid;
+	public void setExtractfilter(Integer extractfilter) {
+		this.extractfilter = extractfilter;
 	}
 	public String getDefaultjobpriority() {
 		return defaultjobpriority;
@@ -220,6 +228,21 @@ public class AddProcessVO {
 	public void setPicklist(Boolean picklist) {
 		this.picklist = picklist;
 	}
+	@Override
+	public String toString() {
+		return "AddProcessVO [id=" + id + ", pubId=" + pubId + ", processtypeid=" + processtypeid + ", mainpurpose="
+				+ mainpurpose + ", description=" + description + ", status=" + status + ", active=" + active
+				+ ", repeating=" + repeating + ", inserts=" + inserts + ", split=" + split + ", autorenewal="
+				+ autorenewal + ", holdormanualselect=" + holdormanualselect + ", backlabel=" + backlabel + ", billing="
+				+ billing + ", productfullfillment=" + productfullfillment + ", refund=" + refund + ", renewal="
+				+ renewal + ", extractfilter=" + extractfilter + ", defaultjobpriority=" + defaultjobpriority
+				+ ", outputsortid=" + outputsortid + ", defaultjobqueueid=" + defaultjobqueueid + ", sqlscript="
+				+ sqlscript + ", addprocessmapping=" + addprocessmapping + ", length=" + length + ", gps=" + gps
+				+ ", keyline=" + keyline + ", gracenewexpires=" + gracenewexpires + ", savecurrentgraces="
+				+ savecurrentgraces + ", bundlethreshold=" + bundlethreshold + ", prioritysort=" + prioritysort
+				+ ", picklist=" + picklist + "]";
+	}
+	
 	
 	
 	

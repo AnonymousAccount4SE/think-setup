@@ -16,6 +16,9 @@ import com.mps.think.setup.model.PaymentInformation;
 @Repository
 public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 	
+	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME IN ( 'order_parent' ,'order_key_information' , 'order_items', 'payment_breakdown' , 'order_delivery_options', 'order_auxiliary_information', 'multi_line_item_order','oc' );",nativeQuery = true)
+	public List<String> findAllColumnForOrders();
+	
 	
 	
 	public Page<Order> findAllByCustomerIdPublisherId(Pageable page,Integer pubId) throws Exception;
@@ -173,6 +176,29 @@ public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 			@Param("orderEndDate") Date orderEndDate,
 			@Param("orderType") String orderType, Pageable page);
 	
+	
+//	@Query(value="SELECT op.*, oi.*, c.*\n"
+//			+ "FROM order_parent op \n"
+//			+ "JOIN order_items oi ON op.order_items_id = oi.id \n"
+//			+ "JOIN customer c ON op.customer_id = c.id \n"
+//			+ "WHERE DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to \n"
+//			+ "  AND order_status IN ('order placed') \n"
+//			+ "  AND c.pub_id = :pubId;\n"
+//			+ "",nativeQuery = true)
+//	public List<Order> getOrderList(@Param("pubId") Integer pubId,@Param("userDate") Date userDate);
+//	
+	@Query(value="SELECT op.*,oi.* FROM order_parent op\n"
+			+ "JOIN order_items oi ON op.order_items_id=oi.id \n"
+			+ "JOIN customer c ON op.customer_id=c.id \n"
+			+ "WHERE  DATE(:userDate) BETWEEN valid_from AND valid_to AND order_status IN ('order placed','active/shipping')\n"
+			+ "AND oi.liability_issue>0 AND c.pub_id =:pubId", nativeQuery = true)
+public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate") Date userDate);
+
+	
+	@Query("SELECT o FROM Order o JOIN o.customerId cus WHERE (:pubId IS NULL OR cus.publisher.id = :pubId) AND "
+			+ "(:customerId IS NULL OR o.customerId.customerId = :customerId) AND o.oldOrderId = 0")
+	Page<Order> findAllNonRenewedOrder(@Param("pubId") Integer pubId, @Param("customerId") Integer customerId, Pageable page);
+
 	
 }
 

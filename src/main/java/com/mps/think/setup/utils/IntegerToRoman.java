@@ -1,6 +1,7 @@
 package com.mps.think.setup.utils;
 
 import java.text.DateFormat.Field;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Year;
@@ -10,6 +11,7 @@ import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -441,6 +443,39 @@ public class IntegerToRoman {
 //			}
 		}
 		System.out.println(list);
+	}
+	
+	public static String getLastFourDigits(String creditCardNumber) {
+        int length = creditCardNumber.length();
+        if (length >= 4) {
+            return creditCardNumber.substring(length - 4);
+        } else {
+            // Handle cases where the credit card number has less than 4 digits
+            return creditCardNumber;
+        }
+    }
+	
+	public static String getMonthYear(Date vaildTo) {
+	SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+    try {
+//        Date date = dateFormat.parse(vaildTo);
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+
+        String month = monthFormat.format(vaildTo);
+        String year = yearFormat.format(vaildTo);
+//        String[] monthYear= {month,year};
+
+        System.out.println("Month: " + month);
+        System.out.println("Year: " + year);
+        return month+"@"+year;
+    } catch (Exception e) {
+        System.out.println("Invalid date format");
+        String[] tempdisp={"invalid" ,"date"};
+        return "Invalid date format";
+    }
+    
 	}
 
 //	public static void main(String args[]) {

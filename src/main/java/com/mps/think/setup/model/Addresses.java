@@ -22,92 +22,112 @@ import com.mps.think.setup.vo.EnumModelVO.Status;
 
 @Entity
 @Table(name = "addresses")
-public class Addresses  extends BaseEntity{
+public class Addresses extends BaseEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 
 	@Id
 	@Column(name = "address_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer addressId;
-	
+
 //	@OneToOne
 //	@JoinColumn(name = "cus_id", referencedColumnName = "customerId")
 //	private CustomerDetails cusId;
-	
+
 //	@OneToOne
 //	@JoinColumn(name = "address_status_id", referencedColumnName = "id")
 //	private Address adId;
-	
+
 	@Column(name = "addressstatus")
 	private String addressstatus;
-	
+
 	@NotBlank
 	@Column(name = "addressName")
 	private String addressName;
+
+//	-----------------------------------------------
+	
+	@Column(name = "salutation")
+	private String salutation;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "middle_name")
+	private String middleName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+	
+	@Column(name = "suffix")
+	private String suffix;
+	
+	@Column(name = "same_as_customer")
+	private Boolean sameAsCustomer;
+
+//	--------------------------------------------------
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "addressType")
 	private AddressType addressType;
-	
+
 	@Column(name = "addressCategory")
 	private String addressCategory;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status")
 	private Status status;
-	
+
 	@Column(name = "primaryAddress")
 	private Boolean primaryAddress;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "addressLine1")
 	private String addressLine1;
-	
+
 	@Column(name = "addressLine2")
 	private String addressLine2;
-	
-	@Column(name = "zipCode" )
-	private Integer zipCode;
-	
+
+	@Column(name = "zipCode")
+	private String zipCode;
+
 	@Column(name = "city")
 	private String city;
-	
+
 	@Column(name = "state")
 	private String state;
-	
+
 	@Column(name = "country")
 	private String country;
-	
+
 	@Column(name = "countryCode")
 	private String countryCode;
 
-	
-	@Pattern(regexp="(^[0-9]*$)")
+	@Pattern(regexp = "(^[0-9]*$)")
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "validFrom")
 	private Date validFrom;
-	
+
 	@Column(name = "validTo")
 	private Date validTo;
-	
+
 	@Column(name = "frequency")
 	private String frequency;
-	
+
 	@Column(name = "selectionFrom")
 	private String selectionFrom;
-	
+
 	@Column(name = "selectionTo")
 	private String selectionTo;
-	
+
 	@Column(name = "address_aux_json")
 	private String addressAuxJSON;
 
@@ -189,14 +209,6 @@ public class Addresses  extends BaseEntity{
 
 	public void setAddressLine2(String addressLine2) {
 		this.addressLine2 = addressLine2;
-	}
-
-	public Integer getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
 	}
 
 	public String getCity() {
@@ -298,6 +310,60 @@ public class Addresses  extends BaseEntity{
 				+ ", selectionTo=" + selectionTo + ", addressAuxJSON=" + addressAuxJSON + "]";
 	}
 
-	
-		
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getSalutation() {
+		return salutation;
+	}
+
+	public void setSalutation(String salutation) {
+		this.salutation = salutation;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+
+	public Boolean getSameAsCustomer() {
+		return sameAsCustomer;
+	}
+
+	public void setSameAsCustomer(Boolean sameAsCustomer) {
+		this.sameAsCustomer = sameAsCustomer;
+	}
+
 }

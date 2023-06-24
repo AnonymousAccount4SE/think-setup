@@ -32,6 +32,11 @@ public class AddOrderController {
 	@Autowired
 	private AddOrderService addOrderService;
 	
+	@GetMapping("/getAllCustomercolumnsOrders")
+	public ResponseEntity<?> findAllColumnForOrders() {
+		return ResponseEntity.ok(addOrderService.findAllColumnForOrders());
+	}
+	
 	@PostMapping("/saveOrder")
 	public ResponseEntity<?> saveOrder(@RequestBody OrderVO order) throws Exception {
 		return ResponseEntity.ok(addOrderService.saveOrder(order));
@@ -121,5 +126,10 @@ public class AddOrderController {
 		return ResponseEntity.ok(addOrderService.getSubOrderById(orderId));
 	}
 	
+	@GetMapping("/getAllOrdersToRenewed")
+	public ResponseEntity<?> getAllOrdersToRenewed(@RequestParam(required = true) Integer pubId, @RequestParam(required = false) Integer customerId, 
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(addOrderService.getAllNonRenewedOrders(pubId, customerId, PageRequest.of(page, size)));
+	}
 
 }

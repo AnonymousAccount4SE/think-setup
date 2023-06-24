@@ -16,4 +16,14 @@ public interface IssueGenerationRepo extends JpaRepository<IssueGeneration, Inte
 	int findMaxSeqOfIssue(@Param("ocId") Integer ocId);
 	
 	List<IssueGeneration> findByOrderClassIdPubIdId(Integer pubId);
+	
+	@Query(value = "SELECT ig.*\n"
+			+ "FROM issue_generation ig\n"
+			+ "JOIN oc o ON ig.order_class_id = o.oc_id\n"
+			+ "WHERE o.pub_id =:pubId AND ig.order_class_id=:ocId AND ig.closed IS NULL ORDER BY ig.id LIMIT 1;",nativeQuery = true)
+	IssueGeneration getcurrentissue(@Param("pubId") Integer pubId,@Param("ocId") Integer ocId);
+	
+	
+	@Query(value="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'think_setup_new' AND TABLE_NAME = 'issue_generation';",nativeQuery = true)
+	public List<String> findAllIssueColumn();
 }

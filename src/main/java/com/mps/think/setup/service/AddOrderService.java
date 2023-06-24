@@ -25,6 +25,8 @@ import com.mps.think.setup.vo.OrderVO;
 @Service
 public interface AddOrderService {
 	
+	public List<String> findAllColumnForOrders();
+	
 	public Order saveOrder(OrderVO order) throws Exception;
 	public Page<Order> getAllOrders(Pageable page) throws Exception;
 	public Order getOrderById(Integer orderId) throws Exception;
@@ -59,4 +61,9 @@ public interface AddOrderService {
 	List<Order> updateOrderPaymentStatus(LinkedHashMap<String, String> OrderPaymentStatus);
 	
 	List<Order> updateOrderStatus(LinkedHashMap<String, String> OrderStatus);
+
+	public void makeAddressOrderNonDeliverable(Integer addressId);
+	
+	Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Pageable page);
+	
 }

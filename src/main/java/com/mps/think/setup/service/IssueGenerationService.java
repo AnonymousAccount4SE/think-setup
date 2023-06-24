@@ -1,12 +1,16 @@
 package com.mps.think.setup.service;
 
+import java.util.Date;
 import java.util.List;
 
+import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.IssueGeneration;
 import com.mps.think.setup.model.SourceCode;
 import com.mps.think.setup.vo.IssueGenerationVo;
 
 public interface IssueGenerationService {
+	
+	public List<String> getAllIssueGenerationColumn();
 
 	public List<IssueGeneration> findAllIssueGenerationVo();
 
@@ -27,4 +31,8 @@ public interface IssueGenerationService {
 	public List<IssueGeneration> getAllIssueGenerationForPublisher(Integer pubId);
 
 	public List<IssueGeneration> getAllIssueGeneration();
+	
+	public IssueGeneration getCurrentIssue(Integer pubId,Integer ocId,Integer orderId, Date closeDate);
+	
+	public List<IssueGeneration> getCurrentIssue(Integer pubId,List<Integer> ocId);
 }

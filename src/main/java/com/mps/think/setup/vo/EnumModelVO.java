@@ -539,5 +539,19 @@ public class EnumModelVO {
 			return stateCode;
 		}
 	}
+	
+	public static enum CancelType {
+		One("Customer Requested"), Two("Non-verify/Controlled"), Three("Non-payment"), Four("Old Demographics");
+
+		private final String cancelType;
+
+		CancelType(String cancelType) {
+			this.cancelType = cancelType;
+		}
+
+		public String getCancelType() {
+			return cancelType;
+		}
+	}
 
 }

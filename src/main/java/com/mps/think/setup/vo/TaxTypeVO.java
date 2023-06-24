@@ -1,5 +1,10 @@
 package com.mps.think.setup.vo;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.mps.think.setup.model.CommodityCodes;
+
 public class TaxTypeVO {
 
 	private Integer taxId;
@@ -9,6 +14,8 @@ public class TaxTypeVO {
 	private String taxType;
 
 	private String description;
+	
+	private CommodityCodesVO commodityCodesVO;
 
 	public Integer getTaxId() {
 		return taxId;
@@ -42,10 +49,18 @@ public class TaxTypeVO {
 		this.description = description;
 	}
 
+	public CommodityCodesVO getCommodityCodesVO() {
+		return commodityCodesVO;
+	}
+
+	public void setCommodityCodesVO(CommodityCodesVO commodityCodesVO) {
+		this.commodityCodesVO = commodityCodesVO;
+	}
+
 	@Override
 	public String toString() {
-		return "TaxType [taxId=" + taxId + ", pubId=" + pubId + ", taxType=" + taxType + ", description=" + description
-				+ "]";
+		return "TaxTypeVO [taxId=" + taxId + ", pubId=" + pubId + ", taxType=" + taxType + ", description="
+				+ description + ", commodityCodesVO=" + commodityCodesVO + "]";
 	}
 
 }

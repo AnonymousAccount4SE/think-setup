@@ -19,6 +19,6 @@ public interface StateandprovinceService {
 	
 	List<Stateandprovince> findAllStateandprovinceForPublisher(Integer pubId);
 	
-	List<Stateandprovince> findAllStateandprovinceForCountry(Integer id);
+//	List<Stateandprovince> findAllStateandprovinceForCountry(Integer id);
 
 }

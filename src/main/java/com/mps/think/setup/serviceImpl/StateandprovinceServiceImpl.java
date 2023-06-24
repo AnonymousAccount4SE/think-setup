@@ -49,9 +49,9 @@ public class StateandprovinceServiceImpl  implements StateandprovinceService {
 		return stateandprovinceRepo.findByPubIdId(pubId);
 	}
 
-	@Override
-	public List<Stateandprovince> findAllStateandprovinceForCountry(Integer id) {
-		return stateandprovinceRepo.findByCountryidId(id);
-	}
+//	@Override
+//	public List<Stateandprovince> findAllStateandprovinceForCountry(Integer id) {
+//		return stateandprovinceRepo.findByCountryidId(id);
+//	}
 
 }

@@ -13,8 +13,11 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "issue_generation")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class IssueGeneration extends BaseEntity {
 
 	/**

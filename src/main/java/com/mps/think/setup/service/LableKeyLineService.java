@@ -9,9 +9,9 @@ public interface LableKeyLineService {
 
 	public List<LableKeyLine> findAllLableKeyLine();
 
-	public LableKeyLineVO saveLableKeyLine(LableKeyLineVO lableKeyLine);
+	public LableKeyLine saveLableKeyLine(LableKeyLineVO lableKeyLine);
 
-	public LableKeyLineVO updateLableKeyLine(LableKeyLineVO lableKeyLine);
+	public LableKeyLine updateLableKeyLine(LableKeyLineVO lableKeyLine);
 
 	public LableKeyLine findbyLableKeyLine(Integer lableKeyLineId);
 	
