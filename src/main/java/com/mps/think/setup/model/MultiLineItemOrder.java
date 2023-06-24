@@ -56,5 +56,12 @@ public class MultiLineItemOrder extends BaseEntity {
 	public void setParentOrderId(Integer parentOrderId) {
 		this.parentOrderId = parentOrderId;
 	}
+
+	@Override
+	public String toString() {
+		return "MultiLineItemOrder [id=" + id + ", parentOrderId=" + parentOrderId + "]";
+	}
+
+	
 	
 }
