@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,6 +26,10 @@ public class AddProcessRenewals extends BaseEntity {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id")
+	private Publisher pubId;
 
 	@Column(name = "renewal_for_requalification")
 	private Boolean renewalForRequalification;
@@ -195,16 +200,26 @@ public class AddProcessRenewals extends BaseEntity {
 		this.effortsRenProcessMapping = effortsRenProcessMapping;
 	}
 
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
+
 	@Override
 	public String toString() {
-		return "AddProcessRenewals [id=" + id + ", renewalForRequalification=" + renewalForRequalification
-				+ ", generateAutoRenewalOffers=" + generateAutoRenewalOffers + ", generateNoticesforPackageMembers="
-				+ generateNoticesforPackageMembers + ", renewTo=" + renewTo + ", renDef=" + renDef + ", currency="
-				+ currency + ", ordClass=" + ordClass + ", orderNumber=" + orderNumber + ", renewalCard=" + renewalCard
-				+ ", nthDefinition=" + nthDefinition + ", volumeGroup=" + volumeGroup
-				+ ", renewalDefinitionProcessMapping=" + renewalDefinitionProcessMapping
+		return "AddProcessRenewals [id=" + id + ", pubId=" + pubId + ", renewalForRequalification="
+				+ renewalForRequalification + ", generateAutoRenewalOffers=" + generateAutoRenewalOffers
+				+ ", generateNoticesforPackageMembers=" + generateNoticesforPackageMembers + ", renewTo=" + renewTo
+				+ ", renDef=" + renDef + ", currency=" + currency + ", ordClass=" + ordClass + ", orderNumber="
+				+ orderNumber + ", renewalCard=" + renewalCard + ", nthDefinition=" + nthDefinition + ", volumeGroup="
+				+ volumeGroup + ", renewalDefinitionProcessMapping=" + renewalDefinitionProcessMapping
 				+ ", orderClassRenProcessMapping=" + orderClassRenProcessMapping + ", effortsRenProcessMapping="
 				+ effortsRenProcessMapping + "]";
 	}
+
+
 
 }

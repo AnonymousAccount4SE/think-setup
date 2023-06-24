@@ -1,5 +1,7 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class AddProcessRenewalsServiceImpl implements AddProcessRenewalsService{
 	@Override
 	public AddProcessRenewals saveAddProcessRenewals (AddProcessRenewalsVO addRenewalPprocess) {
 		return adddProcessRenewalsRepo.saveAndFlush(mapper.convertValue(addRenewalPprocess, AddProcessRenewals.class));
+	}
+	
+	@Override
+	public List<AddProcessRenewals> getAllAddProcessRenewalsForPublisher(Integer pubId) {
+		return adddProcessRenewalsRepo.findByPubIdId(pubId);
 	}
 
 }

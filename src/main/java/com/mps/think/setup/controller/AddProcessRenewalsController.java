@@ -18,8 +18,13 @@ public class AddProcessRenewalsController {
 	AddProcessRenewalsService addProcessRenewalsService;
 	
 	@PostMapping("/saveAddProcessRenewals")
-	public ResponseEntity<?> saveAddress(@RequestBody AddProcessRenewalsVO id) {
+	public ResponseEntity<?> saveAddProcessRenewals(@RequestBody AddProcessRenewalsVO id) {
 		return ResponseEntity.ok(addProcessRenewalsService.saveAddProcessRenewals(id));
+	}
+	
+	@PostMapping("/getAllAddProcessRenewalsForPublisher")
+	public ResponseEntity<?> getAllAddRenewalsForPublisher(@RequestBody Integer pubId) {
+		return ResponseEntity.ok(addProcessRenewalsService.getAllAddProcessRenewalsForPublisher(pubId));
 	}
 
 }

@@ -3,6 +3,7 @@ package com.mps.think.setup.vo;
 import java.util.List;
 
 import com.mps.think.setup.model.Nth;
+import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.model.RenewalCard;
 import com.mps.think.setup.model.VolumeGroup;
 
@@ -10,6 +11,7 @@ public class AddProcessRenewalsVO {
 
 	private Integer id;
 
+	private Publisher pubId;
 	private Boolean renewalForRequalification;
 	private Boolean generateAutoRenewalOffers;
 	private Boolean generateNoticesforPackageMembers;
@@ -24,6 +26,15 @@ public class AddProcessRenewalsVO {
 	private List<RenewalDefinitionProcessMappingVO> renewalDefinitionProcessMapping;
 	private List<OrderClassRenProcessMappingVO> orderClassRenProcessMapping;
 	private List<EffortsRenProcessMappingVO> effortsRenProcessMapping;
+	
+
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
 
 	public RenewalCard getRenewalCard() {
 		return renewalCard;
@@ -148,14 +159,15 @@ public class AddProcessRenewalsVO {
 
 	@Override
 	public String toString() {
-		return "AddProcessRenewalsVO [id=" + id + ", renewalForRequalification=" + renewalForRequalification
-				+ ", generateAutoRenewalOffers=" + generateAutoRenewalOffers + ", generateNoticesforPackageMembers="
-				+ generateNoticesforPackageMembers + ", renewTo=" + renewTo + ", renDef=" + renDef + ", currency="
-				+ currency + ", ordClass=" + ordClass + ", orderNumber=" + orderNumber + ", renewalCard=" + renewalCard
-				+ ", nthDefinition=" + nthDefinition + ", volumeGroup=" + volumeGroup
-				+ ", renewalDefinitionProcessMapping=" + renewalDefinitionProcessMapping
+		return "AddProcessRenewalsVO [id=" + id + ", pubId=" + pubId + ", renewalForRequalification="
+				+ renewalForRequalification + ", generateAutoRenewalOffers=" + generateAutoRenewalOffers
+				+ ", generateNoticesforPackageMembers=" + generateNoticesforPackageMembers + ", renewTo=" + renewTo
+				+ ", renDef=" + renDef + ", currency=" + currency + ", ordClass=" + ordClass + ", orderNumber="
+				+ orderNumber + ", renewalCard=" + renewalCard + ", nthDefinition=" + nthDefinition + ", volumeGroup="
+				+ volumeGroup + ", renewalDefinitionProcessMapping=" + renewalDefinitionProcessMapping
 				+ ", orderClassRenProcessMapping=" + orderClassRenProcessMapping + ", effortsRenProcessMapping="
 				+ effortsRenProcessMapping + "]";
 	}
+	
 
 }
