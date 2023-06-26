@@ -2,6 +2,8 @@ package com.mps.think.setup.repo;
 
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +14,7 @@ public interface RenewalOfferDetailsRepo extends JpaRepository<RenewalOfferDetai
 
 //	Optional<RenewalOfferDetails> findByAddRenewalId(Integer id);
 	
-//	public List<RenewalOfferDetails> findByAddRenewalId(Integer id);
+	public List<RenewalOfferDetails> findByAddRenewalId(Integer id);
 	
 	Page<RenewalOfferDetails> findByAddRenewalId(Integer id, Pageable page);
 	

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.mps.think.setup.model.AddRenewals;
 import com.mps.think.setup.service.AddRenewalsService;
 import com.mps.think.setup.vo.AddRenewalsVO;
 
@@ -60,5 +62,14 @@ public class AddRenewalsController {
 	public ResponseEntity<?> deleteRenewalCard(@RequestBody Integer renewalCardId) {
 		return ResponseEntity.ok(addRenewalsService.deleteAddRenewals(renewalCardId));
 	}
+	
+//	@DeleteMapping("/deleteAddRenewals")
+//	public ResponseEntity<?> deleteRenewalCard(@RequestBody Integer renewalCardId,
+//			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size){
+//		return ResponseEntity.ok(addRenewalsService.deleteAddRenewals(renewalCardId,
+//				PageRequest.of(page, size)));
+//	}
+	
+
 
 }
