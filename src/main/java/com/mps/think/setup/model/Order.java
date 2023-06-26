@@ -100,6 +100,8 @@ public class Order extends BaseEntity {
 	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
 	private CommodityCodes commodityCodes;
 	
+	@Column(name = "is_renewed")
+	private Boolean isRenewed;
 	
 	public Integer getOrderId() {
 		return orderId;
@@ -233,6 +235,14 @@ public class Order extends BaseEntity {
 
 	public void setOldOrderId(Integer oldOrderId) {
 		this.oldOrderId = oldOrderId;
+	}
+
+	public Boolean getIsRenewed() {
+		return isRenewed;
+	}
+
+	public void setIsRenewed(Boolean isRenewed) {
+		this.isRenewed = isRenewed;
 	}
 
 }

@@ -39,7 +39,10 @@ public class OrderVO {
 	private MultiLineItemOrderVO parentOrder;
 	
 	private Integer oldOrderId;
+	
 	private CommodityCodesVO commodityCodes;
+	
+//	private Boolean isRenewed;
 
 	public Integer getOrderId() {
 		return orderId;
@@ -160,7 +163,6 @@ public class OrderVO {
 	public void setCommodityCodes(CommodityCodesVO commodityCodes) {
 		this.commodityCodes = commodityCodes;
 	}
-    
 
 	
 	

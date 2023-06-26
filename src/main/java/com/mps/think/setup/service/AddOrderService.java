@@ -64,6 +64,8 @@ public interface AddOrderService {
 
 	public void makeAddressOrderNonDeliverable(Integer addressId);
 	
-	Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Pageable page);
+	Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Integer orderId, Pageable page);
+	
+	Page<Order> getAllOrderForPayAnotherOrder(Integer pubId, Integer customerId, Integer orderId, Pageable page);
 	
 }
