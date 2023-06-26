@@ -1,6 +1,7 @@
 package com.mps.think.setup.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,9 @@ import com.mps.think.setup.repo.SuspendOrderRepo;
 import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.utils.Pair;
 import com.mps.think.setup.vo.EnumModelVO.OrderStatus;
+import com.mps.think.setup.vo.EnumModelVO.OrderType;
+import com.mps.think.setup.vo.EnumModelVO.PaymentStatus;
+import com.stripe.model.OrderReturn;
 import com.mps.think.setup.vo.OrderSuspendView;
 import com.mps.think.setup.vo.OrderVO;
 
@@ -63,6 +67,13 @@ public class AddOrderServiceImpl implements AddOrderService {
 		Order newOrder = mapper.convertValue(order, Order.class);
 		if (order.getOtherAddressCustomer() == null || order.getOtherAddressCustomer().getCustomerId() == 0)
 			newOrder.setOtherAddressCustomer(null);
+		if (order.getOldOrderId().equals(0)) {
+			newOrder.setIsRenewed(false);
+		} else if (!order.getOldOrderId().equals(0)) {
+			Order oldOrder = addOrderRepo.findById(order.getOldOrderId()).get();
+			oldOrder.setIsRenewed(true);
+			addOrderRepo.saveAndFlush(oldOrder);
+		}
 		Order createdOrder = addOrderRepo.saveAndFlush(newOrder);
 		MultiLineItemOrder orderSibling = multiLineOrderRepo.findByOrderOrderId(createdOrder.getOrderId());
 		if (order.getParentOrder() == null || order.getParentOrder().getParentOrderId() == 0) {
@@ -292,8 +303,8 @@ public class AddOrderServiceImpl implements AddOrderService {
 	}
 
 	@Override
-	public Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Pageable page) {
-		return addOrderRepo.findAllNonRenewedOrder(pubId, customerId, page);
+	public Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Integer orderId, Pageable page) {
+		return addOrderRepo.findAllNonRenewedOrder(pubId, customerId, orderId, 0, page);
 	}
 //	public List<Order> updateOrderPaymentStatus(LinkedHashMap<String, String> OrderPaymentStatus) {
 //	    List<Order> updatedOrders = new ArrayList<>();
@@ -323,5 +334,19 @@ public class AddOrderServiceImpl implements AddOrderService {
 //	    
 //	    return updatedOrders;
 //	}
+
+	@Override
+	public Page<Order> getAllOrderForPayAnotherOrder(Integer pubId, Integer customerId, Integer orderId,
+			Pageable page) {
+		return addOrderRepo.findAllOrderForPayAnotherOrder(pubId, customerId, orderId,
+				Arrays.asList(PaymentStatus.PAID_OVERPAYMENT.getDisplayName(),
+						PaymentStatus.PAID_UNDERPAYMENT.getDisplayName(), PaymentStatus.PAID_PRORATED.getDisplayName(),
+						PaymentStatus.PAID.getDisplayName(), PaymentStatus.PAID_REFUNDED.getDisplayName()),
+				Arrays.asList(OrderStatus.cancel_customer_request.getDisplayName(),
+						OrderStatus.cancel_for_nonpayment.getDisplayName(),
+						OrderStatus.non_varify_cancellation.getDisplayName()),
+				Arrays.asList(OrderType.IssueBasedSubscriptionOrder.getDisplayName()),
+				page);
+	}
 
 }
