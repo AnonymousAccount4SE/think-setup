@@ -4,6 +4,7 @@ import com.mps.think.setup.model.AddRenewals;
 import com.mps.think.setup.model.DiscountCardKeyInfo;
 import com.mps.think.setup.model.OrderClass;
 import com.mps.think.setup.model.OrderCodes;
+import com.mps.think.setup.model.OrderCodesSuper;
 import com.mps.think.setup.model.RateCards;
 import com.mps.think.setup.model.SourceCode;
 import com.mps.think.setup.model.SubscriptionDefKeyInfo;
@@ -18,7 +19,7 @@ public class RenewalOfferDetailsVO {
 	private String description;
 	private OrderClass oclass;
 	private Terms term;
-	private OrderCodes order_code;
+	private OrderCodesSuperVO order_code;
 	private SourceCode source_code;
 	private SubscriptionDefKeyInfo subscription_def;
 	private Integer pkg_def_id;
@@ -27,6 +28,7 @@ public class RenewalOfferDetailsVO {
 	public Integer getRenewalOfferDetailsId() {
 		return renewalOfferDetailsId;
 	}
+	
 	public void setRenewalOfferDetailsId(Integer renewalOfferDetailsId) {
 		this.renewalOfferDetailsId = renewalOfferDetailsId;
 	}
@@ -66,10 +68,10 @@ public class RenewalOfferDetailsVO {
 	public void setTerm(Terms term) {
 		this.term = term;
 	}
-	public OrderCodes getOrder_code() {
+	public OrderCodesSuperVO getOrder_code() {
 		return order_code;
 	}
-	public void setOrder_code(OrderCodes order_code) {
+	public void setOrder_code(OrderCodesSuperVO order_code) {
 		this.order_code = order_code;
 	}
 	public SourceCode getSource_code() {
@@ -110,6 +112,7 @@ public class RenewalOfferDetailsVO {
 				+ ", subscription_def=" + subscription_def + ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class
 				+ ", discount_class=" + discount_class + "]";
 	}
+	
 
 	
 

@@ -1,4 +1,6 @@
 package com.mps.think.setup.serviceImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import com.mps.think.setup.repo.AddRenewalsRepo;
 import com.mps.think.setup.repo.RenewalOfferDetailsRepo;
 import com.mps.think.setup.service.AddRenewalsService;
 import com.mps.think.setup.vo.AddRenewalsVO;
-
+import org.springframework.data.domain.Pageable;
 @Service
 public class AddRenewalsServiceImpl implements AddRenewalsService{
 	
@@ -43,7 +45,8 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	@Override
 	public AddRenewals deleteAddRenewals(Integer id) {
 		AddRenewals delete = findbyAddRenewalsId(id);
-		List<RenewalOfferDetails> rod = renewalOfferDetailsRepo.findByAddRenewalId(id);
+		int totalRenewals = (int)renewalOfferDetailsRepo.findByAddRenewalId(id, PageRequest.of(0, 1)).getTotalElements();
+		List<RenewalOfferDetails> rod = renewalOfferDetailsRepo.findByAddRenewalId(id, PageRequest.of(0, totalRenewals)).toList();
 		rod.forEach(r -> renewalOfferDetailsRepo.delete(r));
 		addRenewalsRepo.delete(delete);
 		return delete;
@@ -55,8 +58,16 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	}
 
 	@Override
-	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId) {
-		return addRenewalsRepo.findByPubIdId(pubId);
+	public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page) {
+		// TODO Auto-generated method stub
+		return addRenewalsRepo.findByPubIdId(pubId, page);
 	}
+
+//	@Override
+//	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId) {
+//		return addRenewalsRepo.findByPubIdId(pubId);
+//	}
+	
+	
 
 }
