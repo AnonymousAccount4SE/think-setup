@@ -46,7 +46,7 @@ public class RenewalOfferDetails extends BaseEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "order_code_id", referencedColumnName = "id")
-	private OrderCodes order_code;
+	private OrderCodesSuper order_code;
 	
 	@ManyToOne
 	@JoinColumn(name = "source_code_id", referencedColumnName = "sourc_code_id")
@@ -124,11 +124,11 @@ public class RenewalOfferDetails extends BaseEntity{
 		this.term = term;
 	}
 
-	public OrderCodes getOrder_code() {
+	public OrderCodesSuper getOrder_code() {
 		return order_code;
 	}
 
-	public void setOrder_code(OrderCodes order_code) {
+	public void setOrder_code(OrderCodesSuper order_code) {
 		this.order_code = order_code;
 	}
 
@@ -180,6 +180,8 @@ public class RenewalOfferDetails extends BaseEntity{
 				+ ", subscription_def=" + subscription_def + ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class
 				+ ", discount_class=" + discount_class + "]";
 	}
+
+	
 
 	
 
