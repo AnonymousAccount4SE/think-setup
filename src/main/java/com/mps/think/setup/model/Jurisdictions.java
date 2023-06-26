@@ -44,14 +44,14 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "zipCode")
 	private String zipCode;
 	
-	@Column(name = "avatarapplicable")
-	private Boolean avatarapplicable;
+	@Column(name = "external_alapplicable")
+	private String externalAlapplicable;
 	
 	@Column(name = "tax_coumputation")
 	private Boolean taxCoumputation;
 	
 	@Column(name = "address_validation")
-	private Boolean addressValidation;
+	private String addressValidation;
 	
 	@OneToOne
 	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
@@ -71,6 +71,14 @@ public class Jurisdictions extends BaseEntity{
 
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
+	}
+
+	public String getCountrycode() {
+		return countrycode;
+	}
+
+	public void setCountrycode(String countrycode) {
+		this.countrycode = countrycode;
 	}
 
 	public String getStateCode() {
@@ -105,20 +113,12 @@ public class Jurisdictions extends BaseEntity{
 		this.zipCode = zipCode;
 	}
 
-	public Boolean getAvatarapplicable() {
-		return avatarapplicable;
+	public String getExternalAlapplicable() {
+		return externalAlapplicable;
 	}
 
-	public void setAvatarapplicable(Boolean avatarapplicable) {
-		this.avatarapplicable = avatarapplicable;
-	}
-
-	public String getCountrycode() {
-		return countrycode;
-	}
-
-	public void setCountrycode(String countrycode) {
-		this.countrycode = countrycode;
+	public void setExternalAlapplicable(String externalAlapplicable) {
+		this.externalAlapplicable = externalAlapplicable;
 	}
 
 	public Boolean getTaxCoumputation() {
@@ -129,11 +129,11 @@ public class Jurisdictions extends BaseEntity{
 		this.taxCoumputation = taxCoumputation;
 	}
 
-	public Boolean getAddressValidation() {
+	public String getAddressValidation() {
 		return addressValidation;
 	}
 
-	public void setAddressValidation(Boolean addressValidation) {
+	public void setAddressValidation(String addressValidation) {
 		this.addressValidation = addressValidation;
 	}
 
@@ -148,9 +148,9 @@ public class Jurisdictions extends BaseEntity{
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
-				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
-				+ avatarapplicable + ", taxCoumputation=" + taxCoumputation + ", addressValidation=" + addressValidation
-				+ ", commodityCodes=" + commodityCodes + "]";
+				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode
+				+ ", externalAlapplicable=" + externalAlapplicable + ", taxCoumputation=" + taxCoumputation
+				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
 	}
 
 }
