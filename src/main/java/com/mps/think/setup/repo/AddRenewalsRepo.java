@@ -10,7 +10,7 @@ import com.mps.think.setup.model.AddRenewals;
 @Repository
 public interface AddRenewalsRepo extends JpaRepository<AddRenewals, Integer>{
 	
-//	List<AddRenewals> findByPubIdId(Integer pubId);
+	List<AddRenewals> findByPubIdId(Integer pubId);
 	Page<AddRenewals> findByPubIdId(Integer pubId, Pageable page);
 	
 }

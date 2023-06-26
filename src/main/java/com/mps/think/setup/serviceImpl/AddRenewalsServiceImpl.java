@@ -45,8 +45,8 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	@Override
 	public AddRenewals deleteAddRenewals(Integer id) {
 		AddRenewals delete = findbyAddRenewalsId(id);
-		int totalRenewals = (int)renewalOfferDetailsRepo.findByAddRenewalId(id, PageRequest.of(0, 1)).getTotalElements();
-		List<RenewalOfferDetails> rod = renewalOfferDetailsRepo.findByAddRenewalId(id, PageRequest.of(0, totalRenewals)).toList();
+//		int totalRenewals = renewalOfferDetailsRepo.findByAddRenewalId(id);
+		List<RenewalOfferDetails> rod = renewalOfferDetailsRepo.findByAddRenewalId(id);
 		rod.forEach(r -> renewalOfferDetailsRepo.delete(r));
 		addRenewalsRepo.delete(delete);
 		return delete;
