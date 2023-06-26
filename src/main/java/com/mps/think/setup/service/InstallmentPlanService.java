@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mps.think.setup.model.InstallmentPlan;
+import com.mps.think.setup.model.PaymentThreshold;
 import com.mps.think.setup.model.SetupInstallments;
 import com.mps.think.setup.vo.InstallmentPlanVO;
 import com.mps.think.setup.vo.PaymentThresholdVO;
@@ -32,5 +33,9 @@ public interface InstallmentPlanService {
 	public List<SetupInstallments> getSetUpInstallments();
 
 	public SetupInstallments findBySetUpInstallmentsId(Integer id);
+
+	public List<InstallmentPlan> getAllInstallmentPlanForPublisher(Integer pubId);
+
+	public List<SetupInstallments> getAllInstallmentForPublisher(Integer pubId);
 
 }

@@ -26,6 +26,9 @@ public class InstallmentPlan extends BaseEntity{
 	@Column(name="output")
 	private String output;
  	
+	@Column(name="installment_plan")
+	private String installmentPlan;
+	
 	@Column(name="description")
 	private String installmentPlanDescription;
 
@@ -52,7 +55,9 @@ public class InstallmentPlan extends BaseEntity{
 	@Column(name="nmbr_installments")
 	private Integer nmbrInstallments;
 
-	 
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id")
+	private Publisher publisher;
 
 	public Integer getId() {
 		return id;
@@ -129,16 +134,30 @@ public class InstallmentPlan extends BaseEntity{
 	public void setNmbrInstallments(Integer nmbrInstallments) {
 		this.nmbrInstallments = nmbrInstallments;
 	}
-
-
+ 
 	 
-
-	public Integer getIntervalValue() {
+ 	public Integer getIntervalValue() {
 		return intervalValue;
 	}
 
 	public void setIntervalValue(Integer intervalValue) {
 		this.intervalValue = intervalValue;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
+	public String getInstallmentPlan() {
+		return installmentPlan;
+	}
+
+	public void setInstallmentPlan(String installmentPlan) {
+		this.installmentPlan = installmentPlan;
 	}
 	 
 

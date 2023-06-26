@@ -17,4 +17,6 @@ public interface SettleRetryDefinitionsService {
 
 	public SettleRetryDefinitions deleteSettleRetryDefinitionsById(Integer id);
 
+	public List<SettleRetryDefinitions> getAllSettleRetryDefinitionsForPublisher(Integer pubId);
+
 }

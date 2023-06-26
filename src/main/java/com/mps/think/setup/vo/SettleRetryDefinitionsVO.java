@@ -1,5 +1,7 @@
 package com.mps.think.setup.vo;
 
+import com.mps.think.setup.model.Publisher;
+
 public class SettleRetryDefinitionsVO {
 
 	private Integer id;
@@ -9,6 +11,8 @@ public class SettleRetryDefinitionsVO {
 	private Integer noDaysBetweenRetries;
 	private Boolean cancelItemAfterLastRetry;
 	private Integer suspendAfterNSettleRetries;
+	private Publisher publisher;
+
 	public Integer getId() {
 		return id;
 	}
@@ -52,12 +56,18 @@ public class SettleRetryDefinitionsVO {
 	public void setNoDaysBetweenRetries(Integer noDaysBetweenRetries) {
 		this.noDaysBetweenRetries = noDaysBetweenRetries;
 	}
+	public Publisher getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
 	@Override
 	public String toString() {
 		return "SettleRetryDefinitionsVO [id=" + id + ", settleRetryDef=" + settleRetryDef + ", description="
 				+ description + ", maxRetries=" + maxRetries + ", noDaysBetweenRetries=" + noDaysBetweenRetries
 				+ ", cancelItemAfterLastRetry=" + cancelItemAfterLastRetry + ", suspendAfterNSettleRetries="
-				+ suspendAfterNSettleRetries + "]";
+				+ suspendAfterNSettleRetries + ", publisher=" + publisher + "]";
 	}
 	 
 	

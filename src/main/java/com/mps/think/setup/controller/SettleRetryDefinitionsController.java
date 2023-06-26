@@ -25,6 +25,11 @@ public class SettleRetryDefinitionsController {
 		return ResponseEntity.ok(settleRetryDefinitionsService.getAllSettleRetryDefinitions());
 	}
 	
+	@PostMapping("/getAllSettleRetryDefinitionsForPublisher")
+	public ResponseEntity<?> getAllSettleRetryDefinitionsForPublisher(@RequestBody Integer pubId){
+		return ResponseEntity.ok(settleRetryDefinitionsService.getAllSettleRetryDefinitionsForPublisher(pubId));
+	}
+	
 	@PostMapping("/saveSettleRetryDefinitions")
 	public ResponseEntity<?> saveSettleRetryDefinitions(@RequestBody SettleRetryDefinitionsVO settleRetryDefinitions) {
 		return ResponseEntity.ok(settleRetryDefinitionsService.saveSettleRetryDefinitions(settleRetryDefinitions));

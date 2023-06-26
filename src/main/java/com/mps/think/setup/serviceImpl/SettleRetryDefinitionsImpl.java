@@ -56,5 +56,10 @@ public class SettleRetryDefinitionsImpl implements SettleRetryDefinitionsService
 
 	}
 
+	@Override
+	public List<SettleRetryDefinitions> getAllSettleRetryDefinitionsForPublisher(Integer pubId) {
+		return settleRetryDefinitionsRepo.findSettleRetryDefinitionsByPublisherId(pubId);
+	}
+
 	
 }

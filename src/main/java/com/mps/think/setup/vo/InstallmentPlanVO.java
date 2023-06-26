@@ -1,5 +1,9 @@
 package com.mps.think.setup.vo;
 
+import javax.persistence.Column;
+
+import com.mps.think.setup.model.Publisher;
+
 public class InstallmentPlanVO {
 
 	private Integer id;
@@ -12,7 +16,17 @@ public class InstallmentPlanVO {
 	private Integer unpaidIssuesNew;
 	private Integer unpaidIssuesReNew;
 	private Integer nmbrInstallments;
-	 
+	private Publisher publisher;
+	private String installmentPlan;
+ 
+	public String getInstallmentPlan() {
+		return installmentPlan;
+	}
+	public void setInstallmentPlan(String installmentPlan) {
+		this.installmentPlan = installmentPlan;
+	}
+
+	
 	public String getOutput() {
 		return output;
 	}
@@ -76,14 +90,23 @@ public class InstallmentPlanVO {
 	public void setIntervalValue(Integer intervalValue) {
 		this.intervalValue = intervalValue;
 	}
+	
+	
+	public Publisher getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
 	@Override
 	public String toString() {
 		return "InstallmentPlanVO [id=" + id + ", output=" + output + ", installmentPlanDescription="
 				+ installmentPlanDescription + ", allowDefaultUsage=" + allowDefaultUsage + ", autoSetup=" + autoSetup
 				+ ", intervalValue=" + intervalValue + ", intervalType=" + intervalType + ", unpaidIssuesNew="
 				+ unpaidIssuesNew + ", unpaidIssuesReNew=" + unpaidIssuesReNew + ", nmbrInstallments="
-				+ nmbrInstallments + "]";
+				+ nmbrInstallments + ", publisher=" + publisher + "]";
 	}
+	 
 	 
 	
 	

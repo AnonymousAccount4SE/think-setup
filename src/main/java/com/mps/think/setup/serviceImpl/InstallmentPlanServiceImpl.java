@@ -85,4 +85,14 @@ public List<SetupInstallments> getSetUpInstallments() {
 public SetupInstallments findBySetUpInstallmentsId(Integer id) {
 	return setupInstallmentsRepo.findById(id).get();
 }
+
+@Override
+public List<InstallmentPlan> getAllInstallmentPlanForPublisher(Integer pubId) {
+	return installmentPlanRepo.findInstallmentPlanByPublisherId(pubId);
+}
+
+@Override
+public List<SetupInstallments> getAllInstallmentForPublisher(Integer pubId) {
+	return setupInstallmentsRepo.findInstallmentByPublisherId(pubId);
+}
 }

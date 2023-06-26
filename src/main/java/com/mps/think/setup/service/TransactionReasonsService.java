@@ -19,4 +19,6 @@ public interface TransactionReasonsService {
 
 	public TransactionReasons deleteByTransactionReasonsId(Integer transactionReasonsId);
 
+	public List<TransactionReasons> getAllTransactionReasonsForPublisher(Integer pubId);
+
 }

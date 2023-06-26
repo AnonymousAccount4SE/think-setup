@@ -25,6 +25,11 @@ public class TransactionReasonsController {
 		return ResponseEntity.ok(transactionReasonsService.findAllTransactionReasons());
 	}
  	
+	@PostMapping("/getAllTransactionReasonsForPublisher")
+	public ResponseEntity<?> getAllTransactionReasonsForPublisher(@RequestBody Integer pubId){
+		return ResponseEntity.ok(transactionReasonsService.getAllTransactionReasonsForPublisher(pubId));
+	}
+	
 	@PostMapping("/saveTransactionReasons")
 	public ResponseEntity<?> saveTransactionReasons(@RequestBody TransactionReasonsVO transactionReasonsVO) {
 		return ResponseEntity.ok(transactionReasonsService.saveTransactionReasons(transactionReasonsVO));
