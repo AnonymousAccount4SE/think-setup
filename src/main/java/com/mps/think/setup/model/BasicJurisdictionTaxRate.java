@@ -23,8 +23,8 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 	private Integer basicJurisdictionTaxRatedId;
 
 	@OneToOne
-	@JoinColumn(name = "basic_commodity_tax_rate_id", referencedColumnName = "basic_tax_rate_id")
-	private BasicTaxRate basicCommodityTaxRateId;
+	@JoinColumn(name = "basic_tax_rate_id", referencedColumnName = "basic_tax_rate_id")
+	private BasicTaxRate basicTaxRate;
 
 	@OneToOne
 	@JoinColumn(name = "jurisdictions_id", referencedColumnName = "id")
@@ -50,12 +50,12 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 		this.basicJurisdictionTaxRatedId = basicJurisdictionTaxRatedId;
 	}
 
-	public BasicTaxRate getBasicCommodityTaxRateId() {
-		return basicCommodityTaxRateId;
+	public BasicTaxRate getBasicTaxRate() {
+		return basicTaxRate;
 	}
 
-	public void setBasicCommodityTaxRateId(BasicTaxRate basicCommodityTaxRateId) {
-		this.basicCommodityTaxRateId = basicCommodityTaxRateId;
+	public void setBasicTaxRate(BasicTaxRate basicTaxRate) {
+		this.basicTaxRate = basicTaxRate;
 	}
 
 	public Jurisdictions getJurisdictionsId() {
@@ -101,9 +101,9 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 	@Override
 	public String toString() {
 		return "BasicJurisdictionTaxRate [basicJurisdictionTaxRatedId=" + basicJurisdictionTaxRatedId
-				+ ", basicCommodityTaxRateId=" + basicCommodityTaxRateId + ", jurisdictionsId=" + jurisdictionsId
-				+ ", effectiveDate=" + effectiveDate + ", expirationDate=" + expirationDate + ", rateName=" + rateName
-				+ ", rateValue=" + rateValue + "]";
+				+ ", basicTaxRate=" + basicTaxRate + ", jurisdictionsId=" + jurisdictionsId + ", effectiveDate="
+				+ effectiveDate + ", expirationDate=" + expirationDate + ", rateName=" + rateName + ", rateValue="
+				+ rateValue + "]";
 	}
 
 }

@@ -17,6 +17,7 @@ import com.mps.think.setup.service.BasicCommodityTaxRateService;
 import com.mps.think.setup.service.BasicJurisdictionTaxRateService;
 import com.mps.think.setup.service.CommodityCodesService;
 import com.mps.think.setup.service.JurisdictionsService;
+import com.mps.think.setup.utils.Avalara;
 import com.mps.think.setup.vo.JurisdictionsVO;
 import com.mps.think.setup.vo.TaxCalculationDataVO;
 
@@ -85,16 +86,17 @@ public class JurisdictionsController {
 		Jurisdictions jurisdictions = jurisdictionsService.findbyJurisdictionStateTaxContry(JurisdictionVo);
 		BasicCommodityTaxRate basicCommodityTaxRate = null;
 		BasicJurisdictionTaxRate basicJurisdictionTaxRate = null;
-		if(jurisdictions.getAvatarapplicable()) {
+		if(!jurisdictions.getExternalAlapplicable().contains("none")) {
 //			avaalara api call
-			return ResponseEntity.ok(null);
+			Avalara avalara = new Avalara();
+			return ResponseEntity.ok(avalara.AvalaraTaxClient(null, null, null, null));
 		}else if(jurisdictions.getTaxCoumputation()){
 			basicJurisdictionTaxRate = basicJurisdictionTaxRateService.findbasicJurisdictionTaxRatebyId(jurisdictions.getId());
 		}else {
 			CommodityCodes commodityCodes = commodityCodesService.getCommodityCodesdetails(JurisdictionVo.getCommodityCodesVo().getCommodityCode());
 			basicCommodityTaxRate = basicCommodityTaxRateService.getbasicCommodityTaxRateById(commodityCodes.getId());
 		}
-		TaxCalculationDataVO taxCalculationData = null;
+		TaxCalculationDataVO taxCalculationData = null;	
 		taxCalculationData.setBasictaxRate(basicCommodityTaxRate.getBasicCommodityTaxRateId().getRateValue());
 		taxCalculationData.setCommodityTaxRateRate(basicCommodityTaxRate.getRateValue());
 		taxCalculationData.setJurisdictionTaxRate(basicJurisdictionTaxRate.getRateValue());
