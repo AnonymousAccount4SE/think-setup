@@ -213,14 +213,6 @@ public class Order extends BaseEntity {
 		this.commodityCodes = commodityCodes;
 	}
 
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", orderClass=" + orderClass
