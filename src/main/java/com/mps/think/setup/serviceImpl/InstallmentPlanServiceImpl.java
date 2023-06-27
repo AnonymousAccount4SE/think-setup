@@ -95,4 +95,13 @@ public List<InstallmentPlan> getAllInstallmentPlanForPublisher(Integer pubId) {
 public List<SetupInstallments> getAllInstallmentForPublisher(Integer pubId) {
 	return setupInstallmentsRepo.findInstallmentByPublisherId(pubId);
 }
+
+@Override
+public SetupInstallments DeleteSetupInstallment(Integer id) {
+	SetupInstallments remove = setupInstallmentsRepo.findById(id).get();
+	if (remove != null) {
+		setupInstallmentsRepo.delete(remove);
+	}
+	return remove; 
+}
 }
