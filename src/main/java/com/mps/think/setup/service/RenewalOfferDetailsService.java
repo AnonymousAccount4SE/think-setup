@@ -23,6 +23,6 @@ public interface RenewalOfferDetailsService {
 	
 //	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id);
 	
-	public Page<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page);
+	public Page<List<RenewalOfferDetails>> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page);
 
 }
