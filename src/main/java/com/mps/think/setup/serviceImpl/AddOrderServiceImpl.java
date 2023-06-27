@@ -344,7 +344,7 @@ public class AddOrderServiceImpl implements AddOrderService {
 						PaymentStatus.PAID.getDisplayName(), PaymentStatus.PAID_REFUNDED.getDisplayName()),
 				Arrays.asList(OrderStatus.cancel_customer_request.getDisplayName(),
 						OrderStatus.cancel_for_nonpayment.getDisplayName(),
-						OrderStatus.non_varify_cancellation.getDisplayName()),
+						OrderStatus.non_verify_cancellation.getDisplayName()),
 				Arrays.asList(OrderType.IssueBasedSubscriptionOrder.getDisplayName()),
 				page);
 	}
