@@ -257,7 +257,7 @@ public class EnumModelVO {
 		cancel_waiting_credit_card_authorization("cancel/waiting credit card authorization"),
 		partial_shipment("partial shipment"),shipped_complete("shipped complete"),grace("grace"),
 		suspend_for_nonpayment("suspend for nonpayment"),temporary_suspend("temporary suspend"),hold_for_payment("hold for payment"),
-		suspend_not_deliverable("suspend not deliverable"), non_varify_cancellation("non-varify cancellation");
+		suspend_not_deliverable("suspend not deliverable"), non_verify_cancellation("non-verify cancellation");
 
 		private final String displayOrderStatus;
 
