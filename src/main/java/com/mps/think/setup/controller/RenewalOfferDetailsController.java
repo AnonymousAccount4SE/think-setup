@@ -48,15 +48,15 @@ public class RenewalOfferDetailsController {
 		return ResponseEntity.ok(renewalOfferDetailsService.findbyRenewalOfferDetailsId(renewalOfferDetailsId));
 	}
 
-//	@PostMapping("/getAllRenewalOfferDetailsByAddRenewalsId")
-//	ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@RequestBody Integer renewalOfferDetailsId) {
-//		return ResponseEntity
-//				.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByAddRenewalsId(renewalOfferDetailsId));
-//	}
-	@GetMapping("/getAllRenewalOfferDetailsByAddRenewalsId/{id}")
-	public ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@PathVariable("id") Integer id,
-			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByAddRenewalsId(id,
-				PageRequest.of(page, size)));
+	@PostMapping("/getAllRenewalOfferDetailsByAddRenewalsId")
+	ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@RequestBody Integer id) {
+		return ResponseEntity
+				.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByAddRenewalsId(id));
 	}
+//	@GetMapping("/getAllRenewalOfferDetailsByAddRenewalsId/{id}")
+//	public ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@PathVariable("id") Integer id,
+//			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+//		return ResponseEntity.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByAddRenewalsId(id,
+//				PageRequest.of(page, size)));
+//	}
 }

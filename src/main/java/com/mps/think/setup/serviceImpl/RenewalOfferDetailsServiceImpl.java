@@ -56,16 +56,16 @@ public class RenewalOfferDetailsServiceImpl implements RenewalOfferDetailsServic
 		return offerDetailsRepo.findAll();
 	}
 
-	@Override
-	public Page<List<RenewalOfferDetails>> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page) {
-		// TODO Auto-generated method stub
-		return offerDetailsRepo.findByAddRenewalId(id, page);
-	}
-
 //	@Override
-//	public Page<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page) {
+//	public Page<List<RenewalOfferDetails>> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page) {
+//		// TODO Auto-generated method stub
 //		return offerDetailsRepo.findByAddRenewalId(id, page);
 //	}
+
+	@Override
+	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id) {
+		return offerDetailsRepo.findByAddRenewalId(id);
+	}
 
 //	@Override
 //	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id) {
