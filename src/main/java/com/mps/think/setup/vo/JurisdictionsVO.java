@@ -9,6 +9,7 @@ public class JurisdictionsVO {
 	private String countrycode;
 	private String stateCode;
 	private String city;
+	private String county;
 	private String country;
 	private String zipCode;
 	private String externalAlapplicable ;
@@ -45,6 +46,13 @@ public class JurisdictionsVO {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public String getCounty() {
+		return county;
+	}
+	public void setCounty(String county) {
+		this.county = county;
 	}
 	public String getCountry() {
 		return country;
