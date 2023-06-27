@@ -38,6 +38,9 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "city")
 	private String city;
 	
+	@Column(name = "county")
+	private String county;
+	
 	@Column(name = "country")
 	private String country;
 	
@@ -97,6 +100,14 @@ public class Jurisdictions extends BaseEntity{
 		this.city = city;
 	}
 
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
 	public String getCountry() {
 		return country;
 	}
@@ -148,7 +159,7 @@ public class Jurisdictions extends BaseEntity{
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
-				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode
+				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
 				+ ", externalAlapplicable=" + externalAlapplicable + ", taxCoumputation=" + taxCoumputation
 				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
 	}

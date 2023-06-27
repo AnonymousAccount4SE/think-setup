@@ -117,6 +117,7 @@ public class FileUploadController {
 				jj.setStateCode(taxCsv.getStateCode());
 				jj.setCity(taxCsv.getCity());
 				jj.setCountry(taxCsv.getCountry());
+				jj.setCounty(taxCsv.getCounty());
 				jj.setZipCode(taxCsv.getPostalCode());
 				if(!taxCsv.getTaxComputeApi().contains("none")) {
 					jj.setTaxCoumputation(false);
