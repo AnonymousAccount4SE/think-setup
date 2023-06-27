@@ -21,8 +21,8 @@ public interface RenewalOfferDetailsService {
 
 	public List<RenewalOfferDetails> getAllRenewalOfferDetails();
 	
-//	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id);
+	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id);
 	
-	public Page<List<RenewalOfferDetails>> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page);
+	//public Page<List<RenewalOfferDetails>> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page);
 
 }
