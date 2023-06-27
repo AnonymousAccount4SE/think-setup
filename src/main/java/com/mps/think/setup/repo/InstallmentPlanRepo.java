@@ -13,5 +13,8 @@ import com.mps.think.setup.model.InstallmentPlan;
 @Repository
 public interface InstallmentPlanRepo  extends JpaRepository<InstallmentPlan, Integer>{
 
+		List<InstallmentPlan> findInstallmentPlanByPublisherId(@Param("pubId") Integer pubId);
+
+
  	 
 }

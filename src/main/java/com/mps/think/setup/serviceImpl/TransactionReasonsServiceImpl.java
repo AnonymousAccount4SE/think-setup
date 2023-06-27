@@ -59,5 +59,10 @@ public class TransactionReasonsServiceImpl implements TransactionReasonsService{
 		}
 		return remove;
 	}
+
+	@Override
+	public List<TransactionReasons> getAllTransactionReasonsForPublisher(Integer pubId) {
+		return transactionReasonsRepo.findTransactionReasonsByPublisherId(pubId);
+	}
 	
 }

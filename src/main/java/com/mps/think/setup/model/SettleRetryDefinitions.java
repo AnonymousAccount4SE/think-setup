@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,6 +40,10 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "suspend_after_n_settle_retries")
 	private Integer suspendAfterNSettleRetries;
 
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id")
+	private Publisher publisher;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -96,13 +102,23 @@ private static final long serialVersionUID = 1L;
 		this.noDaysBetweenRetries = noDaysBetweenRetries;
 	}
 
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
 	@Override
 	public String toString() {
 		return "SettleRetryDefinitions [id=" + id + ", settleRetryDef=" + settleRetryDef + ", description="
 				+ description + ", maxRetries=" + maxRetries + ", noDaysBetweenRetries=" + noDaysBetweenRetries
 				+ ", cancelItemAfterLastRetry=" + cancelItemAfterLastRetry + ", suspendAfterNSettleRetries="
-				+ suspendAfterNSettleRetries + "]";
+				+ suspendAfterNSettleRetries + ", publisher=" + publisher + "]";
 	}
+
+	 
 
 	 
 	

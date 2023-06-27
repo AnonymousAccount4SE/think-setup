@@ -2,6 +2,8 @@ package com.mps.think.setup.vo;
 
 import javax.persistence.Column;
 
+import com.mps.think.setup.model.Publisher;
+
 public class TransactionReasonsVO {
 
 	private Integer id;
@@ -13,6 +15,7 @@ public class TransactionReasonsVO {
  
 	private String description;
 
+	private Publisher publisher;
 
 	public String getTransactionReason() {
 		return transactionReason;
@@ -51,6 +54,16 @@ public class TransactionReasonsVO {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 

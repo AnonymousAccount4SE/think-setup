@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name="transaction_reasons")
@@ -28,6 +30,10 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "description")
 	private String description;
 
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id")
+	private Publisher publisher;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -60,12 +66,20 @@ private static final long serialVersionUID = 1L;
 		this.description = description;
 	}
 
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
 	@Override
 	public String toString() {
 		return "TransactionReasons [id=" + id + ", transactionReason=" + transactionReason + ", reasonType="
-				+ reasonType + ", description=" + description + "]";
+				+ reasonType + ", description=" + description + ", publisher=" + publisher + "]";
 	}
-	
-	
+
+
 	
 }

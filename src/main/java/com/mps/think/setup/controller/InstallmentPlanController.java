@@ -1,5 +1,7 @@
 package com.mps.think.setup.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mps.think.setup.model.PaymentThreshold;
 import com.mps.think.setup.service.InstallmentPlanService;
 import com.mps.think.setup.vo.InstallmentPlanVO;
 import com.mps.think.setup.vo.PaymentThresholdVO;
@@ -21,6 +24,12 @@ public class InstallmentPlanController {
 	@Autowired
 	InstallmentPlanService installmentPlanService;
 	 
+	@PostMapping("/getAllInstallmentPlanForPublisher")
+	public ResponseEntity<?> getAllInstallmentPlanForPublisher(@RequestBody Integer pubId){
+		return ResponseEntity.ok(installmentPlanService.getAllInstallmentPlanForPublisher(pubId));
+	}
+
+	
 	@GetMapping("/getAllInstallmentPlan")
 	public ResponseEntity<?> getAllInstallmentPlan() {
 		return ResponseEntity.ok(installmentPlanService.getAllInstallmentPlan());
@@ -65,5 +74,10 @@ public class InstallmentPlanController {
 	@PostMapping("/getSetUpInstallmentsById")
 	public ResponseEntity<?> getSetUpInstallmentsById(@RequestBody Integer id){
 		return ResponseEntity.ok(installmentPlanService.findBySetUpInstallmentsId(id));
+	}
+	
+	@PostMapping("/getAllInstallmentForPublisher")
+	public ResponseEntity<?> getAllInstallmentForPublisher(@RequestBody Integer pubId){
+		return ResponseEntity.ok(installmentPlanService.getAllInstallmentForPublisher(pubId));
 	}
 }
