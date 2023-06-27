@@ -80,4 +80,9 @@ public class InstallmentPlanController {
 	public ResponseEntity<?> getAllInstallmentForPublisher(@RequestBody Integer pubId){
 		return ResponseEntity.ok(installmentPlanService.getAllInstallmentForPublisher(pubId));
 	}
+	
+	@DeleteMapping("/DeleteSetupInstallment")
+	public ResponseEntity<?> DeleteSetupInstallment(@RequestBody Integer id) {
+		return ResponseEntity.ok(installmentPlanService.DeleteSetupInstallment(id));
+	}
 }

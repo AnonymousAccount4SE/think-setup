@@ -38,4 +38,5 @@ public interface InstallmentPlanService {
 
 	public List<SetupInstallments> getAllInstallmentForPublisher(Integer pubId);
 
+	public SetupInstallments DeleteSetupInstallment(Integer id);
 }
