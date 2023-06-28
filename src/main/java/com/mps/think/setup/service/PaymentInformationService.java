@@ -24,5 +24,9 @@ public interface PaymentInformationService {
 	public List<PaymentInformation> getAllPaymentInformation();
 	
 	public  List<String> findAllColumnForPaymentInfo();
+	
+	public double dueAmount(Integer orderId);
+	
+	public double refundAmount(Integer orderId);
 
 }

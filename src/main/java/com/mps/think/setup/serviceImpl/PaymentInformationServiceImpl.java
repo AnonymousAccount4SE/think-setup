@@ -67,4 +67,28 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 		return paymentInformationRepo.findAllColumnForPaymentInfo();
 	}
 
+	@Override
+	public double dueAmount(Integer orderId) {
+		double due;
+		if(paymentInformationRepo.paidAmount(orderId)==0) {
+			due= paymentInformationRepo.netAmount(orderId);
+		}else {
+		due= paymentInformationRepo.netAmount(orderId)-paymentInformationRepo.paidAmount(orderId);
+		}
+		return due;
+	}
+
+	@Override
+	public double refundAmount(Integer orderId) {
+		double refundAmount;
+		try {
+			double eachIssuePrice=paymentInformationRepo.netAmount(orderId)/paymentInformationRepo.totalIssueOrder(orderId);
+			refundAmount=eachIssuePrice*paymentInformationRepo.totaLiabilityIssue(orderId);
+			return refundAmount;
+		}catch (Exception e) {
+			e.getStackTrace();
+			return 0.0;
+		}
+	}
+
 }
