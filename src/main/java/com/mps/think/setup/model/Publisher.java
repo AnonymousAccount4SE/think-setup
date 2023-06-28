@@ -239,6 +239,17 @@ public class Publisher extends BaseEntity {
 		this.secondary_Phone = secondary_Phone;
 	}
 
+	@Override
+	public String toString() {
+		return "Publisher [id=" + id + ", name=" + name + ", status=" + status + ", abbreviation=" + abbreviation
+				+ ", website=" + website + ", address1=" + address1 + ", address2=" + address2 + ", zipCode=" + zipCode
+				+ ", city=" + city + ", state=" + state + ", country=" + country + ", isdCode=" + isdCode
+				+ ", primaryPhone=" + primaryPhone + ", email=" + email + ", logoUrl=" + logoUrl + ", timeZone="
+				+ timeZone + ", currency=" + currency + ", dateformat=" + dateformat + ", secondary_Phone="
+				+ secondary_Phone + "]";
+	}
 
+
+	
 
 }
