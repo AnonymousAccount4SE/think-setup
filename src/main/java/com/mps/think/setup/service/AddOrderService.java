@@ -43,6 +43,8 @@ public interface AddOrderService {
 	
 	void setAllOrdersOfCustomerInActive(Integer customerId);
 	
+	void setAllOrdersStatusbasedOnIssues(Integer orderId);
+	
 //	List<Order> getOrdersById(Integer id);
 	
 	Page<Order> getOrdersById(Integer id, Pageable page);
