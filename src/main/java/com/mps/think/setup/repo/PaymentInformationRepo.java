@@ -31,7 +31,7 @@ public interface PaymentInformationRepo extends JpaRepository<PaymentInformation
 	
 	@Query(value="SELECT SUM(amount) FROM payment_info\r\n"
 			+ "WHERE order_id=:orderId AND STATUS='succeeded' AND payment_mode IN ('Offline','Online')", nativeQuery = true)
-	public double paidAmount(@Param ("orderId") Integer orderId);
+	public Double paidAmount(@Param ("orderId") Integer orderId);
 	
 	@Query(value="SELECT net_amount FROM order_parent op JOIN payment_breakdown pb ON op.payment_breakdown_id=pb.id WHERE order_id=:orderId", nativeQuery = true)
 	public double netAmount(@Param ("orderId") Integer orderId);
