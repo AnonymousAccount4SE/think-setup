@@ -22,7 +22,7 @@ public class Publisher extends BaseEntity {
 	private static final long serialVersionUID = -7608605119832745196L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
@@ -64,7 +64,7 @@ public class Publisher extends BaseEntity {
 	private String isdCode;
 
 	@Column(name = "primary_Phone")
-	private BigInteger primaryPhone;
+	private String primaryPhone;
 
 	@Column(name = "email")
 	private String email;
@@ -85,7 +85,7 @@ public class Publisher extends BaseEntity {
 	private String dateformat;
 
 	@Column(name = "secondary_Phone")
-	private BigInteger secondary_Phone;
+	private String secondary_Phone;
 
 	public Integer getId() {
 		return id;
@@ -183,14 +183,6 @@ public class Publisher extends BaseEntity {
 		this.isdCode = isdCode;
 	}
 
-	public BigInteger getPrimaryPhone() {
-		return primaryPhone;
-	}
-
-	public void setPrimaryPhone(BigInteger primaryPhone) {
-		this.primaryPhone = primaryPhone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -231,22 +223,20 @@ public class Publisher extends BaseEntity {
 		this.dateformat = dateformat;
 	}
 
-	public BigInteger getSecondary_Phone() {
+	public String getPrimaryPhone() {
+		return primaryPhone;
+	}
+
+	public void setPrimaryPhone(String primaryPhone) {
+		this.primaryPhone = primaryPhone;
+	}
+
+	public String getSecondary_Phone() {
 		return secondary_Phone;
 	}
 
-	public void setSecondary_Phone(BigInteger secondary_Phone) {
+	public void setSecondary_Phone(String secondary_Phone) {
 		this.secondary_Phone = secondary_Phone;
-	}
-
-	@Override
-	public String toString() {
-		return "Publisher [id=" + id + ", name=" + name + ", status=" + status + ", abbreviation=" + abbreviation
-				+ ", website=" + website + ", address1=" + address1 + ", address2=" + address2 + ", zipCode=" + zipCode
-				+ ", city=" + city + ", state=" + state + ", country=" + country + ", isdCode=" + isdCode
-				+ ", primaryPhone=" + primaryPhone + ", email=" + email + ", logoUrl=" + logoUrl + ", timeZone="
-				+ timeZone + ", currency=" + currency + ", dateformat=" + dateformat + ", secondary_Phone="
-				+ secondary_Phone + "]";
 	}
 
 

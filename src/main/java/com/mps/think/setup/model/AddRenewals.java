@@ -26,6 +26,10 @@ public class AddRenewals extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "pub_id", referencedColumnName = "id")
 	private Publisher pubId;
+	
+	@ManyToOne
+	@JoinColumn(name = "oclass_id" , referencedColumnName = "oc_id")
+	private OrderClass oclass;
 
 	@Column(name = "description")
 	private String description;
@@ -65,10 +69,20 @@ public class AddRenewals extends BaseEntity {
 		this.renewal_card = renewal_card;
 	}
 
+	public OrderClass getOclass() {
+		return oclass;
+	}
+
+	public void setOclass(OrderClass oclass) {
+		this.oclass = oclass;
+	}
+
 	@Override
 	public String toString() {
-		return "AddRenewals [id=" + id + ", pubId=" + pubId + ", description=" + description + ", renewal_card="
-				+ renewal_card + "]";
+		return "AddRenewals [id=" + id + ", pubId=" + pubId + ", oclass=" + oclass + ", description=" + description
+				+ ", renewal_card=" + renewal_card + "]";
 	}
+
+
 
 }

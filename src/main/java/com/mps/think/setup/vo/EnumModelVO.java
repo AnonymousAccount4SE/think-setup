@@ -232,7 +232,10 @@ public class EnumModelVO {
 
 	public static enum PaymentStatus {
 
-		Pending("Pending"), Completed("Completed"), Cancelled("Cancelled");
+		NO_PAYMENT("NO PAYMENT"), PARTIAL_PAYMENT("PARTIAL PAYMENT"), PAID_OVERPAYMENT("PAID OVERPAYMENT"), 
+		PAID_UNDERPAYMENT("PAID UNDERPAYMENT"), PAID_PRORATED("PAID PRORATED"), PAID("PAID"), 
+		NO_PAYMENT_REJECTED("NO PAYMENT REJECTED"), NO_PAYMENT_REFUNDED("NO PAYMENT REFUNDED"), 
+		PAID_REFUNDED("PAID REFUNDED");
 
 		private final String displaypaymentStatus;
 
@@ -254,7 +257,7 @@ public class EnumModelVO {
 		cancel_waiting_credit_card_authorization("cancel/waiting credit card authorization"),
 		partial_shipment("partial shipment"),shipped_complete("shipped complete"),grace("grace"),
 		suspend_for_nonpayment("suspend for nonpayment"),temporary_suspend("temporary suspend"),hold_for_payment("hold for payment"),
-		suspend_not_deliverable("suspend not deliverable");
+		suspend_not_deliverable("suspend not deliverable"), non_verify_cancellation("non-verify cancellation");
 
 		private final String displayOrderStatus;
 
@@ -537,6 +540,20 @@ public class EnumModelVO {
 
 		public String getStateCode() {
 			return stateCode;
+		}
+	}
+	
+	public static enum CancelType {
+		One("Customer Requested"), Two("Non-verify/Controlled"), Three("Non-payment"), Four("Old Demographics");
+
+		private final String cancelType;
+
+		CancelType(String cancelType) {
+			this.cancelType = cancelType;
+		}
+
+		public String getCancelType() {
+			return cancelType;
 		}
 	}
 

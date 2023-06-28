@@ -12,8 +12,10 @@ import com.mps.think.setup.model.Address;
 import com.mps.think.setup.model.Addresses;
 import com.mps.think.setup.model.Countries;
 import com.mps.think.setup.repo.AddressesRepo;
+import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.service.AddressService;
 import com.mps.think.setup.vo.AddressesVO;
+import com.mps.think.setup.vo.EnumModelVO.Status;
 
 @Service
 public class AddressesServiceImpl implements AddressService  {
@@ -24,7 +26,8 @@ public class AddressesServiceImpl implements AddressService  {
 	@Autowired
 	CustomerDetailsServiceImpl customerDetailsServiceImpl;
 	
-	
+	@Autowired
+	private AddOrderService orderService;
 
 	@Override
 	public AddressesVO saveAddresses(AddressesVO addresses) {
@@ -83,6 +86,11 @@ public class AddressesServiceImpl implements AddressService  {
 		data.setAddressstatus(addresses.getAddressstatus());
 		data.setAddressAuxJSON(addresses.getAddressAuxJSON());
 		addressRepo.saveAndFlush(data);
+		
+		if (addresses.getStatus().equals(Status.Inactive)) {
+			orderService.makeAddressOrderNonDeliverable(addresses.getAddressId());
+		}
+		
 		return addresses;
 	}
 

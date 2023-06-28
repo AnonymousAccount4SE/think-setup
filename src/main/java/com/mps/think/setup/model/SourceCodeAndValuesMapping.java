@@ -57,6 +57,11 @@ public class SourceCodeAndValuesMapping extends BaseEntity{
 		this.sourceCode = sourceCode;
 	}
 
+	@Override
+	public String toString() {
+		return "SourceCodeAndValuesMapping [id=" + id + ", sourceAttributeValues=" + sourceAttributeValues + "]";
+	}
+
 	
 	
 	

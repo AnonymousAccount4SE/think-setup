@@ -92,11 +92,16 @@ public class Order extends BaseEntity {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private MultiLineItemOrder parentOrder;
+	
+	@Column(name = "old_order_id")
+	private Integer oldOrderId;
 
 	@OneToOne
 	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
 	private CommodityCodes commodityCodes;
 	
+	@Column(name = "is_renewed")
+	private Boolean isRenewed;
 	
 	public Integer getOrderId() {
 		return orderId;
@@ -218,6 +223,26 @@ public class Order extends BaseEntity {
 				+ paymentBreakdown + ", deliveryAndBillingOptions=" + deliveryAndBillingOptions + ", orderAddresses="
 				+ orderAddresses + ", auxiliaryInformation=" + auxiliaryInformation + ", otherAddressCustomer="
 				+ otherAddressCustomer + ", parentOrder=" + parentOrder + ", commodityCodes=" + commodityCodes + "]";
+	}
+
+	
+	
+	
+
+	public Integer getOldOrderId() {
+		return oldOrderId;
+	}
+
+	public void setOldOrderId(Integer oldOrderId) {
+		this.oldOrderId = oldOrderId;
+	}
+
+	public Boolean getIsRenewed() {
+		return isRenewed;
+	}
+
+	public void setIsRenewed(Boolean isRenewed) {
+		this.isRenewed = isRenewed;
 	}
 
 }

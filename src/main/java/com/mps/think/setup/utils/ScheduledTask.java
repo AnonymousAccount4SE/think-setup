@@ -20,7 +20,7 @@ public class ScheduledTask {
 	@Autowired
 	SolrDocumentController solr;
 	
-    @Scheduled(cron = "0 0 1 * * *") // Cron expression for 1 am every day
+    @Scheduled(cron = "0 5 0 * * *") // Cron expression for 12:05 am every day
     public void runTask() {
     	try {
     		suspendService.checkOrdersToContinue();
@@ -31,7 +31,7 @@ public class ScheduledTask {
     }
     
     
-    @Scheduled(cron = "0 05 00 * * *") // Cron expression for 1 am every day
+    @Scheduled(cron = "0 0 3 * * *") // Cron expression for 3 am every day
     @org.springframework.transaction.annotation.Transactional
     public void runSolrTask() {
     	try {

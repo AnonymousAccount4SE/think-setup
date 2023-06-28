@@ -195,6 +195,18 @@ public interface AddOrderRepo extends JpaRepository<Order, Integer> {
 public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate") Date userDate);
 
 	
+	@Query("SELECT o FROM Order o JOIN o.customerId cus WHERE (:pubId IS NULL OR cus.publisher.id = :pubId) AND "
+			+ "(:customerId IS NULL OR o.customerId.customerId = :customerId) AND (:orderId IS NULL OR o.orderId != :orderId) AND o.oldOrderId = :oldOrderId AND o.isRenewed IS FALSE")
+	Page<Order> findAllNonRenewedOrder(@Param("pubId") Integer pubId, @Param("customerId") Integer customerId, @Param("orderId") Integer orderId, @Param("oldOrderId") Integer oldOrderId, Pageable page);
+
+
+	@Query("SELECT o FROM Order o JOIN o.customerId cus JOIN o.paymentBreakdown pay WHERE (:pubId IS NULL OR cus.publisher.id = :pubId) AND (:customerId IS NULL OR o.customerId.customerId = :customerId) "
+			+ "AND (:orderId IS NULL OR o.orderId != :orderId) AND pay.paymentStatus NOT IN (:statusList) AND o.orderStatus NOT IN (:orderStatusList) AND o.orderType IN (:orderTypes) GROUP BY o.orderId")
+	public Page<Order> findAllOrderForPayAnotherOrder(@Param("pubId") Integer pubId, @Param("customerId") Integer customerId, 
+			@Param("orderId") Integer orderId, @Param("statusList") List<String> statusList, @Param("orderStatusList") List<String> orderStatusList,
+			@Param("orderTypes") List<String> orderTypes, 
+			Pageable page);
+
 }
 
 

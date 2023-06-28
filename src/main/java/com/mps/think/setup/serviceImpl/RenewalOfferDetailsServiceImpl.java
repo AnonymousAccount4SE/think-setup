@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,9 +56,20 @@ public class RenewalOfferDetailsServiceImpl implements RenewalOfferDetailsServic
 		return offerDetailsRepo.findAll();
 	}
 
+//	@Override
+//	public Page<List<RenewalOfferDetails>> findAllRenewalOfferDetailsByAddRenewalsId(Integer id, Pageable page) {
+//		// TODO Auto-generated method stub
+//		return offerDetailsRepo.findByAddRenewalId(id, page);
+//	}
+
 	@Override
 	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id) {
 		return offerDetailsRepo.findByAddRenewalId(id);
 	}
+
+//	@Override
+//	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id) {
+//		return offerDetailsRepo.findByAddRenewalId(id);
+//	}
 
 }

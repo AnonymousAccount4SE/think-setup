@@ -28,103 +28,127 @@ import com.mps.think.setup.vo.OrderVO;
 @RestController
 @CrossOrigin
 public class AddOrderController {
-	
+
 	@Autowired
 	private AddOrderService addOrderService;
-	
+
 	@GetMapping("/getAllCustomercolumnsOrders")
 	public ResponseEntity<?> findAllColumnForOrders() {
 		return ResponseEntity.ok(addOrderService.findAllColumnForOrders());
 	}
-	
+
 	@PostMapping("/saveOrder")
 	public ResponseEntity<?> saveOrder(@RequestBody OrderVO order) throws Exception {
 		return ResponseEntity.ok(addOrderService.saveOrder(order));
 	}
-	
+
 	@PutMapping("/updateOrder")
 	public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
 		return ResponseEntity.ok(addOrderService.updateOrder(order));
 	}
-	
+
 	@PutMapping("/updateOrderPaymentStatus")
-	public ResponseEntity<?> updateOrderPaymentStatus(@RequestParam LinkedHashMap<String, String> OrderPaymentStatus) throws Exception {
+	public ResponseEntity<?> updateOrderPaymentStatus(@RequestParam LinkedHashMap<String, String> OrderPaymentStatus)
+			throws Exception {
 		return ResponseEntity.ok(addOrderService.updateOrderPaymentStatus(OrderPaymentStatus));
 	}
-	
+
 	@PutMapping("/updateOrderStatus")
-	public ResponseEntity<?> updateOrderStatus(@RequestParam LinkedHashMap<String, String> OrderStatus) throws Exception {
+	public ResponseEntity<?> updateOrderStatus(@RequestParam LinkedHashMap<String, String> OrderStatus)
+			throws Exception {
 		return ResponseEntity.ok(addOrderService.updateOrderStatus(OrderStatus));
 	}
-	
+
 	@GetMapping("/getAllOrders")
 	public ResponseEntity<?> getAllOrders(@RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "5") Integer size) throws Exception {
-		return ResponseEntity.ok(addOrderService.getAllOrders(PageRequest.of(page, size, Sort.by("orderId").descending())));
+		return ResponseEntity
+				.ok(addOrderService.getAllOrders(PageRequest.of(page, size, Sort.by("orderId").descending())));
 	}
-	
+
 	@GetMapping("/getOrderById/{orderId}")
 	public ResponseEntity<?> getOrderById(@PathVariable Integer orderId, @RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "5") Integer size) throws Exception {
 		return ResponseEntity.ok(addOrderService.getOrdersById(orderId, PageRequest.of(page, size)));
 	}
-	
+
 	@GetMapping("/getAllOrderByCustomerId/{customerId}")
-	public ResponseEntity<?> getAllOrderByCustomerId(@PathVariable Integer customerId, @RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size) throws Exception {
-		return ResponseEntity.ok(addOrderService.getAllOrderByCustomerId(customerId, PageRequest.of(page, size, Sort.by("orderId").descending())));
+	public ResponseEntity<?> getAllOrderByCustomerId(@PathVariable Integer customerId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size)
+			throws Exception {
+		return ResponseEntity.ok(addOrderService.getAllOrderByCustomerId(customerId,
+				PageRequest.of(page, size, Sort.by("orderId").descending())));
 	}
-	
+
 	@GetMapping("/getAllOrderByCustomerIdandOrderId/{customerId}{orderId}")
-	public ResponseEntity<?> getAllOrderByCustomerId(@RequestParam(required = true) Integer customerId, @RequestParam(required = true) Integer orderId) throws Exception {
-		return ResponseEntity.ok(addOrderService.getAllOrderByCustomerIdAndOrderId(customerId,orderId));
+	public ResponseEntity<?> getAllOrderByCustomerId(@RequestParam(required = true) Integer customerId,
+			@RequestParam(required = true) Integer orderId) throws Exception {
+		return ResponseEntity.ok(addOrderService.getAllOrderByCustomerIdAndOrderId(customerId, orderId));
 	}
-	
+
 	@GetMapping("/findAllPaymentStatus")
 	public ResponseEntity<?> getAllPaymentStatus() {
 		return ResponseEntity.ok(PaymentStatus.values());
 	}
-	
+
 	@GetMapping("/findAllOrderStatus")
 	public ResponseEntity<?> getAllOrderStatus() {
 		return ResponseEntity.ok(OrderStatus.values());
 	}
-	
+
 	@GetMapping("/findAllOrderType")
 	public ResponseEntity<?> getAllOrderType() {
-		List<String> list= new ArrayList<>();
-		for(OrderType data:OrderType.values()) {
+		List<String> list = new ArrayList<>();
+		for (OrderType data : OrderType.values()) {
 			list.add(data.getDisplayName());
 		}
 		return ResponseEntity.ok(list);
 	}
-	
+
 	@GetMapping("/getAllOrdersByOrderClassId/{ocIc}")
 	public ResponseEntity<?> getAllOrdersByOrderClassId(@PathVariable("ocIc") Integer ocIc) throws Exception {
 		return ResponseEntity.ok(addOrderService.getAllOrdersByOrderClassId(ocIc));
 	}
-	
+
 	@GetMapping("/searchOrders")
-	public ResponseEntity<?> getAllOrdersFromSearch(@RequestParam(required = true) Integer pubId, @RequestParam(required = false) Integer customerId, @RequestParam(required = false) String keyword, @RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(addOrderService.getSearchedOrders(pubId, customerId, keyword, PageRequest.of(page, size)));
+	public ResponseEntity<?> getAllOrdersFromSearch(@RequestParam(required = true) Integer pubId,
+			@RequestParam(required = false) Integer customerId, @RequestParam(required = false) String keyword,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity
+				.ok(addOrderService.getSearchedOrders(pubId, customerId, keyword, PageRequest.of(page, size)));
 	}
-	
+
 	@GetMapping("/getRecentTwoOrderCodesOfCustomer/{customerId}")
-	public ResponseEntity<?> getRecentTwoOrderOfCustomer(@PathVariable("customerId") Integer customerId) throws Exception {
+	public ResponseEntity<?> getRecentTwoOrderOfCustomer(@PathVariable("customerId") Integer customerId)
+			throws Exception {
 		return ResponseEntity.ok(addOrderService.getRecentTwoOrderOfCustomer(customerId));
 	}
-	
+
 	@PostMapping("/getAllorderForPublisher")
 	public ResponseEntity<?> getAllorderForPublisher(@RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size , @RequestParam Integer pubId) throws Exception {
-		return ResponseEntity.ok(addOrderService.getAllorderForPublisher(PageRequest.of(page, size, Sort.by("orderId").descending()), pubId));
+			@RequestParam(defaultValue = "5") Integer size, @RequestParam Integer pubId) throws Exception {
+		return ResponseEntity.ok(addOrderService
+				.getAllorderForPublisher(PageRequest.of(page, size, Sort.by("orderId").descending()), pubId));
 	}
-	
+
 	@GetMapping("/getSubOrderById/{orderId}")
 	public ResponseEntity<?> getSubOrderById(@PathVariable("orderId") Integer orderId) {
 		return ResponseEntity.ok(addOrderService.getSubOrderById(orderId));
 	}
-	
+
+	@GetMapping("/getAllOrdersToRenewed")
+	public ResponseEntity<?> getAllOrdersToRenewed(@RequestParam(required = true) Integer pubId,
+			@RequestParam(required = false) Integer customerId, @RequestParam(required = false) Integer orderId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity
+				.ok(addOrderService.getAllNonRenewedOrders(pubId, customerId, orderId, PageRequest.of(page, size)));
+	}
+
+	@GetMapping("/getAllOrderForPayAnotherOrder")
+	public ResponseEntity<?> getAllOrderForPayAnotherOrder(@RequestParam(required = true) Integer pubId,
+			@RequestParam(required = false) Integer customerId, @RequestParam(required = false) Integer orderId,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(addOrderService.getAllOrderForPayAnotherOrder(pubId, customerId, orderId, PageRequest.of(page, size)));
+	}
 
 }

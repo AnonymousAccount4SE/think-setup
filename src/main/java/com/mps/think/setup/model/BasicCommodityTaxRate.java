@@ -35,6 +35,12 @@ public class BasicCommodityTaxRate extends BaseEntity {
 
 	@Column(name = "expiration_date")
 	private Date expirationDate;
+	
+	@Column(name = "rate_name")
+	private String rateName;
+
+	@Column(name = "rate_value")
+	private String rateValue;
 
 	public Integer getBasicCommodityTaxId() {
 		return basicCommodityTaxId;
@@ -76,11 +82,27 @@ public class BasicCommodityTaxRate extends BaseEntity {
 		this.expirationDate = expirationDate;
 	}
 
+	public String getRateName() {
+		return rateName;
+	}
+
+	public void setRateName(String rateName) {
+		this.rateName = rateName;
+	}
+
+	public String getRateValue() {
+		return rateValue;
+	}
+
+	public void setRateValue(String rateValue) {
+		this.rateValue = rateValue;
+	}
+
 	@Override
 	public String toString() {
 		return "BasicCommodityTaxRate [basicCommodityTaxId=" + basicCommodityTaxId + ", basicCommodityTaxRateId="
 				+ basicCommodityTaxRateId + ", commodityCodes=" + commodityCodes + ", effectiveDate=" + effectiveDate
-				+ ", expirationDate=" + expirationDate + "]";
+				+ ", expirationDate=" + expirationDate + ", rateName=" + rateName + ", rateValue=" + rateValue + "]";
 	}
 
 }
