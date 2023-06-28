@@ -57,16 +57,16 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 		return addRenewalsRepo.findById(id).get();
 	}
 
-	@Override
-	public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page) {
-		// TODO Auto-generated method stub
-		return addRenewalsRepo.findByPubIdId(pubId, page);
-	}
-
 //	@Override
-//	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId) {
-//		return addRenewalsRepo.findByPubIdId(pubId);
+//	public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page) {
+//		// TODO Auto-generated method stub
+//		return addRenewalsRepo.findByPubIdId(pubId, page);
 //	}
+
+	@Override
+	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId) {
+		return addRenewalsRepo.findByPubIdId(pubId);
+	}
 	
 	
 

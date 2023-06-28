@@ -22,8 +22,8 @@ public interface AddRenewalsService {
 
 	public AddRenewals findbyAddRenewalsId(Integer id);
 	
-//	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId);
+	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId);
 	
-	public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page);
+	//public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page);
 
 }
