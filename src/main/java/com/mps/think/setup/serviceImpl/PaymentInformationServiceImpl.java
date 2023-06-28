@@ -68,7 +68,7 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	@Override
 	public double dueAmount(Integer orderId) {
 		double due;
-		if(paymentInformationRepo.paidAmount(orderId)==0) {
+		if(paymentInformationRepo.paidAmount(orderId) ==null) {
 			due= paymentInformationRepo.netAmount(orderId);
 		}else {
 		due= paymentInformationRepo.netAmount(orderId)-paymentInformationRepo.paidAmount(orderId);
