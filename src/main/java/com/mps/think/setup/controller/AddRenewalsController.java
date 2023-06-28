@@ -31,17 +31,17 @@ public class AddRenewalsController {
 		return ResponseEntity.ok(addRenewalsService.findAllAddRenewals());
 	}
 	
-//	@PostMapping("/getAllAddRenewalsForPublisher")
-//	public ResponseEntity<?> getAllAddRenewalsForPublisher(@RequestBody Integer pubId) {
-//		return ResponseEntity.ok(addRenewalsService.getAllAddRenewalsForPublisher(pubId));
-//	}
-	
-	@GetMapping("/getAllAddRenewalsForPublisher/{pubId}")
-	public ResponseEntity<?> getAllAddRenewalsForPublisher(@PathVariable("pubId") Integer pubId,
-			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(addRenewalsService.getAllAddRenewalsForPublisher(pubId,
-				PageRequest.of(page, size)));
+	@PostMapping("/getAllAddRenewalsForPublisher")
+	public ResponseEntity<?> getAllAddRenewalsForPublisher(@RequestBody Integer pubId) {
+		return ResponseEntity.ok(addRenewalsService.getAllAddRenewalsForPublisher(pubId));
 	}
+	
+//	@GetMapping("/getAllAddRenewalsForPublisher/{pubId}")
+//	public ResponseEntity<?> getAllAddRenewalsForPublisher(@PathVariable("pubId") Integer pubId,
+//			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) {
+//		return ResponseEntity.ok(addRenewalsService.getAllAddRenewalsForPublisher(pubId,
+//				PageRequest.of(page, size)));
+//	}
 
 	@PostMapping("/saveAddRenewals")
 	public ResponseEntity<?> saveRenewalCard(@RequestBody AddRenewalsVO cardVO) {
