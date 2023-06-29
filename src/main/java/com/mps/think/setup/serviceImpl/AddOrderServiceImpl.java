@@ -349,4 +349,26 @@ public class AddOrderServiceImpl implements AddOrderService {
 				page);
 	}
 
+//	@Override
+//	public void setAllOrdersStatusbasedOnIssues(Integer orderId) {
+//	    Order order = addOrderRepo.findById(orderId).get();
+//	    if (order.getOrderItemsAndTerms().getLiabilityIssue() <= 0 && Integer.parseInt(order.getKeyOrderInformation().getOrderCode().getOrderItemDetails().getGraceQuanitity()) > 0) {
+//	    	order.setOrderStatus(OrderStatus.grace.getDisplayName());
+//	    	addOrderRepo.saveAndFlush(order);
+//	    }
+//	}
+	
+
+	
+	@Override
+	public void setAllOrdersStatusbasedOnIssues(Integer orderId) {
+	    Order order = addOrderRepo.findById(orderId).get();
+	    if (order.getOrderItemsAndTerms().getLiabilityIssue() <= 0 && Integer.parseInt(order.getKeyOrderInformation().getOrderCode().getOrderItemDetails().getGraceQuanitity()) > 0) {
+	        order.setOrderStatus(OrderStatus.grace.getDisplayName());
+	    } else if (Integer.parseInt(order.getKeyOrderInformation().getOrderCode().getOrderItemDetails().getGraceQuanitity()) == 0) {
+	        order.setOrderStatus(OrderStatus.shipped_complete.getDisplayName());
+	        addOrderRepo.saveAndFlush(order);
+	    }
+	}
+	
 }
