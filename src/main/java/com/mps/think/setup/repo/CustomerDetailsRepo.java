@@ -161,4 +161,7 @@ List<String> getAllCustomerAgentForSearch(@Param("pubId") Integer pubId, @Param(
 			+ "WHERE address_category LIKE '%Shipping%'\n"
 			+ "AND c.pub_id = :pubId AND DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to AND order_status='order placed' AND op.order_type='Subscription' GROUP BY c.id",nativeQuery = true)
 	public List<CustomerDetails> customerShipingAddress(@Param("pubId") Integer pubId,@Param("userDate") Date userDate);
+	
+	public Long countByPublisherId(Integer publisherId) throws Exception;
+	
 }

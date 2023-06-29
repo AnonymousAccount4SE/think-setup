@@ -207,6 +207,8 @@ public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate"
 			@Param("orderId") Integer orderId, @Param("statusList") List<String> statusList, @Param("orderStatusList") List<String> orderStatusList,
 			@Param("orderTypes") List<String> orderTypes, 
 			Pageable page);
+	
+	public Long countByCustomerIdPublisherId(Integer publisherId) throws Exception;
 
 }
 
