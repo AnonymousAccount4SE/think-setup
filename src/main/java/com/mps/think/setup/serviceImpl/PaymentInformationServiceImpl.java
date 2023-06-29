@@ -18,7 +18,7 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 
 	@Autowired
 	PaymentInformationRepo paymentInformationRepo;
-	
+
 	@Autowired
 	ObjectMapper mapper;
 
@@ -31,11 +31,12 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	public List<PaymentInformation> savePayInfo(List<PaymentInformationVO> paymentInformationVO) {
 //		ObjectMapper mapper = new ObjectMapper();
 //		PaymentInformation payInfo = mapper.convertValue(paymentInformationVO, PaymentInformation.class);
-		
-		List<PaymentInformation> list=new ArrayList<>();
-		for(PaymentInformationVO pInfo:paymentInformationVO) {
-		PaymentInformation cdata = paymentInformationRepo.saveAndFlush(mapper.convertValue(pInfo, PaymentInformation.class));
-		list.add(cdata);
+
+		List<PaymentInformation> list = new ArrayList<>();
+		for (PaymentInformationVO pInfo : paymentInformationVO) {
+			PaymentInformation cdata = paymentInformationRepo
+					.saveAndFlush(mapper.convertValue(pInfo, PaymentInformation.class));
+			list.add(cdata);
 		}
 		return list;
 	}
@@ -68,25 +69,64 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	@Override
 	public double dueAmount(Integer orderId) {
 		double due;
-		if(paymentInformationRepo.paidAmount(orderId) ==null) {
-			due= paymentInformationRepo.netAmount(orderId);
-		}else {
-		due= paymentInformationRepo.netAmount(orderId)-paymentInformationRepo.paidAmount(orderId);
+		if (paymentInformationRepo.paidAmount(orderId) == null) {
+			due = paymentInformationRepo.netAmount(orderId);
+		} else {
+			due = paymentInformationRepo.netAmount(orderId) - paymentInformationRepo.paidAmount(orderId);
 		}
 		return due;
 	}
 
 	@Override
 	public double refundAmount(Integer orderId) {
-		double refundAmount;
-		try {
-			double eachIssuePrice=paymentInformationRepo.netAmount(orderId)/paymentInformationRepo.totalIssueOrder(orderId);
-			refundAmount=eachIssuePrice*paymentInformationRepo.totaLiabilityIssue(orderId);
-			return refundAmount;
-		}catch (Exception e) {
-			e.getStackTrace();
-			return 0.0;
-		}
+	    double refundAmount = 0.0;
+	    double eachIssuePrice = 0.0;
+	    try {
+	        double netAmount = paymentInformationRepo.netAmount(orderId);
+	        double paidAmount = paymentInformationRepo.paidAmount(orderId);
+	        int totalIssueOrder = paymentInformationRepo.totalIssueOrder(orderId);
+	        int totalLiabilityIssue = paymentInformationRepo.totaLiabilityIssue(orderId);
+	        
+	        if (netAmount <= paidAmount && totalIssueOrder > 0) {
+	            eachIssuePrice = netAmount / totalIssueOrder;
+	            refundAmount = eachIssuePrice * totalLiabilityIssue;
+	        } else {
+	            eachIssuePrice = netAmount / totalIssueOrder;
+	            int deliveredIssue = totalIssueOrder - totalLiabilityIssue;
+	            double temp = eachIssuePrice * deliveredIssue;
+	            refundAmount = paidAmount - temp;
+	            
+	            if (refundAmount <= 0) {
+	                refundAmount = 0.0;
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return refundAmount;
 	}
+
+//	public double refundAmount(Integer orderId) {
+//		double refundAmount,temp;
+//		double eachIssuePrice;
+//		if (paymentInformationRepo.netAmount(orderId) <= paymentInformationRepo.paidAmount(orderId)
+//				&& paymentInformationRepo.totalIssueOrder(orderId) > 0) {
+//			eachIssuePrice = paymentInformationRepo.netAmount(orderId)
+//					/ paymentInformationRepo.totalIssueOrder(orderId);
+//			refundAmount = eachIssuePrice * paymentInformationRepo.totaLiabilityIssue(orderId);
+//			
+//		}else {
+//			eachIssuePrice = paymentInformationRepo.netAmount(orderId)
+//					/ paymentInformationRepo.totalIssueOrder(orderId);
+//			Integer deliveredIssue=paymentInformationRepo.totalIssueOrder(orderId)-paymentInformationRepo.totaLiabilityIssue(orderId);
+//			temp=eachIssuePrice *deliveredIssue;
+//			refundAmount =paymentInformationRepo.paidAmount(orderId)-temp; 
+//			if(refundAmount<=0) {
+//				refundAmount=0.0;
+//			}
+//		}
+//		return refundAmount;
+//	}
 
 }
