@@ -304,7 +304,12 @@ public class AddOrderServiceImpl implements AddOrderService {
 
 	@Override
 	public Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Integer orderId, Pageable page) {
-		return addOrderRepo.findAllNonRenewedOrder(pubId, customerId, orderId, 0, page);
+		return addOrderRepo.findAllNonRenewedOrder(pubId, customerId, orderId,
+				Arrays.asList(OrderStatus.cancel_customer_request.getDisplayName(),
+						OrderStatus.cancel_for_nonpayment.getDisplayName(),
+						OrderStatus.non_verify_cancellation.getDisplayName(),
+						OrderStatus.cancel_waiting_credit_card_authorization.getDisplayName()),
+				0, page);
 	}
 //	public List<Order> updateOrderPaymentStatus(LinkedHashMap<String, String> OrderPaymentStatus) {
 //	    List<Order> updatedOrders = new ArrayList<>();
@@ -345,8 +350,7 @@ public class AddOrderServiceImpl implements AddOrderService {
 				Arrays.asList(OrderStatus.cancel_customer_request.getDisplayName(),
 						OrderStatus.cancel_for_nonpayment.getDisplayName(),
 						OrderStatus.non_verify_cancellation.getDisplayName()),
-				Arrays.asList(OrderType.IssueBasedSubscriptionOrder.getDisplayName()),
-				page);
+				Arrays.asList(OrderType.IssueBasedSubscriptionOrder.getDisplayName()), page);
 	}
 
 //	@Override
