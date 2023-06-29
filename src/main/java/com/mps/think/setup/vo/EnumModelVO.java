@@ -232,10 +232,11 @@ public class EnumModelVO {
 
 	public static enum PaymentStatus {
 
-		NO_PAYMENT("NO PAYMENT"), PARTIAL_PAYMENT("PARTIAL PAYMENT"), PAID_OVERPAYMENT("PAID OVERPAYMENT"), 
-		PAID_UNDERPAYMENT("PAID UNDERPAYMENT"), PAID_PRORATED("PAID PRORATED"), PAID("PAID"), 
-		NO_PAYMENT_REJECTED("NO PAYMENT REJECTED"), NO_PAYMENT_REFUNDED("NO PAYMENT REFUNDED"), 
-		PAID_REFUNDED("PAID REFUNDED");
+		NO_PAYMENT("No Payment"), PARTIAL_PAYMENT("Partial Payment"), PAID_OVERPAYMENT("Paid - Overpayment"), 
+		PAID_UNDERPAYMENT("Paid - Underpayment"), PAID_PRORATED("Paid Prorated"), PAID("Paid"), 
+		NO_PAYMENT_REJECTED("No Payment Rejected"), NO_PAYMENT_REFUNDED("No Payment Refunded"), 
+		PAID_REFUNDED("Paid Refunded"), UNDERPAYMENT("Underpayment"), REFUND_PAYMENTS("Refund payments"),
+		OVERPAYMENT("Overpayment");
 
 		private final String displaypaymentStatus;
 

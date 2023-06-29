@@ -18,6 +18,7 @@ import com.mps.think.setup.model.PaymentThreshold;
 import com.mps.think.setup.repo.AddOrderRepo;
 import com.mps.think.setup.repo.PaymentThresholdRepo;
 import com.mps.think.setup.service.PaymentThresholdService;
+import com.mps.think.setup.vo.EnumModelVO.PaymentStatus;
 import com.mps.think.setup.vo.PaymentThresholdVO;
 
 @Service
@@ -55,61 +56,6 @@ public class PaymentThresholdServiceImpl implements PaymentThresholdService {
 		return paymentThresholdRepo.findById(id).get();
 	}
 
-//	@Override
-//	public HashMap<String, String> definePayment(double invoiceAmount, double paidAmount, Integer paymentThresholdId) {
-//		HashMap<String, String> payment = new HashMap<String, String>();
-//		PaymentThreshold threshold = paymentThresholdRepo.findById(paymentThresholdId).get();
-//
-//		double paidPercentage = (paidAmount * 100) / invoiceAmount;
-//		double unPaidAmount = Math.abs(invoiceAmount - paidAmount);
-//		if (paidPercentage <= threshold.getPartialThreshold()) {
-//			System.out.println("1 Partial payments");
-//			payment.put("paymentStatus", "Partial payments");
-//			return payment;
-//		} else if (paidPercentage > threshold.getPartialThreshold() && paidPercentage < threshold.getUnderThreshold()) {
-//			if ((int) unPaidAmount <= threshold.getMaxUnderpaymentForPartial()) {
-//				System.out.println("2 Under payments");
-//				payment.put("paymentStatus", "Under payments");
-//				return payment;
-//			}
-//			System.out.println("3 Partial payments");
-//			payment.put("paymentStatus", "Partial payments");
-//			return payment;
-//		} else if (paidPercentage >= threshold.getUnderThreshold() && paidPercentage <= threshold.getOverThreshold()) {
-//			if ((int) unPaidAmount <= threshold.getMaxUnderpaymentForFull()) {
-//				System.out.println("4 Full payments");
-//				payment.put("paymentStatus", "Full payments");
-//				return payment;
-//			} else if ((int) unPaidAmount > threshold.getMaxUnderpaymentForPartial()) {
-//				System.out.println("7 Partial payments");
-//				payment.put("paymentStatus", "Partial payments");
-//				return payment;
-//			}
-//			System.out.println("5 Under payments");
-//			payment.put("paymentStatus", "Under payments");
-//			return payment;
-//
-//		} else if (paidPercentage > threshold.getOverThreshold() && paidPercentage <= threshold.getRefundThreshold()) {
-//			if ((int) unPaidAmount <= threshold.getMaxOverpaymentForFull()) {
-//				System.out.println("6 Full payments");
-//				payment.put("paymentStatus", "Full payments");
-//				return payment;
-//			} else if ((int) unPaidAmount > threshold.getMaxOverpaymentForRefund()) {
-//				System.out.println("7 Refund payments");
-//				payment.put("paymentStatus", "Refund payments");
-//				return payment;
-//			}
-//			System.out.println("8 Over payments");
-//			payment.put("paymentStatus", "Over payments");
-//			return payment;
-//		} else if (paidPercentage > threshold.getRefundThreshold()) {
-//			System.out.println("9 Refund payments");
-//			payment.put("paymentStatus", "Refund payments");
-//			return payment;
-//		}
-//		payment.put("paymentStatus", "Not have vaild payment");
-//		return payment;
-//	}LinkedHashMap<Integer, String> amount
 
 	@Override
 	public List<HashMap<String, String>> definePayment(LinkedHashMap<Integer, String> amount,
@@ -130,68 +76,53 @@ public class PaymentThresholdServiceImpl implements PaymentThresholdService {
 				String paymentStatus;
 
 				if (paidPercentage == 100) {
-					paymentStatus = "Paid";
-					System.out.println("1");
+//					paymentStatus = "Paid";
+					paymentStatus = PaymentStatus.PAID.getDisplayName();
 				} else if (paidPercentage == 0) {
-					paymentStatus = "No Payment";
-					System.out.println("2");
+//					paymentStatus = "No Payment";
+					paymentStatus = PaymentStatus.NO_PAYMENT.getDisplayName();
 				} else if (paidPercentage <= threshold.get().getPartialThreshold()) {
-					paymentStatus = "Partial Payment";
-					System.out.println("3");
+//					paymentStatus = "Partial Payment";
+					paymentStatus = PaymentStatus.PARTIAL_PAYMENT.getDisplayName();
 				} else if (paidPercentage < threshold.get().getUnderThreshold()) {
 					if ((int) unPaidAmount <= threshold.get().getMaxUnderpaymentForPartial()) {
-						paymentStatus = "Paid - Underpayment";
-						System.out.println("4");
+//						paymentStatus = "Paid - Underpayment";
+						paymentStatus = PaymentStatus.PAID_UNDERPAYMENT.getDisplayName();
 					} else {
-						paymentStatus = "Underpayment";
-						System.out.println("5");
+//						paymentStatus = "Underpayment";
+						paymentStatus = PaymentStatus.UNDERPAYMENT.getDisplayName();
 					}
 				} else if (paidPercentage <= threshold.get().getOverThreshold()) {
 					if ((int) unPaidAmount <= threshold.get().getMaxUnderpaymentForFull()) {
-						paymentStatus = "Paid - Overpayment";
-						System.out.println("6");
+//						paymentStatus = "Paid - Overpayment";
+						paymentStatus = PaymentStatus.PAID_OVERPAYMENT.getDisplayName();
 					} else if ((int) unPaidAmount > threshold.get().getMaxUnderpaymentForPartial()) {
-						paymentStatus = "Partial Payment";
-						System.out.println("7");
+//						paymentStatus = "Partial Payment";
+						paymentStatus = PaymentStatus.PARTIAL_PAYMENT.getDisplayName();
 					} else {
-						paymentStatus = "Underpayment";
-						System.out.println("8");
+//						paymentStatus = "Underpayment";
+						paymentStatus = PaymentStatus.UNDERPAYMENT.getDisplayName();
 					}
 				} else if (paidPercentage <= threshold.get().getRefundThreshold()) {
 					if ((int) unPaidAmount <= threshold.get().getMaxOverpaymentForFull()) {
-						paymentStatus = "Paid - Overpayment";
-						System.out.println("9");
+//						paymentStatus = "Paid - Overpayment";
+						paymentStatus = PaymentStatus.PAID_OVERPAYMENT.getDisplayName();
 					} else if ((int) unPaidAmount > threshold.get().getMaxOverpaymentForRefund()) {
-						paymentStatus = "Refund payments";
-						System.out.println("10");
+//						paymentStatus = "Refund payments";
+						paymentStatus = PaymentStatus.REFUND_PAYMENTS.getDisplayName();
 					} else {
-						paymentStatus = "Overpayment";
-						System.out.println("11");
+//						paymentStatus = "Overpayment";
+						paymentStatus = PaymentStatus.OVERPAYMENT.getDisplayName();
 					}
 				} else {
-					paymentStatus = "Refund payments";
-					System.out.println("12");
+//					paymentStatus = "Refund payments";
+					paymentStatus = PaymentStatus.REFUND_PAYMENTS.getDisplayName();
 				}
 
 				payment.put("paymentStatus", entry.getKey() + "," + paymentStatus);
 				list.add(payment);
 			}
 		}
-//		for (HashMap<String, String> updateOrder : list) {
-//			for (Map.Entry<String, String> keyValue : updateOrder.entrySet()) {
-//				String[] pStatus = keyValue.getValue().split(",");
-//				try{
-//				    Integer orderId = Integer.parseInt(pStatus[0]);
-//				    Order orderDetails = addOrderRepo.findById(orderId).get();
-//				    PaymentBreakdown paymentBreakdown = orderDetails.getPaymentBreakdown();
-//					paymentBreakdown.setPaymentStatus(pStatus[1]);
-//					orderDetails.setPaymentBreakdown(paymentBreakdown);
-//					addOrderRepo.saveAndFlush(orderDetails);
-//				} catch(NumberFormatException ex){ // handle your exception
-//				   throw new NumberFormatException("Invalid Order Id");
-//				}
-//			}
-//		}
 
 		return list;
 	}
