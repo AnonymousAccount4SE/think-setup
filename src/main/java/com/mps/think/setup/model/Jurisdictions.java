@@ -56,6 +56,10 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "address_validation")
 	private String addressValidation;
 	
+	@OneToOne
+	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
+	private CommodityCodes commodityCodes;
+
 	public Integer getId() {
 		return id;
 	}
@@ -144,12 +148,21 @@ public class Jurisdictions extends BaseEntity{
 		this.addressValidation = addressValidation;
 	}
 
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
+
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
 				+ ", externalAlapplicable=" + externalAlapplicable + ", taxCoumputation=" + taxCoumputation
-				+ ", addressValidation=" + addressValidation + "]";
+				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
 	}
 
+	
 }
