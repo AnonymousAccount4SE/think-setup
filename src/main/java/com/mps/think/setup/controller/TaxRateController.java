@@ -47,8 +47,8 @@ public class TaxRateController {
 		return ResponseEntity.ok(taxService.deleteByTaxRateId(taxId));
 	}
 
-	@PostMapping("/getAllTaxTypeForPublisher")
-	public ResponseEntity<?> findAllTaxTypeForPublisher(@RequestBody Integer pubId) {
+	@PostMapping("/getAllTaxTypeBypubId")
+	public ResponseEntity<?> findAllTaxTypeBypubId(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(taxService.findAllTaxTypeForPublisher(pubId));
 	}
 
