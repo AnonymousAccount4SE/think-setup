@@ -28,6 +28,12 @@ public class TaxRateVO {
 	
 	private String noTaxMessage2;
 	
+	private boolean  printLocation;
+	
+	private boolean forceTax;
+	
+	private boolean registeredForTax;
+	
 	private CommodityCodes commodityCodes;
 
 	public Integer getTaxRateId() {
@@ -126,12 +132,37 @@ public class TaxRateVO {
 		this.commodityCodes = commodityCodes;
 	}
 
+	public boolean isPrintLocation() {
+		return printLocation;
+	}
+
+	public void setPrintLocation(boolean printLocation) {
+		this.printLocation = printLocation;
+	}
+
+	public boolean isForceTax() {
+		return forceTax;
+	}
+
+	public void setForceTax(boolean forceTax) {
+		this.forceTax = forceTax;
+	}
+
+	public boolean isRegisteredForTax() {
+		return registeredForTax;
+	}
+
+	public void setRegisteredForTax(boolean registeredForTax) {
+		this.registeredForTax = registeredForTax;
+	}
+
 	@Override
 	public String toString() {
 		return "TaxRate [taxRateId=" + taxRateId + ", pubId=" + pubId + ", country=" + country + ", state=" + state
 				+ ", taxidPrefix=" + taxidPrefix + ", taxHandling=" + taxHandling + ", taxid_format=" + taxid_format
 				+ ", taxId=" + taxId + ", altStateCode=" + altStateCode + ", noTaxMessage1=" + noTaxMessage1
-				+ ", noTaxMessage2=" + noTaxMessage2 + ", commodityCodes=" + commodityCodes + "]";
+				+ ", noTaxMessage2=" + noTaxMessage2 + ", printLocation=" + printLocation + ", forceTax=" + forceTax
+				+ ", registeredForTax=" + registeredForTax + ", commodityCodes=" + commodityCodes + "]";
 	}
 
 }

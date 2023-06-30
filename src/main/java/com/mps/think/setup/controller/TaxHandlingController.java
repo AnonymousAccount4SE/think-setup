@@ -40,6 +40,11 @@ public class TaxHandlingController {
 		return ResponseEntity.ok(taxHandlingServiceImpl.findbyAddTaxHandlingId(id));
 	}
 	
+	@PostMapping("/findbyAddTaxHandlingpubId")
+	public ResponseEntity<?> findbypubId(@RequestBody Integer pubId) {
+		return ResponseEntity.ok(taxHandlingServiceImpl.findbyAddTaxHandlingpubId(pubId));
+	}
+	
 	@DeleteMapping("/deleteByTaxHandlingId")
 	public ResponseEntity<?> deleteBySplitsId(@RequestBody Integer id) {
 		return ResponseEntity.ok(taxHandlingServiceImpl.deleteByTaxHandlingId(id));

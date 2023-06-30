@@ -1,6 +1,7 @@
 package com.mps.think.setup.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,10 @@ public class TaxHandlingServiceImpl implements TaxHandlingService {
 		TaxHandling delete = findbyAddTaxHandlingId(id);
 		taxHandlingRepo.delete(delete);
 		return delete;
+	}
+
+	public List<TaxHandling> findbyAddTaxHandlingpubId(Integer pubId) {
+		// TODO Auto-generated method stub
+		return taxHandlingRepo.findBypubId(pubId);
 	}
 }
