@@ -93,7 +93,7 @@ public class JurisdictionsController {
 		}else if(jurisdictions.getTaxCoumputation()){
 			basicJurisdictionTaxRate = basicJurisdictionTaxRateService.findbasicJurisdictionTaxRatebyId(jurisdictions.getId());
 		}else {
-			CommodityCodes commodityCodes = commodityCodesService.getCommodityCodesdetails(JurisdictionVo.getCommodityCodesVo().getCommodityCode());
+			CommodityCodes commodityCodes = commodityCodesService.getCommodityCodesdetails(JurisdictionVo.getCommodityCodes().getCommodityCode());
 			basicCommodityTaxRate = basicCommodityTaxRateService.getbasicCommodityTaxRateById(commodityCodes.getId());
 		}
 		TaxCalculationDataVO taxCalculationData = null;	

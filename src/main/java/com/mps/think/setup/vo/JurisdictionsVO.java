@@ -1,5 +1,6 @@
 package com.mps.think.setup.vo;
 
+import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.model.Publisher;
 
 public class JurisdictionsVO {
@@ -15,8 +16,8 @@ public class JurisdictionsVO {
 	private String externalAlapplicable ;
     private String addressValidation;
 	private Boolean taxCoumputation = true;
-	private CommodityCodesVO commodityCodesVo;
-	private Integer basicCommodityTaxId;
+	private CommodityCodes commodityCodes;
+	//private Integer basicCommodityTaxId;
 	public Integer getId() {
 		return id;
 	}
@@ -84,26 +85,21 @@ public class JurisdictionsVO {
 	public void setTaxCoumputation(Boolean taxCoumputation) {
 		this.taxCoumputation = taxCoumputation;
 	}
-	public CommodityCodesVO getCommodityCodesVo() {
-		return commodityCodesVo;
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
 	}
-	public void setCommodityCodesVo(CommodityCodesVO commodityCodesVo) {
-		this.commodityCodesVo = commodityCodesVo;
-	}
-	public Integer getBasicCommodityTaxId() {
-		return basicCommodityTaxId;
-	}
-	public void setBasicCommodityTaxId(Integer basicCommodityTaxId) {
-		this.basicCommodityTaxId = basicCommodityTaxId;
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
 	}
 	@Override
 	public String toString() {
 		return "JurisdictionsVO [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
-				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode
+				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
 				+ ", externalAlapplicable=" + externalAlapplicable + ", addressValidation=" + addressValidation
-				+ ", taxCoumputation=" + taxCoumputation + ", commodityCodesVo=" + commodityCodesVo
-				+ ", basicCommodityTaxId=" + basicCommodityTaxId + "]";
+				+ ", taxCoumputation=" + taxCoumputation + ", commodityCodes=" + commodityCodes + "]";
 	}
+
+	
 	
 	
 }
