@@ -13,6 +13,7 @@ public class JurisdictionsVO {
 	private String county;
 	private String country;
 	private String zipCode;
+	private String streetname;
 	private String externalAlapplicable ;
     private String addressValidation;
 	private Boolean taxCoumputation = true;
@@ -48,7 +49,6 @@ public class JurisdictionsVO {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
 	public String getCounty() {
 		return county;
 	}
@@ -66,6 +66,12 @@ public class JurisdictionsVO {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getStreetname() {
+		return streetname;
+	}
+	public void setStreetname(String streetname) {
+		this.streetname = streetname;
 	}
 	public String getExternalAlapplicable() {
 		return externalAlapplicable;
@@ -95,10 +101,10 @@ public class JurisdictionsVO {
 	public String toString() {
 		return "JurisdictionsVO [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
-				+ ", externalAlapplicable=" + externalAlapplicable + ", addressValidation=" + addressValidation
-				+ ", taxCoumputation=" + taxCoumputation + ", commodityCodes=" + commodityCodes + "]";
+				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable
+				+ ", addressValidation=" + addressValidation + ", taxCoumputation=" + taxCoumputation
+				+ ", commodityCodes=" + commodityCodes + "]";
 	}
-
 	
 	
 	
