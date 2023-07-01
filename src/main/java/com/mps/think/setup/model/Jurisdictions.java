@@ -47,6 +47,9 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "zipCode")
 	private String zipCode;
 	
+	@Column(name = "streetname")
+	private String streetname;
+	
 	@Column(name = "external_alapplicable")
 	private String externalAlapplicable;
 	
@@ -124,6 +127,14 @@ public class Jurisdictions extends BaseEntity{
 		this.zipCode = zipCode;
 	}
 
+	public String getStreetname() {
+		return streetname;
+	}
+
+	public void setStreetname(String streetname) {
+		this.streetname = streetname;
+	}
+
 	public String getExternalAlapplicable() {
 		return externalAlapplicable;
 	}
@@ -160,9 +171,12 @@ public class Jurisdictions extends BaseEntity{
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
-				+ ", externalAlapplicable=" + externalAlapplicable + ", taxCoumputation=" + taxCoumputation
-				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
+				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable + ", taxCoumputation="
+				+ taxCoumputation + ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes
+				+ "]";
 	}
+
+	
 
 	
 }
