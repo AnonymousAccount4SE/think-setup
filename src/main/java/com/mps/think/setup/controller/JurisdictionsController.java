@@ -15,6 +15,7 @@ import com.mps.think.setup.model.BasicTaxRate;
 import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.service.BasicCommodityTaxRateService;
 import com.mps.think.setup.service.BasicJurisdictionTaxRateService;
+import com.mps.think.setup.service.BasicTaxRateService;
 import com.mps.think.setup.service.CommodityCodesService;
 import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.utils.Avalara;
@@ -36,6 +37,9 @@ public class JurisdictionsController {
 	
 	@Autowired
 	BasicCommodityTaxRateService basicCommodityTaxRateService;
+	
+	@Autowired
+	BasicTaxRateService basicTaxRateService;
 	
 	@GetMapping("/getAlljurisdictions")
 	public ResponseEntity<?> getAlljurisdictions() {
@@ -84,6 +88,11 @@ public class JurisdictionsController {
 	@PostMapping("/getbasicJurisdictionTaxRateByPubId")
 	public ResponseEntity<?> getbasicJurisdictionTaxRateByPubId(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(basicJurisdictionTaxRateService.findbasicJurisdictionTaxRateByPubId( pubId));
+	}
+	
+	@PostMapping("/findbasicTaxRatebyId")
+	public ResponseEntity<?> findbasicTaxRatebyId(@RequestBody Integer id) {
+		return ResponseEntity.ok(basicTaxRateService.findbasicTaxRatebyId(id));
 	}
 	
 	@PostMapping("/taxCalculation")
