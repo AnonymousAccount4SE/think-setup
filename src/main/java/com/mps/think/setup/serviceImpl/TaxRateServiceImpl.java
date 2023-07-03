@@ -50,6 +50,9 @@ public class TaxRateServiceImpl implements TaxRateService {
 		taxRate.setTaxidPrefix(taxRateVO.getTaxidPrefix());
 		taxRate.setTaxHandling(taxRateVO.getTaxHandling());
 		taxRate.setTaxid_format(taxRateVO.getTaxid_format());
+		taxRate.setRegisteredForTax(taxRateVO.isRegisteredForTax());
+		taxRate.setForceTax(taxRateVO.isForceTax());
+		taxRate.setPrintLocation(taxRateVO.isPrintLocation());
 		taxRate.setTaxId(taxRateVO.getTaxId());
 		taxRate.setAltStateCode(taxRateVO.getAltStateCode());
 		taxRate.setNoTaxMessage1(taxRateVO.getNoTaxMessage1());

@@ -158,7 +158,7 @@ public class TaxRateVO {
 
 	@Override
 	public String toString() {
-		return "TaxRate [taxRateId=" + taxRateId + ", pubId=" + pubId + ", country=" + country + ", state=" + state
+		return "TaxRateVO [taxRateId=" + taxRateId + ", pubId=" + pubId + ", country=" + country + ", state=" + state
 				+ ", taxidPrefix=" + taxidPrefix + ", taxHandling=" + taxHandling + ", taxid_format=" + taxid_format
 				+ ", taxId=" + taxId + ", altStateCode=" + altStateCode + ", noTaxMessage1=" + noTaxMessage1
 				+ ", noTaxMessage2=" + noTaxMessage2 + ", printLocation=" + printLocation + ", forceTax=" + forceTax
