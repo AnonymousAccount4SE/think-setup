@@ -44,6 +44,7 @@ public class TaxRateServiceImpl implements TaxRateService {
 	@Override
 	public TaxRateVO updateTaxRate(TaxRateVO taxRateVO) {
 		TaxRate taxRate = new TaxRate();
+		taxRate.setTaxRateId(taxRateVO.getTaxRateId());
 		taxRate.setState(taxRateVO.getState());
 		taxRate.setCountry(taxRateVO.getCountry());
 		taxRate.setTaxidPrefix(taxRateVO.getTaxidPrefix());
