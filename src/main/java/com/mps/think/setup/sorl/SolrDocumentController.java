@@ -3,6 +3,7 @@ package com.mps.think.setup.sorl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -10,6 +11,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,6 +126,9 @@ public class SolrDocumentController {
 	
 	@Autowired
 	private DocumentRepository2 documentRepository2;
+	
+	@Autowired
+	private AddOrderService orderService;
 	
 	@Autowired
 	private DocumentRepository3 documentRepository3;
@@ -448,16 +453,18 @@ public class SolrDocumentController {
 
 	@GetMapping("/saveCustomerDetails")
 
-	public String CustomerDetailsDocuments() throws JsonProcessingException {
+	public String CustomerDetailsDocuments() throws Exception {
 		// Store Documents
 		List<CustomerDetails> cust = customerDetailsService.getAllCustomerDetails();
 		for (CustomerDetails customerDetails : cust) {
-			
+			String customerWithOrders = customerDetails.toString();
+			List<String> customersOrder = orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList()
+					.stream().map(o->o.toString()).collect(Collectors.toList());
+			customerWithOrders = customerWithOrders.concat(customersOrder.toString());
 			documentRepository1.save(new Document1("CustomerDetails" + customerDetails.getCustomerId(),
-					"customer" + customerDetails.getCustomerId(), customerDetails.toString(),
+					"customer" + customerDetails.getCustomerId(), customerWithOrders,
 					objectMapper.writeValueAsString(customerDetails)));
 		}
-
 		return "CustomerDetails saved!!!";
 	}
 

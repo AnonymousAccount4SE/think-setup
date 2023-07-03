@@ -3,7 +3,7 @@ import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 import org.springframework.http.ResponseEntity;
-@SolrDocument(solrCoreName = "SpringBootDocumentExample")
+@SolrDocument(solrCoreName = "makePayment")
 //@SolrDocument(solrCoreName = "Payments")
 public class Document {
 	
