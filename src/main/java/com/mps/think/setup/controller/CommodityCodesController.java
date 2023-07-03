@@ -56,7 +56,7 @@ public class CommodityCodesController {
 	public ResponseEntity<?> findAllCommodityCodesForPublisher(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(commodityCodesService.findAllCommodityCodesForPublisher(pubId));
 	}
-	@GetMapping("/getbasicCommodityTaxRateByPubId")
+	@PostMapping("/getbasicCommodityTaxRateByPubId")
 	public ResponseEntity<?> getbasicCommodityTaxRateByPubId(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(basicCommodityTaxRateService.getbasicCommodityTaxRateByPubId( pubId));
 	}
