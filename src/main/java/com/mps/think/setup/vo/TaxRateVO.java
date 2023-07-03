@@ -2,6 +2,7 @@ package com.mps.think.setup.vo;
 
 import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.model.Publisher;
+import com.mps.think.setup.model.TaxHandling;
 
 
 public class TaxRateVO {
@@ -16,7 +17,7 @@ public class TaxRateVO {
 	
 	private String taxidPrefix;
 
-	private String taxHandling;
+	private TaxHandling taxHandling;
 	
 	private String taxid_format;
 	
@@ -76,11 +77,11 @@ public class TaxRateVO {
 		this.taxidPrefix = taxidPrefix;
 	}
 
-	public String getTaxHandling() {
+	public TaxHandling getTaxHandling() {
 		return taxHandling;
 	}
 
-	public void setTaxHandling(String taxHandling) {
+	public void setTaxHandling(TaxHandling taxHandling) {
 		this.taxHandling = taxHandling;
 	}
 

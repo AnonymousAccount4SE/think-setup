@@ -36,8 +36,9 @@ public class TaxRate extends BaseEntity {
 	@Column(name = "taxid_prefix")
 	private String taxidPrefix;
 
-	@Column(name = "tax_handling")
-	private String taxHandling;
+	@OneToOne
+	@JoinColumn(name = "tax_handling_code", referencedColumnName = "tax_handling_id")
+	private TaxHandling taxHandling;
 	
 	@Column(name = "taxid_format")
 	private String taxid_format;
@@ -107,11 +108,11 @@ public class TaxRate extends BaseEntity {
 		this.taxidPrefix = taxidPrefix;
 	}
 
-	public String getTaxHandling() {
+	public TaxHandling getTaxHandling() {
 		return taxHandling;
 	}
 
-	public void setTaxHandling(String taxHandling) {
+	public void setTaxHandling(TaxHandling taxHandling) {
 		this.taxHandling = taxHandling;
 	}
 
