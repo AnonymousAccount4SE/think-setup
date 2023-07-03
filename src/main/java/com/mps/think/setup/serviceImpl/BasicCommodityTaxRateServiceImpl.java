@@ -1,5 +1,7 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,15 @@ public class BasicCommodityTaxRateServiceImpl implements BasicCommodityTaxRateSe
 	BasicCommodityTaxRateRepo basicCommodityTaxRateRepo;
 	@Autowired
 	private ObjectMapper mapper;
+	
 	@Override
 	public BasicCommodityTaxRate getbasicCommodityTaxRateById(Integer commodityCodesId) {
 		return basicCommodityTaxRateRepo.findBycommodityCodesId(commodityCodesId);
+	}
+	
+	@Override
+	public List<BasicCommodityTaxRate> getbasicCommodityTaxRateByPubId(Integer pubId) {
+		return basicCommodityTaxRateRepo.getbasicCommodityTaxRateByPubId(pubId);
 	}
 
 	@Override
