@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+
 import com.mps.think.setup.model.CommodityCodes;
 
 public interface CommodityCodesRepo extends JpaRepository<CommodityCodes , Integer> {
@@ -15,7 +16,7 @@ public interface CommodityCodesRepo extends JpaRepository<CommodityCodes , Integ
 	
 	List<CommodityCodes> findByPubIdId(Integer pubId);
 
-	@Query(value="SELECT * FROM commodityCodes where commodityCode=:commodityCode",nativeQuery = true)
+	@Query(value="SELECT * FROM commodity_codes where commodity_code=:commodityCode",nativeQuery = true)
 	public CommodityCodes getCommodityCodesdetailsBycommodityCode(String commodityCode);
 
 }

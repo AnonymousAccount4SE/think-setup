@@ -81,7 +81,7 @@ public class JurisdictionsController {
 		return ResponseEntity.ok(jurisdictionsService.getAllStateByJurisdiction(country));
 	}
 	
-	@GetMapping("/getbasicJurisdictionTaxRateByPubId")
+	@PostMapping("/getbasicJurisdictionTaxRateByPubId")
 	public ResponseEntity<?> getbasicJurisdictionTaxRateByPubId(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(basicJurisdictionTaxRateService.findbasicJurisdictionTaxRateByPubId( pubId));
 	}
