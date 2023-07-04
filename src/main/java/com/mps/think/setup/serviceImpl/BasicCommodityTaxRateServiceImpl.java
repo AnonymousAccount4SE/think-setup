@@ -34,4 +34,9 @@ public class BasicCommodityTaxRateServiceImpl implements BasicCommodityTaxRateSe
 		return basicCommodityTaxRateRepo.saveAndFlush(mapper.convertValue(basicCommodityTaxRateVO, BasicCommodityTaxRate.class));
 	}
 
+	@Override
+	public BasicCommodityTaxRate updatebasicCommodityTaxRate(BasicCommodityTaxRateVO basicCommodityTaxRateVO) {
+		return basicCommodityTaxRateRepo.saveAndFlush(mapper.convertValue(basicCommodityTaxRateVO, BasicCommodityTaxRate.class));
+	}
+
 }

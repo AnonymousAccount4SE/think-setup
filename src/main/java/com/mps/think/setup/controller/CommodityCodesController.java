@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mps.think.setup.model.BasicCommodityTaxRate;
 import com.mps.think.setup.service.BasicCommodityTaxRateService;
 import com.mps.think.setup.service.CommodityCodesService;
+import com.mps.think.setup.vo.BasicCommodityTaxRateVO;
 import com.mps.think.setup.vo.CommodityCodesVO;
 
 @RestController
@@ -56,8 +57,14 @@ public class CommodityCodesController {
 	public ResponseEntity<?> findAllCommodityCodesForPublisher(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(commodityCodesService.findAllCommodityCodesForPublisher(pubId));
 	}
+	
 	@PostMapping("/getbasicCommodityTaxRateByPubId")
 	public ResponseEntity<?> getbasicCommodityTaxRateByPubId(@RequestBody Integer pubId) {
 		return ResponseEntity.ok(basicCommodityTaxRateService.getbasicCommodityTaxRateByPubId( pubId));
+	}
+	
+	@PostMapping("/updatebasicCommodityTaxRate")
+	public ResponseEntity<?> updatebasicCommodityTaxRate(@RequestBody BasicCommodityTaxRateVO basicCommodityTaxRateVO) {
+		return ResponseEntity.ok(basicCommodityTaxRateService.updatebasicCommodityTaxRate(basicCommodityTaxRateVO));
 	}
 }

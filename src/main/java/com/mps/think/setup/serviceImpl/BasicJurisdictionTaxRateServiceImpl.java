@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.BasicJurisdictionTaxRate;
+import com.mps.think.setup.model.Jurisdictions;
 import com.mps.think.setup.repo.BasicJurisdictionTaxRateRepo;
 import com.mps.think.setup.service.BasicJurisdictionTaxRateService;
 import com.mps.think.setup.vo.BasicJurisdictionTaxRateVO;
@@ -33,6 +34,14 @@ public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTax
 	@Override
 	public BasicJurisdictionTaxRate savebasicJurisdictionTaxRate(BasicJurisdictionTaxRateVO basicJurisdictionTaxRateVO) {
 		return basicJurisdictionTaxRateRepo.saveAndFlush(mapper.convertValue(basicJurisdictionTaxRateVO, BasicJurisdictionTaxRate.class));
+	}
+
+	@Override
+	public BasicJurisdictionTaxRate updatebasicJurisdictionTaxRate(
+			BasicJurisdictionTaxRateVO basicJurisdictionTaxRateVO) {
+		BasicJurisdictionTaxRate newBasicJurisdictionTaxRate = mapper.convertValue(basicJurisdictionTaxRateVO, BasicJurisdictionTaxRate.class);
+		newBasicJurisdictionTaxRate = basicJurisdictionTaxRateRepo.saveAndFlush(newBasicJurisdictionTaxRate);
+	    return newBasicJurisdictionTaxRate;
 	}
 
 }

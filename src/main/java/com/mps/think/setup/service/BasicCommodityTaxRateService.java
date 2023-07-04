@@ -14,4 +14,6 @@ public interface BasicCommodityTaxRateService {
 	
 	List<BasicCommodityTaxRate> getbasicCommodityTaxRateByPubId(Integer pubId);
 
+	BasicCommodityTaxRate updatebasicCommodityTaxRate(BasicCommodityTaxRateVO basicCommodityTaxRateVO);
+
 }
