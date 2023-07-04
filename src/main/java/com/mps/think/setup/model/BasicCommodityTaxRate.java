@@ -23,7 +23,7 @@ public class BasicCommodityTaxRate extends BaseEntity {
 	private Integer basicCommodityTaxId;
 
 	@OneToOne
-	@JoinColumn(name = "basic_commodity_tax_rate_id", referencedColumnName = "basic_tax_rate_id")
+	@JoinColumn(name = "basic_commodity_tax_id", referencedColumnName = "basic_tax_rate_id")
 	private BasicTaxRate basicCommodityTaxRateId;
 
 	@OneToOne
