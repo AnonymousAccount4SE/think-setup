@@ -63,8 +63,8 @@ public class RenewalOfferDetailsServiceImpl implements RenewalOfferDetailsServic
 //	}
 
 	@Override
-	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByAddRenewalsId(Integer id) {
-		return offerDetailsRepo.findByAddRenewalId(id);
+	public List<RenewalOfferDetails> findAllRenewalOfferDetailsByEffortRangeId(Integer id) {
+		return offerDetailsRepo.findByEffortRangeId(id);
 	}
 
 //	@Override

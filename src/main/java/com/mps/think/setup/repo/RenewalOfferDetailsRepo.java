@@ -14,7 +14,7 @@ public interface RenewalOfferDetailsRepo extends JpaRepository<RenewalOfferDetai
 
 //	Optional<RenewalOfferDetails> findByAddRenewalId(Integer id);
 	
-	public List<RenewalOfferDetails> findByAddRenewalId(Integer id);
+public List<RenewalOfferDetails> findByEffortRangeId(Integer id);
 	
 //	Page<List<RenewalOfferDetails>> findByAddRenewalId(Integer id, Pageable page);
 	
