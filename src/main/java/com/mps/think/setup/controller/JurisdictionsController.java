@@ -20,6 +20,7 @@ import com.mps.think.setup.service.CommodityCodesService;
 import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.utils.Avalara;
 import com.mps.think.setup.vo.BasicJurisdictionTaxRateVO;
+import com.mps.think.setup.vo.BasicTaxRateVO;
 import com.mps.think.setup.vo.JurisdictionsVO;
 import com.mps.think.setup.vo.TaxCalculationDataVO;
 
@@ -121,5 +122,10 @@ public class JurisdictionsController {
 		taxCalculationData.setCommodityTaxRateRate(basicCommodityTaxRate.getRateValue());
 		taxCalculationData.setJurisdictionTaxRate(basicJurisdictionTaxRate.getRateValue());
 		return ResponseEntity.ok(taxCalculationData);
+	}
+	
+	@PostMapping("/saveBasicTaxRate")
+	public ResponseEntity<?> saveBasicTaxRate(@RequestBody BasicTaxRateVO basicTaxRate) {
+		return ResponseEntity.ok(basicTaxRateService.saveBasicTaxRate(basicTaxRate));
 	}
 }
