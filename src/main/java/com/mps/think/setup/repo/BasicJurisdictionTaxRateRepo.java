@@ -14,7 +14,5 @@ public interface BasicJurisdictionTaxRateRepo extends JpaRepository<BasicJurisdi
 //	@Query(value="SELECT * FROM basic_jurisdiction_tax_rate where commodity_codes_id=:commodityCodesId",nativeQuery = true)
 	BasicJurisdictionTaxRate findByjurisdictionsId(Integer jurisdictionsId);
 
-	@Query(value="SELECT * FROM basic_jurisdiction_tax_rate where jurisdictions_id=:id",nativeQuery = true)
-	BasicJurisdictionTaxRate findbasicJurisdictionTaxRateByPubId(Integer id);
 
 }
