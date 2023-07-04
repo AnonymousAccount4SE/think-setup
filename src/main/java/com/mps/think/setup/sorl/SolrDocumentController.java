@@ -107,6 +107,7 @@ import com.mps.think.setup.service.UnitBasedSubscriptionService;
 import com.mps.think.setup.service.ValueForScAttributeService;
 import com.mps.think.setup.service.VolumeGroupService;
 import com.mps.think.setup.utils.ScheduledTask;
+import com.mps.think.setup.vo.CustomerWithOrders;
 
 /**
  * Created by @rohit.
@@ -406,7 +407,7 @@ public class SolrDocumentController {
 	@GetMapping("/delete")
 	public String deleteAllDocuments() {
 		try { // delete all documents from solr core
-			documentRepository3.deleteAll();
+			documentRepository1.deleteAll();
 			return "documents deleted succesfully!";
 		} catch (Exception e) {
 			return "Failed to delete documents";
@@ -452,18 +453,22 @@ public class SolrDocumentController {
 	}
 
 	@GetMapping("/saveCustomerDetails")
-
 	public String CustomerDetailsDocuments() throws Exception {
 		// Store Documents
 		List<CustomerDetails> cust = customerDetailsService.getAllCustomerDetails();
 		for (CustomerDetails customerDetails : cust) {
-			String customerWithOrders = customerDetails.toString();
-			List<String> customersOrder = orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList()
-					.stream().map(o->o.toString()).collect(Collectors.toList());
-			customerWithOrders = customerWithOrders.concat(customersOrder.toString());
+//			String customerWithOrders = customerDetails.toString();
+//			List<String> customersOrder = orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList()
+//					.stream().map(o->o.toString()).collect(Collectors.toList());
+//			customerWithOrders = customerWithOrders.concat(customersOrder.toString());
+			
+			CustomerWithOrders cs = new CustomerWithOrders();
+			cs.setCustomer(customerDetails);
+			cs.setCustomerOrders(orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
+			
 			documentRepository1.save(new Document1("CustomerDetails" + customerDetails.getCustomerId(),
-					"customer" + customerDetails.getCustomerId(), customerWithOrders,
-					objectMapper.writeValueAsString(customerDetails)));
+					"customer" + customerDetails.getCustomerId(), cs.toString(),
+					objectMapper.writeValueAsString(cs)));
 		}
 		return "CustomerDetails saved!!!";
 	}
