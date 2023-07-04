@@ -210,6 +210,10 @@ public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate"
 	
 	public Long countByCustomerIdPublisherId(Integer publisherId) throws Exception;
 
+
+	@Query(value="SELECT  op.order_id,op.order_type  FROM order_parent op JOIN order_items oi ON op.order_items_id=oi.id JOIN customer c ON op.customer_id=c.id  WHERE c.pub_id =:pubId", nativeQuery = true)
+	public List<String[]> getOrderTypesCountForPublisher(@Param("pubId") Integer pubId);
+
 }
 
 
