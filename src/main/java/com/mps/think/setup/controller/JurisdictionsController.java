@@ -100,7 +100,7 @@ public class JurisdictionsController {
 		Jurisdictions jurisdictions = jurisdictionsService.findbyJurisdictionStateTaxContry(JurisdictionVo);
 		BasicCommodityTaxRate basicCommodityTaxRate = null;
 		BasicJurisdictionTaxRate basicJurisdictionTaxRate = null;
-		if(!jurisdictions.getExternalAlapplicable().contains("none")) {
+		if(!jurisdictions.getExternalAlapplicable().equalsIgnoreCase("none")) {
 //			avaalara api call
 			Avalara avalara = new Avalara();
 			return ResponseEntity.ok(avalara.AvalaraTaxClient(null, null, null, null));

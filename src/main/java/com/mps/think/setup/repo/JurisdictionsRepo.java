@@ -16,17 +16,17 @@ public interface JurisdictionsRepo extends JpaRepository<Jurisdictions, Integer>
 
 	List<Jurisdictions> findByPubIdId(Integer pubId);
 
-	@Query(value = "SELECT e FROM Jurisdictions  WHERE e.created_at BETWEEN  :today  AND  =  :yesterday", nativeQuery = true)
+	@Query(value = "SELECT * FROM jurisdictions WHERE created_at BETWEEN  :today  AND  =  :yesterday", nativeQuery = true)
 	List<Jurisdictions> findTodayAndYesterdayRecords(@Param("today") LocalDate today,
 			@Param("yesterday") LocalDate yesterday);
 
-	@Query(value = "SELECT e FROM Jurisdictions  WHERE e.countrycode=:country  AND  e.stateCode=:stateCode AND  e.zipCode=:zipCode", nativeQuery = true)
+	@Query(value = "SELECT * FROM jurisdictions WHERE countrycode=:country  AND  state_code=:stateCode AND  zip_code=:zipCode", nativeQuery = true)
 	public Jurisdictions findbyJurisdictionStateTaxContry(String country, String stateCode, String zipCode);
 
-	@Query(value = "SELECT DISTINCT country FROM Jurisdictions", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT country FROM jurisdictions", nativeQuery = true)
 	public List<String> getAllcountrybyJurisdiction();
 
-	@Query(value = "SELECT Juri FROM Jurisdictions where e.countrycode=:country  ", nativeQuery = true)
+	@Query(value = "SELECT Juri FROM jurisdictions where e.countrycode=:country  ", nativeQuery = true)
 	public List<Jurisdictions> getAllStateByJurisdiction(String country);
 
 }

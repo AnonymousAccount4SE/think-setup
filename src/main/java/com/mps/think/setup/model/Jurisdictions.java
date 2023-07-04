@@ -32,7 +32,7 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "countrycode")
 	private String countrycode;
 	
-	@Column(name = "stateCode")
+	@Column(name = "state_code")
 	private String stateCode;
 
 	@Column(name = "city")
@@ -44,7 +44,7 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "country")
 	private String country;
 	
-	@Column(name = "zipCode")
+	@Column(name = "zip_code")
 	private String zipCode;
 	
 	@Column(name = "streetname")

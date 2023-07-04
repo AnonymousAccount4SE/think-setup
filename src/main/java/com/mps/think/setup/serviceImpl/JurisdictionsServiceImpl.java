@@ -87,7 +87,7 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 	@Override
 	public Jurisdictions findbyJurisdictionStateTaxContry(JurisdictionsVO jurisdictionsVo) {
 
-		Jurisdictions jurisdictions = jurisdictionsRepo.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountry(),
+		Jurisdictions jurisdictions = jurisdictionsRepo.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountrycode(),
 				jurisdictionsVo.getStateCode(), jurisdictionsVo.getZipCode());
 		return jurisdictions;
 	}
