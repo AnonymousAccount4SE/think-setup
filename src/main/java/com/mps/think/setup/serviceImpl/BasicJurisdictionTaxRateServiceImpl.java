@@ -1,11 +1,13 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.model.BasicJurisdictionTaxRate;
 import com.mps.think.setup.model.Jurisdictions;
 import com.mps.think.setup.repo.BasicJurisdictionTaxRateRepo;
@@ -16,6 +18,8 @@ public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTax
 
 	@Autowired
 	BasicJurisdictionTaxRateRepo basicJurisdictionTaxRateRepo;
+	@Autowired
+	JurisdictionsService JurisdictionsService;
 	@Autowired
 	private ObjectMapper mapper;
 	
@@ -28,7 +32,15 @@ public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTax
 	
 	@Override
 	public List<BasicJurisdictionTaxRate> findbasicJurisdictionTaxRateByPubId(Integer pubId) {
-		return basicJurisdictionTaxRateRepo.findbasicJurisdictionTaxRateByPubId(pubId);
+		List<BasicJurisdictionTaxRate> basicJurisdictionTaxRate = new ArrayList<BasicJurisdictionTaxRate>();
+		List<Jurisdictions> jurisdictions = JurisdictionsService.findAllJurisdictionsForPublisher(pubId);
+		for(Jurisdictions data : jurisdictions) {
+			data.getId();
+			BasicJurisdictionTaxRate basicJurisdiction = basicJurisdictionTaxRateRepo.findbasicJurisdictionTaxRateByPubId(data.getId());
+			basicJurisdictionTaxRate.add(basicJurisdiction);
+		}
+		
+		return basicJurisdictionTaxRate;
 	}
 
 	@Override
