@@ -19,7 +19,7 @@ public class ThridPartyConfigurationController {
 	@Autowired
 	ThridPartyConfigService thridPartyConfigService;
 
-	@GetMapping("/thridPartyConfigService")
+	@GetMapping("/getThridPartyConfiguration")
 	public ResponseEntity<?> thridPartyConfigService() {
 		return ResponseEntity.ok(thridPartyConfigService.getThridPartyConfiguration());
 	}
