@@ -29,4 +29,10 @@ public class DashboardController {
 		return ResponseEntity.ok(dashboardService
 				.getOrderTypesCountForPublisher(pubId));
 	}
+	
+	@PostMapping("/getOrdersPerMonthForPublisher")
+	public ResponseEntity<?> getOrdersPerMonthForPublisher(@RequestParam Integer pubId, @RequestParam Integer year) throws Exception {
+		return ResponseEntity.ok(dashboardService
+				.getOrdersPerMonthForPublisher(pubId,year));
+	}
 }
