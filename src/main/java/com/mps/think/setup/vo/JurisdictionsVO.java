@@ -2,6 +2,7 @@ package com.mps.think.setup.vo;
 
 import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.model.Publisher;
+import com.mps.think.setup.model.ThridPartyConfiguration;
 
 public class JurisdictionsVO {
 	
@@ -15,7 +16,8 @@ public class JurisdictionsVO {
 	private String zipCode;
 	private String streetname;
 	private String externalAlapplicable ;
-    private String addressValidation;
+	private ThridPartyConfiguration thridPartyConfiguration;
+	private String addressValidation;
 	private Boolean taxCoumputation = true;
 	private CommodityCodes commodityCodes;
 	//private Integer basicCommodityTaxId;
@@ -97,13 +99,21 @@ public class JurisdictionsVO {
 	public void setCommodityCodes(CommodityCodes commodityCodes) {
 		this.commodityCodes = commodityCodes;
 	}
+	
+	
+	public ThridPartyConfiguration getThridPartyConfiguration() {
+		return thridPartyConfiguration;
+	}
+	public void setThridPartyConfiguration(ThridPartyConfiguration thridPartyConfiguration) {
+		this.thridPartyConfiguration = thridPartyConfiguration;
+	}
 	@Override
 	public String toString() {
 		return "JurisdictionsVO [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
 				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable
-				+ ", addressValidation=" + addressValidation + ", taxCoumputation=" + taxCoumputation
-				+ ", commodityCodes=" + commodityCodes + "]";
+				+ ", thridPartyConfiguration=" + thridPartyConfiguration + ", addressValidation=" + addressValidation
+				+ ", taxCoumputation=" + taxCoumputation + ", commodityCodes=" + commodityCodes + "]";
 	}
 	
 	
