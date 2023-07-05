@@ -46,6 +46,11 @@ public class AddEffortServiceImpl implements AddEffortService{
 		return delete;
 	}
 
+	@Override
+	public List<AddEffort> findAllAddEffortForRenewalId(Integer id) {
+		return addEffortRepo.findByRdidId(id);
+	}
+
 
 
 }
