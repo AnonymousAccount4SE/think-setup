@@ -88,14 +88,7 @@ public class RenewalOfferDetailsVO {
 	public void setDiscount_class(DiscountCardKeyInfo discount_class) {
 		this.discount_class = discount_class;
 	}
-	@Override
-	public String toString() {
-		return "RenewalOfferDetailsVO [renewalOfferDetailsId=" + renewalOfferDetailsId + ", addRenewal=" + addRenewal
-				+ ", description=" + description + ", oclass=" + oclass + ", term=" + term + ", order_code="
-				+ order_code + ", source_code=" + source_code + ", subscription_def=" + subscription_def
-				+ ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class + ", discount_class=" + discount_class
-				+ "]";
-	}
+
 	
 	
 	
