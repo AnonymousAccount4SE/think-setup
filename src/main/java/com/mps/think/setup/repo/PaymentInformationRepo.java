@@ -43,4 +43,5 @@ public interface PaymentInformationRepo extends JpaRepository<PaymentInformation
 	@Query(value = "SELECT liability_issue FROM order_parent op JOIN payment_breakdown pb ON op.payment_breakdown_id=pb.id\r\n"
 			+ "JOIN order_items oi ON op.order_items_id=oi.id  WHERE order_id=:orderId",nativeQuery = true)
 	public Integer totaLiabilityIssue(@Param ("orderId") Integer orderId);
+	
 }
