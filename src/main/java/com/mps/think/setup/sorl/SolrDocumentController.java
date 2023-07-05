@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.*;
 import com.mps.think.setup.repo.DeliveryMethodOverridesRepo;
+import com.mps.think.setup.repo.MakePaymentRepo;
 import com.mps.think.setup.service.AddEffortService;
 import com.mps.think.setup.service.AddOrderService;
 import com.mps.think.setup.service.AddPaymentService;
@@ -384,7 +385,6 @@ public class SolrDocumentController {
 	@Autowired
 	private InventoryService inventoryService;
 	
-	
 	@Autowired
 	ScheduledTask checkSCTask;
 	
@@ -465,6 +465,8 @@ public class SolrDocumentController {
 			CustomerWithOrders cs = new CustomerWithOrders();
 			cs.setCustomer(customerDetails);
 			cs.setCustomerOrders(orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
+			cs.setCustomerPaymentInfo(paymentInformationService.getallPaymentInformationForCustomer(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
+			cs.setCustomerPaymentAccount(MakePaymentService.getallPaymentAccountForCustomer(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
 			
 			documentRepository1.save(new Document1("CustomerDetails" + customerDetails.getCustomerId(),
 					"customer" + customerDetails.getCustomerId(), cs.toString(),
