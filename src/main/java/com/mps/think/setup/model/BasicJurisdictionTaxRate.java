@@ -59,6 +59,11 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 	@JoinColumn(name = "juri_tax_category_id", referencedColumnName = "id")
 	private TaxRateCategory taxRateCategory;
 	
+	@OneToOne
+	@JoinColumn(name = "tax_rate_id", referencedColumnName = "taxrate_id")
+	private TaxRate taxRate;
+	
+	
 	public Integer getBasicJurisdictionTaxRatedId() {
 		return basicJurisdictionTaxRatedId;
 	}
@@ -156,6 +161,15 @@ public class BasicJurisdictionTaxRate extends BaseEntity {
 
 	public void setTaxRateCategory(TaxRateCategory taxRateCategory) {
 		this.taxRateCategory = taxRateCategory;
+	}
+
+	
+	public TaxRate getTaxRate() {
+		return taxRate;
+	}
+
+	public void setTaxRate(TaxRate taxRate) {
+		this.taxRate = taxRate;
 	}
 
 	@Override

@@ -3,9 +3,8 @@ package com.mps.think.setup.vo;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
+import com.mps.think.setup.model.TaxRate;
 import com.mps.think.setup.model.TaxRateCategory;
 import com.mps.think.setup.model.TaxType;
 
@@ -28,6 +27,7 @@ public class BasicTaxRateVO {
 	private TaxType taxType;
 
 	private TaxRateCategory taxRateCategory;
+	private TaxRate taxRate;
 
 	public Integer getBasicTaxRateId() {
 		return basicTaxRateId;
@@ -93,11 +93,20 @@ public class BasicTaxRateVO {
 		this.taxRateCategory = taxRateCategory;
 	}
 
+	public TaxRate getTaxRate() {
+		return taxRate;
+	}
+
+	public void setTaxRate(TaxRate taxRate) {
+		this.taxRate = taxRate;
+	}
+
 	@Override
 	public String toString() {
 		return "BasicTaxRateVO [basicTaxRateId=" + basicTaxRateId + ", rateName=" + rateName + ", rateValue="
 				+ rateValue + ", taxMessage1=" + taxMessage1 + ", unitPerSegment=" + unitPerSegment + ", effectiveDate="
-				+ effectiveDate + ", taxType=" + taxType + ", taxRateCategory=" + taxRateCategory + "]";
+				+ effectiveDate + ", taxType=" + taxType + ", taxRateCategory=" + taxRateCategory + ", taxRate="
+				+ taxRate + "]";
 	}
 
 }

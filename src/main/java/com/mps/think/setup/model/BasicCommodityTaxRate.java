@@ -59,6 +59,10 @@ public class BasicCommodityTaxRate extends BaseEntity {
 	@JoinColumn(name = "commo_tax_category_id", referencedColumnName = "id")
 	private TaxRateCategory taxRateCategory;
 
+	@OneToOne
+	@JoinColumn(name = "tax_rate_id", referencedColumnName = "taxrate_id")
+	private TaxRate taxRate;
+	
 	public Integer getBasicCommodityTaxId() {
 		return basicCommodityTaxId;
 	}
@@ -161,7 +165,7 @@ public class BasicCommodityTaxRate extends BaseEntity {
 				+ basicCommodityTaxRateId + ", commodityCodes=" + commodityCodes + ", effectiveDate=" + effectiveDate
 				+ ", expirationDate=" + expirationDate + ", rateName=" + rateName + ", rateValue=" + rateValue
 				+ ", taxMessage1=" + taxMessage1 + ", taxMessage2=" + taxMessage2 + ", unitPerSegment=" + unitPerSegment
-				+ ", taxType=" + taxType + "]";
+				+ ", taxType=" + taxType + ", taxRateCategory=" + taxRateCategory + ", taxRate=" + taxRate + "]";
 	}
 
 }

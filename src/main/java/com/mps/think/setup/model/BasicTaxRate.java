@@ -48,6 +48,10 @@ public class BasicTaxRate extends BaseEntity {
 	@JoinColumn(name = "basic_tax_category_id", referencedColumnName = "id")
 	private TaxRateCategory taxRateCategory;
 	
+	@OneToOne
+	@JoinColumn(name = "tax_rate_id", referencedColumnName = "taxrate_id")
+	private TaxRate taxRate;
+	
 	public Integer getBasicTaxRateId() {
 		return basicTaxRateId;
 	}
@@ -122,12 +126,20 @@ public class BasicTaxRate extends BaseEntity {
 		this.taxRateCategory = taxRateCategory;
 	}
 
+	public TaxRate getTaxRate() {
+		return taxRate;
+	}
+
+	public void setTaxRate(TaxRate taxRate) {
+		this.taxRate = taxRate;
+	}
+
 	@Override
 	public String toString() {
 		return "BasicTaxRate [basicTaxRateId=" + basicTaxRateId + ", rateName=" + rateName + ", rateValue=" + rateValue
 				+ ", taxMessage1=" + taxMessage1 + ", taxMessage2=" + taxMessage2 + ", unitPerSegment=" + unitPerSegment
 				+ ", effectiveDate=" + effectiveDate + ", taxType=" + taxType + ", taxRateCategory=" + taxRateCategory
-				+ "]";
+				+ ", taxRate=" + taxRate + "]";
 	}
 
 }

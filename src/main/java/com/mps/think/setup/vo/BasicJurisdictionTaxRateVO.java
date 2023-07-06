@@ -2,11 +2,8 @@ package com.mps.think.setup.vo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
 import com.mps.think.setup.model.BasicTaxRate;
+import com.mps.think.setup.model.TaxRate;
 import com.mps.think.setup.model.TaxRateCategory;
 import com.mps.think.setup.model.TaxType;
 
@@ -35,6 +32,8 @@ public class BasicJurisdictionTaxRateVO {
 	private TaxType taxType;
 
 	private TaxRateCategory taxRateCategory;
+	
+	private TaxRate taxRate;
 
 	public Integer getBasicJurisdictionTaxRatedId() {
 		return basicJurisdictionTaxRatedId;
@@ -132,6 +131,14 @@ public class BasicJurisdictionTaxRateVO {
 		this.taxRateCategory = taxRateCategory;
 	}
 
+	public TaxRate getTaxRate() {
+		return taxRate;
+	}
+
+	public void setTaxRate(TaxRate taxRate) {
+		this.taxRate = taxRate;
+	}
+
 	@Override
 	public String toString() {
 		return "BasicJurisdictionTaxRateVO [basicJurisdictionTaxRatedId=" + basicJurisdictionTaxRatedId
@@ -139,7 +146,7 @@ public class BasicJurisdictionTaxRateVO {
 				+ ", effectiveDate=" + effectiveDate + ", expirationDate=" + expirationDate + ", rateName=" + rateName
 				+ ", rateValue=" + rateValue + ", taxMessage1=" + taxMessage1 + ", taxMessage2=" + taxMessage2
 				+ ", unitPerSegment=" + unitPerSegment + ", taxType=" + taxType + ", taxRateCategory=" + taxRateCategory
-				+ "]";
+				+ ", taxRate=" + taxRate + "]";
 	}
 
 }
