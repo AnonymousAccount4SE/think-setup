@@ -1,7 +1,6 @@
 package com.mps.think.setup.vo;
-
-import com.mps.think.setup.model.AddRenewals;
 import com.mps.think.setup.model.DiscountCardKeyInfo;
+import com.mps.think.setup.model.EffortRange;
 import com.mps.think.setup.model.OrderClass;
 import com.mps.think.setup.model.RateCards;
 import com.mps.think.setup.model.SourceCode;
@@ -11,7 +10,7 @@ import com.mps.think.setup.model.Terms;
 public class RenewalOfferDetailsVO {
 
 	private Integer renewalOfferDetailsId;
-	private AddRenewals addRenewal;
+	private EffortRange effortRange;
 	private String description;
 	private OrderClass oclass;
 	private Terms term;
@@ -28,11 +27,11 @@ public class RenewalOfferDetailsVO {
 	public void setRenewalOfferDetailsId(Integer renewalOfferDetailsId) {
 		this.renewalOfferDetailsId = renewalOfferDetailsId;
 	}
-	public AddRenewals getAddRenewal() {
-		return addRenewal;
+	public EffortRange getEffortRange() {
+		return effortRange;
 	}
-	public void setAddRenewal(AddRenewals addRenewal) {
-		this.addRenewal = addRenewal;
+	public void setEffortRange(EffortRange effortRange) {
+		this.effortRange = effortRange;
 	}
 	public String getDescription() {
 		return description;
@@ -88,11 +87,13 @@ public class RenewalOfferDetailsVO {
 	public void setDiscount_class(DiscountCardKeyInfo discount_class) {
 		this.discount_class = discount_class;
 	}
-
-	
-	
-	
-
-	
+	@Override
+	public String toString() {
+		return "RenewalOfferDetailsVO [renewalOfferDetailsId=" + renewalOfferDetailsId + ", effortRange=" + effortRange
+				+ ", description=" + description + ", oclass=" + oclass + ", term=" + term + ", order_code="
+				+ order_code + ", source_code=" + source_code + ", subscription_def=" + subscription_def
+				+ ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class + ", discount_class=" + discount_class
+				+ "]";
+	}
 
 }
