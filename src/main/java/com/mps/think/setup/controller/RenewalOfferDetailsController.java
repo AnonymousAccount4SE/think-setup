@@ -48,7 +48,7 @@ public class RenewalOfferDetailsController {
 		return ResponseEntity.ok(renewalOfferDetailsService.findbyRenewalOfferDetailsId(renewalOfferDetailsId));
 	}
 
-	@PostMapping("/getAllRenewalOfferDetailsByAddRenewalsId")
+	@PostMapping("/getAllRenewalOfferDetailsByEffortRangeId")
 	ResponseEntity<?> findAllRenewalOfferDetailsByEffortRangeId(@RequestBody Integer id) {
 		return ResponseEntity
 				.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByEffortRangeId(id));
