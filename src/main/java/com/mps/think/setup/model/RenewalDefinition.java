@@ -56,8 +56,7 @@ public class RenewalDefinition extends BaseEntity {
 	@Column(name = "renewalcard")
 	private Integer renewalcard;
 	
-	@OneToOne
-	@JoinColumn(name = "ef_id")
+	@Column(name = "ef_id")
 	private Integer efid;
 	
 	@OneToMany(
