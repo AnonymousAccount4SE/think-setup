@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.mps.think.setup.model.Jurisdictions;
+
 import com.mps.think.setup.model.BasicCommodityTaxRate;
 import com.mps.think.setup.model.BasicJurisdictionTaxRate;
-import com.mps.think.setup.model.BasicTaxRate;
 import com.mps.think.setup.model.CommodityCodes;
+import com.mps.think.setup.model.Jurisdictions;
 import com.mps.think.setup.service.BasicCommodityTaxRateService;
 import com.mps.think.setup.service.BasicJurisdictionTaxRateService;
 import com.mps.think.setup.service.BasicTaxRateService;
@@ -20,7 +20,6 @@ import com.mps.think.setup.service.CommodityCodesService;
 import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.utils.Avalara;
 import com.mps.think.setup.vo.BasicJurisdictionTaxRateVO;
-import com.mps.think.setup.vo.BasicTaxRateVO;
 import com.mps.think.setup.vo.JurisdictionsVO;
 import com.mps.think.setup.vo.TaxCalculationDataVO;
 
@@ -97,10 +96,10 @@ public class JurisdictionsController {
 		return ResponseEntity.ok(basicJurisdictionTaxRateService.updatebasicJurisdictionTaxRate(basicJurisdictionTaxRateVO));
 	}
 	
-	@PostMapping("/findbasicTaxRatebyId")
-	public ResponseEntity<?> findbasicTaxRatebyId(@RequestBody Integer id) {
-		return ResponseEntity.ok(basicTaxRateService.findbasicTaxRatebyId(id));
-	}
+//	@PostMapping("/findbasicTaxRatebyId")
+//	public ResponseEntity<?> findbasicTaxRatebyId(@RequestBody Integer id) {
+//		return ResponseEntity.ok(basicTaxRateService.findbasicTaxRatebyId(id));
+//	}
 	
 	@PostMapping("/taxCalculation")
 	public ResponseEntity<?> taxCalculation(@RequestBody JurisdictionsVO JurisdictionVo) {
@@ -124,8 +123,8 @@ public class JurisdictionsController {
 		return ResponseEntity.ok(taxCalculationData);
 	}
 	
-	@PostMapping("/saveBasicTaxRate")
-	public ResponseEntity<?> saveBasicTaxRate(@RequestBody BasicTaxRateVO basicTaxRate) {
-		return ResponseEntity.ok(basicTaxRateService.saveBasicTaxRate(basicTaxRate));
-	}
+//	@PostMapping("/saveBasicTaxRate")
+//	public ResponseEntity<?> saveBasicTaxRate(@RequestBody BasicTaxRateVO basicTaxRate) {
+//		return ResponseEntity.ok(basicTaxRateService.saveBasicTaxRate(basicTaxRate));
+//	}
 }
