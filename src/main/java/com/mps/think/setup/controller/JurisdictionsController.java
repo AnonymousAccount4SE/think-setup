@@ -19,7 +19,6 @@ import com.mps.think.setup.service.BasicTaxRateService;
 import com.mps.think.setup.service.CommodityCodesService;
 import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.utils.Avalara;
-import com.mps.think.setup.vo.BasicJurisdictionTaxRateVO;
 import com.mps.think.setup.vo.JurisdictionsVO;
 import com.mps.think.setup.vo.TaxCalculationDataVO;
 
@@ -91,10 +90,10 @@ public class JurisdictionsController {
 		return ResponseEntity.ok(basicJurisdictionTaxRateService.findbasicJurisdictionTaxRateByPubId( pubId));
 	}
 	
-	@PostMapping("/updatebasicJurisdictionTaxRate")
-	public ResponseEntity<?> updatebasicJurisdictionTaxRate(@RequestBody BasicJurisdictionTaxRateVO basicJurisdictionTaxRateVO) {
-		return ResponseEntity.ok(basicJurisdictionTaxRateService.updatebasicJurisdictionTaxRate(basicJurisdictionTaxRateVO));
-	}
+//	@PostMapping("/updatebasicJurisdictionTaxRate")
+//	public ResponseEntity<?> updatebasicJurisdictionTaxRate(@RequestBody BasicJurisdictionTaxRateVO basicJurisdictionTaxRateVO) {
+//		return ResponseEntity.ok(basicJurisdictionTaxRateService.updatebasicJurisdictionTaxRate(basicJurisdictionTaxRateVO));
+//	}
 	
 //	@PostMapping("/findbasicTaxRatebyId")
 //	public ResponseEntity<?> findbasicTaxRatebyId(@RequestBody Integer id) {

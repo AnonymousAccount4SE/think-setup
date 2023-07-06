@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.model.BasicJurisdictionTaxRate;
 import com.mps.think.setup.model.Jurisdictions;
 import com.mps.think.setup.repo.BasicJurisdictionTaxRateRepo;
 import com.mps.think.setup.service.BasicJurisdictionTaxRateService;
+import com.mps.think.setup.service.JurisdictionsService;
 import com.mps.think.setup.vo.BasicJurisdictionTaxRateVO;
 @Service
 public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTaxRateService {
@@ -23,7 +23,10 @@ public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTax
 	@Autowired
 	private ObjectMapper mapper;
 	
-
+	@Override
+	public List<BasicJurisdictionTaxRate> findbasicJurisdictionTaxRate() {
+		return basicJurisdictionTaxRateRepo.findAll();
+	}
 
 	@Override
 	public BasicJurisdictionTaxRate findbasicJurisdictionTaxRatebyId(Integer id) {
