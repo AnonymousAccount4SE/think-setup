@@ -57,8 +57,8 @@ public class RenewalDefinition extends BaseEntity {
 	private Integer renewalcard;
 	
 	@OneToOne
-	@JoinColumn(name = "ef_id", referencedColumnName = "id" )
-	private ExtractFilter efid;
+	@JoinColumn(name = "ef_id")
+	private Integer efid;
 	
 	@OneToMany(
 			mappedBy = "renewalDefinition",
@@ -123,11 +123,11 @@ public class RenewalDefinition extends BaseEntity {
 		this.renewalcard = renewalcard;
 	}
 
-	public ExtractFilter getEfid() {
+	public Integer getEfid() {
 		return efid;
 	}
 
-	public void setEfid(ExtractFilter efid) {
+	public void setEfid(Integer efid) {
 		this.efid = efid;
 	}
 
@@ -146,6 +146,8 @@ public class RenewalDefinition extends BaseEntity {
 				+ ", renewalcard=" + renewalcard + ", efid=" + efid + ", renewalDefinitionMapping="
 				+ renewalDefinitionMapping + "]";
 	}
+
+	
 
 
 	
