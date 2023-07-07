@@ -39,7 +39,9 @@ public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTax
 		List<Jurisdictions> jurisdictions = JurisdictionsService.findAllJurisdictionsForPublisher(pubId);
 		for(Jurisdictions data : jurisdictions) {
 			BasicJurisdictionTaxRate basicJurisdiction = basicJurisdictionTaxRateRepo.findByjurisdictionsId(data.getId());
+			if(basicJurisdiction!=null) {
 			basicJurisdictionTaxRate.add(basicJurisdiction);
+			}
 		}
 		return basicJurisdictionTaxRate;
 	}
