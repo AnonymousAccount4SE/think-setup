@@ -49,7 +49,6 @@ public class OrderItemDetails extends BaseEntity {
 	@Column(name = "shipping_weight")
 	private String shippingWeight;
 	
-	@Deprecated
 	@Column(name = "commodity_code")
 	private String commodityCode;
 	
