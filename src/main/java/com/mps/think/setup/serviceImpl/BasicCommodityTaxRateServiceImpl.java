@@ -40,7 +40,9 @@ public class BasicCommodityTaxRateServiceImpl implements BasicCommodityTaxRateSe
 		for(CommodityCodes data:commodityCodes) {
 			data.getId();
 			BasicCommodityTaxRate BasicCommodity = basicCommodityTaxRateRepo.findBycommodityCodesId(data.getId());
+			if(BasicCommodity !=null) {
 			basicCommodityTaxRate.add(BasicCommodity);
+			}
 		}
 		return basicCommodityTaxRate;
 	}
