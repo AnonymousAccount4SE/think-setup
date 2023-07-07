@@ -7,7 +7,7 @@ import com.mps.think.setup.vo.AddProcessRenewalsVO;
 @Service
 public interface AddProcessRenewalsService {
 	
-	public AddProcessRenewals saveAddProcessRenewals (AddProcessRenewalsVO addRenewalProcess);
+	public AddProcessRenewals saveAddProcessRenewals (AddProcessRenewalsVO addRenewalProcess) throws Exception;
 	
 	public List<AddProcessRenewals> getAllAddProcessRenewalsForPublisher(Integer pubId);
 	
