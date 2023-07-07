@@ -25,6 +25,10 @@ public class BasicCommodityTaxRateServiceImpl implements BasicCommodityTaxRateSe
 	private ObjectMapper mapper;
 	
 	@Override
+	public List<BasicCommodityTaxRate> findAllbasicCommodityTaxRate() {
+		return basicCommodityTaxRateRepo.findAll();
+	}
+	@Override
 	public BasicCommodityTaxRate getbasicCommodityTaxRateById(Integer commodityCodesId) {
 		return basicCommodityTaxRateRepo.findBycommodityCodesId(commodityCodesId);
 	}

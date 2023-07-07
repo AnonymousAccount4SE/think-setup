@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,8 +49,14 @@ public class OrderItemDetails extends BaseEntity {
 	@Column(name = "shipping_weight")
 	private String shippingWeight;
 	
+	@Deprecated
 	@Column(name = "commodity_code")
 	private String commodityCode;
+	
+	@OneToOne
+	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
+	private CommodityCodes commodityCodes;
+
 	
 	@Column(name = "grace_quantity")
 	private String graceQuanitity;
@@ -233,6 +241,15 @@ public class OrderItemDetails extends BaseEntity {
 
 	public void setFulfilmentDate(Date fulfilmentDate) {
 		this.fulfilmentDate = fulfilmentDate;
+	}
+
+	
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
 	}
 
 	@Override

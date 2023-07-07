@@ -63,8 +63,8 @@ public class CommodityCodesController {
 		return ResponseEntity.ok(basicCommodityTaxRateService.getbasicCommodityTaxRateByPubId( pubId));
 	}
 	
-	@PostMapping("/updatebasicCommodityTaxRate")
-	public ResponseEntity<?> updatebasicCommodityTaxRate(@RequestBody BasicCommodityTaxRateVO basicCommodityTaxRateVO) {
-		return ResponseEntity.ok(basicCommodityTaxRateService.updatebasicCommodityTaxRate(basicCommodityTaxRateVO));
-	}
+//	@PostMapping("/updatebasicCommodityTaxRate")
+//	public ResponseEntity<?> updatebasicCommodityTaxRate(@RequestBody BasicCommodityTaxRateVO basicCommodityTaxRateVO) {
+//		return ResponseEntity.ok(basicCommodityTaxRateService.updatebasicCommodityTaxRate(basicCommodityTaxRateVO));
+//	}
 }
