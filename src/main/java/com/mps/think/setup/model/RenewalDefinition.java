@@ -59,12 +59,9 @@ public class RenewalDefinition extends BaseEntity {
 	@Column(name = "ef_id")
 	private Integer efid;
 	
-	@OneToMany(
-			mappedBy = "renewalDefinition",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true)
-	@JsonManagedReference
-	private List<RenewalDefinitionMapping> renewalDefinitionMapping;
+	@OneToOne
+	@JoinColumn(name = "order_class_id", referencedColumnName = "oc_id")
+	private OrderClass orderClass;
 
 	public Integer getId() {
 		return id;
@@ -130,24 +127,20 @@ public class RenewalDefinition extends BaseEntity {
 		this.efid = efid;
 	}
 
-	public List<RenewalDefinitionMapping> getRenewalDefinitionMapping() {
-		return renewalDefinitionMapping;
+	public OrderClass getOrderClass() {
+		return orderClass;
 	}
 
-	public void setRenewalDefinitionMapping(List<RenewalDefinitionMapping> renewalDefinitionMapping) {
-		this.renewalDefinitionMapping = renewalDefinitionMapping;
+	public void setOrderClass(OrderClass orderClass) {
+		this.orderClass = orderClass;
 	}
 
 	@Override
 	public String toString() {
 		return "RenewalDefinition [id=" + id + ", renewal=" + renewal + ", description=" + description + ", type="
 				+ type + ", allorderclass=" + allorderclass + ", generatesourcecode=" + generatesourcecode
-				+ ", renewalcard=" + renewalcard + ", efid=" + efid + ", renewalDefinitionMapping="
-				+ renewalDefinitionMapping + "]";
+				+ ", renewalcard=" + renewalcard + ", efid=" + efid + ", orderClass=" + orderClass + "]";
 	}
-
-	
-
 
 	
 }

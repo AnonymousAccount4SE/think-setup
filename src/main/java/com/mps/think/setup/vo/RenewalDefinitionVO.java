@@ -1,8 +1,5 @@
 package com.mps.think.setup.vo;
 
-import java.util.List;
-
-
 
 public class RenewalDefinitionVO {
 	
@@ -17,7 +14,7 @@ public class RenewalDefinitionVO {
 	private Boolean generatesourcecode;
 	private Integer renewalcard;
 	private Integer efid;
-	private List<RenewalDefinitionMappingVO> renewalDefinitionMapping;
+	private OrderClassVO orderClass;
 	public Integer getId() {
 		return id;
 	}
@@ -66,17 +63,13 @@ public class RenewalDefinitionVO {
 	public void setEfid(Integer efid) {
 		this.efid = efid;
 	}
-	public List<RenewalDefinitionMappingVO> getRenewalDefinitionMapping() {
-		return renewalDefinitionMapping;
+	public OrderClassVO getOrderClass() {
+		return orderClass;
 	}
-	public void setRenewalDefinitionMapping(List<RenewalDefinitionMappingVO> renewalDefinitionMapping) {
-		this.renewalDefinitionMapping = renewalDefinitionMapping;
+	public void setOrderClass(OrderClassVO orderClass) {
+		this.orderClass = orderClass;
 	}
-	
-	
 
-	
-	
 	
 
 }
