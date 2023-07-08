@@ -18,6 +18,8 @@ public interface MakePaymentRepo extends JpaRepository<MakePayment, Integer>{
 	List<MakePayment> findByPublisherId(Integer pubId);
 	MakePayment findByOrderOrderId(Integer orderId);
 	
+	Page<MakePayment> findByOrderOrderId(Integer orderId, Pageable page);
+	
 	Page<MakePayment> findByOrderCustomerIdCustomerId(Integer customerId, Pageable page);
 	
 	@Query("SELECT mp FROM MakePayment mp JOIN mp.order o JOIN o.paymentBreakdown p JOIN o.customerId ci WHERE (mp.publisher.id = :pubId OR :pubId IS NULL) AND "
