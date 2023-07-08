@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -108,11 +107,6 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	    }
 	    
 	    return refundAmount;
-	}
-
-	@Override
-	public List<PaymentInformation> getPaymentInfoForOrder(Integer orderId) {
-		return paymentInformationRepo.findByOrderOrderId(orderId);
 	}
 
 //	public double refundAmount(Integer orderId) {

@@ -1,9 +1,5 @@
 package com.mps.think.setup.vo;
 
-import java.util.List;
-
-import com.mps.think.setup.model.ExtractFilter;
-
 
 public class RenewalDefinitionVO {
 	
@@ -17,8 +13,8 @@ public class RenewalDefinitionVO {
 	private Boolean allorderclass;
 	private Boolean generatesourcecode;
 	private Integer renewalcard;
-	private ExtractFilter efid;
-	private List<RenewalDefinitionMappingVO> renewalDefinitionMapping;
+	private Integer efid;
+	private OrderClassVO orderClass;
 	public Integer getId() {
 		return id;
 	}
@@ -61,23 +57,19 @@ public class RenewalDefinitionVO {
 	public void setRenewalcard(Integer renewalcard) {
 		this.renewalcard = renewalcard;
 	}
-	public ExtractFilter getEfid() {
+	public Integer getEfid() {
 		return efid;
 	}
-	public void setEfid(ExtractFilter efid) {
+	public void setEfid(Integer efid) {
 		this.efid = efid;
 	}
-	public List<RenewalDefinitionMappingVO> getRenewalDefinitionMapping() {
-		return renewalDefinitionMapping;
+	public OrderClassVO getOrderClass() {
+		return orderClass;
 	}
-	public void setRenewalDefinitionMapping(List<RenewalDefinitionMappingVO> renewalDefinitionMapping) {
-		this.renewalDefinitionMapping = renewalDefinitionMapping;
+	public void setOrderClass(OrderClassVO orderClass) {
+		this.orderClass = orderClass;
 	}
-	
-	
 
-	
-	
 	
 
 }

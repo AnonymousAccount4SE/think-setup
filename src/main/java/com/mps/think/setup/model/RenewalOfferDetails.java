@@ -24,14 +24,8 @@ public class RenewalOfferDetails extends BaseEntity{
 	private Integer renewalOfferDetailsId;
 	
 	@ManyToOne
-	@JoinColumn(name = "add_renewal", referencedColumnName = "id")
-	private AddRenewals addRenewal;
-	
-	@Column(name = "effort_from")
-	private Integer effortFrom;
-	
-	@Column(name = "effort_to")
-	private Integer effortTo;
+	@JoinColumn(name = "effort_range_id", referencedColumnName = "id")
+	private EffortRange effortRange;
 	
 	@Column(name = "description")
 	private String description;
@@ -76,28 +70,12 @@ public class RenewalOfferDetails extends BaseEntity{
 		this.renewalOfferDetailsId = renewalOfferDetailsId;
 	}
 
-	public AddRenewals getAddRenewal() {
-		return addRenewal;
+	public EffortRange getEffortRange() {
+		return effortRange;
 	}
 
-	public void setAddRenewal(AddRenewals addRenewal) {
-		this.addRenewal = addRenewal;
-	}
-
-	public Integer getEffortFrom() {
-		return effortFrom;
-	}
-
-	public void setEffortFrom(Integer effortFrom) {
-		this.effortFrom = effortFrom;
-	}
-
-	public Integer getEffortTo() {
-		return effortTo;
-	}
-
-	public void setEffortTo(Integer effortTo) {
-		this.effortTo = effortTo;
+	public void setEffortRange(EffortRange effortRange) {
+		this.effortRange = effortRange;
 	}
 
 	public String getDescription() {
@@ -174,15 +152,11 @@ public class RenewalOfferDetails extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "RenewalOfferDetails [renewalOfferDetailsId=" + renewalOfferDetailsId + ", addRenewal=" + addRenewal
-				+ ", effortFrom=" + effortFrom + ", effortTo=" + effortTo + ", description=" + description + ", oclass="
-				+ oclass + ", term=" + term + ", order_code=" + order_code + ", source_code=" + source_code
-				+ ", subscription_def=" + subscription_def + ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class
-				+ ", discount_class=" + discount_class + "]";
+		return "RenewalOfferDetails [renewalOfferDetailsId=" + renewalOfferDetailsId + ", effortRange=" + effortRange
+				+ ", description=" + description + ", oclass=" + oclass + ", term=" + term + ", order_code="
+				+ order_code + ", source_code=" + source_code + ", subscription_def=" + subscription_def
+				+ ", pkg_def_id=" + pkg_def_id + ", rate_class=" + rate_class + ", discount_class=" + discount_class
+				+ "]";
 	}
-
-	
-
-	
 
 }

@@ -2,6 +2,7 @@ package com.mps.think.setup.repo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -209,6 +210,14 @@ public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate"
 			Pageable page);
 	
 	public Long countByCustomerIdPublisherId(Integer publisherId) throws Exception;
+
+
+	@Query(value="SELECT  op.order_id,op.order_type  FROM order_parent op JOIN order_items oi ON op.order_items_id=oi.id JOIN customer c ON op.customer_id=c.id  WHERE c.pub_id =:pubId", nativeQuery = true)
+	public List<String[]> getOrderTypesCountForPublisher(@Param("pubId") Integer pubId);
+
+
+	@Query(value="SELECT op.order_id,op.created_at  FROM order_parent op JOIN customer c ON op.customer_id=c.id  WHERE c.pub_id =:pubId", nativeQuery = true)
+	 	public List<String[]> getOrdersPerMonthForPublisher(Integer pubId);
 
 }
 

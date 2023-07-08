@@ -24,7 +24,7 @@ public class AddProcessRenewalsController {
 	}
 	
 	@PostMapping("/saveAddProcessRenewals")
-	public ResponseEntity<?> saveAddProcessRenewals(@RequestBody AddProcessRenewalsVO id) {
+	public ResponseEntity<?> saveAddProcessRenewals(@RequestBody AddProcessRenewalsVO id) throws Exception {
 		return ResponseEntity.ok(addProcessRenewalsService.saveAddProcessRenewals(id));
 	}
 	

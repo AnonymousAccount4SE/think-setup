@@ -12,6 +12,10 @@ public interface BasicJurisdictionTaxRateService {
 	BasicJurisdictionTaxRate findbasicJurisdictionTaxRatebyId(Integer jurisdictionsId);
 	
 	List<BasicJurisdictionTaxRate> findbasicJurisdictionTaxRateByPubId(Integer pubId);
+
+	public BasicJurisdictionTaxRate updatebasicJurisdictionTaxRate(BasicJurisdictionTaxRateVO basicJurisdictionTaxRateVO);
+
+	List<BasicJurisdictionTaxRate> findbasicJurisdictionTaxRate();
 	
 
 }

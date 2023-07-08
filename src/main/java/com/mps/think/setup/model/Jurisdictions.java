@@ -32,7 +32,7 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "countrycode")
 	private String countrycode;
 	
-	@Column(name = "stateCode")
+	@Column(name = "state_code")
 	private String stateCode;
 
 	@Column(name = "city")
@@ -44,14 +44,19 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "country")
 	private String country;
 	
-	@Column(name = "zipCode")
+	@Column(name = "zip_code")
 	private String zipCode;
 	
 	@Column(name = "streetname")
 	private String streetname;
 	
+	@Deprecated
 	@Column(name = "external_alapplicable")
 	private String externalAlapplicable;
+	
+	@OneToOne
+	@JoinColumn(name = "extnal_tax_vender", referencedColumnName = "id")
+	private ThridPartyConfiguration thridPartyConfiguration;
 	
 	@Column(name = "tax_coumputation")
 	private Boolean taxCoumputation;
@@ -167,13 +172,22 @@ public class Jurisdictions extends BaseEntity{
 		this.commodityCodes = commodityCodes;
 	}
 
+	
+	public ThridPartyConfiguration getThridPartyConfiguration() {
+		return thridPartyConfiguration;
+	}
+
+	public void setThridPartyConfiguration(ThridPartyConfiguration thridPartyConfiguration) {
+		this.thridPartyConfiguration = thridPartyConfiguration;
+	}
+
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
-				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable + ", taxCoumputation="
-				+ taxCoumputation + ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes
-				+ "]";
+				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable
+				+ ", thridPartyConfiguration=" + thridPartyConfiguration + ", taxCoumputation=" + taxCoumputation
+				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
 	}
 
 	

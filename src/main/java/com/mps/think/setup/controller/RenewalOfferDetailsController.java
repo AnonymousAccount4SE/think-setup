@@ -48,10 +48,10 @@ public class RenewalOfferDetailsController {
 		return ResponseEntity.ok(renewalOfferDetailsService.findbyRenewalOfferDetailsId(renewalOfferDetailsId));
 	}
 
-	@PostMapping("/getAllRenewalOfferDetailsByAddRenewalsId")
-	ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@RequestBody Integer id) {
+	@PostMapping("/getAllRenewalOfferDetailsByEffortRangeId")
+	ResponseEntity<?> findAllRenewalOfferDetailsByEffortRangeId(@RequestBody Integer id) {
 		return ResponseEntity
-				.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByAddRenewalsId(id));
+				.ok(renewalOfferDetailsService.findAllRenewalOfferDetailsByEffortRangeId(id));
 	}
 //	@GetMapping("/getAllRenewalOfferDetailsByAddRenewalsId/{id}")
 //	public ResponseEntity<?> findAllRenewalOfferDetailsByAddRenewalsId(@PathVariable("id") Integer id,
