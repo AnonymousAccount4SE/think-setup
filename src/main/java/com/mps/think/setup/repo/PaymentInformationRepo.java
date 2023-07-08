@@ -44,6 +44,4 @@ public interface PaymentInformationRepo extends JpaRepository<PaymentInformation
 			+ "JOIN order_items oi ON op.order_items_id=oi.id  WHERE order_id=:orderId",nativeQuery = true)
 	public Integer totaLiabilityIssue(@Param ("orderId") Integer orderId);
 	
-	List<PaymentInformation> findByOrderOrderId(Integer orderId);
-	
 }

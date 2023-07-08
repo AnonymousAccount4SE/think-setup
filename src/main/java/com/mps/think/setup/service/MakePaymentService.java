@@ -44,7 +44,5 @@ public interface MakePaymentService {
 	public SendInvoice sendInvoiceToCust(MultipartFile file,SendInvoiceVO sendInvoiceVO) throws IOException, AddressException, MessagingException;
 //	public SendInvoice sendInvoiceToCust(MultipartFile file,String emailFrom,String emailTo,String emailCC,String emailSubject, String emailContent,Integer pubId) throws IOException, AddressException, MessagingException;
 	public List<MakePayment> getAllMakePayment();
-	
-	public List<MakePayment> findAllMakePaymentForOrder(Integer orderId);
 
 }
