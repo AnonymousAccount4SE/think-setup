@@ -52,4 +52,12 @@ public class OrderDeliveryOptionsVO {
 		this.autoRenewal = autoRenewal;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderDeliveryOptionsVO [id=" + id + ", deliveryMethod=" + deliveryMethod + ", proformaPayment="
+				+ proformaPayment + ", sendRenewalNotice=" + sendRenewalNotice + ", autoRenewal=" + autoRenewal + "]";
+	}
+
+	
+	
 }
