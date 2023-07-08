@@ -113,7 +113,6 @@ import com.mps.think.setup.vo.CustomerOrderPaymentMakePaymentInfo;
 import com.mps.think.setup.vo.CustomerSolrVO;
 import com.mps.think.setup.vo.MakePaymentSolrVO;
 import com.mps.think.setup.vo.OrderSolrVO;
-import com.mps.think.setup.vo.OrderWithAllDetails;
 import com.mps.think.setup.vo.PaymentInfoSolrVO;
 
 /**
