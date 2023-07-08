@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -108,7 +109,12 @@ import com.mps.think.setup.service.UnitBasedSubscriptionService;
 import com.mps.think.setup.service.ValueForScAttributeService;
 import com.mps.think.setup.service.VolumeGroupService;
 import com.mps.think.setup.utils.ScheduledTask;
-import com.mps.think.setup.vo.CustomerWithOrders;
+import com.mps.think.setup.vo.CustomerOrderPaymentMakePaymentInfo;
+import com.mps.think.setup.vo.CustomerSolrVO;
+import com.mps.think.setup.vo.MakePaymentSolrVO;
+import com.mps.think.setup.vo.OrderSolrVO;
+import com.mps.think.setup.vo.OrderWithAllDetails;
+import com.mps.think.setup.vo.PaymentInfoSolrVO;
 
 /**
  * Created by @rohit.
@@ -388,6 +394,8 @@ public class SolrDocumentController {
 	@Autowired
 	ScheduledTask checkSCTask;
 	
+	@Autowired
+	ObjectMapper mapper;
 
   @Autowired
   private SolrClient solrClient;
@@ -407,7 +415,7 @@ public class SolrDocumentController {
 	@GetMapping("/delete")
 	public String deleteAllDocuments() {
 		try { // delete all documents from solr core
-			documentRepository1.deleteAll();
+			documentRepository.deleteAll();
 			return "documents deleted succesfully!";
 		} catch (Exception e) {
 			return "Failed to delete documents";
@@ -461,19 +469,73 @@ public class SolrDocumentController {
 //			List<String> customersOrder = orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList()
 //					.stream().map(o->o.toString()).collect(Collectors.toList());
 //			customerWithOrders = customerWithOrders.concat(customersOrder.toString());
+			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			
-			CustomerWithOrders cs = new CustomerWithOrders();
-			cs.setCustomer(customerDetails);
-			cs.setCustomerOrders(orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
-			cs.setCustomerPaymentInfo(paymentInformationService.getallPaymentInformationForCustomer(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
-			cs.setCustomerPaymentAccount(MakePaymentService.getallPaymentAccountForCustomer(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).toList());
+			CustomerOrderPaymentMakePaymentInfo cs = new CustomerOrderPaymentMakePaymentInfo();
 			
+			cs.setCustomer(Arrays.asList(mapper.convertValue(customerDetails, CustomerSolrVO.class)));
+			cs.setOrders(orderService.getAllOrderByCustomerId(customerDetails.getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE))
+					.stream().map(o -> mapper.convertValue(o, OrderSolrVO.class)).collect(Collectors.toList()));
+			cs.setPaymentInfos(paymentInformationService.getallPaymentInformationForCustomer(customerDetails.
+					getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).stream().
+					map(p -> mapper.convertValue(p, PaymentInfoSolrVO.class)).collect(Collectors.toList()));
+			cs.setPaymentAccounts(MakePaymentService.getallPaymentAccountForCustomer(customerDetails.
+					getCustomerId(), PageRequest.of(0, Integer.MAX_VALUE)).stream().
+					map(m -> mapper.convertValue(m, MakePaymentSolrVO.class)).collect(Collectors.toList()));
+
 			documentRepository1.save(new Document1("CustomerDetails" + customerDetails.getCustomerId(),
 					"customer" + customerDetails.getCustomerId(), cs.toString(),
 					objectMapper.writeValueAsString(cs)));
 		}
 		return "CustomerDetails saved!!!";
 	}
+	
+	@GetMapping("/saveOrderSolr")
+	public String OrderDocuments() throws JsonProcessingException {
+	    List<Order> o = AddOrderService.getAllOrder();
+	    for (Order order : o) {
+	        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+	        CustomerOrderPaymentMakePaymentInfo allInfo = new CustomerOrderPaymentMakePaymentInfo();
+	        OrderSolrVO orderSolrVO = mapper.convertValue(order, OrderSolrVO.class);
+	        allInfo.setOrders(Arrays.asList(orderSolrVO));
+	        allInfo.setCustomer(Arrays.asList(mapper.convertValue(order.getCustomerId(), CustomerSolrVO.class)));
+	        allInfo.setPaymentInfos(paymentInformationService.getPaymentInformationByOrderId(order.getOrderId(), PageRequest.of(0, Integer.MAX_VALUE))
+	                .stream().map(p -> mapper.convertValue(p, PaymentInfoSolrVO.class)).collect(Collectors.toList()));
+	        allInfo.setPaymentAccounts(MakePaymentService.findAllMakePaymentForOrder(order.getOrderId()).stream()
+	                .map(m -> mapper.convertValue(m, MakePaymentSolrVO.class)).collect(Collectors.toList()));
+
+	        documentRepository2.save(new Document2("Order" + order.getOrderId(), "Order" + order.getOrderId(),
+	                allInfo.toString(), objectMapper.writeValueAsString(allInfo)));
+	    }
+	    return "Order saved!!!";
+	}
+
+	
+
+	@GetMapping("/savePaymentInformationSolr")
+	public String PaymentInformationDocuments() throws JsonProcessingException {
+		List<PaymentInformation> pi = paymentInformationService.getAllPaymentInformation();
+		for (PaymentInformation paymentInformation : pi) {
+			
+			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			
+			CustomerOrderPaymentMakePaymentInfo allInfo = new CustomerOrderPaymentMakePaymentInfo();
+			Order order = paymentInformation.getOrder();
+			allInfo.setPaymentInfos(Arrays.asList(mapper.convertValue(paymentInformation, PaymentInfoSolrVO.class)));
+			allInfo.setPaymentAccounts(MakePaymentService.findAllMakePaymentForOrder(order.getOrderId()).stream().
+					map(m -> mapper.convertValue(m, MakePaymentSolrVO.class)).collect(Collectors.toList()));
+			allInfo.setOrders(Arrays.asList(mapper.convertValue(order, OrderSolrVO.class)));
+			allInfo.setCustomer(Arrays.asList(mapper.convertValue(order.getCustomerId(), CustomerSolrVO.class)));
+			
+			documentRepository3.save(new Document3("PaymentInformation" + paymentInformation.getId(),
+					"PaymentInformation" + paymentInformation.getId(), allInfo.toString(),
+					objectMapper.writeValueAsString(allInfo)));
+		}
+
+		return "PaymentInformation saved!!!";
+	}
+	
 
 	@GetMapping("/saveCustomerAddressesSolr")
 	public String CustomerAddressesDocuments() throws JsonProcessingException {
@@ -811,8 +873,26 @@ public class SolrDocumentController {
 	public String MakePaymentDocuments() throws JsonProcessingException {
 		List<MakePayment> mp = MakePaymentService.getAllMakePayment();
 		for (MakePayment makePayment : mp) {
+			
+			CustomerOrderPaymentMakePaymentInfo allInfo = new CustomerOrderPaymentMakePaymentInfo();
+			
+//			allInfo.setPaymentInfos(Arrays.asList(mapper.convertValue(paymentInformation, PaymentInfoSolrVO.class)));
+//			allInfo.setPaymentAccounts(MakePaymentService.findAllMakePaymentForOrder(order.getOrderId()).stream().
+//					map(m -> mapper.convertValue(m, MakePaymentSolrVO.class)).collect(Collectors.toList()));
+//			allInfo.setOrders(Arrays.asList(mapper.convertValue(order, OrderSolrVO.class)));
+//			allInfo.setCustomer(Arrays.asList(mapper.convertValue(order.getCustomerId(), CustomerSolrVO.class)));
+			
+			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			
+			Order order = makePayment.getOrder();
+			allInfo.setPaymentAccounts(Arrays.asList(mapper.convertValue(makePayment, MakePaymentSolrVO.class)));
+			allInfo.setOrders(Arrays.asList(mapper.convertValue(order, OrderSolrVO.class)));
+			allInfo.setCustomer(Arrays.asList(mapper.convertValue(order.getCustomerId(), CustomerSolrVO.class)));
+			allInfo.setPaymentInfos(paymentInformationService.getPaymentInformationByOrderId(order.getOrderId(), PageRequest.of(0, Integer.MAX_VALUE))
+					.stream().map(p -> mapper.convertValue(p, PaymentInfoSolrVO.class)).collect(Collectors.toList()));
+			
 			documentRepository.save(new Document("MakePayment" + makePayment.getId(), "MakePayment" + makePayment.getId(),
-							makePayment.toString(), objectMapper.writeValueAsString(makePayment)));
+					allInfo.toString(), objectMapper.writeValueAsString(allInfo)));
 		}
 
 		return "MakePayment saved!!!";
@@ -829,15 +909,7 @@ public class SolrDocumentController {
 		return "Nth saved!!!";
 	}
 
-	@GetMapping("/saveOrderSolr")
-	public String OrderDocuments() throws JsonProcessingException {
-		List<Order> o = AddOrderService.getAllOrder();
-		for (Order order : o) {
-			documentRepository2.save(new Document2("Order" + order.getOrderId(), "Order" + order.getOrderId(),
-					order.toString(), objectMapper.writeValueAsString(order)));
-		}
-		return "Order saved!!!";
-	}
+	
 
 	@GetMapping("/saveOrderAddressMappingSolr")
 	public String OrderAddressMappingDocuments() throws JsonProcessingException {
@@ -1063,17 +1135,6 @@ public class SolrDocumentController {
 		return "PaymentBreakdown saved!!!";
 	}
 
-	@GetMapping("/savePaymentInformationSolr")
-	public String PaymentInformationDocuments() throws JsonProcessingException {
-		List<PaymentInformation> pi = paymentInformationService.getAllPaymentInformation();
-		for (PaymentInformation paymentInformation : pi) {
-			documentRepository3.save(new Document3("PaymentInformation" + paymentInformation.getId(),
-					"PaymentInformation" + paymentInformation.getId(), paymentInformation.toString(),
-					objectMapper.writeValueAsString(paymentInformation)));
-		}
-
-		return "PaymentInformation saved!!!";
-	}
 
 	@GetMapping("/savePaymentLinkStatusSolr")
 	public String PaymentLinkStatusDocuments() throws JsonProcessingException {
