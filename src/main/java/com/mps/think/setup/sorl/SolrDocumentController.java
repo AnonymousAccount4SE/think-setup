@@ -108,7 +108,11 @@ import com.mps.think.setup.service.UnitBasedSubscriptionService;
 import com.mps.think.setup.service.ValueForScAttributeService;
 import com.mps.think.setup.service.VolumeGroupService;
 import com.mps.think.setup.utils.ScheduledTask;
-import com.mps.think.setup.vo.CustomerWithOrders;
+import com.mps.think.setup.vo.CustomerOrderPaymentMakePaymentInfo;
+import com.mps.think.setup.vo.CustomerSolrVO;
+import com.mps.think.setup.vo.MakePaymentSolrVO;
+import com.mps.think.setup.vo.OrderSolrVO;
+import com.mps.think.setup.vo.PaymentInfoSolrVO;
 
 /**
  * Created by @rohit.
