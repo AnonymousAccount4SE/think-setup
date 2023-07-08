@@ -144,17 +144,5 @@ public class OrderClassVO {
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
 	}
-
-	@Override
-	public String toString() {
-		return "OrderClassVO [ocId=" + ocId + ", orderClassName=" + orderClassName + ", ocType=" + ocType
-				+ ", disallowInstallBilling=" + disallowInstallBilling + ", doCancelCreditOnCancel="
-				+ doCancelCreditOnCancel + ", lowSampleStock=" + lowSampleStock + ", lowStock=" + lowStock
-				+ ", newGroupMemberAction=" + newGroupMemberAction + ", postConversionReconcile="
-				+ postConversionReconcile + ", sampleIssueSelection=" + sampleIssueSelection + ", trackInven="
-				+ trackInven + ", upsellOn=" + upsellOn + ", pubId=" + pubId + "]";
-	}
-	
-	
 	
 }

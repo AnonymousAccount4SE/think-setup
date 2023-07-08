@@ -97,14 +97,4 @@ public class OrderKeyInformationVO {
 		this.orderCode = orderCode;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderKeyInformationVO [id=" + id + ", orderCode=" + orderCode + ", sourceCode=" + sourceCode
-				+ ", orderCategory=" + orderCategory + ", orderStatus=" + orderStatus + ", orderDate=" + orderDate
-				+ ", purchaseOrder=" + purchaseOrder + ", agent=" + agent + ", agentReferenceNum=" + agentReferenceNum
-				+ "]";
-	}
-	
-	
-
 }

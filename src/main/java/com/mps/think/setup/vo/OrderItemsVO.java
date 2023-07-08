@@ -198,17 +198,4 @@ public class OrderItemsVO {
 	public void setnIssuesLeft(Integer nIssuesLeft) {
 		this.nIssuesLeft = nIssuesLeft;
 	}
-
-	@Override
-	public String toString() {
-		return "OrderItemsVO [id=" + id + ", issue=" + issue + ", enumeration=" + enumeration + ", copiesPerIssue="
-				+ copiesPerIssue + ", subsProdPkgDef=" + subsProdPkgDef + ", productDef=" + productDef
-				+ ", effectiveDate=" + effectiveDate + ", numOfIssues=" + numOfIssues + ", validFrom=" + validFrom
-				+ ", validTo=" + validTo + ", liabilityIssue=" + liabilityIssue + ", extendedIssue=" + extendedIssue
-				+ ", term=" + term + ", extendedByDays=" + extendedByDays + ", quantityOrdered=" + quantityOrdered
-				+ ", style=" + style + ", color=" + color + ", generatedIssue=" + generatedIssue + ", nIssuesLeft="
-				+ nIssuesLeft + "]";
-	}
-	
-	
 }
