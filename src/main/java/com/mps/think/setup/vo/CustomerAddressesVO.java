@@ -23,12 +23,5 @@ public class CustomerAddressesVO {
 	public void setAddress(Addresses address) {
 		this.address = address;
 	}
-
-	@Override
-	public String toString() {
-		return "CustomerAddressesVO [id=" + id + ", address=" + address + "]";
-	}
-	
-	
 	
 }
