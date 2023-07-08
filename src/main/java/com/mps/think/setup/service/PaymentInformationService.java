@@ -28,7 +28,5 @@ public interface PaymentInformationService {
 	public double dueAmount(Integer orderId);
 	
 	public double refundAmount(Integer orderId);
-	
-	public List<PaymentInformation> getPaymentInfoForOrder(Integer orderId);
 
 }
