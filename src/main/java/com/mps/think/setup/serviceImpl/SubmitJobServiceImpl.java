@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.CustomerDetails;
+import com.mps.think.setup.model.EditTrail;
 import com.mps.think.setup.model.IssueGeneration;
 import com.mps.think.setup.model.JobPubOc;
 import com.mps.think.setup.model.Order;
@@ -109,8 +110,42 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 		return null;
 	}
 
+//	public List<List<String>> labelProcess(Integer jobId) {
+//		Integer issueLeft,liabilityIssue,nIssue,count=0,totalCount=0;
+//		SubmitJob sjob = submitJobRepo.findById(jobId).get();
+//		for(Integer issue:submitJobRepo.getListOfIssue(sjob.getId())) {
+//		IssueGeneration tempIssue = issueGenerationRepo.findById(issue).get();
+//		tempIssue.setClosed(sjob.getCreatedAt());
+//		issueGenerationRepo.saveAndFlush(tempIssue);
+//		}
+//		Integer pubId=sjob.getPubId().getId();
+//		for(JobPubOc jobPub:sjob.getJobPubOc()) {
+//		List<Order> tempOrderList=addOrderRepo.getOrderList(pubId,jobPub.getIssueDate());
+//		for(Order tempOrder:tempOrderList) {
+//			if(tempOrder.getOrderStatus().equals("order placed")) {
+//				tempOrder.setOrderStatus("active/shipping");
+//			}
+//			issueLeft= tempOrder.getOrderItemsAndTerms().getnIssuesLeft();
+//			liabilityIssue=tempOrder.getOrderItemsAndTerms().getLiabilityIssue();
+////			nIssue=tempOrder.getOrderItemsAndTerms().getNumOfIssues()+tempOrder.getOrderItemsAndTerms().getExtendedIssue();
+//			OrderItems oItem=tempOrder.getOrderItemsAndTerms();
+//			oItem.setnIssuesLeft(issueLeft+1);
+//			oItem.setLiabilityIssue(liabilityIssue-1);
+//			tempOrder.setOrderItemsAndTerms(oItem);
+//			addOrderRepo.saveAndFlush(tempOrder);
+//			count++;
+//		}
+//		totalCount=totalCount+count;
+//		}
+//		sjob.setNupdatedrecords(totalCount);
+//		submitJobRepo.saveAndFlush(sjob);
+//		return null;
+//		
+//	}
+	
 	public List<List<String>> labelProcess(Integer jobId) {
 		Integer issueLeft,liabilityIssue,nIssue,count=0,totalCount=0;
+		EditTrail editTrail= new EditTrail();
 		SubmitJob sjob = submitJobRepo.findById(jobId).get();
 		for(Integer issue:submitJobRepo.getListOfIssue(sjob.getId())) {
 		IssueGeneration tempIssue = issueGenerationRepo.findById(issue).get();

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mps.think.setup.model.EditTrail;
 import com.mps.think.setup.model.MultiLineItemOrder;
 import com.mps.think.setup.model.Order;
 import com.mps.think.setup.model.OrderAddressMapping;
@@ -47,6 +48,9 @@ public class AddOrderServiceImpl implements AddOrderService {
 	private ObjectMapper mapper;
 	
 	@Autowired
+	EditTrailServiceImpl editTrail;
+	
+	@Autowired
 	private MultiLineItemOrderRepo multiLineOrderRepo;
 	
 	@Autowired
@@ -69,6 +73,9 @@ public class AddOrderServiceImpl implements AddOrderService {
 			orderSibling.setParentOrderId(mainParent.getParentOrderId());
 			multiLineOrderRepo.saveAndFlush(orderSibling);
 		}
+		editTrail.saveEditTrailForAddOrder(createdOrder);
+		
+		
 		return createdOrder;
 	}
 
