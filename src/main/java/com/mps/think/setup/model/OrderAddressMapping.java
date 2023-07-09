@@ -106,4 +106,12 @@ public class OrderAddressMapping extends BaseEntity {
 		this.order = order;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderAddressMapping [id=" + id + ", address=" + address + ", shippingAddress=" + shippingAddress
+				+ ", billingAddress=" + billingAddress + ", alternateAddress=" + alternateAddress + ", renewalAddress="
+				+ renewalAddress + "]";
+	}
+
+
 }

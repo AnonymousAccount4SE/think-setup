@@ -43,6 +43,8 @@ public interface AddOrderService {
 	
 	void setAllOrdersOfCustomerInActive(Integer customerId);
 	
+	void setAllOrdersStatusbasedOnIssues(Integer orderId);
+	
 //	List<Order> getOrdersById(Integer id);
 	
 	Page<Order> getOrdersById(Integer id, Pageable page);
@@ -61,4 +63,11 @@ public interface AddOrderService {
 	List<Order> updateOrderPaymentStatus(LinkedHashMap<String, String> OrderPaymentStatus);
 	
 	List<Order> updateOrderStatus(LinkedHashMap<String, String> OrderStatus);
+
+	public void makeAddressOrderNonDeliverable(Integer addressId);
+	
+	Page<Order> getAllNonRenewedOrders(Integer pubId, Integer customerId, Integer orderId, Pageable page);
+	
+	Page<Order> getAllOrderForPayAnotherOrder(Integer pubId, Integer customerId, Integer orderId, Pageable page);
+	
 }

@@ -31,6 +31,10 @@ public class AddProcess extends BaseEntity  {
 	private Integer id;
 	
 	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
+	private Publisher pubId;
+	
+	@OneToOne
 	@JoinColumn(name = "process_type_id", referencedColumnName = "id" )
 	private ProcessType processtypeid;
 	
@@ -138,6 +142,14 @@ public class AddProcess extends BaseEntity  {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 
 	public ProcessType getProcesstypeid() {
@@ -372,6 +384,22 @@ public class AddProcess extends BaseEntity  {
 		this.picklist = picklist;
 	}
 
+	@Override
+	public String toString() {
+		return "AddProcess [id=" + id + ", pubId=" + pubId + ", processtypeid=" + processtypeid + ", mainpurpose="
+				+ mainpurpose + ", description=" + description + ", status=" + status + ", active=" + active
+				+ ", repeating=" + repeating + ", inserts=" + inserts + ", split=" + split + ", autorenewal="
+				+ autorenewal + ", holdormanualselect=" + holdormanualselect + ", backlabel=" + backlabel + ", billing="
+				+ billing + ", productfullfillment=" + productfullfillment + ", refund=" + refund + ", renewal="
+				+ renewal + ", extractfilter=" + extractfilter + ", defaultjobpriority=" + defaultjobpriority
+				+ ", outputsortid=" + outputsortid + ", defaultjobqueueid=" + defaultjobqueueid + ", sqlscript="
+				+ sqlscript + ", addprocessmapping=" + addprocessmapping + ", length=" + length + ", gps=" + gps
+				+ ", keyline=" + keyline + ", gracenewexpires=" + gracenewexpires + ", savecurrentgraces="
+				+ savecurrentgraces + ", bundlethreshold=" + bundlethreshold + ", prioritysort=" + prioritysort
+				+ ", picklist=" + picklist + "]";
+	}
+
+	
 	
 
 	

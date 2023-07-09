@@ -1,8 +1,8 @@
 package com.mps.think.setup.vo;
 
-import javax.persistence.Column;
-
+import com.mps.think.setup.model.CommodityCodes;
 import com.mps.think.setup.model.Publisher;
+import com.mps.think.setup.model.ThridPartyConfiguration;
 
 public class JurisdictionsVO {
 	
@@ -11,13 +11,16 @@ public class JurisdictionsVO {
 	private String countrycode;
 	private String stateCode;
 	private String city;
+	private String county;
 	private String country;
 	private String zipCode;
-	private Boolean avatarapplicable;
-    private Boolean addressValidation;
-	private Boolean taxCoumputation;
-	private CommodityCodesVO commodityCodesVo;
-	
+	private String streetname;
+	private String externalAlapplicable ;
+	private ThridPartyConfiguration thridPartyConfiguration;
+	private String addressValidation;
+	private Boolean taxCoumputation = true;
+	private CommodityCodes commodityCodes;
+	//private Integer basicCommodityTaxId;
 	public Integer getId() {
 		return id;
 	}
@@ -29,6 +32,12 @@ public class JurisdictionsVO {
 	}
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
+	}
+	public String getCountrycode() {
+		return countrycode;
+	}
+	public void setCountrycode(String countrycode) {
+		this.countrycode = countrycode;
 	}
 	public String getStateCode() {
 		return stateCode;
@@ -42,6 +51,12 @@ public class JurisdictionsVO {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public String getCounty() {
+		return county;
+	}
+	public void setCounty(String county) {
+		this.county = county;
+	}
 	public String getCountry() {
 		return country;
 	}
@@ -54,29 +69,22 @@ public class JurisdictionsVO {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public Boolean getAvatarapplicable() {
-		return avatarapplicable;
+	public String getStreetname() {
+		return streetname;
 	}
-	public void setAvatarapplicable(Boolean avatarapplicable) {
-		this.avatarapplicable = avatarapplicable;
+	public void setStreetname(String streetname) {
+		this.streetname = streetname;
 	}
-	public String getCountrycode() {
-		return countrycode;
+	public String getExternalAlapplicable() {
+		return externalAlapplicable;
 	}
-	public void setCountrycode(String countrycode) {
-		this.countrycode = countrycode;
+	public void setExternalAlapplicable(String externalAlapplicable) {
+		this.externalAlapplicable = externalAlapplicable;
 	}
-	public CommodityCodesVO getCommodityCodesVo() {
-		return commodityCodesVo;
-	}
-	public void setCommodityCodesVo(CommodityCodesVO commodityCodesVo) {
-		this.commodityCodesVo = commodityCodesVo;
-	}
-	
-	public Boolean getAddressValidation() {
+	public String getAddressValidation() {
 		return addressValidation;
 	}
-	public void setAddressValidation(Boolean addressValidation) {
+	public void setAddressValidation(String addressValidation) {
 		this.addressValidation = addressValidation;
 	}
 	public Boolean getTaxCoumputation() {
@@ -85,13 +93,29 @@ public class JurisdictionsVO {
 	public void setTaxCoumputation(Boolean taxCoumputation) {
 		this.taxCoumputation = taxCoumputation;
 	}
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
+	
+	
+	public ThridPartyConfiguration getThridPartyConfiguration() {
+		return thridPartyConfiguration;
+	}
+	public void setThridPartyConfiguration(ThridPartyConfiguration thridPartyConfiguration) {
+		this.thridPartyConfiguration = thridPartyConfiguration;
+	}
 	@Override
 	public String toString() {
 		return "JurisdictionsVO [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
-				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
-				+ avatarapplicable + ", addressValidation=" + addressValidation + ", taxCoumputation=" + taxCoumputation
-				+ ", commodityCodesVo=" + commodityCodesVo + "]";
+				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
+				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable
+				+ ", thridPartyConfiguration=" + thridPartyConfiguration + ", addressValidation=" + addressValidation
+				+ ", taxCoumputation=" + taxCoumputation + ", commodityCodes=" + commodityCodes + "]";
 	}
 	
-
+	
+	
 }

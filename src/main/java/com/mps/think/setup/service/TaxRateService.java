@@ -16,5 +16,7 @@ public interface TaxRateService {
 	public TaxRate findbyTaxRate(Integer taxId);
 	
 	public TaxRate deleteByTaxRateId(Integer taxId);
+
+	public List<TaxRate> findAllTaxTypeForPublisher(Integer pubId);
 	
 }

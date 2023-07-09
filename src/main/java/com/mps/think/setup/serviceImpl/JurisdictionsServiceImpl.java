@@ -3,11 +3,9 @@ package com.mps.think.setup.serviceImpl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.Jurisdictions;
 import com.mps.think.setup.repo.JurisdictionsRepo;
@@ -31,15 +29,26 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 		}
 		return jList;
 	}
-
+	
 	@Override
 	public Jurisdictions saveJurisdictions(JurisdictionsVO jurisdictions) {
-		return jurisdictionsRepo.saveAndFlush(mapper.convertValue(jurisdictions, Jurisdictions.class));
+	    Jurisdictions newJurisdictions = mapper.convertValue(jurisdictions, Jurisdictions.class);
+	    if (jurisdictions.getCommodityCodes() == null || jurisdictions.getCommodityCodes().getId() == 0) {
+	        newJurisdictions.setCommodityCodes(null);
+	    }
+	    newJurisdictions = jurisdictionsRepo.saveAndFlush(newJurisdictions);
+	    return newJurisdictions;
 	}
+
 
 	@Override
 	public Jurisdictions updateJurisdictions(JurisdictionsVO jurisdictions) {
-		return jurisdictionsRepo.saveAndFlush(mapper.convertValue(jurisdictions, Jurisdictions.class));
+	    Jurisdictions newJurisdictions = mapper.convertValue(jurisdictions, Jurisdictions.class);
+	    if (jurisdictions.getCommodityCodes() == null || jurisdictions.getCommodityCodes().getId() == 0) {
+	        newJurisdictions.setCommodityCodes(null);
+	    }
+	    newJurisdictions = jurisdictionsRepo.saveAndFlush(newJurisdictions);
+	    return newJurisdictions;
 	}
 
 	@Override
@@ -78,9 +87,8 @@ public class JurisdictionsServiceImpl implements JurisdictionsService {
 	@Override
 	public Jurisdictions findbyJurisdictionStateTaxContry(JurisdictionsVO jurisdictionsVo) {
 
-		Jurisdictions jurisdictions = jurisdictionsRepo.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountry(),
+		Jurisdictions jurisdictions = jurisdictionsRepo.findbyJurisdictionStateTaxContry(jurisdictionsVo.getCountrycode(),
 				jurisdictionsVo.getStateCode(), jurisdictionsVo.getZipCode());
-
 		return jurisdictions;
 	}
 

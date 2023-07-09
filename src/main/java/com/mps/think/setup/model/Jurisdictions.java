@@ -32,26 +32,37 @@ public class Jurisdictions extends BaseEntity{
 	@Column(name = "countrycode")
 	private String countrycode;
 	
-	@Column(name = "stateCode")
+	@Column(name = "state_code")
 	private String stateCode;
 
 	@Column(name = "city")
 	private String city;
 	
+	@Column(name = "county")
+	private String county;
+	
 	@Column(name = "country")
 	private String country;
 	
-	@Column(name = "zipCode")
+	@Column(name = "zip_code")
 	private String zipCode;
 	
-	@Column(name = "avatarapplicable")
-	private Boolean avatarapplicable;
+	@Column(name = "streetname")
+	private String streetname;
+	
+	@Deprecated
+	@Column(name = "external_alapplicable")
+	private String externalAlapplicable;
+	
+	@OneToOne
+	@JoinColumn(name = "extnal_tax_vender", referencedColumnName = "id")
+	private ThridPartyConfiguration thridPartyConfiguration;
 	
 	@Column(name = "tax_coumputation")
 	private Boolean taxCoumputation;
 	
 	@Column(name = "address_validation")
-	private Boolean addressValidation;
+	private String addressValidation;
 	
 	@OneToOne
 	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
@@ -73,6 +84,14 @@ public class Jurisdictions extends BaseEntity{
 		this.pubId = pubId;
 	}
 
+	public String getCountrycode() {
+		return countrycode;
+	}
+
+	public void setCountrycode(String countrycode) {
+		this.countrycode = countrycode;
+	}
+
 	public String getStateCode() {
 		return stateCode;
 	}
@@ -87,6 +106,14 @@ public class Jurisdictions extends BaseEntity{
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
 	}
 
 	public String getCountry() {
@@ -105,20 +132,20 @@ public class Jurisdictions extends BaseEntity{
 		this.zipCode = zipCode;
 	}
 
-	public Boolean getAvatarapplicable() {
-		return avatarapplicable;
+	public String getStreetname() {
+		return streetname;
 	}
 
-	public void setAvatarapplicable(Boolean avatarapplicable) {
-		this.avatarapplicable = avatarapplicable;
+	public void setStreetname(String streetname) {
+		this.streetname = streetname;
 	}
 
-	public String getCountrycode() {
-		return countrycode;
+	public String getExternalAlapplicable() {
+		return externalAlapplicable;
 	}
 
-	public void setCountrycode(String countrycode) {
-		this.countrycode = countrycode;
+	public void setExternalAlapplicable(String externalAlapplicable) {
+		this.externalAlapplicable = externalAlapplicable;
 	}
 
 	public Boolean getTaxCoumputation() {
@@ -129,11 +156,11 @@ public class Jurisdictions extends BaseEntity{
 		this.taxCoumputation = taxCoumputation;
 	}
 
-	public Boolean getAddressValidation() {
+	public String getAddressValidation() {
 		return addressValidation;
 	}
 
-	public void setAddressValidation(Boolean addressValidation) {
+	public void setAddressValidation(String addressValidation) {
 		this.addressValidation = addressValidation;
 	}
 
@@ -145,12 +172,25 @@ public class Jurisdictions extends BaseEntity{
 		this.commodityCodes = commodityCodes;
 	}
 
+	
+	public ThridPartyConfiguration getThridPartyConfiguration() {
+		return thridPartyConfiguration;
+	}
+
+	public void setThridPartyConfiguration(ThridPartyConfiguration thridPartyConfiguration) {
+		this.thridPartyConfiguration = thridPartyConfiguration;
+	}
+
 	@Override
 	public String toString() {
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
-				+ stateCode + ", city=" + city + ", country=" + country + ", zipCode=" + zipCode + ", avatarapplicable="
-				+ avatarapplicable + ", taxCoumputation=" + taxCoumputation + ", addressValidation=" + addressValidation
-				+ ", commodityCodes=" + commodityCodes + "]";
+				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
+				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable
+				+ ", thridPartyConfiguration=" + thridPartyConfiguration + ", taxCoumputation=" + taxCoumputation
+				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
 	}
 
+	
+
+	
 }

@@ -17,6 +17,12 @@ public class AppConstants {
 	
 	public static final String customerSearchSeperator = "AND";
 	
+	
+	public static final String getRenewalOrderEmailBody() {
+		String body = "Hello dear {name},\n Your order {orderId} will get expire in {noOfDays} days. Please Renew it.";
+		return body;
+	}
+	
 	public enum codeGen {
 
 		None("None"), Renewals("Renewals"), Promotions("Promotions"),MediaType("MediaType"),Year("Year");

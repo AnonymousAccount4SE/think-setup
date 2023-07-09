@@ -36,8 +36,9 @@ public class TaxRate extends BaseEntity {
 	@Column(name = "taxid_prefix")
 	private String taxidPrefix;
 
-	@Column(name = "tax_handling")
-	private String taxHandling;
+	@OneToOne
+	@JoinColumn(name = "tax_handling_code", referencedColumnName = "tax_handling_id")
+	private TaxHandling taxHandling;
 	
 	@Column(name = "taxid_format")
 	private String taxid_format;
@@ -53,6 +54,15 @@ public class TaxRate extends BaseEntity {
 	
 	@Column(name = "no_tax_message2")
 	private String noTaxMessage2;
+	
+	@Column(name = "print_location")
+	private boolean  printLocation;
+	
+	@Column(name = "force_tax")
+	private boolean forceTax;
+	
+	@Column(name = "registered_for_tax")
+	private boolean registeredForTax;
 	
 	@OneToOne
 	@JoinColumn(name = "commodity_codes_id", referencedColumnName = "id")
@@ -98,11 +108,11 @@ public class TaxRate extends BaseEntity {
 		this.taxidPrefix = taxidPrefix;
 	}
 
-	public String getTaxHandling() {
+	public TaxHandling getTaxHandling() {
 		return taxHandling;
 	}
 
-	public void setTaxHandling(String taxHandling) {
+	public void setTaxHandling(TaxHandling taxHandling) {
 		this.taxHandling = taxHandling;
 	}
 
@@ -154,12 +164,39 @@ public class TaxRate extends BaseEntity {
 		this.commodityCodes = commodityCodes;
 	}
 
+	public boolean isPrintLocation() {
+		return printLocation;
+	}
+
+	public void setPrintLocation(boolean printLocation) {
+		this.printLocation = printLocation;
+	}
+
+	public boolean isForceTax() {
+		return forceTax;
+	}
+
+	public void setForceTax(boolean forceTax) {
+		this.forceTax = forceTax;
+	}
+
+	public boolean isRegisteredForTax() {
+		return registeredForTax;
+	}
+
+	public void setRegisteredForTax(boolean registeredForTax) {
+		this.registeredForTax = registeredForTax;
+	}
+
 	@Override
 	public String toString() {
 		return "TaxRate [taxRateId=" + taxRateId + ", pubId=" + pubId + ", country=" + country + ", state=" + state
 				+ ", taxidPrefix=" + taxidPrefix + ", taxHandling=" + taxHandling + ", taxid_format=" + taxid_format
 				+ ", taxId=" + taxId + ", altStateCode=" + altStateCode + ", noTaxMessage1=" + noTaxMessage1
-				+ ", noTaxMessage2=" + noTaxMessage2 + ", commodityCodes=" + commodityCodes + "]";
+				+ ", noTaxMessage2=" + noTaxMessage2 + ", printLocation=" + printLocation + ", forceTax=" + forceTax
+				+ ", registeredForTax=" + registeredForTax + ", commodityCodes=" + commodityCodes + "]";
 	}
+
+	
 
 }

@@ -21,5 +21,12 @@ public class OrderAuxiliaryInformationVO {
 	public void setOrderAuxJSON(String orderAuxJSON) {
 		this.orderAuxJSON = orderAuxJSON;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderAuxiliaryInformationVO [id=" + id + ", orderAuxJSON=" + orderAuxJSON + "]";
+	}
+	
+	
 	
 }

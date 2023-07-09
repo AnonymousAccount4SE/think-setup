@@ -131,16 +131,16 @@ List<String> getAllCustomerAgentForSearch(@Param("pubId") Integer pubId, @Param(
 			@Param("status") EnumModelVO.CustomerStatus status, Pageable page);
 
 	
-//	name, fax, email, department, countrycode, company, mobile, agnecycode, agencyname, status, ordercodes
-	@Query("SELECT c FROM CustomerDetails c WHERE (:pubId IS NULL OR c.publisher.id = :pubId) AND (:name IS NULL OR CONCAT(c.fname, ' ', c.lname) "
+//	name, fax, email, department, countrycode, company, mobile, agnecycode, agencyname, status, ordercodes, category
+	@Query("SELECT c FROM CustomerDetails c JOIN c.customerCategory cc WHERE (:pubId IS NULL OR c.publisher.id = :pubId) AND (:name IS NULL OR CONCAT(c.fname, ' ', c.lname) "
 			+ "LIKE '%'||:name||'%') AND (:fax IS NULL OR c.fax LIKE '%'||:fax||'%') AND (:email IS NULL OR CONCAT(c.email, ' ', c.secondaryEmail) LIKE '%'||:email||'%') "
 			+ "AND (:department IS NULL OR c.department LIKE '%'||:department||'%') AND (:countrycode IS NULL OR c.countryCode LIKE '%'||:countrycode||'%') "
 			+ "AND (:company IS NULL OR c.company LIKE '%'||:company||'%') AND (:mobile IS NULL OR CONCAT(c.mobileNumber, ' ', c.primaryPhone, ' ', c.secondaryPhone) "
 			+ "LIKE '%'||:mobile||'%') AND (:agencycode IS NULL OR c.agencycode LIKE '%'||:agencycode||'%') AND (:agencyname IS NULL OR c.agencyname LIKE '%'||:agencyname||'%') "
-			+ "AND (:status IS NULL OR c.customerStatus LIKE '%'||:status||'%') GROUP BY c.customerId")
+			+ "AND (:status IS NULL OR c.customerStatus LIKE '%'||:status||'%') AND (:customerCategory IS NULL OR cc.custCategory LIKE '%'||:customerCategory||'%') GROUP BY c.customerId")
 	Page<CustomerDetails> searchCustomerByKeys(@Param("pubId") Integer pubId, @Param("name") String name, @Param("fax") String fax, @Param("email") String email, 
 			@Param("department") String department, @Param("countrycode") String countrycode, @Param("company") String company,
-			@Param("mobile") String mobile, @Param("agencycode") String agencycode, @Param("agencyname") String agencyname, @Param("status") String status, Pageable page);
+			@Param("mobile") String mobile, @Param("agencycode") String agencycode, @Param("agencyname") String agencyname, @Param("status") String status, @Param("customerCategory") String customerCategory, Pageable page);
 
 	
 	@Query(value = "SELECT COUNT(*)\n"
@@ -161,4 +161,7 @@ List<String> getAllCustomerAgentForSearch(@Param("pubId") Integer pubId, @Param(
 			+ "WHERE address_category LIKE '%Shipping%'\n"
 			+ "AND c.pub_id = :pubId AND DATE(:userDate) BETWEEN oi.valid_from AND oi.valid_to AND order_status='order placed' AND op.order_type='Subscription' GROUP BY c.id",nativeQuery = true)
 	public List<CustomerDetails> customerShipingAddress(@Param("pubId") Integer pubId,@Param("userDate") Date userDate);
+	
+	public Long countByPublisherId(Integer publisherId) throws Exception;
+	
 }

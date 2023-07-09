@@ -37,6 +37,9 @@ public class CancelReasons extends BaseEntity {
 	@Column(name = "description")
 	private String description;
 	
+	@Column(name = "canceltype")
+	private String canceltype;
+	
 	@Column(name = "order_Classes")
 	private String ordClasses;
 
@@ -80,11 +83,22 @@ public class CancelReasons extends BaseEntity {
 		this.ordClasses = ordClasses;
 	}
 
+	public String getCanceltype() {
+		return canceltype;
+	}
+
+	public void setCanceltype(String canceltype) {
+		this.canceltype = canceltype;
+	}
+
 	@Override
 	public String toString() {
 		return "CancelReasons [cancelReasonsId=" + cancelReasonsId + ", pubId=" + pubId + ", cancelReason="
-				+ cancelReason + ", description=" + description + ", ordClasses=" + ordClasses + "]";
+				+ cancelReason + ", description=" + description + ", canceltype=" + canceltype + ", ordClasses="
+				+ ordClasses + "]";
 	}
+
+
 
 	
 

@@ -15,10 +15,10 @@ import com.mps.think.setup.model.PaymentInformation;
 @Repository
 public interface PaymentInformationRepo extends JpaRepository<PaymentInformation, Integer> {
 
-	List<PaymentInformation> findByPublisherId(Integer pub);
-	List<PaymentInformation> findByOrderCustomerIdCustomerId(Integer customerId);
+	Page<PaymentInformation> findByPublisherId(Integer pub, Pageable page);
+	Page<PaymentInformation> findByOrderCustomerIdCustomerId(Integer customerId, Pageable page);
 
-	List<PaymentInformation> findByOrderOrderId(Integer orderId);
+	Page<PaymentInformation> findByOrderOrderId(Integer orderId, Pageable page);
 	
 	@Query("SELECT pinfo FROM PaymentInformation pinfo WHERE (pinfo.publisher.id = :pubId OR :pubId IS NULL) AND (DATE(pinfo.createdAt) >= :paymentStart AND DATE(pinfo.createdAt) <= :paymentEnd)")
 	Page<PaymentInformation> findAllDailyCashReport(
@@ -43,4 +43,7 @@ public interface PaymentInformationRepo extends JpaRepository<PaymentInformation
 	@Query(value = "SELECT liability_issue FROM order_parent op JOIN payment_breakdown pb ON op.payment_breakdown_id=pb.id\r\n"
 			+ "JOIN order_items oi ON op.order_items_id=oi.id  WHERE order_id=:orderId",nativeQuery = true)
 	public Integer totaLiabilityIssue(@Param ("orderId") Integer orderId);
+	
+	List<PaymentInformation> findByOrderOrderId(Integer orderId);
+	
 }

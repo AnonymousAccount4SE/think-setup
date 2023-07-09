@@ -27,6 +27,28 @@ public class DateBasedOrderVO {
 	private CustomerDetailsVO otherAddressCustomer;
 	
 	private MultiLineItemOrderVO parentOrder;
+	
+	private Integer oldOrderId;
+	
+	private CommodityCodesVO commodityCodes;
+	
+//	private Boolean isRenewed;
+
+	public Integer getOldOrderId() {
+		return oldOrderId;
+	}
+
+	public void setOldOrderId(Integer oldOrderId) {
+		this.oldOrderId = oldOrderId;
+	}
+
+	public CommodityCodesVO getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodesVO commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
 
 	public Integer getOrderId() {
 		return orderId;
@@ -115,7 +137,6 @@ public class DateBasedOrderVO {
 	public void setParentOrder(MultiLineItemOrderVO parentOrder) {
 		this.parentOrder = parentOrder;
 	}
-	
-	
+
 	
 }

@@ -44,11 +44,15 @@ public class TaxRateServiceImpl implements TaxRateService {
 	@Override
 	public TaxRateVO updateTaxRate(TaxRateVO taxRateVO) {
 		TaxRate taxRate = new TaxRate();
+		taxRate.setTaxRateId(taxRateVO.getTaxRateId());
 		taxRate.setState(taxRateVO.getState());
 		taxRate.setCountry(taxRateVO.getCountry());
 		taxRate.setTaxidPrefix(taxRateVO.getTaxidPrefix());
 		taxRate.setTaxHandling(taxRateVO.getTaxHandling());
 		taxRate.setTaxid_format(taxRateVO.getTaxid_format());
+		taxRate.setRegisteredForTax(taxRateVO.isRegisteredForTax());
+		taxRate.setForceTax(taxRateVO.isForceTax());
+		taxRate.setPrintLocation(taxRateVO.isPrintLocation());
 		taxRate.setTaxId(taxRateVO.getTaxId());
 		taxRate.setAltStateCode(taxRateVO.getAltStateCode());
 		taxRate.setNoTaxMessage1(taxRateVO.getNoTaxMessage1());
@@ -70,6 +74,11 @@ public class TaxRateServiceImpl implements TaxRateService {
 		TaxRate delete = taxRateRepo.findByTaxId(taxId);
 		taxRateRepo.delete(delete);
 		return delete;
+	}
+
+	@Override
+	public List<TaxRate> findAllTaxTypeForPublisher(Integer pubId) {
+		return taxRateRepo.findAllTaxTypeBypubId(pubId);
 	}
 
 

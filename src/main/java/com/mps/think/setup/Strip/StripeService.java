@@ -1,5 +1,6 @@
 package com.mps.think.setup.Strip;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 import com.stripe.model.Refund;
+import com.stripe.model.Token;
 
 @Service
 public class StripeService {
@@ -44,5 +46,20 @@ public class StripeService {
 		params.put("charge", chargeId);
 		Refund refund = Refund.create(params);
 		return refund;
+	}
+	
+	public Token token(String cardNumber,String expMonthYear,Integer cvc)throws AuthenticationException, InvalidRequestException,
+	APIConnectionException, CardException, APIException { 
+		String[] str=expMonthYear.split("@");
+	Map<String, Object> card = new HashMap<>();
+	card.put("number", cardNumber);
+	card.put("exp_month", Integer.parseInt(str[0]));
+	card.put("exp_year",Integer.parseInt(str[1]));
+	card.put("cvc", cvc);
+	Map<String, Object> params = new HashMap<>();
+	params.put("card", card);
+
+	Token tokens = Token.create(params);
+	return tokens;
 	}
 }

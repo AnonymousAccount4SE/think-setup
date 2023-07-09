@@ -20,5 +20,7 @@ public interface CommodityCodesService {
 	List<CommodityCodes> findAllCommodityCodesForPublisher(Integer pubId);
 
 	public List<CommodityCodes> getAllCommodityCodes();
+	
+	public CommodityCodes getCommodityCodesdetails(String commodityCode);
 
 }

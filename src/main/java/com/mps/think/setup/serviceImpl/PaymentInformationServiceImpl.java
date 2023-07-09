@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,8 +26,8 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	ObjectMapper mapper;
 
 	@Override
-	public List<PaymentInformation> getallPaymentInformationForPublisher(Integer pub) {
-		return paymentInformationRepo.findByPublisherId(pub);
+	public Page<PaymentInformation> getallPaymentInformationForPublisher(Integer pub, Pageable page) {
+		return paymentInformationRepo.findByPublisherId(pub, page);
 	}
 
 	@Override
@@ -42,18 +45,18 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	}
 
 	@Override
-	public Optional<PaymentInformation> findByPaymentInfoId(Integer id) {
-		return paymentInformationRepo.findById(id);
+	public PaymentInformation findByPaymentInfoId(Integer id) {
+		return paymentInformationRepo.findById(id).get();
 	}
 
 	@Override
-	public List<PaymentInformation> getallPaymentInformationForCustomer(Integer customerId) {
-		return paymentInformationRepo.findByOrderCustomerIdCustomerId(customerId);
+	public Page<PaymentInformation> getallPaymentInformationForCustomer(Integer customerId, Pageable page) {
+		return paymentInformationRepo.findByOrderCustomerIdCustomerId(customerId, page);
 	}
 
 	@Override
-	public List<PaymentInformation> getPaymentInformationByOrderId(Integer orderId) {
-		return paymentInformationRepo.findByOrderOrderId(orderId);
+	public Page<PaymentInformation> getPaymentInformationByOrderId(Integer orderId, Pageable page) {
+		return paymentInformationRepo.findByOrderOrderId(orderId, page);
 	}
 
 	@Override
@@ -105,6 +108,11 @@ public class PaymentInformationServiceImpl implements PaymentInformationService 
 	    }
 	    
 	    return refundAmount;
+	}
+
+	@Override
+	public List<PaymentInformation> getPaymentInfoForOrder(Integer orderId) {
+		return paymentInformationRepo.findByOrderOrderId(orderId);
 	}
 
 //	public double refundAmount(Integer orderId) {

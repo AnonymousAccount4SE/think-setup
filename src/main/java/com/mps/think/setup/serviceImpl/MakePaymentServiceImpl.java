@@ -10,6 +10,9 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
@@ -163,6 +166,18 @@ public class MakePaymentServiceImpl implements MakePaymentService {
 			template.sendMailWithAttachment(temp.getEmailFrom(), temp.getEmailTo(),
 					temp.getEmailCC(), temp.getEmailSubject(), temp.getEmailContent(), file.getOriginalFilename(),file.getBytes());
 		return temp;
+	}
+
+
+	@Override
+	public Page<MakePayment> getallPaymentAccountForCustomer(Integer customerId, Pageable page) {
+		return makePaymentRepo.findByOrderCustomerIdCustomerId(customerId, page);
+	}
+
+
+	@Override
+	public List<MakePayment> findAllMakePaymentForOrder(Integer orderId) {
+		return makePaymentRepo.findByOrderOrderId(orderId, PageRequest.of(0, Integer.MAX_VALUE)).toList();
 	}
 
 }

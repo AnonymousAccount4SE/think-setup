@@ -59,5 +59,12 @@ public class CustomerAddresses extends BaseEntity {
 		this.customer = customer;
 	}
 
+	@Override
+	public String toString() {
+		return "CustomerAddresses [id=" + id + ", address=" + address + "]";
+	}
+
+	
+	
 
 }

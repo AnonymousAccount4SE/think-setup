@@ -492,6 +492,8 @@ public class CustomerDetails  extends BaseEntity{
 				+ ", customerStatus=" + customerStatus + ", currCustomerStatusCause=" + currCustomerStatusCause
 				+ ", dateUntilDeactivation=" + dateUntilDeactivation + "]";
 	}
+
+	
 	
 	
 	

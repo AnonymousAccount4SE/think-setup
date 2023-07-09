@@ -62,6 +62,11 @@ public class AddProcessServiceImpl implements AddProcessService {
 		return output;
 	}
 
+	@Override
+	public List<AddProcess> findAllAddProcessForPublisher(Integer pubId) {
+		return addProcessRepo.findByPubIdId(pubId);
+	}
+
 	
 	
 //	@Override

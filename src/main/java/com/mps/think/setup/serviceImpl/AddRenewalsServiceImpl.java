@@ -1,15 +1,12 @@
 package com.mps.think.setup.serviceImpl;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.AddRenewals;
-import com.mps.think.setup.model.RenewalOfferDetails;
+import com.mps.think.setup.model.EffortRange;
 import com.mps.think.setup.repo.AddRenewalsRepo;
-import com.mps.think.setup.repo.RenewalOfferDetailsRepo;
+import com.mps.think.setup.repo.EffortRangeRepo;
 import com.mps.think.setup.service.AddRenewalsService;
 import com.mps.think.setup.vo.AddRenewalsVO;
 
@@ -20,7 +17,7 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	private AddRenewalsRepo addRenewalsRepo;
 	
 	@Autowired
-	private RenewalOfferDetailsRepo renewalOfferDetailsRepo;
+	private EffortRangeRepo effortRangeRepo;
 	
 	@Autowired
 	private ObjectMapper mapper;
@@ -43,8 +40,9 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 	@Override
 	public AddRenewals deleteAddRenewals(Integer id) {
 		AddRenewals delete = findbyAddRenewalsId(id);
-		List<RenewalOfferDetails> rod = renewalOfferDetailsRepo.findByAddRenewalId(id);
-		rod.forEach(r -> renewalOfferDetailsRepo.delete(r));
+//		int totalRenewals = renewalOfferDetailsRepo.findByAddRenewalId(id);
+		List<EffortRange> rod = effortRangeRepo.findByAddRenewalId(id);
+		rod.forEach(r -> effortRangeRepo.delete(r));
 		addRenewalsRepo.delete(delete);
 		return delete;
 	}
@@ -54,9 +52,17 @@ public class AddRenewalsServiceImpl implements AddRenewalsService{
 		return addRenewalsRepo.findById(id).get();
 	}
 
+//	@Override
+//	public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page) {
+//		// TODO Auto-generated method stub
+//		return addRenewalsRepo.findByPubIdId(pubId, page);
+//	}
+
 	@Override
 	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId) {
 		return addRenewalsRepo.findByPubIdId(pubId);
 	}
+	
+	
 
 }

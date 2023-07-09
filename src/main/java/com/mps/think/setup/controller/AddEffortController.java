@@ -76,5 +76,10 @@ public class AddEffortController {
 		}
 		return ResponseEntity.ok(list);
 	}
+	
+	@PostMapping("/getAllAddEffortForRenewalId")
+	public ResponseEntity<?> findAllAddEffortForRenewalId(@RequestBody Integer id) {
+		return ResponseEntity.ok(addEffortService.findAllAddEffortForRenewalId(id));
+	}
 
 }

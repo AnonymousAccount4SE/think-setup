@@ -2,6 +2,8 @@ package com.mps.think.setup.vo;
 
 import java.util.Date;
 
+import com.mps.think.setup.model.CommodityCodes;
+
 public class OrderItemDetailsVO {
 
 	private Integer id;
@@ -21,6 +23,8 @@ public class OrderItemDetailsVO {
 	private String shippingWeight;
 
 	private String commodityCode;
+
+	private CommodityCodes commodityCodes;
 
 	private String graceQuanitity;
 
@@ -196,5 +200,12 @@ public class OrderItemDetailsVO {
 		this.fulfilmentDate = fulfilmentDate;
 	}
 
-	
+	public CommodityCodes getCommodityCodes() {
+		return commodityCodes;
+	}
+
+	public void setCommodityCodes(CommodityCodes commodityCodes) {
+		this.commodityCodes = commodityCodes;
+	}
+
 }

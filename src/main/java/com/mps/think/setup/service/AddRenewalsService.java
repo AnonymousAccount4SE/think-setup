@@ -2,6 +2,8 @@ package com.mps.think.setup.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.mps.think.setup.model.AddRenewals;
 import com.mps.think.setup.vo.AddRenewalsVO;
@@ -21,5 +23,7 @@ public interface AddRenewalsService {
 	public AddRenewals findbyAddRenewalsId(Integer id);
 	
 	public List<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId);
+	
+	//public Page<AddRenewals> getAllAddRenewalsForPublisher(Integer pubId, Pageable page);
 
 }
