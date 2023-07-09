@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.EditTrail;
+import com.mps.think.setup.model.EditTrailDelta;
 import com.mps.think.setup.model.Order;
 import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.model.SubmitJob;
 import com.mps.think.setup.repo.EditTrailRepo;
 import com.mps.think.setup.service.EditTrailService;
-import com.mps.think.setup.vo.EditTrailVO;
 import com.mps.think.setup.vo.OrderVO;
 @Service
 public class EditTrailServiceImpl implements EditTrailService{
@@ -58,8 +58,8 @@ public class EditTrailServiceImpl implements EditTrailService{
 	}
 
 	@Override
-	public EditTrail updateEditTrail(EditTrailVO editTrailVO) {
-		return editTrailRepo.saveAndFlush(mapper.convertValue(editTrailVO, EditTrail.class));
+	public EditTrail updateEditTrail(EditTrail editTrail) {
+		return editTrailRepo.saveAndFlush(mapper.convertValue(editTrail, EditTrail.class));
 	}
 
 	@Override
@@ -76,32 +76,37 @@ public class EditTrailServiceImpl implements EditTrailService{
 		return editTrailRepo.findByCustomerCustomerId(custId);
 	}
 
-//	@Override
-//	public EditTrail saveEditTrailForSubmitJob(SubmitJob submitJob) {
-//		
-//		EditTrail etrail=new EditTrail();
-//		etrail.setBaseAmount(submitJob.geto order.getPaymentBreakdown().getBaseAmount());
-//		etrail.setLocalAmount(null);
-//		etrail.setCreationDate(order.getCreatedAt());
-//		etrail.setCurrency(order.getPaymentBreakdown().getCurrency());
-//		CustomerDetails customer=new CustomerDetails();
-//		customer.setCustomerId(order.getCustomerId().getCustomerId());
-//		etrail.setCustomer(customer);
-//		etrail.setDemographicSeq(null);
-//		etrail.setDocumentReferenceId(null);
-//		etrail.setEdited(false);
-//		etrail.setJobId(null);
-//		etrail.setOrderId(order.getOrderId());
-//		etrail.setPaymentSeq(null);
-//		etrail.setSubscripId(null);
-//		etrail.setTableEnum("order_parent");
-//		etrail.setxActionName("add_order");
-//		Publisher pub=new Publisher();
-//		pub.setId(order.getCustomerId().getPublisher().getId());
-//		etrail.setPublisher(pub);
-//		EditTrail temp = editTrailRepo.saveAndFlush(etrail);
-//		etrail.setEditTrailId(temp.getEditTrailId());
-//		return etrail;
-//	}
+	@Override
+	public EditTrail saveEditTrailForSubmitJob(Order order,Integer jobId,String tableName,String before,String after,String columnName) {
+		
+		EditTrail etrail=new EditTrail();
+		etrail.setBaseAmount(order.getPaymentBreakdown().getBaseAmount());
+		etrail.setLocalAmount(null);
+		etrail.setCreationDate(order.getCreatedAt());
+		etrail.setCurrency(order.getPaymentBreakdown().getCurrency());
+		CustomerDetails customer=new CustomerDetails();
+		customer.setCustomerId(order.getCustomerId().getCustomerId());
+		etrail.setCustomer(customer);
+		etrail.setDemographicSeq(null);
+		etrail.setDocumentReferenceId(null);
+		etrail.setEdited(true);
+		etrail.setJobId(jobId);
+		etrail.setOrderId(order.getOrderId());
+		etrail.setPaymentSeq(null);
+		etrail.setSubscripId(null);
+		etrail.setTableEnum(tableName);
+		etrail.setxActionName("update_order");
+		Publisher pub=new Publisher();
+		pub.setId(order.getCustomerId().getPublisher().getId());
+		etrail.setPublisher(pub);
+		EditTrailDelta delta=new EditTrailDelta();
+		delta.setBeforeChange(before);
+		delta.setAfterChange(after);
+		delta.setColumn_name(columnName);
+		etrail.setEditTrailDelta(delta);
+		EditTrail temp = editTrailRepo.saveAndFlush(etrail);
+		etrail.setEditTrailId(temp.getEditTrailId());
+		return etrail;
+	}
 
 }

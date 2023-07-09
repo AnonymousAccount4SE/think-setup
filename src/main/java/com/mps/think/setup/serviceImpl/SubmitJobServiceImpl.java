@@ -42,6 +42,9 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	
 	@Autowired
 	private CustomerDetailsRepo customerDetailsRepo;
+	
+	@Autowired
+	EditTrailServiceImpl editTrail;
 
 	@Override
 	public List<SubmitJob> getAllSubmitJob() {
@@ -145,7 +148,7 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 	
 	public List<List<String>> labelProcess(Integer jobId) {
 		Integer issueLeft,liabilityIssue,nIssue,count=0,totalCount=0;
-		EditTrail editTrail= new EditTrail();
+//		EditTrail editTrail= new EditTrail();
 		SubmitJob sjob = submitJobRepo.findById(jobId).get();
 		for(Integer issue:submitJobRepo.getListOfIssue(sjob.getId())) {
 		IssueGeneration tempIssue = issueGenerationRepo.findById(issue).get();
@@ -158,6 +161,7 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 		for(Order tempOrder:tempOrderList) {
 			if(tempOrder.getOrderStatus().equals("order placed")) {
 				tempOrder.setOrderStatus("active/shipping");
+				editTrail.saveEditTrailForSubmitJob(tempOrder, jobId,"order_parent" ,"order placed", "active/shipping", "order_status");
 			}
 			issueLeft= tempOrder.getOrderItemsAndTerms().getnIssuesLeft();
 			liabilityIssue=tempOrder.getOrderItemsAndTerms().getLiabilityIssue();
@@ -166,6 +170,7 @@ public class SubmitJobServiceImpl implements SubmitJobService {
 			oItem.setnIssuesLeft(issueLeft+1);
 			oItem.setLiabilityIssue(liabilityIssue-1);
 			tempOrder.setOrderItemsAndTerms(oItem);
+			editTrail.saveEditTrailForSubmitJob(tempOrder, jobId, "order_items",String.valueOf(liabilityIssue), String.valueOf(tempOrder.getOrderItemsAndTerms().getLiabilityIssue()), "liability_issue");
 			addOrderRepo.saveAndFlush(tempOrder);
 			count++;
 		}

@@ -17,9 +17,9 @@ public class EditTrailDelta {
 	@Column(name = "id")
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "edit_trail_id",referencedColumnName = "edit_trail_id")
-	private EditTrail editTrail;
+//	@ManyToOne
+//	@JoinColumn(name = "edit_trail_id",referencedColumnName = "edit_trail_id")
+//	private EditTrail editTrail;
 	
 	@Column(name = "column_name")
 	private String column_name;
@@ -36,14 +36,6 @@ public class EditTrailDelta {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public EditTrail getEditTrail() {
-		return editTrail;
-	}
-
-	public void setEditTrail(EditTrail editTrail) {
-		this.editTrail = editTrail;
 	}
 
 	public String getColumn_name() {
@@ -72,10 +64,8 @@ public class EditTrailDelta {
 
 	@Override
 	public String toString() {
-		return "EditTrailDelta [id=" + id + ", editTrail=" + editTrail + ", column_name=" + column_name
-				+ ", beforeChange=" + beforeChange + ", afterChange=" + afterChange + "]";
+		return "EditTrailDelta [id=" + id + ", column_name=" + column_name + ", beforeChange=" + beforeChange
+				+ ", afterChange=" + afterChange + "]";
 	}
-	
-	
 
 }
