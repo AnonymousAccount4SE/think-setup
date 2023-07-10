@@ -29,6 +29,8 @@ public class TaxRateVO {
 	
 	private String noTaxMessage2;
 	
+	private String taxRateTypeData;
+	
 	private boolean  printLocation;
 	
 	private boolean forceTax;
@@ -51,6 +53,14 @@ public class TaxRateVO {
 
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
+	}
+
+	public String getTaxRateTypeData() {
+		return taxRateTypeData;
+	}
+
+	public void setTaxRateTypeData(String taxRateTypeData) {
+		this.taxRateTypeData = taxRateTypeData;
 	}
 
 	public String getCountry() {
@@ -162,8 +172,9 @@ public class TaxRateVO {
 		return "TaxRateVO [taxRateId=" + taxRateId + ", pubId=" + pubId + ", country=" + country + ", state=" + state
 				+ ", taxidPrefix=" + taxidPrefix + ", taxHandling=" + taxHandling + ", taxid_format=" + taxid_format
 				+ ", taxId=" + taxId + ", altStateCode=" + altStateCode + ", noTaxMessage1=" + noTaxMessage1
-				+ ", noTaxMessage2=" + noTaxMessage2 + ", printLocation=" + printLocation + ", forceTax=" + forceTax
-				+ ", registeredForTax=" + registeredForTax + ", commodityCodes=" + commodityCodes + "]";
+				+ ", noTaxMessage2=" + noTaxMessage2 + ", taxRateTypeData=" + taxRateTypeData + ", printLocation="
+				+ printLocation + ", forceTax=" + forceTax + ", registeredForTax=" + registeredForTax
+				+ ", commodityCodes=" + commodityCodes + "]";
 	}
 
 }

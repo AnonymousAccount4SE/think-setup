@@ -26,6 +26,7 @@ public class TaxRateServiceImpl implements TaxRateService {
 		TaxRate taxRate = new TaxRate();
 		taxRate.setState(taxRateVO.getState());
 		taxRate.setCountry(taxRateVO.getCountry());
+		taxRate.setTaxRateTypeData(taxRateVO.getTaxRateTypeData());
 		taxRate.setTaxidPrefix(taxRateVO.getTaxidPrefix());
 		taxRate.setTaxHandling(taxRateVO.getTaxHandling());
 		taxRate.setTaxid_format(taxRateVO.getTaxid_format());
@@ -46,6 +47,7 @@ public class TaxRateServiceImpl implements TaxRateService {
 		TaxRate taxRate = new TaxRate();
 		taxRate.setTaxRateId(taxRateVO.getTaxRateId());
 		taxRate.setState(taxRateVO.getState());
+		taxRate.setTaxRateTypeData(taxRateVO.getTaxRateTypeData());
 		taxRate.setCountry(taxRateVO.getCountry());
 		taxRate.setTaxidPrefix(taxRateVO.getTaxidPrefix());
 		taxRate.setTaxHandling(taxRateVO.getTaxHandling());

@@ -52,6 +52,9 @@ public class TaxRate extends BaseEntity {
 	@Column(name = "no_tax_message1")
 	private String noTaxMessage1;
 	
+	@Column(name = "tax_rate_type_data")
+	private String taxRateTypeData;
+	
 	@Column(name = "no_tax_message2")
 	private String noTaxMessage2;
 	
@@ -82,6 +85,14 @@ public class TaxRate extends BaseEntity {
 
 	public void setPubId(Publisher pubId) {
 		this.pubId = pubId;
+	}
+
+	public String getTaxRateTypeData() {
+		return taxRateTypeData;
+	}
+
+	public void setTaxRateTypeData(String taxRateTypeData) {
+		this.taxRateTypeData = taxRateTypeData;
 	}
 
 	public String getCountry() {
