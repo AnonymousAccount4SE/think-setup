@@ -22,8 +22,8 @@ public class EditTrailController {
 		return ResponseEntity.ok(editTrailService.getAllEditTrailByCustId(id));
 	}
 
-	@GetMapping("/getHistoryById")
-	public ResponseEntity<?> getHistoryById(@RequestParam Integer pubId, @RequestParam(required = false) Integer customerId,
+	@GetMapping("/getCustomerHistory")
+	public ResponseEntity<?> getCustomerHistory(@RequestParam Integer pubId, @RequestParam(required = false) Integer customerId,
 			@RequestParam(required = false) Integer orderId, @RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "5") Integer size) {
 		return ResponseEntity.ok(editTrailService.findEditTrialById(pubId, customerId, orderId, PageRequest.of(page, size)));
