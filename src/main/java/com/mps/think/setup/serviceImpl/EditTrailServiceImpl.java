@@ -1,11 +1,16 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.CustomerDetails;
 import com.mps.think.setup.model.EditTrail;
@@ -15,6 +20,7 @@ import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.model.SubmitJob;
 import com.mps.think.setup.repo.EditTrailRepo;
 import com.mps.think.setup.service.EditTrailService;
+import com.mps.think.setup.vo.EditTrailView;
 import com.mps.think.setup.vo.OrderVO;
 @Service
 public class EditTrailServiceImpl implements EditTrailService{
@@ -107,6 +113,22 @@ public class EditTrailServiceImpl implements EditTrailService{
 		EditTrail temp = editTrailRepo.saveAndFlush(etrail);
 		etrail.setEditTrailId(temp.getEditTrailId());
 		return etrail;
+	}
+
+	@Override
+	public Page<EditTrailView> findEditTrialById(Integer pubId, Integer customerId, Integer orderId, Pageable page) {
+//		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//		Page<EditTrail> editTrialsPage = editTrailRepo.findEditTrial(pubId, customerId, orderId, page);
+//		List<EditTrailView> output = new ArrayList<>();
+//		editTrialsPage.toList().forEach(e -> {
+//			EditTrailView ev = new EditTrailView();
+//			output.add(mapper.convertValue(e, EditTrailView.class));	
+//		});
+//		
+//		return new PageImpl<>(output, editTrialsPage.getPageable(), editTrialsPage.getTotalElements());
+		
+		return editTrailRepo.findEditTrial(pubId, customerId, orderId, page);
+		
 	}
 
 }
