@@ -349,8 +349,7 @@ public class ReportsServiceImpl implements ReportsService {
  				obj.setLastName(c.getLastName());
 				obj.setFirstAddress(c.getFirstAddress());
  				obj.setSecondAddress(c.getSecondAddress());
- 				obj.setAddressCategory(c.getAddressCategory());
-				obj.setDepartment(c.getDepartment());
+ 				obj.setDepartment(c.getDepartment());
  				obj.setCity(c.getCity());
  				obj.setCountry(c.getCountry());
 				obj.setZipCode(c.getZipCode());
@@ -358,6 +357,8 @@ public class ReportsServiceImpl implements ReportsService {
  				obj.setEndDate(c.getEndDate());
  				obj.setOrderDate(c.getOrderDate());
 				obj.setNetAmount(c.getNetAmount());
+				obj.setQuantityOrdered(c.getQuantityOrdered());
+				obj.setPaymentType(c.getPaymentType());
 				
 				salesByRegionVO.add(obj);
 		 });

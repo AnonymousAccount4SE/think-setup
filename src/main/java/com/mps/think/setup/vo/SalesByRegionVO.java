@@ -28,8 +28,7 @@ public class SalesByRegionVO {
 	private String firstAddress;
 	private String secondAddress;
 	
-	private String addressCategory;
-	private String department;
+ 	private String department;
 	private String city;
 	private String country;
 	
@@ -39,6 +38,9 @@ public class SalesByRegionVO {
 	private String orderDate;
 	
 	private String netAmount;
+	private String quantityOrdered;
+	private String paymentType;
+
 
 	public String getOrderCategory() {
 		return orderCategory;
@@ -138,13 +140,7 @@ public class SalesByRegionVO {
 		this.secondAddress = secondAddress;
 	}
 
-	public String getAddressCategory() {
-		return addressCategory;
-	}
-
-	public void setAddressCategory(String addressCategory) {
-		this.addressCategory = addressCategory;
-	}
+ 
 
 	public String getDepartment() {
 		return department;
@@ -209,6 +205,24 @@ public class SalesByRegionVO {
 	public void setNetAmount(String netAmount) {
 		this.netAmount = netAmount;
 	}
+
+	public String getQuantityOrdered() {
+		return quantityOrdered;
+	}
+
+	public void setQuantityOrdered(String quantityOrdered) {
+		this.quantityOrdered = quantityOrdered;
+	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+ 
 
 	
 	
