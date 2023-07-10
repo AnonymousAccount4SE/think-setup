@@ -91,8 +91,8 @@ public class SourceCode extends BaseEntity {
 	
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "renewal_card_id", referencedColumnName = "renewal_card_id")
-	private RenewalCard renewalCard;
+	@JoinColumn(name = "renewal_card_id", referencedColumnName = "id")
+	private AddRenewals renewalCard;
 
 	@ManyToOne
 	@JoinColumn(name = "shipping_price_list_id", referencedColumnName = "id")
@@ -217,6 +217,14 @@ public class SourceCode extends BaseEntity {
 		this.sourceCodeType = sourceCodeType;
 	}
 
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+
 	public SourceFormat getSourceCodeFormat() {
 		return sourceCodeFormat;
 	}
@@ -241,11 +249,11 @@ public class SourceCode extends BaseEntity {
 		this.discountCardKeyInfo = discountCardKeyInfo;
 	}
 
-	public RenewalCard getRenewalCard() {
+	public AddRenewals getRenewalCard() {
 		return renewalCard;
 	}
 
-	public void setRenewalCard(RenewalCard renewalCard) {
+	public void setRenewalCard(AddRenewals renewalCard) {
 		this.renewalCard = renewalCard;
 	}
 
@@ -265,14 +273,6 @@ public class SourceCode extends BaseEntity {
 		this.sourceCodeAndValuesMappings = sourceCodeAndValuesMappings;
 	}
 
-	public String getOrderType() {
-		return orderType;
-	}
-
-	public void setOrderType(String orderType) {
-		this.orderType = orderType;
-	}
-
 	@Override
 	public String toString() {
 		return "SourceCode [sourceCodeId=" + sourceCodeId + ", ocId=" + ocId + ", description=" + description
@@ -284,6 +284,8 @@ public class SourceCode extends BaseEntity {
 				+ ", renewalCard=" + renewalCard + ", shippingPriceList=" + shippingPriceList
 				+ ", sourceCodeAndValuesMappings=" + sourceCodeAndValuesMappings + "]";
 	}
+
+	
 
 	
 	

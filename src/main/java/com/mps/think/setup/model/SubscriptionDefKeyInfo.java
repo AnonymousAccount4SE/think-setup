@@ -1,8 +1,6 @@
 package com.mps.think.setup.model;
 
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,11 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -77,8 +73,9 @@ public class SubscriptionDefKeyInfo extends BaseEntity {
 //	@JoinColumn(name = "renewal_card_id")
 //	private RenewalCard renewalCard;
 	
-	@Column(name = "renewal_card")
-	private String renewalCard;
+	@ManyToOne
+	@JoinColumn(name = "renewal_card", referencedColumnName = "id")
+	private AddRenewals renewalCard;
 	
 	@Column(name = "order_code_type")
 	private String orderCodeType;
@@ -172,11 +169,11 @@ public class SubscriptionDefKeyInfo extends BaseEntity {
 		this.rateCard = rateCard;
 	}
 
-	public String getRenewalCard() {
+	public AddRenewals getRenewalCard() {
 		return renewalCard;
 	}
 
-	public void setRenewalCard(String renewalCard) {
+	public void setRenewalCard(AddRenewals renewalCard) {
 		this.renewalCard = renewalCard;
 	}
 
@@ -220,6 +217,8 @@ public class SubscriptionDefKeyInfo extends BaseEntity {
 				+ ", rateCard=" + rateCard + ", renewalCard=" + renewalCard + ", orderCodeType=" + orderCodeType
 				+ ", media=" + media + ", edition=" + edition + ", category=" + category + "]";
 	}
+
+	
 
 	
 

@@ -3,11 +3,11 @@ package com.mps.think.setup.vo;
 
 import java.util.List;
 
+import com.mps.think.setup.model.AddRenewals;
 import com.mps.think.setup.model.OrderClass;
 import com.mps.think.setup.model.OrderCodesSuper;
 import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.model.RateCards;
-import com.mps.think.setup.model.RenewalCard;
 import com.mps.think.setup.model.Terms;
 import com.mps.think.setup.vo.EnumModelVO.SubDefStatus;
 
@@ -35,7 +35,7 @@ public class SubscriptionDefKeyInfoVO {
 
 //	private RenewalCard renewalCard;
 	
-	private String renewalCard;
+	private AddRenewals renewalCard;
 
 	private String orderCodeType;
 
@@ -125,11 +125,11 @@ public class SubscriptionDefKeyInfoVO {
 		this.rateCard = rateCard;
 	}
 
-	public String getRenewalCard() {
+	public AddRenewals getRenewalCard() {
 		return renewalCard;
 	}
 
-	public void setRenewalCard(String renewalCard) {
+	public void setRenewalCard(AddRenewals renewalCard) {
 		this.renewalCard = renewalCard;
 	}
 
@@ -164,6 +164,17 @@ public class SubscriptionDefKeyInfoVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+	@Override
+	public String toString() {
+		return "SubscriptionDefKeyInfoVO [id=" + id + ", publisher=" + publisher + ", orderClass=" + orderClass
+				+ ", subscriptionDefCode=" + subscriptionDefCode + ", description=" + description + ", orderCode="
+				+ orderCode + ", terms=" + terms + ", subDefStatus=" + subDefStatus + ", subDefId=" + subDefId
+				+ ", rateCard=" + rateCard + ", renewalCard=" + renewalCard + ", orderCodeType=" + orderCodeType
+				+ ", media=" + media + ", edition=" + edition + ", category=" + category + "]";
+	}
+
+	
 
 	
 }

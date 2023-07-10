@@ -41,7 +41,7 @@ public class SourceCodeServiceImpl implements SourceCodeService {
 		if(sourceCode.getRateCards()==null || sourceCode.getRateCards().getRcId()==0){
 			newSourceCode.setRateCards(null);
 		}
-		if(sourceCode.getRenewalCard()==null || sourceCode.getRenewalCard().getRenewalCardId()==0){
+		if(sourceCode.getRenewalCard()==null || sourceCode.getRenewalCard().getId()==0){
 			newSourceCode.setRenewalCard(null);
 		}
 		if (sourceCode.getShippingPriceList()==null || sourceCode.getShippingPriceList().getId()==0) {
@@ -75,7 +75,7 @@ public class SourceCodeServiceImpl implements SourceCodeService {
 		if(sourceCode.getRateCards()==null || sourceCode.getRateCards().getRcId()==0){
 			sourceCodeToUpdate.setRateCards(null);
 		}
-		if(sourceCode.getRenewalCard()==null || sourceCode.getRenewalCard().getRenewalCardId()==0){
+		if(sourceCode.getRenewalCard()==null || sourceCode.getRenewalCard().getId()==0){
 			sourceCodeToUpdate.setRenewalCard(null);
 		}
 		if (sourceCode.getShippingPriceList()==null || sourceCode.getShippingPriceList().getId()==0) {
