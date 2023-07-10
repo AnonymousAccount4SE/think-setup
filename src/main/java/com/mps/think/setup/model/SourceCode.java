@@ -89,7 +89,6 @@ public class SourceCode extends BaseEntity {
 	@JoinColumn(name = "discount_id", referencedColumnName = "id")
 	private DiscountCardKeyInfo discountCardKeyInfo;
 	
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "renewal_card_id", referencedColumnName = "id")
 	private AddRenewals renewalCard;
