@@ -111,9 +111,9 @@ public class AddProcessRenewalsServiceImpl implements AddProcessRenewalsService{
 					LocalDate todaysDate = LocalDate.now();
 					if ((dateToCheckWith.equals(todaysDate) || todaysDate.isAfter(dateToCheckWith)) && customerEmail != null) {
 						String renewalOrderEmailBody = AppConstants.getRenewalOrderEmailBody();
-						renewalOrderEmailBody.replace("{name}", getCustomerName(o.getCustomerId()));
-						renewalOrderEmailBody.replace("{orderId}", o.getOrderId().toString());
-						renewalOrderEmailBody.replace("{noOfDays}", noofdays.toString());
+						renewalOrderEmailBody = renewalOrderEmailBody.replace("{name}", getCustomerName(o.getCustomerId()));
+						renewalOrderEmailBody = renewalOrderEmailBody.replace("{orderId}", o.getOrderId().toString());
+						renewalOrderEmailBody = renewalOrderEmailBody.replace("{noOfDays}", noofdays.toString());
 						mailSender.sendOrderRenewalMailToCustomer(customerEmail, renewalOrderEmailBody);
 					}
 				}
