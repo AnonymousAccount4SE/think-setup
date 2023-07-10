@@ -365,7 +365,7 @@ public class ReportsServiceImpl implements ReportsService {
 
 	}
 
-	@Override
+	/*@Override
 	public Page<TopNCustomersReportView> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,
 			String region, Date paymentStartDate, Date paymentEndDate, PageRequest of) {
  		Page<Object[]> topNCustomersReportView = salesByRegionRepo.getAllTopNCustomersReport(pubId,volYear,customerType,country,region, paymentStartDate, paymentEndDate,  of);
@@ -393,7 +393,7 @@ public class ReportsServiceImpl implements ReportsService {
 		}
 		return new PageImpl<>(topNCustomersReportViewList, topNCustomersReportView.getPageable(), topNCustomersReportView.getTotalElements());
 
-	}
+	}*/
 }
 	
 

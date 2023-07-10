@@ -45,7 +45,7 @@ public interface SalesByRegionRepo extends JpaRepository<SalesByRegionVO, Intege
 			Date paymentStartDate, Date paymentEndDate,Pageable page);
 
 	 
-	 @Query(value="SELECT  c.id,pb.currency AS baseCurrency,cc.cust_category,c.fname AS first_name,c.lname AS last_name,c.company,c.department,ad.address_line1 AS first_address, " + 
+	/* @Query(value="SELECT  c.id,pb.currency AS baseCurrency,cc.cust_category,c.fname AS first_name,c.lname AS last_name,c.company,c.department,ad.address_line1 AS first_address, " + 
 	 		"	 ad.address_line2 AS second_address,ad.state,ad.city,ad.zip_code " + 
 	 		"	     FROM customer c  LEFT JOIN order_parent op  ON op.customer_id = c.id  " + 
 	 		"	     LEFT JOIN customer_addresses_mapping cam ON cam.customer_id=c.id LEFT JOIN addresses ad ON ad.address_id=cam.address_id  " + 
@@ -65,7 +65,7 @@ public interface SalesByRegionRepo extends JpaRepository<SalesByRegionVO, Intege
 	 				"	 		 	 	 (:paymentEndDate IS NULL OR DATE(op.created_at) <= :paymentEndDate) AND (:volYear IS NULL OR vg.volume=:volYear) GROUP BY c.id", nativeQuery=true)
 	Page<Object[]> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,String region, Date paymentStartDate, Date paymentEndDate,
 			PageRequest of);
-
+*/
 	
 	
 	
