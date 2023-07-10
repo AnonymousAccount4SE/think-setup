@@ -2,10 +2,10 @@ package com.mps.think.setup.vo;
 
 import java.util.List;
 
+import com.mps.think.setup.model.AddRenewals;
 import com.mps.think.setup.model.DiscountCardKeyInfo;
 import com.mps.think.setup.model.OrderClass;
 import com.mps.think.setup.model.RateCards;
-import com.mps.think.setup.model.RenewalCard;
 import com.mps.think.setup.model.ShippingPriceList;
 import com.mps.think.setup.model.SourceCodeAndValuesMapping;
 import com.mps.think.setup.model.SourceFormat;
@@ -52,7 +52,7 @@ public class SourceCodeVO {
 
 	private DiscountCardKeyInfo discountCardKeyInfo;
 	
-	private RenewalCard renewalCard;
+	private AddRenewals renewalCard;
 
 	private ShippingPriceList shippingPriceList;
 	
@@ -170,6 +170,14 @@ public class SourceCodeVO {
 		this.sourceCodeType = sourceCodeType;
 	}
 
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+
 	public SourceFormat getSourceCodeFormat() {
 		return sourceCodeFormat;
 	}
@@ -194,11 +202,11 @@ public class SourceCodeVO {
 		this.discountCardKeyInfo = discountCardKeyInfo;
 	}
 
-	public RenewalCard getRenewalCard() {
+	public AddRenewals getRenewalCard() {
 		return renewalCard;
 	}
 
-	public void setRenewalCard(RenewalCard renewalCard) {
+	public void setRenewalCard(AddRenewals renewalCard) {
 		this.renewalCard = renewalCard;
 	}
 
@@ -218,14 +226,6 @@ public class SourceCodeVO {
 		this.sourceCodeAndValuesMappings = sourceCodeAndValuesMappings;
 	}
 
-	public String getOrderType() {
-		return orderType;
-	}
-
-	public void setOrderType(String orderType) {
-		this.orderType = orderType;
-	}
-
 	@Override
 	public String toString() {
 		return "SourceCodeVO [sourceCodeId=" + sourceCodeId + ", ocId=" + ocId + ", description=" + description
@@ -237,5 +237,7 @@ public class SourceCodeVO {
 				+ ", renewalCard=" + renewalCard + ", shippingPriceList=" + shippingPriceList
 				+ ", sourceCodeAndValuesMappings=" + sourceCodeAndValuesMappings + "]";
 	}
+
+	
 	
 }
