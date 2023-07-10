@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,8 +89,8 @@ public class AddProcessRenewalsServiceImpl implements AddProcessRenewalsService{
 	
 	String getCustomerName(CustomerDetails customer) {
 		String name = "";
-		if (customer.getFname() != null) name.concat(customer.getFname());
-		if (customer.getLname() != null) name.concat(" " + customer.getLname());
+		if (!StringUtils.isBlank(customer.getFname())) name = name.concat(customer.getFname());
+		if (!StringUtils.isBlank(customer.getLname())) name = name.concat(" " + customer.getLname());
 		return name.trim();
 	}
 	
