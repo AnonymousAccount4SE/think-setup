@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
 import com.fasterxml.jackson.core.JsonGenerator.Feature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mps.think.setup.model.Publisher;
 import com.mps.think.setup.repo.PublisherRepo;
@@ -48,7 +49,7 @@ public class PublisherSerivceImpl implements PublisherSerivce {
 //		data.setLogoUrl(publiser.getLogoUrl());
 //		data.setWebsite(publiser.getWebsite());
 //		publisherRepo.saveAndFlush(data);
-		mapper.configure(Feature.IGNORE_UNKNOWN, false);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		Publisher pub = mapper.convertValue(publiser, Publisher.class);
 		publisherRepo.saveAndFlush(pub);
 		return publiser;
