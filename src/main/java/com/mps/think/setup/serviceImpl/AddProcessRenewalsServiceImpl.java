@@ -107,7 +107,7 @@ public class AddProcessRenewalsServiceImpl implements AddProcessRenewalsService{
 					Integer noofdays = Integer.parseInt(effort.getNoofdays());
 					LocalDate validTill = o.getOrderItemsAndTerms().getValidTo().toInstant().atZone(ZoneId.systemDefault())
 							.toLocalDate();
-					LocalDate dateToCheckWith = validTill.minus(noofdays, null);
+					LocalDate dateToCheckWith = validTill.minusDays(noofdays);
 					LocalDate todaysDate = LocalDate.now();
 					if ((dateToCheckWith.equals(todaysDate) || todaysDate.isAfter(dateToCheckWith)) && customerEmail != null) {
 						String renewalOrderEmailBody = AppConstants.getRenewalOrderEmailBody();
