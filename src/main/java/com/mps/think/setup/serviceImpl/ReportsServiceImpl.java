@@ -1,5 +1,10 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +28,7 @@ import com.mps.think.setup.repo.CancelOrderRepo;
 import com.mps.think.setup.repo.CustomerDetailsRepo;
 import com.mps.think.setup.repo.MakePaymentRepo;
 import com.mps.think.setup.repo.PaymentInformationRepo;
+import com.mps.think.setup.repo.SalesByRegionRepo;
 import com.mps.think.setup.service.ReportsService;
 import com.mps.think.setup.vo.CancelSubscirptionReportView;
 import com.mps.think.setup.vo.CreditCardDeclinedView;
@@ -31,7 +38,10 @@ import com.mps.think.setup.vo.DailyCreditCardAndPaymentReportView;
 import com.mps.think.setup.vo.EnumModelVO;
 import com.mps.think.setup.vo.OrderAddressMappingVO;
 import com.mps.think.setup.vo.RefundProcessReportView;
+import com.mps.think.setup.vo.SalesByMonthView;
+import com.mps.think.setup.vo.SalesByRegionVO;
 import com.mps.think.setup.vo.SalesListByOrderView;
+import com.mps.think.setup.vo.TopNCustomersReportView;
 import com.mps.think.setup.vo.EnumModelVO.CustomerStatus;
 
 @Service
@@ -57,6 +67,9 @@ public class ReportsServiceImpl implements ReportsService {
 	
 	@Autowired
 	private MakePaymentRepo makePaymentRepo;
+	
+	@Autowired
+	private SalesByRegionRepo salesByRegionRepo;
 
 	@Override
 	public Page<Order> getAllOrderReports(Integer pubId, String orderStatus, Date ordersFrom, Date ordersTill, Integer customerId,
@@ -284,6 +297,103 @@ public class ReportsServiceImpl implements ReportsService {
 		return new PageImpl<>(dccdv, allDailyCreditCardAndPaymentReport.getPageable(), allDailyCreditCardAndPaymentReport.getTotalElements());
 		
 }
+
+	@Override
+	public Page<SalesByMonthView> getAllSalesByMonthReport(Integer pubId, Integer volYear,Date paymentStartDate, Date paymentEndDate,
+			PageRequest page) {
+		if (paymentStartDate == null) paymentStartDate = new Date(0);
+		if (paymentEndDate == null) paymentEndDate = new Date();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+ 		Page<Object[]> allSalesByMonthReport = addOrderRepo.getAllSalesByMonthReport(pubId,volYear, paymentStartDate, paymentEndDate,  page);
+  		List<SalesByMonthView> monthlySales = new ArrayList<>();
+		for(Object[] allSalesByMonth :allSalesByMonthReport) {
+ 			SalesByMonthView obj = new SalesByMonthView();
+ 		    Timestamp createdAtTimestamp = (Timestamp) allSalesByMonth[1];
+  		    LocalDateTime createdAt = createdAtTimestamp.toLocalDateTime();
+
+   	        String month = createdAt.getMonth().toString();
+  	       int years = createdAt.getYear();
+			obj.setOrderClass((String)allSalesByMonth[6]);
+			obj.setMonth(month);
+			obj.setYear(years);
+			obj.setBaseAmount((BigDecimal)allSalesByMonth[3]);
+			obj.setBaseCurrency((String)allSalesByMonth[4]);
+			obj.setOrderCategory((String)allSalesByMonth[7]);
+			obj.setSubscriptionCategory((String)allSalesByMonth[5]); 
+			
+			monthlySales.add(obj);
+	}
+ 		
+		return new PageImpl<>(monthlySales, allSalesByMonthReport.getPageable(), allSalesByMonthReport.getTotalElements());
+
+ 	}
+
+	@Override
+	public Page<SalesByRegionVO> getAllSalesByRegionReport(Integer pubId, Integer volYear, String orderClass,
+			String region, Date paymentStartDate, Date paymentEndDate, PageRequest of) {
+		 Page<SalesByRegionVO>  salesByRegionReport=salesByRegionRepo.getAllSalesByRegionReport(pubId,volYear,orderClass,region,paymentStartDate,paymentEndDate,of);
+		 List<SalesByRegionVO> salesByRegionVO = new ArrayList<>();
+			
+		 salesByRegionReport.toList().forEach(c -> {
+			 SalesByRegionVO obj = new SalesByRegionVO();	
+			 obj.setOrderId(c.getOrderId());
+				obj.setOrderCategory(c.getOrderCategory());
+				obj.setBaseAmount(c.getBaseAmount());
+				obj.setCurrency(c.getCurrency());
+				obj.setSubscriptionCategory(c.getSubscriptionCategory());
+				obj.setOrderClass(c.getOrderClass());
+				obj.setrList(c.getrList());
+				obj.setCustId(c.getCustId());
+				obj.setFirstName(c.getFirstName());
+ 				obj.setLastName(c.getLastName());
+				obj.setFirstAddress(c.getFirstAddress());
+ 				obj.setSecondAddress(c.getSecondAddress());
+ 				obj.setAddressCategory(c.getAddressCategory());
+				obj.setDepartment(c.getDepartment());
+ 				obj.setCity(c.getCity());
+ 				obj.setCountry(c.getCountry());
+				obj.setZipCode(c.getZipCode());
+ 				obj.setStartDate(c.getStartDate());
+ 				obj.setEndDate(c.getEndDate());
+ 				obj.setOrderDate(c.getOrderDate());
+				obj.setNetAmount(c.getNetAmount());
+				
+				salesByRegionVO.add(obj);
+		 });
+		 return new PageImpl<>(salesByRegionVO, salesByRegionReport.getPageable(), salesByRegionReport.getTotalElements());
+
+	}
+
+	@Override
+	public Page<TopNCustomersReportView> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,
+			String region, Date paymentStartDate, Date paymentEndDate, PageRequest of) {
+ 		Page<Object[]> topNCustomersReportView = salesByRegionRepo.getAllTopNCustomersReport(pubId,volYear,customerType,country,region, paymentStartDate, paymentEndDate,  of);
+		
+ 		List<TopNCustomersReportView> topNCustomersReportViewList = new ArrayList<>();
+		for(Object[] topNCustomersReport :topNCustomersReportView) {
+			TopNCustomersReportView obj = new TopNCustomersReportView();
+ 		
+			obj.setCustId((String)topNCustomersReport[0]);
+			obj.setCurrency((String)topNCustomersReport[1]);
+			obj.setRevenueAmount((String)topNCustomersReport[2]);
+			obj.setCustomerCategory((String)topNCustomersReport[3]);
+			obj.setFirstName((String)topNCustomersReport[4]);
+			obj.setLastName((String)topNCustomersReport[5]);
+			obj.setCompany((String)topNCustomersReport[6]);
+			obj.setDepartment((String)topNCustomersReport[7]);
+			 
+			obj.setFirstAddress((String)topNCustomersReport[8]);
+			obj.setSecondAddress((String)topNCustomersReport[9]);
+			obj.setState((String)topNCustomersReport[10]);
+			obj.setCity((String)topNCustomersReport[11]);
+			obj.setZip((String)topNCustomersReport[12]);
+
+			topNCustomersReportViewList.add(obj);
+		}
+		return new PageImpl<>(topNCustomersReportViewList, topNCustomersReportView.getPageable(), topNCustomersReportView.getTotalElements());
+
+	}
 }
 	
 
