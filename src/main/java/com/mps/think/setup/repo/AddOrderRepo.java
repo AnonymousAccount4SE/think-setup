@@ -237,6 +237,8 @@ public List<Order> getOrderList(@Param("pubId") Integer pubId, @Param("userDate"
 			PageRequest page);
 
 	
+	@Query("SELECT o.orderId FROM Order o JOIN o.keyOrderInformation k RIGHT JOIN o.customerId c WHERE (c.customerId = :customerId) AND (k.orderDate LIKE '%'||:year||'%') GROUP BY o.orderId")
+	List<Integer> findOrderCustomerInYear(@Param("customerId") Integer customerId, @Param("year") String year);
 	
 
 }
