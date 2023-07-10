@@ -2,8 +2,6 @@ package com.mps.think.setup.vo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import com.mps.think.setup.model.TaxRate;
 import com.mps.think.setup.model.TaxRateCategory;
 import com.mps.think.setup.model.TaxType;
@@ -18,7 +16,7 @@ public class BasicTaxRateVO {
 
 	private String taxMessage1;
 
-	@Column(name = "tax_message2")
+	private String taxMessage2;
 
 	private String unitPerSegment;
 
@@ -101,12 +99,20 @@ public class BasicTaxRateVO {
 		this.taxRate = taxRate;
 	}
 
+	public String getTaxMessage2() {
+		return taxMessage2;
+	}
+
+	public void setTaxMessage2(String taxMessage2) {
+		this.taxMessage2 = taxMessage2;
+	}
+
 	@Override
 	public String toString() {
 		return "BasicTaxRateVO [basicTaxRateId=" + basicTaxRateId + ", rateName=" + rateName + ", rateValue="
-				+ rateValue + ", taxMessage1=" + taxMessage1 + ", unitPerSegment=" + unitPerSegment + ", effectiveDate="
-				+ effectiveDate + ", taxType=" + taxType + ", taxRateCategory=" + taxRateCategory + ", taxRate="
-				+ taxRate + "]";
+				+ rateValue + ", taxMessage1=" + taxMessage1 + ", taxMessage2=" + taxMessage2 + ", unitPerSegment="
+				+ unitPerSegment + ", effectiveDate=" + effectiveDate + ", taxType=" + taxType + ", taxRateCategory="
+				+ taxRateCategory + ", taxRate=" + taxRate + "]";
 	}
 
 }
