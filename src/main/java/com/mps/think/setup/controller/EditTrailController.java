@@ -23,9 +23,21 @@ public class EditTrailController {
 	}
 
 	@GetMapping("/getCustomerHistory")
-	public ResponseEntity<?> getCustomerHistory(@RequestParam Integer pubId, @RequestParam(required = false) Integer customerId,
-			@RequestParam(required = false) Integer orderId, @RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "5") Integer size) {
-		return ResponseEntity.ok(editTrailService.findEditTrialById(pubId, customerId, orderId, PageRequest.of(page, size)));
+	public ResponseEntity<?> getOrderHistory(@RequestParam Integer pubId, @RequestParam Integer customerId,
+			@RequestParam(defaultValue = "0") Integer page,@RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(editTrailService.findEditTrialForCustomerHistory(pubId, customerId, PageRequest.of(page, size)));
+	}
+	
+	
+	@GetMapping("/getOrderHistoryByCustId")
+	public ResponseEntity<?> getOrderHistoryByCustId(@RequestParam Integer pubId, @RequestParam Integer customerId,
+			@RequestParam(defaultValue = "0") Integer page,@RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(editTrailService.findEditTrialForOrderHistory(pubId, customerId, PageRequest.of(page, size)));
+	}
+	
+	@GetMapping("/getPaymentHistoryByCustId")
+	public ResponseEntity<?> getPaymentHistoryByCustId(@RequestParam Integer pubId, @RequestParam Integer customerId,
+			@RequestParam(defaultValue = "0") Integer page,@RequestParam(defaultValue = "5") Integer size) {
+		return ResponseEntity.ok(editTrailService.findEditTrialForPaymentHistory(pubId, customerId, PageRequest.of(page, size)));
 	}
 }

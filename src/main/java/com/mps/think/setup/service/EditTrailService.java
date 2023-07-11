@@ -27,6 +27,10 @@ public interface EditTrailService {
 
 	public List<EditTrail> getAllEditTrailByCustId(Integer custId);
 	
-	public Page<EditTrailView> findEditTrialById(Integer pubId,Integer customerId,Integer orderId, Pageable page);
+	public Page<EditTrailView> findEditTrialForCustomerHistory(Integer pubId,Integer customerId,Pageable page);
+	
+	public Page<EditTrailView> findEditTrialForOrderHistory(Integer pubId,Integer customerId,Pageable page);
+	
+	public Page<EditTrailView> findEditTrialForPaymentHistory(Integer pubId,Integer customerId,Pageable page);
 
 }

@@ -1,6 +1,8 @@
 package com.mps.think.setup.serviceImpl;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,7 @@ import com.mps.think.setup.repo.EditTrailRepo;
 import com.mps.think.setup.service.EditTrailService;
 import com.mps.think.setup.vo.EditTrailView;
 import com.mps.think.setup.vo.OrderVO;
+
 @Service
 public class EditTrailServiceImpl implements EditTrailService{
 	
@@ -116,7 +119,7 @@ public class EditTrailServiceImpl implements EditTrailService{
 	}
 
 	@Override
-	public Page<EditTrailView> findEditTrialById(Integer pubId, Integer customerId, Integer orderId, Pageable page) {
+	public Page<EditTrailView> findEditTrialForCustomerHistory(Integer pubId, Integer customerId,Pageable page) {
 //		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 //		Page<EditTrail> editTrialsPage = editTrailRepo.findEditTrial(pubId, customerId, orderId, page);
 //		List<EditTrailView> output = new ArrayList<>();
@@ -127,8 +130,18 @@ public class EditTrailServiceImpl implements EditTrailService{
 //		
 //		return new PageImpl<>(output, editTrialsPage.getPageable(), editTrialsPage.getTotalElements());
 		
-		return editTrailRepo.findEditTrial(pubId, customerId, orderId, page);
+		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("order_parent","order_items"), page);
 		
+	}
+
+	@Override
+	public Page<EditTrailView> findEditTrialForOrderHistory(Integer pubId, Integer customerId, Pageable page) {
+		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("customer","addresses"), page);
+	}
+
+	@Override
+	public Page<EditTrailView> findEditTrialForPaymentHistory(Integer pubId, Integer customerId, Pageable page) {
+		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("null"), page);
 	}
 
 }
