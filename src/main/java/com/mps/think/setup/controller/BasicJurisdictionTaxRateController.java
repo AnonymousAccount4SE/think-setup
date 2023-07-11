@@ -38,4 +38,8 @@ public class BasicJurisdictionTaxRateController {
 		return ResponseEntity.ok(basicJurisdictionTaxRateService.findbasicJurisdictionTaxRatebyId(id));
 	}
 
+	@PostMapping("/findByTaxRateIdBasicJuris")
+	public ResponseEntity<?> findByTaxRateIdBasicJuris(@RequestBody Integer taxRateId) {
+		return ResponseEntity.ok(basicJurisdictionTaxRateService.findByTaxRateIdBasicJuris(taxRateId));
+	}
 }

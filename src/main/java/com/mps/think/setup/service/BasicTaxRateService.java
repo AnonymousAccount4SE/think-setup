@@ -7,12 +7,14 @@ import com.mps.think.setup.vo.BasicTaxRateVO;
 
 public interface BasicTaxRateService {
 
-	BasicTaxRate findbasicTaxRatebyId(Integer id);
+	BasicTaxRate findById(Integer id);
 	
 	public BasicTaxRate saveBasicTaxRate(BasicTaxRateVO basicTaxRate);
 
 	BasicTaxRate updateBasicTaxRate(BasicTaxRateVO basicTaxRateVo);
 
 	List<BasicTaxRate> findAllbasicTaxRatebyId();
+
+	List<BasicTaxRate> findByTaxRateId(Integer taxRateId);
 
 }

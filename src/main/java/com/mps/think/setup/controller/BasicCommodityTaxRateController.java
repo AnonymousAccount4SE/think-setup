@@ -42,5 +42,12 @@ public class BasicCommodityTaxRateController {
 	public ResponseEntity<?> getbasicCommodityTaxRateById(@RequestBody Integer id) {
 		return ResponseEntity.ok(basicCommodityTaxRateService.getbasicCommodityTaxRateById(id));
 	}
+	
+	
+	
+	@PostMapping("/findByTaxRateIdBasicCommodity")
+	public ResponseEntity<?> findByTaxRateIdBasicCommodity(@RequestBody Integer taxRateId) {
+		return ResponseEntity.ok(basicCommodityTaxRateService.findByTaxRateIdBasicCommodity(taxRateId));
+	}
 
 }

@@ -18,4 +18,6 @@ public interface BasicCommodityTaxRateService {
 
 	List<BasicCommodityTaxRate> findAllbasicCommodityTaxRate();
 
+	List<BasicCommodityTaxRate> findByTaxRateIdBasicCommodity(Integer taxRateId);
+
 }

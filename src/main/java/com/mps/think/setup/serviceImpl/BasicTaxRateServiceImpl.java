@@ -24,10 +24,15 @@ public class BasicTaxRateServiceImpl implements BasicTaxRateService {
 	}
 	
 	@Override
-	public BasicTaxRate findbasicTaxRatebyId(Integer id) {
+	public BasicTaxRate findById(Integer id) {
 		return basicTaxRateRepo.findById(id).get();
 	}
 
+	@Override
+	public List<BasicTaxRate> findByTaxRateId(Integer taxRateId) {
+		return basicTaxRateRepo.findByTaxRateId(taxRateId);
+	}
+	
 	@Override
 	public BasicTaxRate saveBasicTaxRate(BasicTaxRateVO basicTaxRateVo) {
 		BasicTaxRate basicTaxRate = mapper.convertValue(basicTaxRateVo, BasicTaxRate.class);

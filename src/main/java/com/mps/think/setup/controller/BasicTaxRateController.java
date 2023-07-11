@@ -33,9 +33,14 @@ public class BasicTaxRateController {
 		return ResponseEntity.ok(basicTaxRateService.updateBasicTaxRate(basicTaxRateVO));
 	}
 
-	@PostMapping("/findbasicTaxRatebyId")
+	@PostMapping("/findById")
 	public ResponseEntity<?> findbasicTaxRatebyId(@RequestBody Integer id) {
-		return ResponseEntity.ok(basicTaxRateService.findbasicTaxRatebyId(id));
+		return ResponseEntity.ok(basicTaxRateService.findById(id));
 	}
 
+	
+	@PostMapping("/findByTaxRateId")
+	public ResponseEntity<?> findByTaxRateId(@RequestBody Integer taxRateId) {
+		return ResponseEntity.ok(basicTaxRateService.findByTaxRateId(taxRateId));
+	}
 }

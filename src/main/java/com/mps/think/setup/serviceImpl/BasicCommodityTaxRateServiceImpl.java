@@ -28,10 +28,17 @@ public class BasicCommodityTaxRateServiceImpl implements BasicCommodityTaxRateSe
 	public List<BasicCommodityTaxRate> findAllbasicCommodityTaxRate() {
 		return basicCommodityTaxRateRepo.findAll();
 	}
+	
 	@Override
 	public BasicCommodityTaxRate getbasicCommodityTaxRateById(Integer commodityCodesId) {
 		return basicCommodityTaxRateRepo.findBycommodityCodesId(commodityCodesId);
 	}
+	
+	@Override
+	public List<BasicCommodityTaxRate> findByTaxRateIdBasicCommodity(Integer taxRateId) {
+		return basicCommodityTaxRateRepo.findByTaxRateIdBasicCommodity(taxRateId);
+	}
+	
 	
 	@Override
 	public List<BasicCommodityTaxRate> getbasicCommodityTaxRateByPubId(Integer pubId) {

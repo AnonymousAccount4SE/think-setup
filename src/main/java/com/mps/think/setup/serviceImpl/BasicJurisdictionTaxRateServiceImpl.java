@@ -34,6 +34,11 @@ public class BasicJurisdictionTaxRateServiceImpl implements BasicJurisdictionTax
 	}
 	
 	@Override
+	public List<BasicJurisdictionTaxRate> findByTaxRateIdBasicJuris(Integer taxRateId) {
+		return basicJurisdictionTaxRateRepo.findByTaxRateIdBasicJuris(taxRateId);
+	}
+	
+	@Override
 	public List<BasicJurisdictionTaxRate> findbasicJurisdictionTaxRateByPubId(Integer pubId) {
 		List<BasicJurisdictionTaxRate> basicJurisdictionTaxRate = new ArrayList<BasicJurisdictionTaxRate>();
 		List<Jurisdictions> jurisdictions = JurisdictionsService.findAllJurisdictionsForPublisher(pubId);
