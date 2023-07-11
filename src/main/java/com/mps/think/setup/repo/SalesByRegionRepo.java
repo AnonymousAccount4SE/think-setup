@@ -47,27 +47,28 @@ public interface SalesByRegionRepo extends JpaRepository<SalesByRegionVO, Intege
 			Date paymentStartDate, Date paymentEndDate,Pageable page);
 
 	 
-	/* @Query(value="SELECT  c.id,pb.currency AS baseCurrency,cc.cust_category,c.fname AS first_name,c.lname AS last_name,c.company,c.department,ad.address_line1 AS first_address, " + 
+	  @Query(value="SELECT  c.id,pb.currency AS baseCurrency,cc.cust_category,c.fname AS first_name,c.lname AS last_name,c.company,c.department,ad.address_line1 AS first_address, " + 
 	 		"	 ad.address_line2 AS second_address,ad.state,ad.city,ad.zip_code " + 
 	 		"	     FROM customer c  LEFT JOIN order_parent op  ON op.customer_id = c.id  " + 
 	 		"	     LEFT JOIN customer_addresses_mapping cam ON cam.customer_id=c.id LEFT JOIN addresses ad ON ad.address_id=cam.address_id  " + 
 	 		"	      LEFT JOIN payment_breakdown pb ON pb.id = op.payment_breakdown_id 	 " + 
 	 		"	      LEFT JOIN volume_group vg ON vg.pub_id = c.pub_id 	 " + 
 	 		"	            LEFT JOIN customer_category cc ON cc.pub_id = c.pub_id 	" + 
-	 		"	     LEFT JOIN region_list rl ON rl.pub_id=c.pub_Id  where  (:pubId IS NULL OR c.pub_id = :pubId) AND AND (:customerType IS NULL OR cc.cust_category = :customerType) AND (:country IS NULL OR ad.country = :country) " + 
+	 		"	     LEFT JOIN region_list rl ON rl.pub_id=c.pub_Id  where  (:pubId IS NULL OR c.pub_id = :pubId)  AND (:customerType IS NULL OR cc.cust_category = :customerType) AND (:region IS NULL OR rl.rlist = :region) AND (:country IS NULL OR ad.country = :country) AND " + 
 	 		"	 	 (:paymentStartDate IS NULL OR DATE(op.created_at) >= :paymentStartDate) AND   " + 
-	 		"	 	 (:paymentEndDate IS NULL OR DATE(op.created_at) <= :paymentEndDate) AND (:volYear IS NULL OR vg.volume=:volYear) GROUP BY c.id", countQuery="SELECT  *  " + 
+	 		"	 	 (:paymentEndDate IS NULL OR DATE(op.created_at) <= :paymentEndDate) AND (:volYear IS NULL OR vg.volume=:volYear) GROUP BY c.id", countQuery="SELECT  c.id,pb.currency AS baseCurrency,cc.cust_category,c.fname AS first_name,c.lname AS last_name,c.company,c.department,ad.address_line1 AS first_address,  " + 
+	 				"	 		  ad.address_line2 AS second_address,ad.state,ad.city,ad.zip_code  " + 
  	 				"	 		 	     FROM customer c  LEFT JOIN order_parent op  ON op.customer_id = c.id "   + 
 	 				"	 		 	     LEFT JOIN customer_addresses_mapping cam ON cam.customer_id=c.id LEFT JOIN addresses ad ON ad.address_id=cam.address_id  "  + 
 	 				"	 		       LEFT JOIN payment_breakdown pb ON pb.id = op.payment_breakdown_id "	   + 
 	 				"	 	       LEFT JOIN volume_group vg ON vg.pub_id = c.pub_id 	"   +
 	 		 		"	            LEFT JOIN customer_category cc ON cc.pub_id = c.pub_id 	" + 
- 	 				"	 		 	     LEFT JOIN region_list rl ON rl.pub_id=c.pub_Id  where  (:pubId IS NULL OR c.pub_id = :pubId) AND (:customerType IS NULL OR cc.cust_category = :customerType) AND (:country IS NULL OR ad.country = :country)  AND "  + 
+ 	 				"	 		 	  LEFT JOIN region_list rl ON rl.pub_id=c.pub_Id  where  (:pubId IS NULL OR c.pub_id = :pubId) AND (:customerType IS NULL OR cc.cust_category = :customerType) AND (:region IS NULL OR rl.rlist = :region) AND (:country IS NULL OR ad.country = :country)  AND "  + 
 	 				"	 		  	 (:paymentStartDate IS NULL OR DATE(op.created_at) >= :paymentStartDate) AND   "  + 
 	 				"	 		 	 	 (:paymentEndDate IS NULL OR DATE(op.created_at) <= :paymentEndDate) AND (:volYear IS NULL OR vg.volume=:volYear) GROUP BY c.id", nativeQuery=true)
 	Page<Object[]> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,String region, Date paymentStartDate, Date paymentEndDate,
 			PageRequest of);
-*/
+ 
 	
 	
 	

@@ -5,9 +5,9 @@ package com.mps.think.setup.vo;
 public class TopNCustomersReportView {
 
  	 
-	private  String custId;
+	private  Integer custId;
 	private  String currency;
- 	private  String revenueAmount;
+ 
  	
 	private  String customerCategory;
 	private  String firstName;
@@ -19,10 +19,19 @@ public class TopNCustomersReportView {
 	private  String state;
 	private String city;
 	private String zip;
-	public String getCustId() {
+	private  Double revenueAmount;
+	
+	public Double getRevenueAmount() {
+		return revenueAmount;
+	}
+	public void setRevenueAmount(Double revenueAmount) {
+		this.revenueAmount = revenueAmount;
+	}
+ 
+	public Integer getCustId() {
 		return custId;
 	}
-	public void setCustId(String custId) {
+	public void setCustId(Integer custId) {
 		this.custId = custId;
 	}
 	public String getCurrency() {
@@ -31,12 +40,7 @@ public class TopNCustomersReportView {
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-	public String getRevenueAmount() {
-		return revenueAmount;
-	}
-	public void setRevenueAmount(String revenueAmount) {
-		this.revenueAmount = revenueAmount;
-	}
+ 
 	public String getCustomerCategory() {
 		return customerCategory;
 	}

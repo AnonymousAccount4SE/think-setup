@@ -51,10 +51,10 @@ public interface ReportsService {
 	Page<SalesByRegionVO> getAllSalesByRegionReport(Integer pubId, Integer volYear, String orderClass, String region,
 			Date paymentStartDate1, Date paymentEndDate1, PageRequest of);
 
-	/*Page<TopNCustomersReportView> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,
+	 Page<TopNCustomersReportView> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,
 			String region, Date paymentStartDate1, Date paymentEndDate1, PageRequest of);
 	
-*/
+ 
 	
 
 }

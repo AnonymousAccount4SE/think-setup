@@ -29,6 +29,7 @@ import com.mps.think.setup.repo.CustomerDetailsRepo;
 import com.mps.think.setup.repo.MakePaymentRepo;
 import com.mps.think.setup.repo.PaymentInformationRepo;
 import com.mps.think.setup.repo.SalesByRegionRepo;
+import com.mps.think.setup.service.PaymentInformationService;
 import com.mps.think.setup.service.ReportsService;
 import com.mps.think.setup.vo.CancelSubscirptionReportView;
 import com.mps.think.setup.vo.CreditCardDeclinedView;
@@ -70,6 +71,12 @@ public class ReportsServiceImpl implements ReportsService {
 	
 	@Autowired
 	private SalesByRegionRepo salesByRegionRepo;
+	
+	@Autowired
+	PaymentInformationRepo paymentInformationRepo;
+	
+	@Autowired
+	PaymentInformationService paymentInformationService;
 
 	@Override
 	public Page<Order> getAllOrderReports(Integer pubId, String orderStatus, Date ordersFrom, Date ordersTill, Integer customerId,
@@ -317,6 +324,8 @@ public class ReportsServiceImpl implements ReportsService {
 			obj.setOrderClass((String)allSalesByMonth[6]);
 			obj.setMonth(month);
 			obj.setYear(years);
+			obj.setPubId(allSalesByMonth[2].toString());
+			obj.setOrderId((String)allSalesByMonth[0].toString());
 			obj.setBaseAmount((BigDecimal)allSalesByMonth[3]);
 			obj.setBaseCurrency((String)allSalesByMonth[4]);
 			obj.setOrderCategory((String)allSalesByMonth[7]);
@@ -366,35 +375,44 @@ public class ReportsServiceImpl implements ReportsService {
 
 	}
 
-	/*@Override
+	 @Override
 	public Page<TopNCustomersReportView> getAllTopNCustomersReport(Integer pubId, Integer volYear, String customerType, String country,
 			String region, Date paymentStartDate, Date paymentEndDate, PageRequest of) {
+		 
  		Page<Object[]> topNCustomersReportView = salesByRegionRepo.getAllTopNCustomersReport(pubId,volYear,customerType,country,region, paymentStartDate, paymentEndDate,  of);
 		
  		List<TopNCustomersReportView> topNCustomersReportViewList = new ArrayList<>();
 		for(Object[] topNCustomersReport :topNCustomersReportView) {
 			TopNCustomersReportView obj = new TopNCustomersReportView();
- 		
-			obj.setCustId((String)topNCustomersReport[0]);
+ 		Double revenueAmount=0.0;
+			List<Integer> totalOrderForCustomer=orderRepo.findOrderCustomerInYear((Integer)topNCustomersReport[0], volYear.toString());
+			for(Integer orderDetails:totalOrderForCustomer) {
+				Double paidAmount=paymentInformationRepo.paidAmount(orderDetails);	
+				Double refundAmount=paymentInformationService.refundAmount(orderDetails);	
+				
+			double	revenue=paidAmount-refundAmount;
+			revenueAmount +=revenue;
+			}
+			obj.setCustId((Integer)topNCustomersReport[0]);
 			obj.setCurrency((String)topNCustomersReport[1]);
-			obj.setRevenueAmount((String)topNCustomersReport[2]);
-			obj.setCustomerCategory((String)topNCustomersReport[3]);
-			obj.setFirstName((String)topNCustomersReport[4]);
-			obj.setLastName((String)topNCustomersReport[5]);
-			obj.setCompany((String)topNCustomersReport[6]);
-			obj.setDepartment((String)topNCustomersReport[7]);
-			 
-			obj.setFirstAddress((String)topNCustomersReport[8]);
-			obj.setSecondAddress((String)topNCustomersReport[9]);
-			obj.setState((String)topNCustomersReport[10]);
-			obj.setCity((String)topNCustomersReport[11]);
-			obj.setZip((String)topNCustomersReport[12]);
-
+ 			obj.setCustomerCategory((String)topNCustomersReport[2]);
+			obj.setFirstName((String)topNCustomersReport[3]);
+			obj.setLastName((String)topNCustomersReport[4]);
+			obj.setCompany((String)topNCustomersReport[5]);
+			obj.setDepartment((String)topNCustomersReport[6]);
+ 			obj.setFirstAddress((String)topNCustomersReport[7]);
+			obj.setSecondAddress((String)topNCustomersReport[8]);
+			obj.setState((String)topNCustomersReport[9]);
+			obj.setCity((String)topNCustomersReport[10]);
+			obj.setZip((String)topNCustomersReport[11]);
+            obj.setRevenueAmount(revenueAmount);
+            
 			topNCustomersReportViewList.add(obj);
 		}
 		return new PageImpl<>(topNCustomersReportViewList, topNCustomersReportView.getPageable(), topNCustomersReportView.getTotalElements());
 
-	}*/
+		
+	} 
 }
 	
 

@@ -8,6 +8,7 @@ public class SalesByMonthView {
 
  private	 String  month;
  private	 String pubId;
+ private	 String  orderId;
  private     BigDecimal baseAmount;
  private	 String baseCurrency;
  private	 String subscriptionCategory;
@@ -64,6 +65,12 @@ public int getYear() {
 }
 public void setYear(int year) {
 	Year = year;
+}
+public String getOrderId() {
+	return orderId;
+}
+public void setOrderId(String orderId) {
+	this.orderId = orderId;
 }
  
  
