@@ -1,19 +1,42 @@
-package com.mps.think.setup.vo;
+package com.mps.think.setup.model;
 
-public class ThridPartyConfigurationVO  {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "extnal_tax_vender")
+public class ThirdPartyConfiguration extends BaseEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "vender_name")
 	private String venderName;
 
+	@Column(name = "tax_api_url")
 	private String taxApiUrl;
 
+	@Column(name = "adress_api_url")
 	private String adressApiUrl;
 
+	@Column(name = "username")
 	private String username;
 
+	@Column(name = "password")
 	private String password;
 
+	@Column(name = "status")
 	private Boolean status;
 
 	public Integer getId() {
@@ -74,7 +97,7 @@ public class ThridPartyConfigurationVO  {
 
 	@Override
 	public String toString() {
-		return "ThridPartyConfiguration [id=" + id + ", venderName=" + venderName + ", taxApiUrl=" + taxApiUrl
+		return "ThirdPartyConfiguration [id=" + id + ", venderName=" + venderName + ", taxApiUrl=" + taxApiUrl
 				+ ", adressApiUrl=" + adressApiUrl + ", username=" + username + ", password=" + password + ", status="
 				+ status + "]";
 	}

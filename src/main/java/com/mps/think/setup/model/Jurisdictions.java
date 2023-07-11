@@ -56,7 +56,7 @@ public class Jurisdictions extends BaseEntity{
 	
 	@OneToOne
 	@JoinColumn(name = "extnal_tax_vender", referencedColumnName = "id")
-	private ThridPartyConfiguration thridPartyConfiguration;
+	private ThirdPartyConfiguration thirdPartyConfiguration;
 	
 	@Column(name = "tax_coumputation")
 	private Boolean taxCoumputation;
@@ -173,12 +173,12 @@ public class Jurisdictions extends BaseEntity{
 	}
 
 	
-	public ThridPartyConfiguration getThridPartyConfiguration() {
-		return thridPartyConfiguration;
+	public ThirdPartyConfiguration getThirdPartyConfiguration() {
+		return thirdPartyConfiguration;
 	}
 
-	public void setThridPartyConfiguration(ThridPartyConfiguration thridPartyConfiguration) {
-		this.thridPartyConfiguration = thridPartyConfiguration;
+	public void setThirdPartyConfiguration(ThirdPartyConfiguration thirdPartyConfiguration) {
+		this.thirdPartyConfiguration = thirdPartyConfiguration;
 	}
 
 	@Override
@@ -186,7 +186,7 @@ public class Jurisdictions extends BaseEntity{
 		return "Jurisdictions [id=" + id + ", pubId=" + pubId + ", countrycode=" + countrycode + ", stateCode="
 				+ stateCode + ", city=" + city + ", county=" + county + ", country=" + country + ", zipCode=" + zipCode
 				+ ", streetname=" + streetname + ", externalAlapplicable=" + externalAlapplicable
-				+ ", thridPartyConfiguration=" + thridPartyConfiguration + ", taxCoumputation=" + taxCoumputation
+				+ ", thirdPartyConfiguration=" + thirdPartyConfiguration + ", taxCoumputation=" + taxCoumputation
 				+ ", addressValidation=" + addressValidation + ", commodityCodes=" + commodityCodes + "]";
 	}
 

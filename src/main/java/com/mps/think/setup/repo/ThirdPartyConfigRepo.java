@@ -3,9 +3,9 @@ package com.mps.think.setup.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mps.think.setup.model.ThridPartyConfiguration;
+import com.mps.think.setup.model.ThirdPartyConfiguration;
 
 @Repository
-public interface ThridPartyConfigRepo extends JpaRepository<ThridPartyConfiguration, Integer> {
+public interface ThirdPartyConfigRepo extends JpaRepository<ThirdPartyConfiguration, Integer> {
 
 }
