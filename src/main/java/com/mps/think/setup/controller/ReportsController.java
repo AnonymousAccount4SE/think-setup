@@ -131,20 +131,20 @@ public class ReportsController {
 	 }
 	 
 	 @GetMapping("/getAllSalesByRegionReport") 
-	 public ResponseEntity<?> getAllSalesByRegionReport(@RequestParam(required = false) Integer pubId, @RequestParam(required = false) String orderClass, @RequestParam(required = true) String region,@RequestParam(required = false) Integer volYear,@RequestParam(required = false) String paymentStartDate,
-				@RequestParam(required = false) String paymentEndDate, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) throws ParseException{
+	 public ResponseEntity<?> getAllSalesByRegionReport(@RequestParam(required = false) Integer pubId, @RequestParam(required = false) String orderClass, @RequestParam(required = true) String region,@RequestParam(required = false) Integer volYear,@RequestParam(required = false) String orderDateFrom,
+				@RequestParam(required = false) String orderDateTo, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) throws ParseException{
 		 
-		 Date paymentStartDate1 = (paymentStartDate == null || paymentStartDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentStartDate);
-			Date paymentEndDate1 = (paymentEndDate == null || paymentEndDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentEndDate);
-		 return ResponseEntity.ok(reportsService.getAllSalesByRegionReport(pubId,volYear,orderClass,region, paymentStartDate1, paymentEndDate1, PageRequest.of(page, size)));
+		 Date orderDateFrom1 = (orderDateFrom == null || orderDateFrom.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(orderDateFrom);
+			Date orderDateTo1 = (orderDateTo == null || orderDateTo.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(orderDateTo);
+		 return ResponseEntity.ok(reportsService.getAllSalesByRegionReport(pubId,volYear,orderClass,region, orderDateFrom1, orderDateTo1, PageRequest.of(page, size)));
 	 }
 	 
 	 @GetMapping("/getAllTopNCustomersReport") 
-	 public ResponseEntity<?> getAllTopNCustomersReport(@RequestParam(required = false) Integer pubId, @RequestParam(required = false) String customerType,@RequestParam(required = false) String country, @RequestParam(required = true) String region,@RequestParam(required = false) Integer volYear,@RequestParam(required = false) String paymentStartDate,
-				@RequestParam(required = false) String paymentEndDate, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) throws ParseException{
+	 public ResponseEntity<?> getAllTopNCustomersReport(@RequestParam(required = false) Integer pubId, @RequestParam(required = false) String customerType,@RequestParam(required = false) String country, @RequestParam(required = true) String region,@RequestParam(required = false) Integer volYear,@RequestParam(required = false) String orderDateFrom,
+				@RequestParam(required = false) String orderDateTo, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "5") Integer size) throws ParseException{
 		 
-		 Date paymentStartDate1 = (paymentStartDate == null || paymentStartDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentStartDate);
-			Date paymentEndDate1 = (paymentEndDate == null || paymentEndDate.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(paymentEndDate);
-		 return ResponseEntity.ok(reportsService.getAllTopNCustomersReport(pubId,volYear,customerType,country,region, paymentStartDate1, paymentEndDate1, PageRequest.of(page, size)));
+		 Date orderDateFrom1 = (orderDateFrom == null || orderDateFrom.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(orderDateFrom);
+			Date orderDateTo1 = (orderDateTo == null || orderDateTo.isEmpty()) ? null : new SimpleDateFormat("dd/MM/yyyy").parse(orderDateTo);
+		 return ResponseEntity.ok(reportsService.getAllTopNCustomersReport(pubId,volYear,customerType,country,region, orderDateFrom1, orderDateTo1, PageRequest.of(page, size)));
 	 } 
 }

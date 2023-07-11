@@ -324,6 +324,8 @@ public class ReportsServiceImpl implements ReportsService {
 			obj.setOrderClass((String)allSalesByMonth[6]);
 			obj.setMonth(month);
 			obj.setYear(years);
+			obj.setPubId(allSalesByMonth[2].toString());
+			obj.setOrderId((String)allSalesByMonth[0].toString());
 			obj.setBaseAmount((BigDecimal)allSalesByMonth[3]);
 			obj.setBaseCurrency((String)allSalesByMonth[4]);
 			obj.setOrderCategory((String)allSalesByMonth[7]);
