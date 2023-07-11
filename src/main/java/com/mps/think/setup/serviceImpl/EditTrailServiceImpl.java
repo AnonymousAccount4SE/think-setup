@@ -130,13 +130,13 @@ public class EditTrailServiceImpl implements EditTrailService{
 //		
 //		return new PageImpl<>(output, editTrialsPage.getPageable(), editTrialsPage.getTotalElements());
 		
-		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("order_parent","order_items"), page);
+		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("customer","addresses"), page);
 		
 	}
 
 	@Override
 	public Page<EditTrailView> findEditTrialForOrderHistory(Integer pubId, Integer customerId, Pageable page) {
-		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("customer","addresses"), page);
+		return editTrailRepo.findEditTrial(pubId, customerId,Arrays.asList("order_parent","order_items"), page);
 	}
 
 	@Override
