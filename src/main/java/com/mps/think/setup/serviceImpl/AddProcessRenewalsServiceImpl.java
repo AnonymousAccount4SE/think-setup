@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,8 +89,8 @@ public class AddProcessRenewalsServiceImpl implements AddProcessRenewalsService{
 	
 	String getCustomerName(CustomerDetails customer) {
 		String name = "";
-		if (customer.getFname() != null) name.concat(customer.getFname());
-		if (customer.getLname() != null) name.concat(" " + customer.getLname());
+		if (!StringUtils.isBlank(customer.getFname())) name = name.concat(customer.getFname());
+		if (!StringUtils.isBlank(customer.getLname())) name = name.concat(" " + customer.getLname());
 		return name.trim();
 	}
 	
@@ -111,9 +112,9 @@ public class AddProcessRenewalsServiceImpl implements AddProcessRenewalsService{
 					LocalDate todaysDate = LocalDate.now();
 					if ((dateToCheckWith.equals(todaysDate) || todaysDate.isAfter(dateToCheckWith)) && customerEmail != null) {
 						String renewalOrderEmailBody = AppConstants.getRenewalOrderEmailBody();
-						renewalOrderEmailBody.replace("{name}", getCustomerName(o.getCustomerId()));
-						renewalOrderEmailBody.replace("{orderId}", o.getOrderId().toString());
-						renewalOrderEmailBody.replace("{noOfDays}", noofdays.toString());
+						renewalOrderEmailBody = renewalOrderEmailBody.replace("{name}", getCustomerName(o.getCustomerId()));
+						renewalOrderEmailBody = renewalOrderEmailBody.replace("{orderId}", o.getOrderId().toString());
+						renewalOrderEmailBody = renewalOrderEmailBody.replace("{noOfDays}", noofdays.toString());
 						mailSender.sendOrderRenewalMailToCustomer(customerEmail, renewalOrderEmailBody);
 					}
 				}

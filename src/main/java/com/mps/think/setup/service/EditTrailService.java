@@ -1,9 +1,14 @@
 package com.mps.think.setup.service;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.mps.think.setup.model.EditTrail;
 import com.mps.think.setup.model.Order;
 import com.mps.think.setup.model.SubmitJob;
+import com.mps.think.setup.vo.EditTrailView;
 import com.mps.think.setup.vo.OrderVO;
 
 public interface EditTrailService {
@@ -21,5 +26,7 @@ public interface EditTrailService {
 	public EditTrail findByEditTrailId(Integer id);
 
 	public List<EditTrail> getAllEditTrailByCustId(Integer custId);
+	
+	public Page<EditTrailView> findEditTrialById(Integer pubId,Integer customerId,Integer orderId, Pageable page);
 
 }
