@@ -1,10 +1,12 @@
 package com.mps.think.setup.vo;
 
 import com.mps.think.setup.model.OutputSort;
+import com.mps.think.setup.model.Publisher;
 
 public class NthVO {
 	
 	private Integer nthid;
+	private Publisher pubId;
 	private String code;
 	private Boolean active;
 	private String description;
@@ -96,6 +98,12 @@ public class NthVO {
 	}
 	public void setMaximumrecord(String maximumrecord) {
 		this.maximumrecord = maximumrecord;
+	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 	
 	

@@ -47,4 +47,9 @@ public class QueueServiceImpl implements QueueService {
 		return delete;
 	}
 
+	@Override
+	public List<Queue> findAllQueueByPubId(Integer id) {
+		return queueRepo.findByPubIdId(id);
+	}
+
 }

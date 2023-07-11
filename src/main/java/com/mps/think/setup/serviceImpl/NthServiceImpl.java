@@ -47,4 +47,9 @@ public class NthServiceImpl implements NthService {
 		return delete;
 	}
 
+	@Override
+	public List<Nth> findAllNthByPubId(Integer id) {
+		return nthRepo.findByPubIdId(id);
+	}
+
 }

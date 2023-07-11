@@ -18,5 +18,7 @@ public interface OutputValueService {
 	public OutputValue findbyOutputValueId(Integer id);
 	
 	public OutputValue deleteByOutputValueId(Integer id);
+	
+	public List<OutputValue> findAllOutputValueByPubId(Integer id);
 
 }

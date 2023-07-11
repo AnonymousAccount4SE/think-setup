@@ -42,5 +42,10 @@ public class OutputSortController {
 	public ResponseEntity<?> deleteByProcessId(@RequestBody Integer id) {
 		return ResponseEntity.ok(outputSortService.deleteByOutputSortId(id));
 	}
+	
+	@PostMapping("getAllOutputSortForPublisher")
+	public ResponseEntity<?> findAllOutputSortByPubId(@RequestBody Integer id) {
+		return ResponseEntity.ok(outputSortService.findAllOutputSortByPubId(id));
+	}
 
 }
