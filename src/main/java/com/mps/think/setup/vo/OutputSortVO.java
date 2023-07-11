@@ -1,10 +1,14 @@
 package com.mps.think.setup.vo;
 
+import com.mps.think.setup.model.Publisher;
+
 public class OutputSortVO {
 	
 	private Integer id;
+	private Publisher pubId;
 	private String code;
 	private String description;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -23,6 +27,13 @@ public class OutputSortVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
+	
 	
 	
 

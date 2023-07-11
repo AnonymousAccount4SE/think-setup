@@ -1,8 +1,11 @@
 package com.mps.think.setup.vo;
 
+import com.mps.think.setup.model.Publisher;
+
 public class OutputValueVO {
 	
 	private Integer id;
+	private Publisher pubId;
 	private String report;
 	private String mode;
 	private String outputfilename;
@@ -50,6 +53,12 @@ public class OutputValueVO {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 	
 	

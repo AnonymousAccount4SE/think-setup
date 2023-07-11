@@ -47,4 +47,9 @@ public class OutputValueServiceImpl implements OutputValueService {
 		return delete;
 	}
 
+	@Override
+	public List<OutputValue> findAllOutputValueByPubId(Integer id) {
+		return outputValueRepo.findByPubIdId(id);
+	}
+
 }

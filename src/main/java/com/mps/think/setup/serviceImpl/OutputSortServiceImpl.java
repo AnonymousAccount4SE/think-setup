@@ -44,4 +44,9 @@ public class OutputSortServiceImpl implements OutputSortService {
 		return delete;
 	}
 
+	@Override
+	public List<OutputSort> findAllOutputSortByPubId(Integer id) {
+		return outputSortRepo.findByPubIdId(id);
+	}
+
 }

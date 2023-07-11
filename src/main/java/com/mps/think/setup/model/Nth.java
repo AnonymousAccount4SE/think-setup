@@ -23,6 +23,10 @@ public class Nth extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer nthid;
 	
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
+	private Publisher pubId;
+	
 	@Column(name = "code")
 	private String code;
 	
@@ -166,14 +170,24 @@ public class Nth extends BaseEntity {
 		this.maximumrecord = maximumrecord;
 	}
 
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
+
 	@Override
 	public String toString() {
-		return "Nth [nthid=" + nthid + ", code=" + code + ", active=" + active + ", description=" + description
-				+ ", outputsortid=" + outputsortid + ", count=" + count + ", percent=" + percent + ", everynthrecord="
-				+ everynthrecord + ", record=" + record + ", percentage=" + percentage + ", startingrecord="
-				+ startingrecord + ", selecteverynthrecord=" + selecteverynthrecord + ", maximumrecord=" + maximumrecord
-				+ "]";
+		return "Nth [nthid=" + nthid + ", pubId=" + pubId + ", code=" + code + ", active=" + active + ", description="
+				+ description + ", outputsortid=" + outputsortid + ", count=" + count + ", percent=" + percent
+				+ ", everynthrecord=" + everynthrecord + ", record=" + record + ", percentage=" + percentage
+				+ ", startingrecord=" + startingrecord + ", selecteverynthrecord=" + selecteverynthrecord
+				+ ", maximumrecord=" + maximumrecord + "]";
 	}
+
+
 	
 	
 

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,10 @@ public class OutputValue extends BaseEntity {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
+	private Publisher pubId;
 	
 	@Column(name = "report")
 	private String report;
@@ -95,12 +101,29 @@ public class OutputValue extends BaseEntity {
 		this.description = description;
 	}
 
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
+
 	@Override
 	public String toString() {
-		return "OutputValue [id=" + id + ", report=" + report + ", mode=" + mode + ", outputfilename=" + outputfilename
-				+ ", outputfileformat=" + outputfileformat + ", filename=" + filename + ", description=" + description
-				+ "]";
+		return "OutputValue [id=" + id + ", pubId=" + pubId + ", report=" + report + ", mode=" + mode
+				+ ", outputfilename=" + outputfilename + ", outputfileformat=" + outputfileformat + ", filename="
+				+ filename + ", description=" + description + "]";
 	}
+
+
+
+
+	
+
+
+
+
 	
 	
 

@@ -56,5 +56,10 @@ public class OutputValueController {
 		}
 		return ResponseEntity.ok(list);
 	}
+	
+	@PostMapping("getAllOutputValueForPublisher")
+	public ResponseEntity<?> findAllOutputValueByPubId(@RequestBody Integer id) {
+		return ResponseEntity.ok(outputValueService.findAllOutputValueByPubId(id));
+	}
 
 }

@@ -43,5 +43,10 @@ public class NthController {
 		return ResponseEntity.ok(nthService.deleteByNthId(id));
 	}
 	
+	@PostMapping("getAllNthForPublisher")
+	public ResponseEntity<?> findAllNthByPubId(@RequestBody Integer id) {
+		return ResponseEntity.ok(nthService.findAllNthByPubId(id));
+	}
+	
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +23,10 @@ public class OutputSort extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
+	private Publisher pubId;
+	
 	@Column(name = "code")
 	private String code;
 	
@@ -33,6 +39,14 @@ public class OutputSort extends BaseEntity{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
 	}
 
 	public String getCode() {
@@ -53,8 +67,10 @@ public class OutputSort extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "OutputSort [id=" + id + ", code=" + code + ", description=" + description + "]";
+		return "OutputSort [id=" + id + ", pubId=" + pubId + ", code=" + code + ", description=" + description + "]";
 	}
+
+	
 	
 	
 

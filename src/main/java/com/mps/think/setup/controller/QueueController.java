@@ -42,5 +42,10 @@ public class QueueController {
 	public ResponseEntity<?> deleteByQueueId(@RequestBody Integer id) {
 		return ResponseEntity.ok(queueService.deleteByQueueId(id));
 	}
+	
+	@PostMapping("getAllQueueForPublisher")
+	public ResponseEntity<?> getAllQueueForPublisher(@RequestBody Integer id) {
+		return ResponseEntity.ok(queueService.findAllQueueByPubId(id));
+	}
 
 }

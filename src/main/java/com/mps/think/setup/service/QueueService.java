@@ -1,9 +1,6 @@
 package com.mps.think.setup.service;
-
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.mps.think.setup.model.Queue;
 
 import com.mps.think.setup.vo.QueueVO;
@@ -20,5 +17,7 @@ public interface QueueService {
 	public Queue findbyQueueId(Integer id);
 	
 	public Queue deleteByQueueId(Integer id);
+	
+	public List<Queue> findAllQueueByPubId(Integer id);
 
 }

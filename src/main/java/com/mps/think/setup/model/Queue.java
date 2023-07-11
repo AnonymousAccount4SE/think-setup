@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +22,10 @@ public class Queue extends BaseEntity{
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name = "pub_id", referencedColumnName = "id" )
+	private Publisher pubId;
 	
 	@Column(name = "queue")
 	private String queue;
@@ -51,10 +57,20 @@ public class Queue extends BaseEntity{
 		this.description = description;
 	}
 
+	public Publisher getPubId() {
+		return pubId;
+	}
+
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
+
 	@Override
 	public String toString() {
-		return "Queue [id=" + id + ", queue=" + queue + ", description=" + description + "]";
+		return "Queue [id=" + id + ", pubId=" + pubId + ", queue=" + queue + ", description=" + description + "]";
 	}
+
+
 	
 	
 

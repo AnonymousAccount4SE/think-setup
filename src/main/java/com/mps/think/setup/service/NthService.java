@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mps.think.setup.model.Nth;
+import com.mps.think.setup.model.OutputSort;
 import com.mps.think.setup.vo.NthVO;
 
 
@@ -20,5 +21,7 @@ public interface NthService {
 	public Nth findbyNthId(Integer id);
 	
 	public Nth deleteByNthId(Integer id);
+	
+	public List<Nth> findAllNthByPubId(Integer id);
 
 }

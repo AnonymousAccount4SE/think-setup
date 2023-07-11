@@ -1,8 +1,11 @@
 package com.mps.think.setup.vo;
 
+import com.mps.think.setup.model.Publisher;
+
 public class QueueVO {
 	
 	private Integer id;
+	private Publisher pubId;
 	private String queue;
 	private String description;
 	
@@ -24,6 +27,13 @@ public class QueueVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Publisher getPubId() {
+		return pubId;
+	}
+	public void setPubId(Publisher pubId) {
+		this.pubId = pubId;
+	}
+	
 	
 	
 
